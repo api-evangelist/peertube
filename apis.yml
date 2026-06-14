@@ -1,0 +1,84 @@
+name: PeerTube
+description: PeerTube is a free, decentralized, and federated video hosting platform developed by Framasoft as an open-source alternative to centralized video services like YouTube. It enables anyone to self-host a video platform that federates with other instances via ActivityPub, forming a global network of over 1,600 platforms hosting more than one million videos. The REST API supports video uploading and management, channel and playlist operations, live streaming, search and discovery across federated nodes, content moderation, plugin management, and distributed transcoding via remote runner jobs.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Video
+  - Decentralized
+  - Federation
+  - Open Source
+  - ActivityPub
+  - Self-Hosted
+  - Streaming
+url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/apis.yml
+specificationVersion: "0.19"
+apis:
+  - name: PeerTube REST API
+    description: The PeerTube REST API provides comprehensive access to all platform functionality including video upload and management, user accounts, channels, playlists, live streaming, moderation, instance configuration, federation, and distributed transcoding. The API is defined by an OpenAPI 3.0 specification and uses OAuth 2.0 for authentication with three role levels (Administrator, Moderator, User). Rate limiting is enforced per endpoint class with headers exposing limit state.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+    baseURL: https://{instance}/api/v1
+    tags:
+      - Video
+      - Channels
+      - Playlists
+      - Live Streaming
+      - Federation
+      - Moderation
+      - Accounts
+      - Search
+    properties:
+      - type: Documentation
+        url: https://docs.joinpeertube.org/api/rest-getting-started
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/Chocobozzz/PeerTube/develop/support/doc/api/openapi.yaml
+      - type: APIReference
+        url: https://docs.joinpeertube.org/api-rest-reference.html
+      - type: Plugins
+        url: https://docs.joinpeertube.org/api/plugins
+      - type: EmbedPlayer
+        url: https://docs.joinpeertube.org/api/embed-player
+      - type: ActivityPub
+        url: https://docs.joinpeertube.org/api/activitypub
+      - type: Plans
+        url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+      - type: RateLimits
+        url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+      - type: FinOps
+        url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+    contact:
+      - FN: PeerTube Documentation
+        url: https://docs.joinpeertube.org/
+      - FN: PeerTube GitHub
+        url: https://github.com/Chocobozzz/PeerTube
+    meta:
+      - key: authentication
+        value: OAuth 2.0 (Password Grant) + Bearer Token
+      - key: version
+        value: v1
+      - key: openapi-version
+        value: 3.0.3
+common:
+  - type: Website
+    url: https://joinpeertube.org/
+  - type: Documentation
+    url: https://docs.joinpeertube.org/
+  - type: GitHub
+    url: https://github.com/Chocobozzz/PeerTube
+  - type: Blog
+    url: https://framablog.org/
+  - type: Forum
+    url: https://framacolibri.org/c/peertube
+  - type: MobileApp
+    url: https://joinpeertube.org/apps
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: PrivacyPolicy
+    url: https://joinpeertube.org/privacy
+  - type: License
+    url: https://github.com/Chocobozzz/PeerTube/blob/develop/LICENSE
+  - type: OpenSource
+    url: https://github.com/Chocobozzz/PeerTube
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
+    email: info@apievangelist.com

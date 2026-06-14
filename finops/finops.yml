@@ -1,0 +1,32 @@
+finops:
+  description: PeerTube is free and open-source software (AGPLv3). There are no API usage fees, subscription plans, or metered billing imposed by the PeerTube project itself. Cost considerations apply only to infrastructure choices made by instance operators. The federated model means costs are distributed across individual self-hosted instances rather than concentrated in a single provider.
+  model: open-source-self-hosted
+  pricing-url: https://joinpeertube.org/
+  cost-drivers:
+    - name: Server Hosting
+      description: Instance operators pay for their own server infrastructure (VPS, dedicated server, cloud VM). Costs vary by provider and instance size.
+      type: infrastructure
+    - name: Storage
+      description: Video storage costs depend on the volume of content hosted. Instance admins can configure quotas per user and per video. Remote object storage (S3-compatible) is supported to reduce local disk costs.
+      type: infrastructure
+    - name: Bandwidth
+      description: PeerTube uses WebTorrent/WebRTC peer-to-peer technology to distribute bandwidth load across viewers, reducing server egress costs compared to traditional streaming. Federation also distributes load.
+      type: infrastructure
+    - name: Transcoding
+      description: Video transcoding is CPU-intensive. Instance operators can offload transcoding to remote runner nodes, distributing compute costs.
+      type: compute
+  no-cost-items:
+    - PeerTube software license (AGPLv3, free)
+    - REST API access (no per-call fees)
+    - Federation with other instances (no fees)
+    - Plugin and theme ecosystem (free)
+    - Mobile apps (free on iOS, Android, F-Droid)
+  support:
+    - type: Community
+      description: Free community support via Matrix chat, IRC, and the Framacolibri forum
+      url: https://framacolibri.org/c/peertube
+      cost: free
+    - type: Framasoft
+      description: PeerTube is developed by Framasoft, a French non-profit. Donations support continued development.
+      url: https://framasoft.org/en/
+      cost: donation-based

@@ -1,0 +1,37 @@
+rate-limits:
+  description: PeerTube enforces rate limits at the instance level. Default limits are defined in the server configuration and can be adjusted by instance administrators. Rate limit status is communicated via standard HTTP response headers.
+  headers:
+    - name: X-RateLimit-Limit
+      description: Maximum number of requests allowed in the current window
+    - name: X-RateLimit-Remaining
+      description: Number of requests remaining in the current window
+    - name: X-RateLimit-Reset
+      description: UTC epoch timestamp when the rate limit window resets
+    - name: Retry-After
+      description: Seconds to wait before retrying after a 429 Too Many Requests response
+  limits:
+    - endpoint: General API endpoints
+      path: /api/v1/*
+      limit: 50
+      window: 10 seconds
+      notes: Applies to most REST API calls including video listing, search, and account operations
+    - endpoint: Authentication / Token
+      path: /api/v1/users/token
+      limit: 15
+      window: 5 minutes
+      notes: Protects against brute-force login attacks
+    - endpoint: User Registration
+      path: /api/v1/users/register
+      limit: 2
+      window: 5 minutes
+      notes: Limits automated account creation
+    - endpoint: Verification Emails
+      path: /api/v1/users/ask-send-verify-email
+      limit: 3
+      window: 5 minutes
+      notes: Prevents email flooding
+  notes:
+    - Rate limits are per IP address by default
+    - Instance administrators can configure custom limits in the PeerTube server configuration file
+    - HTTP 429 Too Many Requests is returned when a limit is exceeded
+    - Error responses conform to RFC 7807 (Problem Details for HTTP APIs)

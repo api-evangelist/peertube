@@ -1,0 +1,27 @@
+plans:
+  - name: Self-Hosted (Free)
+    description: PeerTube is free and open-source software licensed under AGPLv3. Anyone can download, install, and run their own PeerTube instance at no cost. There are no usage fees, API call limits imposed by the project, or subscription tiers for self-hosted deployments. Rate limits are configurable by individual instance administrators.
+    url: https://joinpeertube.org/
+    type: free
+    features:
+      - Full REST API access
+      - OAuth 2.0 authentication
+      - Video upload and management
+      - Live streaming
+      - Channel and playlist management
+      - Federation via ActivityPub
+      - Plugin and theme support
+      - Distributed transcoding via remote runners
+      - Content moderation tools
+      - RSS/Atom syndication feeds
+      - Search across federated instances
+      - User and role management
+    limits:
+      - type: API calls (general)
+        value: 50 calls per 10 seconds (default, configurable)
+      - type: Login endpoint
+        value: 15 calls per 5 minutes (default, configurable)
+      - type: Registration endpoint
+        value: 2 calls per 5 minutes (default, configurable)
+      - type: Video quota
+        value: Configurable per instance administrator
