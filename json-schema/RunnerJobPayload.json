@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/RunnerJobPayload.json",
+  "title": "RunnerJobPayload",
+  "anyOf": [
+    {
+      "type": "object",
+      "title": "VOD web video transcoding",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "videoFileUrl": {
+              "type": "string"
+            }
+          }
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "resolution": {
+              "type": "number"
+            },
+            "fps": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "title": "VOD HLS transcoding",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "videoFileUrl": {
+              "type": "string"
+            }
+          }
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "resolution": {
+              "type": "number"
+            },
+            "fps": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "title": "VOD audio merge transcoding",
+      "properties": {
+        "input": {
+          "type": "object",
+          "properties": {
+            "audioFileUrl": {
+              "type": "string"
+            },
+            "previewFileUrl": {
+              "type": "string"
+            }
+          }
+        },
+        "output": {
+          "type": "object",
+          "properties": {
+            "resolution": {
+              "type": "number"
+            },
+            "fps": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

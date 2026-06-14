@@ -1,0 +1,33 @@
+{
+  "operationId": "post_api_v1_video-channels_channelHandle_import-videos",
+  "method": "POST",
+  "path": "/api/v1/video-channels/{channelHandle}/import-videos",
+  "summary": "Import videos in channel",
+  "description": "Import a remote channel/playlist videos into a channel",
+  "tags": [
+    "Video Channels",
+    "Channels Sync"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/ImportVideosInChannelCreate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

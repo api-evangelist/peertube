@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoCategorySet.json",
+  "title": "VideoCategorySet",
+  "type": "integer",
+  "description": "category id of the video (see [/videos/categories](#operation/getCategories))",
+  "example": 15
+}

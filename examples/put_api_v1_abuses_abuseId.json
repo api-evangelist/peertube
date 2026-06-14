@@ -1,0 +1,47 @@
+{
+  "operationId": "put_api_v1_abuses_abuseId",
+  "method": "PUT",
+  "path": "/api/v1/abuses/{abuseId}",
+  "summary": "Update an abuse",
+  "description": "",
+  "tags": [
+    "Abuses"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/components/schemas/AbuseStateSet"
+        },
+        "moderationComment": {
+          "type": "string",
+          "description": "Update the report comment visible only to the moderation team",
+          "minLength": 2,
+          "maxLength": 3000
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "abuse not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "operationId": "post_api_v1_users_me_new-feature-info_read",
+  "method": "POST",
+  "path": "/api/v1/users/me/new-feature-info/read",
+  "summary": "Mark feature info as read",
+  "description": "**PeerTube >= v8.0.0",
+  "tags": [
+    "My User"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "feature": {
+          "$ref": "#/components/schemas/NewFeatureInfoType"
+        }
+      },
+      "required": [
+        "feature"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

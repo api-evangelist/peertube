@@ -1,0 +1,52 @@
+{
+  "operationId": "post_api_v1_video-channels_channelHandle_give-ownership",
+  "method": "POST",
+  "path": "/api/v1/video-channels/{channelHandle}/give-ownership",
+  "summary": "Request channel ownership change",
+  "description": "",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "changing channel ownership to this target is invalid or there is already a pending ownership request",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot change ownership of this channel",
+      "examples": {}
+    },
+    "404": {
+      "description": "channel not found",
+      "examples": {}
+    }
+  }
+}

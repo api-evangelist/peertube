@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AbuseMessage.json",
+  "title": "AbuseMessage",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 3000
+    },
+    "byModerator": {
+      "type": "boolean"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "account": {
+      "$ref": "#/components/schemas/AccountSummary"
+    }
+  }
+}

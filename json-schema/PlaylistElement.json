@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/PlaylistElement.json",
+  "title": "PlaylistElement",
+  "properties": {
+    "position": {
+      "type": "integer"
+    },
+    "startTimestamp": {
+      "type": "integer",
+      "format": "seconds"
+    },
+    "stopTimestamp": {
+      "type": "integer",
+      "format": "seconds"
+    },
+    "video": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Video"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UpdateUser.json",
+  "title": "UpdateUser",
+  "properties": {
+    "email": {
+      "description": "The updated email of the user",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/User/properties/email"
+        }
+      ]
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "description": "Set the email as verified"
+    },
+    "videoQuota": {
+      "type": "integer",
+      "description": "The updated video quota of the user in bytes"
+    },
+    "videoQuotaDaily": {
+      "type": "integer",
+      "description": "The updated daily video quota of the user in bytes"
+    },
+    "pluginAuth": {
+      "type": "string",
+      "nullable": true,
+      "description": "The auth plugin to use to authenticate the user",
+      "example": "peertube-plugin-auth-saml2"
+    },
+    "role": {
+      "$ref": "#/components/schemas/UserRole"
+    },
+    "adminFlags": {
+      "$ref": "#/components/schemas/UserAdminFlags"
+    },
+    "password": {
+      "$ref": "#/components/schemas/password"
+    }
+  }
+}

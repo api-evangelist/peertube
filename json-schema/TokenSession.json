@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/TokenSession.json",
+  "title": "TokenSession",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "currentSession": {
+      "type": "boolean",
+      "description": "Is this session the current one?"
+    },
+    "loginDevice": {
+      "type": "string",
+      "description": "Device used to login"
+    },
+    "loginIP": {
+      "type": "string",
+      "format": "ipv4",
+      "description": "IP address used to login"
+    },
+    "loginDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date of the login"
+    },
+    "lastActivityDevice": {
+      "type": "string"
+    },
+    "lastActivityIP": {
+      "type": "string",
+      "format": "ipv4"
+    },
+    "lastActivityDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

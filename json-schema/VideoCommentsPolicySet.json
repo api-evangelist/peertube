@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoCommentsPolicySet.json",
+  "title": "VideoCommentsPolicySet",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3
+  ],
+  "description": "Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)"
+}

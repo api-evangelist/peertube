@@ -1,0 +1,26 @@
+{
+  "operationId": "delete_api_v1_config_instance-logo_logoType",
+  "method": "DELETE",
+  "path": "/api/v1/config/instance-logo/{logoType}",
+  "summary": "Delete instance logo",
+  "description": "",
+  "tags": [
+    "Config"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

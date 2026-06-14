@@ -1,0 +1,32 @@
+{
+  "operationId": "delete_api_v1_server_following_hostOrHandle",
+  "method": "DELETE",
+  "path": "/api/v1/server/following/{hostOrHandle}",
+  "summary": "Unfollow an actor (PeerTube instance, channel or account)",
+  "description": "",
+  "tags": [
+    "Instance Follows"
+  ],
+  "parameters": [
+    {
+      "name": "hostOrHandle",
+      "in": "path",
+      "required": true,
+      "description": "The hostOrHandle to unfollow",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "host or handle not found",
+      "examples": {}
+    }
+  }
+}

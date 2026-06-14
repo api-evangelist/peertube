@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UUIDv4.json",
+  "title": "UUIDv4",
+  "type": "string",
+  "format": "uuid",
+  "example": "9c9de5e8-0a1e-484a-b099-e80766180a6d",
+  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+  "minLength": 36,
+  "maxLength": 36
+}

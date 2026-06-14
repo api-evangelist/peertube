@@ -1,0 +1,39 @@
+{
+  "operationId": "post_api_v1_runners_jobs_request",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/request",
+  "summary": "Request a new job",
+  "description": "API used by PeerTube runners",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        },
+        "jobTypes": {
+          "type": "array",
+          "description": "Filter jobs depending on their types",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "runnerToken"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

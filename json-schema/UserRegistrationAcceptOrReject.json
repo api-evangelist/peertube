@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserRegistrationAcceptOrReject.json",
+  "title": "UserRegistrationAcceptOrReject",
+  "type": "object",
+  "properties": {
+    "moderationResponse": {
+      "type": "string",
+      "description": "Moderation response to send to the user"
+    },
+    "preventEmailDelivery": {
+      "type": "boolean",
+      "description": "Set it to true if you don't want PeerTube to send an email to the user"
+    }
+  },
+  "required": [
+    "moderationResponse"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "operationId": "put_api_v1_video-playlists_playlistId",
+  "method": "PUT",
+  "path": "/api/v1/video-playlists/{playlistId}",
+  "summary": "Update a video playlist",
+  "description": "If the video playlist is set as public, the playlist must have a assigned channel.",
+  "tags": [
+    "Video Playlists"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "Video playlist display name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "thumbnailfile": {
+          "description": "Video playlist thumbnail file",
+          "type": "string",
+          "format": "binary"
+        },
+        "privacy": {
+          "$ref": "#/components/schemas/VideoPlaylistPrivacySet"
+        },
+        "description": {
+          "description": "Video playlist description",
+          "type": "string"
+        },
+        "videoChannelId": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/id"
+            }
+          ],
+          "description": "Video channel in which the playlist will be published"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

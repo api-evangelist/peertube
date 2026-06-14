@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/ServerConfigAbout.json",
+  "title": "ServerConfigAbout",
+  "properties": {
+    "instance": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "string"
+        },
+        "codeOfConduct": {
+          "type": "string"
+        },
+        "hardwareInformation": {
+          "type": "string"
+        },
+        "creationReason": {
+          "type": "string"
+        },
+        "moderationInformation": {
+          "type": "string"
+        },
+        "administrator": {
+          "type": "string"
+        },
+        "maintenanceLifetime": {
+          "type": "string"
+        },
+        "businessModel": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "avatars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ActorImage"
+          }
+        },
+        "banners": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/ActorImage"
+          }
+        }
+      }
+    }
+  }
+}

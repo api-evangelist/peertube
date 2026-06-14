@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoConstantNumber-Licence.json",
+  "title": "VideoConstantNumber-Licence",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/VideoLicenceSet"
+    },
+    "label": {
+      "type": "string",
+      "example": "Attribution - Share Alike"
+    }
+  }
+}

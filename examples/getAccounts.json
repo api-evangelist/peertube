@@ -1,0 +1,40 @@
+{
+  "operationId": "getAccounts",
+  "method": "GET",
+  "path": "/api/v1/accounts",
+  "summary": "List accounts",
+  "description": "",
+  "tags": [
+    "Accounts"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

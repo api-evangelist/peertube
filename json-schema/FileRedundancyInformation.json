@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/FileRedundancyInformation.json",
+  "title": "FileRedundancyInformation",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "fileUrl": {
+      "type": "string",
+      "format": "url"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "most-views",
+        "trending",
+        "recently-added"
+      ]
+    },
+    "size": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresOn": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "operationId": "getOAuthToken",
+  "method": "POST",
+  "path": "/api/v1/users/token",
+  "summary": "Login",
+  "description": "With your [client id and secret](#operation/getOAuthClient), you can retrieve an access and refresh tokens.",
+  "tags": [
+    "Session"
+  ],
+  "parameters": [
+    {
+      "name": "x-peertube-otp",
+      "in": "header",
+      "required": false,
+      "description": "If the user enabled two factor authentication, you need to provide the OTP code in this header",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/x-www-form-urlencoded",
+    "schema": {
+      "oneOf": [
+        {
+          "$ref": "#/components/schemas/OAuthToken-password"
+        },
+        {
+          "$ref": "#/components/schemas/OAuthToken-refresh_token"
+        }
+      ],
+      "discriminator": {
+        "propertyName": "grant_type",
+        "mapping": {
+          "password": "#/components/schemas/OAuthToken-password",
+          "refresh_token": "#/components/schemas/OAuthToken-refresh_token"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "Disambiguate via `code`:\n- `invalid_client` for an unmatched `client_id`\n- `invalid_grant` for unmatched credentials\n",
+      "examples": {}
+    },
+    "401": {
+      "description": "Disambiguate via `code`:\n- default value for a regular authentication failure\n- `invalid_token` for an expired token\n- `missing_two_factor` if two factor header is missing\n",
+      "examples": {}
+    }
+  }
+}

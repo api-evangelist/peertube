@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoStreamingPlaylists.json",
+  "title": "VideoStreamingPlaylists",
+  "allOf": [
+    {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        },
+        "type": {
+          "type": "integer",
+          "enum": [
+            1
+          ],
+          "description": "Playlist type:\n- `1`: HLS\n"
+        }
+      }
+    },
+    {
+      "$ref": "#/components/schemas/VideoStreamingPlaylists-HLS"
+    }
+  ]
+}

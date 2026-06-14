@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/RunnerJob.json",
+  "title": "RunnerJob",
+  "properties": {
+    "uuid": {
+      "$ref": "#/components/schemas/UUIDv4"
+    },
+    "type": {
+      "$ref": "#/components/schemas/RunnerJobType"
+    },
+    "state": {
+      "$ref": "#/components/schemas/RunnerJobStateConstant"
+    },
+    "payload": {
+      "$ref": "#/components/schemas/RunnerJobPayload"
+    },
+    "failures": {
+      "type": "integer",
+      "description": "Number of times a remote runner failed to process this job. After too many failures, the job in \"error\" state"
+    },
+    "error": {
+      "nullable": true,
+      "type": "string",
+      "description": "Error message if the job is errored"
+    },
+    "progress": {
+      "type": "integer",
+      "description": "Percentage progress"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "Job priority (less has more priority)"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "parent": {
+      "nullable": true,
+      "description": "If job has a parent job",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/components/schemas/RunnerJobType"
+        },
+        "state": {
+          "$ref": "#/components/schemas/RunnerJobStateConstant"
+        },
+        "uuid": {
+          "$ref": "#/components/schemas/UUIDv4"
+        }
+      }
+    },
+    "runner": {
+      "nullable": true,
+      "description": "If job is associated to a runner",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "post_api_v1_runners_registration-tokens_generate",
+  "method": "POST",
+  "path": "/api/v1/runners/registration-tokens/generate",
+  "summary": "Generate registration token",
+  "description": "Generate a new runner registration token",
+  "tags": [
+    "Runner Registration Token"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

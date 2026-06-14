@@ -1,0 +1,40 @@
+{
+  "operationId": "getVideoPlayerSettings",
+  "method": "GET",
+  "path": "/api/v1/player-settings/videos/{id}",
+  "summary": "Get video player settings",
+  "description": "Get player settings for a specific video. Returns video-specific settings merged with channel player settings.",
+  "tags": [
+    "Player Settings"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "raw",
+      "in": "query",
+      "required": false,
+      "description": "Return raw settings without merging channel defaults",
+      "schema": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

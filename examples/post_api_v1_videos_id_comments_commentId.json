@@ -1,0 +1,64 @@
+{
+  "operationId": "post_api_v1_videos_id_comments_commentId",
+  "method": "POST",
+  "path": "/api/v1/videos/{id}/comments/{commentId}",
+  "summary": "Reply to a thread of a video",
+  "description": "",
+  "tags": [
+    "Video Comments"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/VideoComment/properties/text"
+            }
+          ],
+          "format": "markdown",
+          "maxLength": 10000
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "thread or video does not exist",
+      "examples": {}
+    }
+  }
+}

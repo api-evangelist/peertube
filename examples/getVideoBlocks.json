@@ -1,0 +1,62 @@
+{
+  "operationId": "getVideoBlocks",
+  "method": "GET",
+  "path": "/api/v1/videos/blacklist",
+  "summary": "List video blocks",
+  "description": "",
+  "tags": [
+    "Video Blocks"
+  ],
+  "parameters": [
+    {
+      "name": "type",
+      "in": "query",
+      "required": false,
+      "description": "list only blocks that match this type:\n- `1`: manual block\n- `2`: automatic block that needs review\n",
+      "schema": {
+        "type": "integer",
+        "enum": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "description": "plain search that will match with video titles, and more",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

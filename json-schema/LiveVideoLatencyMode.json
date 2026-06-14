@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/LiveVideoLatencyMode.json",
+  "title": "LiveVideoLatencyMode",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3
+  ],
+  "description": "The live latency mode (Default = `1`, High latency = `2`, Small Latency = `3`)"
+}

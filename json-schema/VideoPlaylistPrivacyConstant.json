@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoPlaylistPrivacyConstant.json",
+  "title": "VideoPlaylistPrivacyConstant",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/VideoPlaylistPrivacySet"
+    },
+    "label": {
+      "type": "string"
+    }
+  }
+}

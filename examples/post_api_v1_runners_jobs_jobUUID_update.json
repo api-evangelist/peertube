@@ -1,0 +1,83 @@
+{
+  "operationId": "post_api_v1_runners_jobs_jobUUID_update",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/{jobUUID}/update",
+  "summary": "Update job",
+  "description": "API used by PeerTube runners",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        },
+        "jobToken": {
+          "type": "string"
+        },
+        "progress": {
+          "type": "integer",
+          "description": "Update job progression percentage (optional)"
+        },
+        "payload": {
+          "anyOf": [
+            {
+              "type": "object",
+              "description": "Provide live transcoding chunks update",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "add-chunk",
+                    "remove-chunk"
+                  ]
+                },
+                "masterPlaylistFile": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "resolutionPlaylistFile": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "resolutionPlaylistFilename": {
+                  "type": "string"
+                },
+                "videoChunkFile": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "videoChunkFilename": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "runnerToken",
+        "jobToken"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

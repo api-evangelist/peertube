@@ -1,0 +1,46 @@
+{
+  "operationId": "blockServer",
+  "method": "POST",
+  "path": "/api/v1/users/me/blocklist/servers",
+  "summary": "Block a server by my account",
+  "description": "Add a server to the authenticated user's blocklist",
+  "tags": [
+    "Account Blocklist"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "Server host to block",
+          "example": "example.com"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation - server blocked",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid server host",
+      "examples": {}
+    },
+    "401": {
+      "description": "authentication required",
+      "examples": {}
+    },
+    "404": {
+      "description": "server not found",
+      "examples": {}
+    }
+  }
+}

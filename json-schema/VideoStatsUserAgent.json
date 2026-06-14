@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoStatsUserAgent.json",
+  "title": "VideoStatsUserAgent",
+  "properties": {
+    "clients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "viewers": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/VideoStatsUserAgentDevice"
+          },
+          "viewers": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "operatingSystem": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "viewers": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

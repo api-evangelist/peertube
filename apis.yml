@@ -11,6 +11,7 @@ tags:
   - Streaming
 url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/apis.yml
 specificationVersion: "0.19"
+modified: "2026-06-13"
 apis:
   - name: PeerTube REST API
     description: The PeerTube REST API provides comprehensive access to all platform functionality including video upload and management, user accounts, channels, playlists, live streaming, moderation, instance configuration, federation, and distributed transcoding. The API is defined by an OpenAPI 3.0 specification and uses OAuth 2.0 for authentication with three role levels (Administrator, Moderator, User). Rate limiting is enforced per endpoint class with headers exposing limit state.

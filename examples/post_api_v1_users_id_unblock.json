@@ -1,0 +1,38 @@
+{
+  "operationId": "post_api_v1_users_id_unblock",
+  "method": "POST",
+  "path": "/api/v1/users/{id}/unblock",
+  "summary": "Unblock a user",
+  "description": "Allow a previously blocked user to login and interact with the instance",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid user id",
+      "examples": {}
+    },
+    "403": {
+      "description": "insufficient permissions to unblock users",
+      "examples": {}
+    },
+    "404": {
+      "description": "user not found",
+      "examples": {}
+    }
+  }
+}

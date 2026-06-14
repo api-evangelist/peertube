@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoResolutionConstant.json",
+  "title": "VideoResolutionConstant",
+  "description": "resolutions and their labels for the video",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/VideoResolutionSet"
+    },
+    "label": {
+      "type": "string",
+      "example": "240p"
+    }
+  }
+}

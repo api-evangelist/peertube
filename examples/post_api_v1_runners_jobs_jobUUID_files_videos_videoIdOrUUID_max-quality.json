@@ -1,0 +1,55 @@
+{
+  "operationId": "post_api_v1_runners_jobs_jobUUID_files_videos_videoIdOrUUID_max-quality",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/max-quality",
+  "summary": "Download the max-quality video file for a job video",
+  "description": "API used by PeerTube runners.",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        },
+        "jobToken": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "runnerToken",
+        "jobToken"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "the job is not associated with this video",
+      "examples": {}
+    }
+  }
+}

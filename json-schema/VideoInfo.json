@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoInfo.json",
+  "title": "VideoInfo",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/Video/properties/id"
+    },
+    "uuid": {
+      "$ref": "#/components/schemas/Video/properties/uuid"
+    },
+    "name": {
+      "$ref": "#/components/schemas/Video/properties/name"
+    },
+    "state": {
+      "$ref": "#/components/schemas/Video/properties/state"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "operationId": "get_api_v1_runners_registration-tokens",
+  "method": "GET",
+  "path": "/api/v1/runners/registration-tokens",
+  "summary": "List registration tokens",
+  "description": "",
+  "tags": [
+    "Runner Registration Token"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

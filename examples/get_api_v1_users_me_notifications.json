@@ -1,0 +1,61 @@
+{
+  "operationId": "get_api_v1_users_me_notifications",
+  "method": "GET",
+  "path": "/api/v1/users/me/notifications",
+  "summary": "List my notifications",
+  "description": "",
+  "tags": [
+    "My Notifications"
+  ],
+  "parameters": [
+    {
+      "name": "typeOneOf",
+      "in": "query",
+      "required": false,
+      "description": "only list notifications of these types",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/NotificationType"
+        }
+      }
+    },
+    {
+      "name": "unread",
+      "in": "query",
+      "required": false,
+      "description": "only list unread notifications",
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

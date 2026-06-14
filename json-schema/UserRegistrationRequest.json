@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserRegistrationRequest.json",
+  "title": "UserRegistrationRequest",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/RegisterUser"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "registrationReason": {
+          "type": "string",
+          "description": "reason for the user to register on the instance"
+        }
+      },
+      "required": [
+        "registrationReason"
+      ]
+    }
+  ]
+}

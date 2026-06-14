@@ -1,0 +1,51 @@
+{
+  "operationId": "putVideoPlaylistVideo",
+  "method": "PUT",
+  "path": "/api/v1/video-playlists/{playlistId}/videos/{playlistElementId}",
+  "summary": "Update a playlist element",
+  "description": "",
+  "tags": [
+    "Video Playlists"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "startTimestamp": {
+          "type": "integer",
+          "format": "seconds",
+          "description": "Start the video at this specific timestamp"
+        },
+        "stopTimestamp": {
+          "type": "integer",
+          "format": "seconds",
+          "description": "Stop the video at this specific timestamp"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

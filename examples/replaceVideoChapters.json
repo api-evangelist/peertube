@@ -1,0 +1,52 @@
+{
+  "operationId": "replaceVideoChapters",
+  "method": "PUT",
+  "path": "/api/v1/videos/{id}/chapters",
+  "summary": "Replace video chapters",
+  "description": "**PeerTube >= 6.0**",
+  "tags": [
+    "Video Chapters"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "chapters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "timecode": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

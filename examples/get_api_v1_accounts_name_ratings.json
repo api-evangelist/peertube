@@ -1,0 +1,60 @@
+{
+  "operationId": "get_api_v1_accounts_name_ratings",
+  "method": "GET",
+  "path": "/api/v1/accounts/{name}/ratings",
+  "summary": "List ratings of an account",
+  "description": "",
+  "tags": [
+    "Accounts"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "rating",
+      "in": "query",
+      "required": false,
+      "description": "Optionally filter which ratings to retrieve",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "like",
+          "dislike"
+        ]
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

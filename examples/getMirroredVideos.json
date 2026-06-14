@@ -1,0 +1,53 @@
+{
+  "operationId": "getMirroredVideos",
+  "method": "GET",
+  "path": "/api/v1/server/redundancy/videos",
+  "summary": "List videos being mirrored",
+  "description": "",
+  "tags": [
+    "Video Mirroring"
+  ],
+  "parameters": [
+    {
+      "name": "target",
+      "in": "query",
+      "required": true,
+      "description": "direction of the mirror",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "my-videos",
+          "remote-videos"
+        ]
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

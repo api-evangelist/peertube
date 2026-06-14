@@ -1,0 +1,45 @@
+{
+  "operationId": "uploadLegacy",
+  "method": "POST",
+  "path": "/api/v1/videos/upload",
+  "summary": "Upload a video",
+  "description": "Uses a single request to upload a video.",
+  "tags": [
+    "Video",
+    "Video Upload"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "$ref": "#/components/schemas/VideoUploadRequestLegacy"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "video didn't pass upload filter",
+      "examples": {}
+    },
+    "408": {
+      "description": "upload has timed out",
+      "examples": {}
+    },
+    "413": {
+      "description": "If the response has no body, it means the reverse-proxy didn't let it through. Otherwise disambiguate via `code`:\n- `quota_reached` for quota limits whether daily or global\n",
+      "examples": {}
+    },
+    "415": {
+      "description": "video type unsupported",
+      "examples": {}
+    },
+    "422": {
+      "description": "video unreadable",
+      "examples": {}
+    }
+  }
+}

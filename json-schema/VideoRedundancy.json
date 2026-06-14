@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoRedundancy.json",
+  "title": "VideoRedundancy",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "url"
+    },
+    "uuid": {
+      "$ref": "#/components/schemas/UUIDv4"
+    },
+    "redundancies": {
+      "type": "object",
+      "properties": {
+        "streamingPlaylists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/FileRedundancyInformation"
+          }
+        }
+      }
+    }
+  }
+}

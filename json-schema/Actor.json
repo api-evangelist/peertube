@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Actor.json",
+  "title": "Actor",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "url": {
+      "type": "string",
+      "format": "url"
+    },
+    "name": {
+      "description": "immutable name of the actor, used to find or mention it",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/username"
+        }
+      ]
+    },
+    "avatars": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ActorImage"
+      }
+    },
+    "host": {
+      "type": "string",
+      "format": "hostname",
+      "description": "server on which the actor is resident"
+    },
+    "hostRedundancyAllowed": {
+      "type": "boolean",
+      "nullable": true,
+      "description": "whether this actor's host allows redundancy of its videos"
+    },
+    "followingCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "number of actors subscribed to by this actor, as seen by this instance"
+    },
+    "followersCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "number of followers of this actor, as seen by this instance"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

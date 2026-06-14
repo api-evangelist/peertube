@@ -1,0 +1,38 @@
+{
+  "operationId": "post_api_v1_video-channels_ownership_id_refuse",
+  "method": "POST",
+  "path": "/api/v1/video-channels/ownership/{id}/refuse",
+  "summary": "Refuse channel ownership change request",
+  "description": "",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "ownership change request already accepted/refused or request type mismatch",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot terminate an ownership change of another user",
+      "examples": {}
+    },
+    "404": {
+      "description": "channel ownership change not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoPlaylistPrivacySet.json",
+  "title": "VideoPlaylistPrivacySet",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3
+  ],
+  "description": "Video playlist privacy policy (see [/video-playlists/privacies](#operation/getPlaylistPrivacyPolicies))"
+}

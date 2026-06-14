@@ -1,0 +1,45 @@
+{
+  "operationId": "get_download_videos_generate_videoIdOrUUID",
+  "method": "GET",
+  "path": "/download/videos/generate/{videoIdOrUUID}",
+  "summary": "Download video file",
+  "description": "Generate a mp4 container that contains at most 1 video stream and at most 1 audio stream. Mainly used to merge the HLS audio only video file and the HLS video only resolution file.",
+  "tags": [
+    "Video Download"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "videoFileIds",
+      "in": "query",
+      "required": true,
+      "description": "streams of video files to mux in the output",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

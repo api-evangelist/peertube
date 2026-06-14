@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoLanguageSet.json",
+  "title": "VideoLanguageSet",
+  "type": "string",
+  "description": "language id of the video (see [/videos/languages](#operation/getLanguages))",
+  "example": "en"
+}

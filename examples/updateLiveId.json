@@ -1,0 +1,41 @@
+{
+  "operationId": "updateLiveId",
+  "method": "PUT",
+  "path": "/api/v1/videos/live/{id}",
+  "summary": "Update information about a live",
+  "description": "",
+  "tags": [
+    "Live Videos",
+    "Video"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/LiveVideoUpdate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "bad parameters or trying to update a live that has already started",
+      "examples": {}
+    },
+    "403": {
+      "description": "trying to save replay of the live but saving replay is not enabled on the instance",
+      "examples": {}
+    }
+  }
+}

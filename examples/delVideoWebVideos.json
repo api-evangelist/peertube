@@ -1,0 +1,30 @@
+{
+  "operationId": "delVideoWebVideos",
+  "method": "DELETE",
+  "path": "/api/v1/videos/{id}/web-videos",
+  "summary": "Delete video Web Video files",
+  "description": "**PeerTube >= 6.0**",
+  "tags": [
+    "Video Files"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video does not exist",
+      "examples": {}
+    }
+  }
+}

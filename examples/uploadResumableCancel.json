@@ -1,0 +1,41 @@
+{
+  "operationId": "uploadResumableCancel",
+  "method": "DELETE",
+  "path": "/api/v1/videos/upload-resumable",
+  "summary": "Cancel the resumable upload of a video, deleting any data uploaded so far",
+  "description": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the upload of a video",
+  "tags": [
+    "Video",
+    "Video Upload"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "Content-Length",
+      "in": "header",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "number",
+        "example": 0
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "upload cancelled",
+      "examples": {}
+    },
+    "404": {
+      "description": "upload not found",
+      "examples": {}
+    }
+  }
+}

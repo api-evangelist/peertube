@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/id.json",
+  "title": "id",
+  "type": "integer",
+  "minimum": 1,
+  "example": 42
+}

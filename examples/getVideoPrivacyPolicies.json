@@ -1,0 +1,24 @@
+{
+  "operationId": "getVideoPrivacyPolicies",
+  "method": "GET",
+  "path": "/api/v1/videos/privacies",
+  "summary": "List available video privacy policies",
+  "description": "",
+  "tags": [
+    "Video"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {
+        "application/json": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/api/v1/videos/privacies"
+          }
+        }
+      }
+    }
+  }
+}

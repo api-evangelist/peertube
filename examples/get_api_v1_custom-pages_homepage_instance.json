@@ -1,0 +1,22 @@
+{
+  "operationId": "get_api_v1_custom-pages_homepage_instance",
+  "method": "GET",
+  "path": "/api/v1/custom-pages/homepage/instance",
+  "summary": "Get instance custom homepage",
+  "description": "",
+  "tags": [
+    "Homepage"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "404": {
+      "description": "No homepage set",
+      "examples": {}
+    },
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

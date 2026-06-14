@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/GetMeVideoRating.json",
+  "title": "GetMeVideoRating",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "rating": {
+      "type": "string",
+      "enum": [
+        "like",
+        "dislike",
+        "none"
+      ],
+      "description": "Rating of the video"
+    }
+  },
+  "required": [
+    "id",
+    "rating"
+  ]
+}

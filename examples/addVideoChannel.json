@@ -1,0 +1,24 @@
+{
+  "operationId": "addVideoChannel",
+  "method": "POST",
+  "path": "/api/v1/video-channels",
+  "summary": "Create a video channel",
+  "description": "",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/VideoChannelCreate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

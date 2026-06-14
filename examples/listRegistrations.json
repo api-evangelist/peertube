@@ -1,0 +1,69 @@
+{
+  "operationId": "listRegistrations",
+  "method": "GET",
+  "path": "/api/v1/users/registrations",
+  "summary": "List registrations",
+  "description": "",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "sort",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "-createdAt",
+          "createdAt",
+          "state",
+          "-state"
+        ]
+      }
+    },
+    {
+      "name": "stateOneOf",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UserRegistrationState"
+        }
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

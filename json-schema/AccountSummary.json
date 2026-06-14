@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AccountSummary.json",
+  "title": "AccountSummary",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "url"
+    },
+    "host": {
+      "type": "string",
+      "format": "hostname"
+    },
+    "avatars": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ActorImage"
+      }
+    }
+  }
+}

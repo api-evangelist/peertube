@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoComment.json",
+  "title": "VideoComment",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "url": {
+      "type": "string",
+      "format": "url"
+    },
+    "text": {
+      "type": "string",
+      "format": "html",
+      "description": "Text of the comment",
+      "minLength": 1,
+      "example": "This video is wonderful!"
+    },
+    "threadId": {
+      "$ref": "#/components/schemas/id"
+    },
+    "inReplyToCommentId": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/id"
+        }
+      ]
+    },
+    "videoId": {
+      "$ref": "#/components/schemas/Video/properties/id"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "deletedAt": {
+      "nullable": true,
+      "type": "string",
+      "format": "date-time",
+      "default": null
+    },
+    "isDeleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "heldForReview": {
+      "type": "boolean"
+    },
+    "totalRepliesFromVideoAuthor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalReplies": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "account": {
+      "$ref": "#/components/schemas/Account"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoScheduledUpdate.json",
+  "title": "VideoScheduledUpdate",
+  "properties": {
+    "privacy": {
+      "$ref": "#/components/schemas/VideoPrivacySet"
+    },
+    "updateAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When to update the video"
+    }
+  },
+  "required": [
+    "updateAt"
+  ]
+}

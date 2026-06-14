@@ -1,0 +1,71 @@
+{
+  "operationId": "get_api_v1_runners_jobs",
+  "method": "GET",
+  "path": "/api/v1/runners/jobs",
+  "summary": "List jobs",
+  "description": "",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "stateOneOf",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/RunnerJobState"
+        }
+      }
+    },
+    {
+      "name": "typeOneOf",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/RunnerJobType"
+        }
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

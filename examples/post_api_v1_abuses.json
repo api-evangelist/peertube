@@ -1,0 +1,89 @@
+{
+  "operationId": "post_api_v1_abuses",
+  "method": "POST",
+  "path": "/api/v1/abuses",
+  "summary": "Report an abuse",
+  "description": "",
+  "tags": [
+    "Abuses"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "description": "Reason why the user reports this video",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3000
+        },
+        "predefinedReasons": {
+          "$ref": "#/components/schemas/PredefinedAbuseReasons"
+        },
+        "video": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Video id to report",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Video/properties/id"
+                }
+              ]
+            },
+            "startAt": {
+              "type": "integer",
+              "format": "seconds",
+              "description": "Timestamp in the video that marks the beginning of the report",
+              "minimum": 0
+            },
+            "endAt": {
+              "type": "integer",
+              "format": "seconds",
+              "description": "Timestamp in the video that marks the ending of the report",
+              "minimum": 0
+            }
+          }
+        },
+        "comment": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Comment id to report",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/VideoComment/properties/id"
+                }
+              ]
+            }
+          }
+        },
+        "account": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Account id to report",
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "required": [
+        "reason"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "incorrect request parameters",
+      "examples": {}
+    }
+  }
+}

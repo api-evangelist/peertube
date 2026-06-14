@@ -1,0 +1,52 @@
+{
+  "operationId": "post_api_v1_videos_videoIdOrUUID_give-ownership",
+  "method": "POST",
+  "path": "/api/v1/videos/{videoIdOrUUID}/give-ownership",
+  "summary": "Request ownership change",
+  "description": "",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "username"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "changing video ownership to a remote account is not supported yet or there is already a pending ownership request",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot change ownership of this video",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

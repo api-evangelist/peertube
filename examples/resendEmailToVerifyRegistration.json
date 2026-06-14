@@ -1,0 +1,33 @@
+{
+  "operationId": "resendEmailToVerifyRegistration",
+  "method": "POST",
+  "path": "/api/v1/users/registrations/ask-send-verify-email",
+  "summary": "Resend verification link to registration request email",
+  "description": "",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Registration email"
+        }
+      },
+      "required": [
+        "email"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

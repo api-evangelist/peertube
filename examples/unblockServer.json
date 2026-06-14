@@ -1,0 +1,41 @@
+{
+  "operationId": "unblockServer",
+  "method": "DELETE",
+  "path": "/api/v1/users/me/blocklist/servers/{host}",
+  "summary": "Unblock a server by my account",
+  "description": "Remove a server from the authenticated user's blocklist",
+  "tags": [
+    "Account Blocklist"
+  ],
+  "parameters": [
+    {
+      "name": "host",
+      "in": "path",
+      "required": true,
+      "description": "Server host to unblock",
+      "schema": {
+        "type": "string",
+        "example": "example.com"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation - server unblocked",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid server host",
+      "examples": {}
+    },
+    "401": {
+      "description": "authentication required",
+      "examples": {}
+    },
+    "404": {
+      "description": "server block not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "operationId": "post_api_v1_server_blocklist_accounts",
+  "method": "POST",
+  "path": "/api/v1/server/blocklist/accounts",
+  "summary": "Block an account by server",
+  "description": "",
+  "tags": [
+    "Server Blocklist"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "example": "chocobozzz@example.org",
+          "description": "account to block, in the form `username@domain`"
+        }
+      },
+      "required": [
+        "accountName"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "409": {
+      "description": "self-blocking forbidden",
+      "examples": {}
+    }
+  }
+}

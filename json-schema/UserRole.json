@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserRole.json",
+  "title": "UserRole",
+  "type": "integer",
+  "enum": [
+    0,
+    1,
+    2
+  ],
+  "description": "The user role (Admin = `0`, Moderator = `1`, User = `2`)",
+  "example": 2
+}

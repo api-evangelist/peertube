@@ -1,0 +1,44 @@
+{
+  "operationId": "get_api_v1_blocklist_status",
+  "method": "GET",
+  "path": "/api/v1/blocklist/status",
+  "summary": "Get block status of accounts/hosts",
+  "description": "",
+  "tags": [
+    "Account Blocklist",
+    "Server Blocklist"
+  ],
+  "parameters": [
+    {
+      "name": "accounts",
+      "in": "query",
+      "required": false,
+      "description": "Check if these accounts are blocked",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "hosts",
+      "in": "query",
+      "required": false,
+      "description": "Check if these hosts are blocked",
+      "schema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

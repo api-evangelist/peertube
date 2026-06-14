@@ -1,0 +1,18 @@
+{
+  "operationId": "delUser",
+  "method": "DELETE",
+  "path": "/api/v1/users/{id}",
+  "summary": "Delete a user",
+  "description": "",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

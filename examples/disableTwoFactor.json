@@ -1,0 +1,46 @@
+{
+  "operationId": "disableTwoFactor",
+  "method": "POST",
+  "path": "/api/v1/users/{id}/two-factor/disable",
+  "summary": "Disable two factor auth",
+  "description": "Disable two factor authentication of a user",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "currentPassword": {
+          "type": "string",
+          "description": "Password of the currently authenticated user"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "invalid password",
+      "examples": {}
+    },
+    "404": {
+      "description": "user not found",
+      "examples": {}
+    }
+  }
+}

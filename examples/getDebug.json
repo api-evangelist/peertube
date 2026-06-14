@@ -1,0 +1,18 @@
+{
+  "operationId": "getDebug",
+  "method": "GET",
+  "path": "/api/v1/server/debug",
+  "summary": "Get debug information",
+  "description": "Retrieve internal debug information for administrators.",
+  "tags": [
+    "Debug"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

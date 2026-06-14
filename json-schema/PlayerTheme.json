@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/PlayerTheme.json",
+  "title": "PlayerTheme",
+  "type": "string",
+  "enum": [
+    "galaxy",
+    "lucide"
+  ],
+  "description": "The player theme to use"
+}

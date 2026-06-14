@@ -1,0 +1,49 @@
+{
+  "operationId": "post_api_v1_runners_jobs_jobUUID_error",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/{jobUUID}/error",
+  "summary": "Post job error",
+  "description": "API used by PeerTube runners",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        },
+        "jobToken": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string",
+          "description": "Why the runner failed to process this job"
+        }
+      },
+      "required": [
+        "runnerToken",
+        "jobToken",
+        "message"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

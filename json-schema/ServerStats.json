@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/ServerStats.json",
+  "title": "ServerStats",
+  "properties": {
+    "totalUsers": {
+      "type": "number"
+    },
+    "totalDailyActiveUsers": {
+      "type": "number"
+    },
+    "totalWeeklyActiveUsers": {
+      "type": "number"
+    },
+    "totalMonthlyActiveUsers": {
+      "type": "number"
+    },
+    "totalModerators": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled total moderators stats"
+    },
+    "totalAdmins": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled total admins stats"
+    },
+    "totalLocalVideos": {
+      "type": "number"
+    },
+    "totalLocalVideoViews": {
+      "type": "number",
+      "description": "Total video views made on the instance"
+    },
+    "totalLocalVideoDownloads": {
+      "type": "number",
+      "description": "Total video downloads made on the instance"
+    },
+    "totalLocalVideoComments": {
+      "type": "number",
+      "description": "Total comments made by local users"
+    },
+    "totalLocalVideoFilesSize": {
+      "type": "number"
+    },
+    "totalVideos": {
+      "type": "number"
+    },
+    "totalVideoComments": {
+      "type": "number"
+    },
+    "totalLocalVideoChannels": {
+      "type": "number"
+    },
+    "totalLocalDailyActiveVideoChannels": {
+      "type": "number"
+    },
+    "totalLocalWeeklyActiveVideoChannels": {
+      "type": "number"
+    },
+    "totalLocalMonthlyActiveVideoChannels": {
+      "type": "number"
+    },
+    "totalLocalPlaylists": {
+      "type": "number"
+    },
+    "totalInstanceFollowers": {
+      "type": "number"
+    },
+    "totalInstanceFollowing": {
+      "type": "number"
+    },
+    "videosRedundancy": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "strategy": {
+            "type": "string"
+          },
+          "totalSize": {
+            "type": "number"
+          },
+          "totalUsed": {
+            "type": "number"
+          },
+          "totalVideoFiles": {
+            "type": "number"
+          },
+          "totalVideos": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "totalActivityPubMessagesProcessed": {
+      "type": "number"
+    },
+    "totalActivityPubMessagesSuccesses": {
+      "type": "number"
+    },
+    "totalActivityPubMessagesErrors": {
+      "type": "number"
+    },
+    "activityPubMessagesProcessedPerSecond": {
+      "type": "number"
+    },
+    "totalActivityPubMessagesWaiting": {
+      "type": "number"
+    },
+    "averageRegistrationRequestResponseTimeMs": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled registration requests stats"
+    },
+    "totalRegistrationRequestsProcessed": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled registration requests stats"
+    },
+    "totalRegistrationRequests": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled registration requests stats"
+    },
+    "averageAbuseResponseTimeMs": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled abuses stats"
+    },
+    "totalAbusesProcessed": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled abuses stats"
+    },
+    "totalAbuses": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Value is null if the admin disabled abuses stats"
+    }
+  }
+}

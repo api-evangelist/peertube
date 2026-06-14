@@ -1,0 +1,37 @@
+{
+  "operationId": "importVideo",
+  "method": "POST",
+  "path": "/api/v1/videos/imports",
+  "summary": "Import a video",
+  "description": "Import a torrent or magnetURI or HTTP resource (if enabled by the instance administrator)",
+  "tags": [
+    "Video Imports",
+    "Video Upload"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "$ref": "#/components/schemas/VideoCreateImport"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "`magnetUri` or `targetUrl` or a torrent file missing",
+      "examples": {}
+    },
+    "403": {
+      "description": "video didn't pass pre-import filter",
+      "examples": {}
+    },
+    "409": {
+      "description": "HTTP or Torrent/magnetURI import not enabled",
+      "examples": {}
+    }
+  }
+}

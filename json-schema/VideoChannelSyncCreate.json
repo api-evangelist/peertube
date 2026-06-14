@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelSyncCreate.json",
+  "title": "VideoChannelSyncCreate",
+  "type": "object",
+  "properties": {
+    "externalChannelUrl": {
+      "type": "string",
+      "example": "https://youtube.com/c/UC_myfancychannel"
+    },
+    "videoChannelId": {
+      "$ref": "#/components/schemas/id"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/NSFWPolicy.json",
+  "title": "NSFWPolicy",
+  "type": "string",
+  "enum": [
+    "display",
+    "warn",
+    "do_not_list"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Plugin.json",
+  "title": "Plugin",
+  "properties": {
+    "name": {
+      "type": "string",
+      "example": "peertube-plugin-auth-ldap"
+    },
+    "type": {
+      "type": "integer",
+      "description": "- `1`: PLUGIN\n- `2`: THEME\n",
+      "enum": [
+        1,
+        2
+      ]
+    },
+    "latestVersion": {
+      "type": "string",
+      "example": "0.0.3"
+    },
+    "version": {
+      "type": "string",
+      "example": "0.0.1"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "uninstalled": {
+      "type": "boolean"
+    },
+    "peertubeEngine": {
+      "type": "string",
+      "example": "2.2.0"
+    },
+    "description": {
+      "type": "string"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "url",
+      "example": "https://framagit.org/framasoft/peertube/official-plugins/tree/master/peertube-plugin-auth-ldap"
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "operationId": "getSyndicatedSubscriptionVideos",
+  "method": "GET",
+  "path": "/feeds/subscriptions.{format}",
+  "summary": "Videos of subscriptions feeds",
+  "description": "",
+  "tags": [
+    "Video Feeds"
+  ],
+  "parameters": [
+    {
+      "name": "format",
+      "in": "path",
+      "required": true,
+      "description": "format expected (we focus on making `rss` the most feature-rich ; it serves [Media RSS](https://www.rssboard.org/media-rss))",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "xml",
+          "rss",
+          "rss2",
+          "atom",
+          "atom1",
+          "json",
+          "json1"
+        ]
+      }
+    },
+    {
+      "name": "accountId",
+      "in": "query",
+      "required": true,
+      "description": "limit listing to a specific account",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "token",
+      "in": "query",
+      "required": true,
+      "description": "private token allowing access",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "406": {
+      "description": "accept header unsupported",
+      "examples": {}
+    }
+  }
+}

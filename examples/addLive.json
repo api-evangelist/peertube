@@ -1,0 +1,133 @@
+{
+  "operationId": "addLive",
+  "method": "POST",
+  "path": "/api/v1/videos/live",
+  "summary": "Create a live",
+  "description": "",
+  "tags": [
+    "Live Videos",
+    "Video"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "channelId": {
+          "description": "Channel id that will contain this live video",
+          "type": "integer"
+        },
+        "saveReplay": {
+          "type": "boolean"
+        },
+        "replaySettings": {
+          "$ref": "#/components/schemas/LiveVideoReplaySettings"
+        },
+        "permanentLive": {
+          "description": "User can stream multiple times in a permanent live",
+          "type": "boolean"
+        },
+        "latencyMode": {
+          "description": "User can select live latency mode if enabled by the instance",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/LiveVideoLatencyMode"
+            }
+          ]
+        },
+        "thumbnailfile": {
+          "description": "Live video/replay thumbnail file",
+          "type": "string",
+          "format": "binary"
+        },
+        "previewfile": {
+          "description": "Deprecated in PeerTube v8.1, use thumbnailfile instead",
+          "deprecated": true,
+          "type": "string",
+          "format": "binary"
+        },
+        "privacy": {
+          "$ref": "#/components/schemas/VideoPrivacySet"
+        },
+        "category": {
+          "$ref": "#/components/schemas/VideoCategorySet"
+        },
+        "licence": {
+          "$ref": "#/components/schemas/VideoLicenceSet"
+        },
+        "language": {
+          "$ref": "#/components/schemas/VideoLanguageSet"
+        },
+        "description": {
+          "description": "Live video/replay description",
+          "type": "string"
+        },
+        "support": {
+          "description": "A text tell the audience how to support the creator",
+          "example": "Please support our work on https://soutenir.framasoft.org/en/ <3",
+          "type": "string"
+        },
+        "nsfw": {
+          "description": "Whether or not this live video/replay contains sensitive content",
+          "type": "boolean"
+        },
+        "nsfwSummary": {
+          "description": "More information about the sensitive content of the video"
+        },
+        "nsfwFlags": {
+          "$ref": "#/components/schemas/NSFWFlag"
+        },
+        "name": {
+          "description": "Live video/replay name",
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120
+        },
+        "tags": {
+          "description": "Live video/replay tags (maximum 5 tags each between 2 and 30 characters)",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        },
+        "commentsPolicy": {
+          "$ref": "#/components/schemas/VideoCommentsPolicySet"
+        },
+        "downloadEnabled": {
+          "description": "Enable or disable downloading for the replay of this live video",
+          "type": "boolean"
+        },
+        "schedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/LiveSchedule"
+          }
+        }
+      },
+      "required": [
+        "channelId",
+        "name"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "Disambiguate via `code`:\n- default type for a validation error\n- `live_conflicting_permanent_and_save_replay` for conflicting parameters set\n",
+      "examples": {}
+    },
+    "403": {
+      "description": "Disambiguate via `code`:\n- `live_not_enabled` for a disabled live feature\n- `live_not_allowing_replay` for a disabled replay feature\n- `max_instance_lives_limit_reached` for the absolute concurrent live limit\n- `max_user_lives_limit_reached` for the user concurrent live limit\n",
+      "examples": {}
+    }
+  }
+}

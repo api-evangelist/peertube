@@ -1,0 +1,53 @@
+{
+  "operationId": "verifyUser",
+  "method": "POST",
+  "path": "/api/v1/users/{id}/verify-email",
+  "summary": "Verify a user",
+  "description": "Following a user registration, the new user will receive an email asking to click a link\ncontaining a secret.\nThis endpoint can also be used to verify a new email set in the user account.\n",
+  "tags": [
+    "Users",
+    "Register"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "verificationString": {
+          "type": "string",
+          "format": "url"
+        },
+        "isPendingEmail": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "verificationString"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "invalid verification string",
+      "examples": {}
+    },
+    "404": {
+      "description": "user not found",
+      "examples": {}
+    }
+  }
+}

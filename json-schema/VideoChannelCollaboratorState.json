@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelCollaboratorState.json",
+  "title": "VideoChannelCollaboratorState",
+  "type": "integer",
+  "enum": [
+    1,
+    2
+  ],
+  "description": "The user import state:\n  - `1`: Pending\n  - `2`: Accepted\n"
+}

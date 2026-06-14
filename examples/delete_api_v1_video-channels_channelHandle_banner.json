@@ -1,0 +1,26 @@
+{
+  "operationId": "delete_api_v1_video-channels_channelHandle_banner",
+  "method": "DELETE",
+  "path": "/api/v1/video-channels/{channelHandle}/banner",
+  "summary": "Delete channel banner",
+  "description": "",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

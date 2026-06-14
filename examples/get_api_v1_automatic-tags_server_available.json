@@ -1,0 +1,18 @@
+{
+  "operationId": "get_api_v1_automatic-tags_server_available",
+  "method": "GET",
+  "path": "/api/v1/automatic-tags/server/available",
+  "summary": "Get server available auto tags",
+  "description": "**PeerTube >= 6.2**",
+  "tags": [
+    "Automatic Tags"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

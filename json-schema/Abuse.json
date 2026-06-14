@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Abuse.json",
+  "title": "Abuse",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "reason": {
+      "type": "string",
+      "example": "The video is a spam",
+      "minLength": 2,
+      "maxLength": 3000
+    },
+    "predefinedReasons": {
+      "$ref": "#/components/schemas/AbusePredefinedReasons"
+    },
+    "reporterAccount": {
+      "$ref": "#/components/schemas/Account"
+    },
+    "state": {
+      "$ref": "#/components/schemas/AbuseStateConstant"
+    },
+    "moderationComment": {
+      "type": "string",
+      "example": "Decided to ban the server since it spams us regularly",
+      "minLength": 2,
+      "maxLength": 3000
+    },
+    "video": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "uuid": {
+          "$ref": "#/components/schemas/UUIDv4"
+        },
+        "shortUUID": {
+          "$ref": "#/components/schemas/shortUUID"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nsfw": {
+          "type": "boolean"
+        },
+        "startAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "blacklisted": {
+          "type": "boolean"
+        },
+        "thumbnailPath": {
+          "description": "Deprecated in PeerTube v8.1, use thumbnails instead",
+          "deprecated": true,
+          "type": "string"
+        },
+        "thumbnails": {
+          "description": "**PeerTube >= 8.1** Array of thumbnails for the video",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/Thumbnail"
+          }
+        },
+        "channel": {
+          "$ref": "#/components/schemas/VideoChannel"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

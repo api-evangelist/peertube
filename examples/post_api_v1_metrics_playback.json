@@ -1,0 +1,24 @@
+{
+  "operationId": "post_api_v1_metrics_playback",
+  "method": "POST",
+  "path": "/api/v1/metrics/playback",
+  "summary": "Create playback metrics",
+  "description": "These metrics are exposed by OpenTelemetry metrics exporter if enabled.",
+  "tags": [
+    "Stats"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/PlaybackMetricCreate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

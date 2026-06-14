@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoCreateImport.json",
+  "title": "VideoCreateImport",
+  "allOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "targetUrl": {
+              "$ref": "#/components/schemas/VideoImport/properties/targetUrl"
+            }
+          },
+          "required": [
+            "targetUrl"
+          ]
+        },
+        {
+          "properties": {
+            "magnetUri": {
+              "$ref": "#/components/schemas/VideoImport/properties/magnetUri"
+            }
+          },
+          "required": [
+            "magnetUri"
+          ]
+        },
+        {
+          "properties": {
+            "torrentfile": {
+              "$ref": "#/components/schemas/VideoImport/properties/torrentfile"
+            }
+          },
+          "required": [
+            "torrentfile"
+          ]
+        }
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/VideoUploadRequestCommon"
+    }
+  ],
+  "required": [
+    "channelId",
+    "name"
+  ]
+}

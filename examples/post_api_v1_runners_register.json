@@ -1,0 +1,39 @@
+{
+  "operationId": "post_api_v1_runners_register",
+  "method": "POST",
+  "path": "/api/v1/runners/register",
+  "summary": "Register a new runner",
+  "description": "API used by PeerTube runners",
+  "tags": [
+    "Runners"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "registrationToken": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "registrationToken",
+        "name"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

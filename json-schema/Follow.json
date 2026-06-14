@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Follow.json",
+  "title": "Follow",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "follower": {
+      "$ref": "#/components/schemas/Actor"
+    },
+    "following": {
+      "$ref": "#/components/schemas/Actor"
+    },
+    "score": {
+      "type": "number",
+      "description": "score reflecting the reachability of the actor, with steps of `10` and a base score of `1000`."
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

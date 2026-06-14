@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AutomaticTagAvailable.json",
+  "title": "AutomaticTagAvailable",
+  "properties": {
+    "available": {
+      "type": "array",
+      "description": "Available auto tags that can be used to filter objects or set a comment in review state",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "tag name"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "core",
+              "watched-words-list"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

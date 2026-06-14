@@ -1,0 +1,50 @@
+{
+  "operationId": "get_api_v1_video-channels_ownership",
+  "method": "GET",
+  "path": "/api/v1/video-channels/ownership",
+  "summary": "List channel ownership changes",
+  "description": "List ownership change requests received by the authenticated user and requests sent by channels managed by the authenticated user",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "sort",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "-createdAt",
+          "createdAt"
+        ]
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "401": {
+      "description": "authentication required",
+      "examples": {}
+    }
+  }
+}

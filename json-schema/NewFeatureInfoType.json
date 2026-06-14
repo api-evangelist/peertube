@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/NewFeatureInfoType.json",
+  "title": "NewFeatureInfoType",
+  "type": "integer",
+  "enum": [
+    1
+  ],
+  "description": "Represent a new feature that can be displayed to inform users. One of the following values:\n\n  - `1` CHANNEL_COLLABORATION\n"
+}

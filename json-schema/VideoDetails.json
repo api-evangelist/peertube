@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoDetails.json",
+  "title": "VideoDetails",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/Video"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "viewers": {
+          "type": "integer",
+          "description": "If the video is a live, you have the amount of current viewers"
+        },
+        "description": {
+          "type": "string",
+          "nullable": true,
+          "example": "\"**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\\r\\n\\r\\n\n**Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**\\r\\n*A decentralized video hosting network,\nbased on free/libre software!*\\r\\n\\r\\n**Animation Produced by:** [LILA](https://libreart.info) - [ZeMarmot Team](https://film.zemarmot.net)\\r\\n\n*Directed by* Aryeom\\r\\n*Assistant* Jehan\\r\\n**Licence**: [CC-By-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)\\r\\n\\r\\n\n**Sponsored by** [Framasoft](https://framasoft.org)\\r\\n\\r\\n**Music**: [Red Step Forward](http://play.dogmazic.net/song.php?song_id=52491) - CC-By Ken Bushima\\r\\n\\r\\n\n**Movie Clip**: [Caminades 3: Llamigos](http://www.caminandes.com/) CC-By Blender Institute\\r\\n\\r\\n**Video sources**: https://gitlab.gnome.org/Jehan/what-is-peertube/\"\n",
+          "minLength": 3,
+          "maxLength": 1000,
+          "description": "full description of the video, written in Markdown.\n"
+        },
+        "support": {
+          "type": "string",
+          "nullable": true,
+          "description": "A text tell the audience how to support the video creator",
+          "example": "Please support our work on https://soutenir.framasoft.org/en/ <3",
+          "minLength": 3,
+          "maxLength": 1000
+        },
+        "channel": {
+          "$ref": "#/components/schemas/VideoChannel"
+        },
+        "account": {
+          "$ref": "#/components/schemas/Account"
+        },
+        "tags": {
+          "example": [
+            "flowers",
+            "gardening"
+          ],
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 30
+          }
+        },
+        "commentsPolicy": {
+          "$ref": "#/components/schemas/VideoCommentsPolicyConstant"
+        },
+        "downloadEnabled": {
+          "type": "boolean"
+        },
+        "inputFileUpdatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "nullable": true,
+          "description": "Latest input file update. Null if the file has never been replaced since the original upload"
+        },
+        "trackerUrls": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "url"
+          },
+          "example": [
+            "https://peertube2.cpy.re/tracker/announce",
+            "wss://peertube2.cpy.re/tracker/socket"
+          ]
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/VideoFile"
+          },
+          "description": "Web compatible video files. If Web Video is disabled on the server:\n\n- field will be empty\n- video files will be found in `streamingPlaylists[].files` field\n"
+        },
+        "streamingPlaylists": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/VideoStreamingPlaylists"
+          },
+          "description": "HLS playlists/manifest files. If HLS is disabled on the server:\n\n- field will be empty\n- video files will be found in `files` field\n"
+        }
+      }
+    }
+  ]
+}

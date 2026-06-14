@@ -1,0 +1,45 @@
+{
+  "operationId": "delete_api_v1_videos_id_comments_commentId",
+  "method": "DELETE",
+  "path": "/api/v1/videos/{id}/comments/{commentId}",
+  "summary": "Delete a comment or a reply",
+  "description": "",
+  "tags": [
+    "Video Comments"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot remove comment of another user",
+      "examples": {}
+    },
+    "404": {
+      "description": "comment or video does not exist",
+      "examples": {}
+    },
+    "409": {
+      "description": "comment is already deleted",
+      "examples": {}
+    }
+  }
+}

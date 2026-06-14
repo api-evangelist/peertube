@@ -1,0 +1,26 @@
+{
+  "operationId": "listVideoStoryboards",
+  "method": "GET",
+  "path": "/api/v1/videos/{id}/storyboards",
+  "summary": "List storyboards of a video",
+  "description": "**PeerTube >= 6.0**",
+  "tags": [
+    "Video"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

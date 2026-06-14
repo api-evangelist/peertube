@@ -1,0 +1,59 @@
+{
+  "operationId": "addVideoPlaylistVideo",
+  "method": "POST",
+  "path": "/api/v1/video-playlists/{playlistId}/videos",
+  "summary": "Add a video in a playlist",
+  "description": "",
+  "tags": [
+    "Videos",
+    "Video Playlists"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "videoId": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/Video/properties/uuid"
+            },
+            {
+              "$ref": "#/components/schemas/Video/properties/id"
+            }
+          ],
+          "description": "Video to add in the playlist"
+        },
+        "startTimestamp": {
+          "type": "integer",
+          "format": "seconds",
+          "description": "Start the video at this specific timestamp"
+        },
+        "stopTimestamp": {
+          "type": "integer",
+          "format": "seconds",
+          "description": "Stop the video at this specific timestamp"
+        }
+      },
+      "required": [
+        "videoId"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

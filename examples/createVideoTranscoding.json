@@ -1,0 +1,53 @@
+{
+  "operationId": "createVideoTranscoding",
+  "method": "POST",
+  "path": "/api/v1/videos/{id}/transcoding",
+  "summary": "Create a transcoding job",
+  "description": "",
+  "tags": [
+    "Video Transcoding"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "transcodingType": {
+          "type": "string",
+          "enum": [
+            "hls",
+            "web-video"
+          ]
+        },
+        "forceTranscoding": {
+          "type": "boolean",
+          "default": false,
+          "description": "If the video is stuck in transcoding state, do it anyway"
+        }
+      },
+      "required": [
+        "transcodingType"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video does not exist",
+      "examples": {}
+    }
+  }
+}

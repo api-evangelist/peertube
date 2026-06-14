@@ -1,0 +1,24 @@
+{
+  "operationId": "getLicences",
+  "method": "GET",
+  "path": "/api/v1/videos/licences",
+  "summary": "List available video licences",
+  "description": "",
+  "tags": [
+    "Video"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {
+        "application/json": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/api/v1/videos/licences"
+          }
+        }
+      }
+    }
+  }
+}

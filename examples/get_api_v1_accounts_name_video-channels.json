@@ -1,0 +1,71 @@
+{
+  "operationId": "get_api_v1_accounts_name_video-channels",
+  "method": "GET",
+  "path": "/api/v1/accounts/{name}/video-channels",
+  "summary": "List video channels of an account",
+  "description": "",
+  "tags": [
+    "Video Channels",
+    "Accounts"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "withStats",
+      "in": "query",
+      "required": false,
+      "description": "include daily view statistics for the last 30 days and total views (only if authenticated as the account user)",
+      "schema": {
+        "type": "boolean"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

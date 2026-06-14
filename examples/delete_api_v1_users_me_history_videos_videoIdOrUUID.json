@@ -1,0 +1,26 @@
+{
+  "operationId": "delete_api_v1_users_me_history_videos_videoIdOrUUID",
+  "method": "DELETE",
+  "path": "/api/v1/users/me/history/videos/{videoIdOrUUID}",
+  "summary": "Delete history element",
+  "description": "",
+  "tags": [
+    "My History"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

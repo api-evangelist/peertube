@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/FileStorage.json",
+  "title": "FileStorage",
+  "type": "integer",
+  "enum": [
+    0,
+    1
+  ],
+  "description": "The file storage type:\n  - `0` File system\n  - `1` Object storage\n"
+}

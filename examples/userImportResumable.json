@@ -1,0 +1,58 @@
+{
+  "operationId": "userImportResumable",
+  "method": "PUT",
+  "path": "/api/v1/users/{userId}/imports/import-resumable",
+  "summary": "Send chunk for the resumable user import",
+  "description": "**PeerTube >= 6.1** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the import of the archive",
+  "tags": [
+    "User Imports"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/octet-stream",
+    "schema": {
+      "type": "string",
+      "format": "binary"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "last chunk received: successful operation",
+      "examples": {}
+    },
+    "308": {
+      "description": "resume incomplete",
+      "examples": {}
+    }
+  }
+}

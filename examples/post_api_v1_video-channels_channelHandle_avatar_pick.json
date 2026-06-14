@@ -1,0 +1,43 @@
+{
+  "operationId": "post_api_v1_video-channels_channelHandle_avatar_pick",
+  "method": "POST",
+  "path": "/api/v1/video-channels/{channelHandle}/avatar/pick",
+  "summary": "Update channel avatar",
+  "description": "",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "avatarfile": {
+          "description": "The file to upload.",
+          "type": "string",
+          "format": "binary"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "413": {
+      "description": "image file too large",
+      "examples": {}
+    }
+  }
+}

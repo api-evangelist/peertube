@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoCommentForOwnerOrAdmin.json",
+  "title": "VideoCommentForOwnerOrAdmin",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "url": {
+      "$ref": "#/components/schemas/VideoComment/properties/url"
+    },
+    "text": {
+      "$ref": "#/components/schemas/VideoComment/properties/text"
+    },
+    "heldForReview": {
+      "$ref": "#/components/schemas/VideoComment/properties/heldForReview"
+    },
+    "threadId": {
+      "$ref": "#/components/schemas/VideoComment/properties/threadId"
+    },
+    "inReplyToCommentId": {
+      "$ref": "#/components/schemas/VideoComment/properties/inReplyToCommentId"
+    },
+    "createdAt": {
+      "$ref": "#/components/schemas/VideoComment/properties/createdAt"
+    },
+    "updatedAt": {
+      "$ref": "#/components/schemas/VideoComment/properties/updatedAt"
+    },
+    "account": {
+      "$ref": "#/components/schemas/VideoComment/properties/account"
+    },
+    "video": {
+      "$ref": "#/components/schemas/VideoInfo"
+    },
+    "automaticTags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

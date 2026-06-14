@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AbusePredefinedReasons.json",
+  "title": "AbusePredefinedReasons",
+  "type": "array",
+  "items": {
+    "type": "string",
+    "enum": [
+      "violentOrAbusive",
+      "hatefulOrAbusive",
+      "spamOrMisleading",
+      "privacy",
+      "rights",
+      "serverRules",
+      "thumbnails",
+      "captions"
+    ]
+  },
+  "example": [
+    "spamOrMisleading"
+  ]
+}

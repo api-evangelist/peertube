@@ -1,0 +1,40 @@
+{
+  "operationId": "getChannelPlayerSettings",
+  "method": "GET",
+  "path": "/api/v1/player-settings/video-channels/{channelHandle}",
+  "summary": "Get channel player settings",
+  "description": "Get player settings for a video channel.",
+  "tags": [
+    "Player Settings"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "raw",
+      "in": "query",
+      "required": false,
+      "description": "Return raw settings without applying instance defaults",
+      "schema": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video channel not found",
+      "examples": {}
+    }
+  }
+}

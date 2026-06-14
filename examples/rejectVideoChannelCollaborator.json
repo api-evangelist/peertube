@@ -1,0 +1,33 @@
+{
+  "operationId": "rejectVideoChannelCollaborator",
+  "method": "POST",
+  "path": "/api/v1/video-channels/{channelHandle}/collaborators/{collaboratorId}/reject",
+  "summary": "Reject a collaboration invitation",
+  "description": "**PeerTube >= 8.0**",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "Collaboration rejected",
+      "examples": {}
+    }
+  }
+}

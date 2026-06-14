@@ -1,0 +1,47 @@
+{
+  "operationId": "post_api_v1_abuses_abuseId_messages",
+  "method": "POST",
+  "path": "/api/v1/abuses/{abuseId}/messages",
+  "summary": "Add message to an abuse",
+  "description": "",
+  "tags": [
+    "Abuses"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "Message to send",
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 3000
+        }
+      },
+      "required": [
+        "message"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "incorrect request parameters",
+      "examples": {}
+    }
+  }
+}

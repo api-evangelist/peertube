@@ -1,0 +1,120 @@
+{
+  "operationId": "getSyndicatedComments",
+  "method": "GET",
+  "path": "/feeds/video-comments.{format}",
+  "summary": "Comments on videos feeds",
+  "description": "",
+  "tags": [
+    "Video Feeds"
+  ],
+  "parameters": [
+    {
+      "name": "format",
+      "in": "path",
+      "required": true,
+      "description": "format expected (we focus on making `rss` the most feature-rich ; it serves [Media RSS](https://www.rssboard.org/media-rss))",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "xml",
+          "rss",
+          "rss2",
+          "atom",
+          "atom1",
+          "json",
+          "json1"
+        ]
+      }
+    },
+    {
+      "name": "videoId",
+      "in": "query",
+      "required": false,
+      "description": "limit listing comments to a specific video",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "accountId",
+      "in": "query",
+      "required": false,
+      "description": "limit listing comments to videos of a specific account",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "accountName",
+      "in": "query",
+      "required": false,
+      "description": "limit listing comments to videos of a specific account",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "videoChannelId",
+      "in": "query",
+      "required": false,
+      "description": "limit listing comments to videos of a specific video channel",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "videoChannelName",
+      "in": "query",
+      "required": false,
+      "description": "limit listing comments to videos of a specific video channel",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {
+        "application/xml": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/feeds/video-comments.xml?scope=local"
+          }
+        },
+        "application/rss+xml": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/feeds/video-comments.rss?scope=local"
+          }
+        },
+        "text/xml": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/feeds/video-comments.xml?scope=local"
+          }
+        },
+        "application/atom+xml": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/feeds/video-comments.atom?scope=local"
+          }
+        },
+        "application/json": {
+          "nightly": {
+            "externalValue": "https://peertube2.cpy.re/feeds/video-comments.json?scope=local"
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "Arises when:\n  - videoId filter is mixed with a channel filter\n",
+      "examples": {}
+    },
+    "404": {
+      "description": "video, video channel or account not found",
+      "examples": {}
+    },
+    "406": {
+      "description": "accept header unsupported",
+      "examples": {}
+    }
+  }
+}

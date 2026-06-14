@@ -1,0 +1,30 @@
+{
+  "operationId": "delVideoBlock",
+  "method": "DELETE",
+  "path": "/api/v1/videos/{id}/blacklist",
+  "summary": "Unblock a video by its id",
+  "description": "",
+  "tags": [
+    "Video Blocks"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "block not found",
+      "examples": {}
+    }
+  }
+}

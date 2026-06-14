@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoUploadResponse.json",
+  "title": "VideoUploadResponse",
+  "properties": {
+    "video": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/Video/properties/id"
+        },
+        "uuid": {
+          "$ref": "#/components/schemas/Video/properties/uuid"
+        },
+        "shortUUID": {
+          "$ref": "#/components/schemas/Video/properties/shortUUID"
+        }
+      }
+    }
+  }
+}

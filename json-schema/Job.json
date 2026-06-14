@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Job.json",
+  "title": "Job",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "active",
+        "completed",
+        "failed",
+        "waiting",
+        "delayed"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "activitypub-http-unicast",
+        "activitypub-http-broadcast",
+        "activitypub-http-fetcher",
+        "activitypub-follow",
+        "video-file-import",
+        "video-transcoding",
+        "email",
+        "video-import",
+        "videos-stats",
+        "activitypub-refresher",
+        "video-redundancy",
+        "video-channel-import"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finishedOn": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "processedOn": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

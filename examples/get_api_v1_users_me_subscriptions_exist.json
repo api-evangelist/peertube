@@ -1,0 +1,26 @@
+{
+  "operationId": "get_api_v1_users_me_subscriptions_exist",
+  "method": "GET",
+  "path": "/api/v1/users/me/subscriptions/exist",
+  "summary": "Get if subscriptions exist for my user",
+  "description": "",
+  "tags": [
+    "My Subscriptions"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

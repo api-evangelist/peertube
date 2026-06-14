@@ -1,0 +1,46 @@
+{
+  "operationId": "post_api_v1_video-channels_ownership_id_accept",
+  "method": "POST",
+  "path": "/api/v1/video-channels/ownership/{id}/accept",
+  "summary": "Accept channel ownership change request",
+  "description": "",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "ownership change request already accepted/refused or request type mismatch",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot terminate an ownership change of another user",
+      "examples": {}
+    },
+    "404": {
+      "description": "channel ownership change not found",
+      "examples": {}
+    },
+    "409": {
+      "description": "cannot accept transferring the last channel of the initiator account",
+      "examples": {}
+    },
+    "413": {
+      "description": "quota exceeded for the target account",
+      "examples": {}
+    }
+  }
+}

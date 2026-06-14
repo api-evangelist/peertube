@@ -1,0 +1,37 @@
+{
+  "operationId": "delVideoCaption",
+  "method": "DELETE",
+  "path": "/api/v1/videos/{id}/captions/{captionLanguage}",
+  "summary": "Delete a video caption",
+  "description": "",
+  "tags": [
+    "Video Captions"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video or language or caption for that language not found",
+      "examples": {}
+    }
+  }
+}

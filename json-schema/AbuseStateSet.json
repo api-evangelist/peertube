@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AbuseStateSet.json",
+  "title": "AbuseStateSet",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3
+  ],
+  "description": "The abuse state (Pending = `1`, Rejected = `2`, Accepted = `3`)"
+}

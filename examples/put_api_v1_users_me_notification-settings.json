@@ -1,0 +1,24 @@
+{
+  "operationId": "put_api_v1_users_me_notification-settings",
+  "method": "PUT",
+  "path": "/api/v1/users/me/notification-settings",
+  "summary": "Update my notification settings",
+  "description": "",
+  "tags": [
+    "My Notifications"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/UserNotificationSettings"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "operationId": "put_api_v1_server_redundancy_host",
+  "method": "PUT",
+  "path": "/api/v1/server/redundancy/{host}",
+  "summary": "Update a server redundancy policy",
+  "description": "",
+  "tags": [
+    "Instance Redundancy"
+  ],
+  "parameters": [
+    {
+      "name": "host",
+      "in": "path",
+      "required": true,
+      "description": "server domain to mirror",
+      "schema": {
+        "type": "string",
+        "format": "hostname"
+      }
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "redundancyAllowed": {
+          "type": "boolean",
+          "description": "allow mirroring of the host's local videos"
+        }
+      },
+      "required": [
+        "redundancyAllowed"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "server is not already known",
+      "examples": {}
+    }
+  }
+}

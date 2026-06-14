@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoCommentsForXML.json",
+  "title": "VideoCommentsForXML",
+  "type": "array",
+  "xml": {
+    "wrapped": true,
+    "name": "channel"
+  },
+  "items": {
+    "type": "object",
+    "xml": {
+      "name": "item"
+    },
+    "properties": {
+      "link": {
+        "type": "string",
+        "format": "url"
+      },
+      "guid": {
+        "type": "string"
+      },
+      "pubDate": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "content:encoded": {
+        "type": "string"
+      },
+      "dc:creator": {
+        "type": "string"
+      }
+    }
+  }
+}

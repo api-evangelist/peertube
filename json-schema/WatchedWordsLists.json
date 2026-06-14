@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/WatchedWordsLists.json",
+  "title": "WatchedWordsLists",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "listName": {
+      "type": "string"
+    },
+    "words": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2021-05-04T08:01:01.502000+00:00"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2021-05-04T08:01:01.502000+00:00"
+    }
+  }
+}

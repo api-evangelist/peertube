@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoResolutionSet.json",
+  "title": "VideoResolutionSet",
+  "type": "integer",
+  "description": "Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)\n\n`0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.\n",
+  "example": 240
+}

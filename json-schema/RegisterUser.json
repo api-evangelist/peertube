@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/RegisterUser.json",
+  "title": "RegisterUser",
+  "properties": {
+    "username": {
+      "description": "immutable name of the user, used to find or mention its actor",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/username"
+        }
+      ]
+    },
+    "password": {
+      "$ref": "#/components/schemas/password"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "email of the user, used for login or service communications"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "editable name of the user, displayed in its representations",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "channel": {
+      "type": "object",
+      "description": "channel base information used to create the first channel of the user",
+      "properties": {
+        "name": {
+          "$ref": "#/components/schemas/usernameChannel"
+        },
+        "displayName": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "username",
+    "password",
+    "email"
+  ]
+}

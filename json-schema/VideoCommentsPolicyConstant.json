@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoCommentsPolicyConstant.json",
+  "title": "VideoCommentsPolicyConstant",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/VideoCommentsPolicySet"
+    },
+    "label": {
+      "type": "string"
+    }
+  }
+}

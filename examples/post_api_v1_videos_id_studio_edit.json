@@ -1,0 +1,41 @@
+{
+  "operationId": "post_api_v1_videos_id_studio_edit",
+  "method": "POST",
+  "path": "/api/v1/videos/{id}/studio/edit",
+  "summary": "Create a studio task",
+  "description": "Create a task to edit a video  (cut, add intro/outro etc)",
+  "tags": [
+    "Video Transcoding",
+    "Video"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "$ref": "#/components/schemas/VideoStudioCreateTask"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "incorrect parameters",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

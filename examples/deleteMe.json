@@ -1,0 +1,26 @@
+{
+  "operationId": "deleteMe",
+  "method": "DELETE",
+  "path": "/api/v1/users/me",
+  "summary": "Delete my account",
+  "description": "Delete the authenticated user's account and all associated data",
+  "tags": [
+    "My User"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation - account deleted",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid request parameters",
+      "examples": {}
+    },
+    "401": {
+      "description": "authentication required",
+      "examples": {}
+    }
+  }
+}

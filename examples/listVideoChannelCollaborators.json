@@ -1,0 +1,26 @@
+{
+  "operationId": "listVideoChannelCollaborators",
+  "method": "GET",
+  "path": "/api/v1/video-channels/{channelHandle}/collaborators",
+  "summary": "List channel collaborators",
+  "description": "**PeerTube >= 8.0**",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

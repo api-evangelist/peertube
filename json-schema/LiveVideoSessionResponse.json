@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/LiveVideoSessionResponse.json",
+  "title": "LiveVideoSessionResponse",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start date of the live session"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date-time",
+      "nullable": true,
+      "description": "End date of the live session"
+    },
+    "error": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nullable": true,
+      "description": "Error type if an error occurred during the live session:\n  - `1`: Bad socket health (transcoding is too slow)\n  - `2`: Max duration exceeded\n  - `3`: Quota exceeded\n  - `4`: Quota FFmpeg error\n  - `5`: Video has been blacklisted during the live\n"
+    },
+    "replayVideo": {
+      "type": "object",
+      "description": "Video replay information",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "uuid": {
+          "$ref": "#/components/schemas/UUIDv4"
+        },
+        "shortUUID": {
+          "$ref": "#/components/schemas/shortUUID"
+        }
+      }
+    }
+  }
+}

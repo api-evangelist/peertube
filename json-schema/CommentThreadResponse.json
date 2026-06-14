@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/CommentThreadResponse.json",
+  "title": "CommentThreadResponse",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "description": "Total threads (included deleted ones) on this video"
+    },
+    "totalNotDeletedComments": {
+      "type": "integer",
+      "description": "Total not-deleted threads (included deleted ones) on this video"
+    },
+    "data": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/components/schemas/VideoComment"
+      }
+    }
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/ServerConfigCustom.json",
+  "title": "ServerConfigCustom",
+  "properties": {
+    "instance": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "terms": {
+          "type": "string"
+        },
+        "codeOfConduct": {
+          "type": "string"
+        },
+        "creationReason": {
+          "type": "string"
+        },
+        "moderationInformation": {
+          "type": "string"
+        },
+        "administrator": {
+          "type": "string"
+        },
+        "maintenanceLifetime": {
+          "type": "string"
+        },
+        "businessModel": {
+          "type": "string"
+        },
+        "hardwareInformation": {
+          "type": "string"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "isNSFW": {
+          "type": "boolean"
+        },
+        "defaultNSFWPolicy": {
+          "type": "string"
+        },
+        "serverCountry": {
+          "type": "string"
+        },
+        "support": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        "social": {
+          "type": "object",
+          "properties": {
+            "externalLink": {
+              "type": "string"
+            },
+            "mastodonLink": {
+              "type": "string"
+            },
+            "blueskyLink": {
+              "type": "string"
+            },
+            "xLink": {
+              "type": "string"
+            }
+          }
+        },
+        "defaultClientRoute": {
+          "type": "string"
+        },
+        "customizations": {
+          "type": "object",
+          "properties": {
+            "javascript": {
+              "type": "string"
+            },
+            "css": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "default": {
+          "type": "string"
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "properties": {
+        "twitter": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "cache": {
+      "type": "object",
+      "properties": {
+        "previews": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "integer"
+            }
+          }
+        },
+        "captions": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "signup": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "limit": {
+          "type": "integer"
+        },
+        "requiresEmailVerification": {
+          "type": "boolean"
+        }
+      }
+    },
+    "admin": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    "contactForm": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "user": {
+      "type": "object",
+      "description": "Settings that apply to new users, if registration is enabled",
+      "properties": {
+        "videoQuota": {
+          "type": "integer",
+          "example": 16810141515
+        },
+        "videoQuotaDaily": {
+          "type": "integer",
+          "example": 1681014151
+        }
+      }
+    },
+    "transcoding": {
+      "type": "object",
+      "description": "Settings pertaining to transcoding jobs",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "originalFile": {
+          "type": "object",
+          "properties": {
+            "keep": {
+              "type": "boolean"
+            }
+          }
+        },
+        "allowAdditionalExtensions": {
+          "type": "boolean",
+          "description": "Allow your users to upload .mkv, .mov, .avi, .wmv, .flv, .f4v, .3g2, .3gp, .mts, m2ts, .mxf, .nut videos"
+        },
+        "allowAudioFiles": {
+          "type": "boolean",
+          "description": "If a user uploads an audio file, PeerTube will create a video by merging the preview file and the audio file"
+        },
+        "threads": {
+          "type": "integer",
+          "description": "Amount of threads used by ffmpeg for 1 transcoding job"
+        },
+        "concurrency": {
+          "type": "number",
+          "description": "Amount of transcoding jobs to execute in parallel"
+        },
+        "profile": {
+          "type": "string",
+          "enum": [
+            "default"
+          ],
+          "description": "New profiles can be added by plugins ; available in core PeerTube: 'default'.\n"
+        },
+        "resolutions": {
+          "type": "object",
+          "description": "Resolutions to transcode _new videos_ to",
+          "properties": {
+            "0p": {
+              "type": "boolean"
+            },
+            "144p": {
+              "type": "boolean"
+            },
+            "240p": {
+              "type": "boolean"
+            },
+            "360p": {
+              "type": "boolean"
+            },
+            "480p": {
+              "type": "boolean"
+            },
+            "720p": {
+              "type": "boolean"
+            },
+            "1080p": {
+              "type": "boolean"
+            },
+            "1440p": {
+              "type": "boolean"
+            },
+            "2160p": {
+              "type": "boolean"
+            }
+          }
+        },
+        "web_videos": {
+          "type": "object",
+          "description": "Web Video specific settings",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        },
+        "hls": {
+          "type": "object",
+          "description": "HLS specific settings",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "splitAudioAndVideo": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "import": {
+      "type": "object",
+      "properties": {
+        "videos": {
+          "type": "object",
+          "properties": {
+            "http": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "torrent": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "video_channel_synchronization": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "autoBlacklist": {
+      "type": "object",
+      "properties": {
+        "videos": {
+          "type": "object",
+          "properties": {
+            "ofUsers": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "followers": {
+      "type": "object",
+      "properties": {
+        "instance": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "manualApproval": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "storyboard": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "defaults": {
+      "type": "object",
+      "properties": {
+        "publish": {
+          "type": "object",
+          "properties": {
+            "downloadEnabled": {
+              "type": "boolean"
+            },
+            "commentsPolicy": {
+              "$ref": "#/components/schemas/VideoCommentsPolicySet"
+            },
+            "privacy": {
+              "$ref": "#/components/schemas/VideoPrivacySet"
+            },
+            "licence": {
+              "$ref": "#/components/schemas/VideoLicenceSet"
+            }
+          }
+        },
+        "p2p": {
+          "type": "object",
+          "properties": {
+            "webapp": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "embed": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        },
+        "player": {
+          "type": "object",
+          "properties": {
+            "autoPlay": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

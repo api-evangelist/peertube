@@ -1,0 +1,26 @@
+{
+  "operationId": "delete_api_v1_runners_jobs_jobUUID",
+  "method": "DELETE",
+  "path": "/api/v1/runners/jobs/{jobUUID}",
+  "summary": "Delete a job",
+  "description": "The endpoint will first cancel the job if needed, and then remove it from the database. Children jobs will also be removed",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

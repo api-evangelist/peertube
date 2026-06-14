@@ -1,0 +1,32 @@
+{
+  "operationId": "delete_api_v1_server_blocklist_accounts_accountName",
+  "method": "DELETE",
+  "path": "/api/v1/server/blocklist/accounts/{accountName}",
+  "summary": "Unblock an account by server",
+  "description": "",
+  "tags": [
+    "Server Blocklist"
+  ],
+  "parameters": [
+    {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "description": "account to unblock, in the form `username@domain`",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "201": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "account or account block does not exist",
+      "examples": {}
+    }
+  }
+}

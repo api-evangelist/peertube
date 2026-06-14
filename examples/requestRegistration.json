@@ -1,0 +1,36 @@
+{
+  "operationId": "requestRegistration",
+  "method": "POST",
+  "path": "/api/v1/users/registrations/request",
+  "summary": "Request registration",
+  "description": "Signup has to be enabled and require approval on the instance",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/UserRegistrationRequest"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "request error or signup approval is not enabled on the instance",
+      "examples": {}
+    },
+    "403": {
+      "description": "user registration is not enabled, user limit is reached, registration is not allowed for the ip or blocked by a plugin",
+      "examples": {}
+    },
+    "409": {
+      "description": "a user or registration with this username, channel name or email already exists",
+      "examples": {}
+    }
+  }
+}

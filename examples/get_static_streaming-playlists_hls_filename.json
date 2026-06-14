@@ -1,0 +1,34 @@
+{
+  "operationId": "get_static_streaming-playlists_hls_filename",
+  "method": "GET",
+  "path": "/static/streaming-playlists/hls/{filename}",
+  "summary": "Get public HLS video file",
+  "description": "",
+  "tags": [
+    "Static Video Files"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "invalid auth",
+      "examples": {}
+    },
+    "404": {
+      "description": "not found",
+      "examples": {}
+    }
+  }
+}

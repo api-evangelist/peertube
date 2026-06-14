@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserRegistration.json",
+  "title": "UserRegistration",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/UserRegistrationState"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "registrationReason": {
+      "type": "string"
+    },
+    "moderationResponse": {
+      "type": "string",
+      "nullable": true
+    },
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "emailVerified": {
+      "type": "boolean"
+    },
+    "accountDisplayName": {
+      "type": "string"
+    },
+    "channelHandle": {
+      "type": "string"
+    },
+    "channelDisplayName": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user": {
+      "type": "object",
+      "nullable": true,
+      "description": "If the registration has been accepted, this is a partial user object created by the registration",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        }
+      }
+    }
+  }
+}

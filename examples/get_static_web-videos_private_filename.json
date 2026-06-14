@@ -1,0 +1,41 @@
+{
+  "operationId": "get_static_web-videos_private_filename",
+  "method": "GET",
+  "path": "/static/web-videos/private/{filename}",
+  "summary": "Get private Web Video file",
+  "description": "**PeerTube >= 6.0**",
+  "tags": [
+    "Static Video Files"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "invalid auth",
+      "examples": {}
+    },
+    "404": {
+      "description": "not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "operationId": "post_api_v1_videos_id_comments_commentId_approve",
+  "method": "POST",
+  "path": "/api/v1/videos/{id}/comments/{commentId}/approve",
+  "summary": "Approve a comment",
+  "description": "**PeerTube >= 6.2** Approve a comment that requires a review",
+  "tags": [
+    "Video Comments"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

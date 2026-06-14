@@ -1,0 +1,139 @@
+{
+  "operationId": "getAbuses",
+  "method": "GET",
+  "path": "/api/v1/abuses",
+  "summary": "List abuses",
+  "description": "",
+  "tags": [
+    "Abuses"
+  ],
+  "parameters": [
+    {
+      "name": "id",
+      "in": "query",
+      "required": false,
+      "description": "only list the report with this id",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "predefinedReason",
+      "in": "query",
+      "required": false,
+      "description": "predefined reason the listed reports should contain",
+      "schema": {
+        "$ref": "#/components/schemas/PredefinedAbuseReasons"
+      }
+    },
+    {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "description": "plain search that will match with video titles, reporter names and more",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "state",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "$ref": "#/components/schemas/AbuseStateSet"
+      }
+    },
+    {
+      "name": "searchReporter",
+      "in": "query",
+      "required": false,
+      "description": "only list reports of a specific reporter",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "searchReportee",
+      "in": "query",
+      "required": false,
+      "description": "only list reports of a specific reportee",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "searchVideo",
+      "in": "query",
+      "required": false,
+      "description": "only list reports of a specific video",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "searchVideoChannel",
+      "in": "query",
+      "required": false,
+      "description": "only list reports of a specific video channel",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "videoIs",
+      "in": "query",
+      "required": false,
+      "description": "only list deleted or blocklisted videos",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "deleted",
+          "blacklisted"
+        ]
+      }
+    },
+    {
+      "name": "filter",
+      "in": "query",
+      "required": false,
+      "description": "only list account, comment or video reports",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "video",
+          "comment",
+          "account"
+        ]
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

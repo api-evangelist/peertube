@@ -1,0 +1,32 @@
+{
+  "operationId": "putVideoChannel",
+  "method": "PUT",
+  "path": "/api/v1/video-channels/{channelHandle}",
+  "summary": "Update a video channel",
+  "description": "",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/VideoChannelUpdate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

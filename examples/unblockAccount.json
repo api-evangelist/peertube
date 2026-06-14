@@ -1,0 +1,41 @@
+{
+  "operationId": "unblockAccount",
+  "method": "DELETE",
+  "path": "/api/v1/users/me/blocklist/accounts/{accountName}",
+  "summary": "Unblock an account by my account",
+  "description": "Remove an account from the authenticated user's blocklist",
+  "tags": [
+    "Account Blocklist"
+  ],
+  "parameters": [
+    {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "description": "Account name to unblock (format: name@host)",
+      "schema": {
+        "type": "string",
+        "example": "user@example.com"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation - account unblocked",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid account name",
+      "examples": {}
+    },
+    "401": {
+      "description": "authentication required",
+      "examples": {}
+    },
+    "404": {
+      "description": "account block not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoBlacklist.json",
+  "title": "VideoBlacklist",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "videoId": {
+      "$ref": "#/components/schemas/Video/properties/id"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "uuid": {
+      "$ref": "#/components/schemas/UUIDv4"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 10000
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "views": {
+      "type": "integer"
+    },
+    "likes": {
+      "type": "integer"
+    },
+    "dislikes": {
+      "type": "integer"
+    },
+    "nsfw": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "operationId": "post_api_v1_runners_jobs_jobUUID_cancel",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/{jobUUID}/cancel",
+  "summary": "Cancel a job",
+  "description": "",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

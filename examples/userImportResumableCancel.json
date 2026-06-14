@@ -1,0 +1,43 @@
+{
+  "operationId": "userImportResumableCancel",
+  "method": "DELETE",
+  "path": "/api/v1/users/{userId}/imports/import-resumable",
+  "summary": "Cancel the resumable user import",
+  "description": "**PeerTube >= 6.1** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the resumable user import",
+  "tags": [
+    "User Imports"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "Content-Length",
+      "in": "header",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "number",
+        "example": 0
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "import cancelled",
+      "examples": {}
+    }
+  }
+}

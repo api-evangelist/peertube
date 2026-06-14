@@ -1,0 +1,33 @@
+{
+  "operationId": "delete_api_v1_server_blocklist_servers_host",
+  "method": "DELETE",
+  "path": "/api/v1/server/blocklist/servers/{host}",
+  "summary": "Unblock a server by server",
+  "description": "",
+  "tags": [
+    "Server Blocklist"
+  ],
+  "parameters": [
+    {
+      "name": "host",
+      "in": "path",
+      "required": true,
+      "description": "server domain to unblock",
+      "schema": {
+        "type": "string",
+        "format": "hostname"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "server block does not exist",
+      "examples": {}
+    }
+  }
+}

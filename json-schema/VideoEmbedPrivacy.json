@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoEmbedPrivacy.json",
+  "title": "VideoEmbedPrivacy",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3
+  ],
+  "description": "The video embed privacy level:\n  - `1` All allowed: anyone can embed the video\n  - `2` Allowlist: only the domains in the allowlist can embed the video\n  - `3` Remote restrictions: the remote instance has restrictions on where the video can be embedded\n"
+}

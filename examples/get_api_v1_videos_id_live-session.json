@@ -1,0 +1,33 @@
+{
+  "operationId": "get_api_v1_videos_id_live-session",
+  "method": "GET",
+  "path": "/api/v1/videos/{id}/live-session",
+  "summary": "Get live session of a replay",
+  "description": "If the video is a replay of a live, you can find the associated live session using this endpoint",
+  "tags": [
+    "Live Videos"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "operationId": "registerUser",
+  "method": "POST",
+  "path": "/api/v1/users/register",
+  "summary": "Register a user",
+  "description": "Signup has to be enabled and signup approval is not required",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/RegisterUser"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "request error",
+      "examples": {}
+    },
+    "403": {
+      "description": "user registration is not enabled, user limit is reached, registration is not allowed for the ip, requires approval or blocked by a plugin",
+      "examples": {}
+    },
+    "409": {
+      "description": "a user with this username, channel name or email already exists",
+      "examples": {}
+    }
+  }
+}

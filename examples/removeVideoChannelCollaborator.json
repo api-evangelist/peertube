@@ -1,0 +1,33 @@
+{
+  "operationId": "removeVideoChannelCollaborator",
+  "method": "DELETE",
+  "path": "/api/v1/video-channels/{channelHandle}/collaborators/{collaboratorId}",
+  "summary": "Remove a channel collaborator",
+  "description": "**PeerTube >= 8.0** Only the channel owner or the collaborator themselves can remove a collaborator from a channel",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

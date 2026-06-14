@@ -1,0 +1,30 @@
+{
+  "operationId": "put_api_v1_custom-pages_homepage_instance",
+  "method": "PUT",
+  "path": "/api/v1/custom-pages/homepage/instance",
+  "summary": "Set instance custom homepage",
+  "description": "",
+  "tags": [
+    "Homepage"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "content of the homepage, that will be injected in the client"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

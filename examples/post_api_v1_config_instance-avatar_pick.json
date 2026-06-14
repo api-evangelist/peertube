@@ -1,0 +1,35 @@
+{
+  "operationId": "post_api_v1_config_instance-avatar_pick",
+  "method": "POST",
+  "path": "/api/v1/config/instance-avatar/pick",
+  "summary": "Update instance avatar",
+  "description": "",
+  "tags": [
+    "Config"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "avatarfile": {
+          "description": "The file to upload.",
+          "type": "string",
+          "format": "binary"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "413": {
+      "description": "image file too large",
+      "examples": {}
+    }
+  }
+}

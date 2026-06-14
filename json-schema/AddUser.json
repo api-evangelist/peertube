@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AddUser.json",
+  "title": "AddUser",
+  "properties": {
+    "username": {
+      "$ref": "#/components/schemas/username"
+    },
+    "password": {
+      "$ref": "#/components/schemas/password"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user email"
+    },
+    "videoQuota": {
+      "type": "integer",
+      "description": "The user video quota in bytes",
+      "example": -1
+    },
+    "videoQuotaDaily": {
+      "type": "integer",
+      "description": "The user daily video quota in bytes",
+      "example": -1
+    },
+    "channelName": {
+      "$ref": "#/components/schemas/usernameChannel"
+    },
+    "role": {
+      "$ref": "#/components/schemas/UserRole"
+    },
+    "adminFlags": {
+      "$ref": "#/components/schemas/UserAdminFlags"
+    }
+  },
+  "required": [
+    "username",
+    "password",
+    "email",
+    "role"
+  ]
+}

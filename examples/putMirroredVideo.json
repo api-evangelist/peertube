@@ -1,0 +1,44 @@
+{
+  "operationId": "putMirroredVideo",
+  "method": "POST",
+  "path": "/api/v1/server/redundancy/videos",
+  "summary": "Mirror a video",
+  "description": "",
+  "tags": [
+    "Video Mirroring"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "videoId": {
+          "$ref": "#/components/schemas/Video/properties/id"
+        }
+      },
+      "required": [
+        "videoId"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "cannot mirror a local video",
+      "examples": {}
+    },
+    "404": {
+      "description": "video does not exist",
+      "examples": {}
+    },
+    "409": {
+      "description": "video is already mirrored",
+      "examples": {}
+    }
+  }
+}

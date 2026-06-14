@@ -1,0 +1,24 @@
+{
+  "operationId": "sendClientLog",
+  "method": "POST",
+  "path": "/api/v1/server/logs/client",
+  "summary": "Send client log",
+  "description": "",
+  "tags": [
+    "Logs"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/SendClientLog"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

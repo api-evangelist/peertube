@@ -1,0 +1,83 @@
+{
+  "operationId": "replaceVideoSourceResumable",
+  "method": "PUT",
+  "path": "/api/v1/videos/{id}/source/replace-resumable",
+  "summary": "Send chunk for the resumable replacement of a video",
+  "description": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the replacement of a video",
+  "tags": [
+    "Video",
+    "Video Upload"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/octet-stream",
+    "schema": {
+      "type": "string",
+      "format": "binary"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "last chunk received: successful operation",
+      "examples": {}
+    },
+    "308": {
+      "description": "resume incomplete",
+      "examples": {}
+    },
+    "403": {
+      "description": "video didn't pass file replacement filter",
+      "examples": {}
+    },
+    "404": {
+      "description": "replace upload not found",
+      "examples": {}
+    },
+    "409": {
+      "description": "chunk doesn't match range",
+      "examples": {}
+    },
+    "422": {
+      "description": "video unreadable",
+      "examples": {}
+    },
+    "429": {
+      "description": "too many concurrent requests",
+      "examples": {}
+    },
+    "503": {
+      "description": "upload is already being processed",
+      "examples": {}
+    }
+  }
+}

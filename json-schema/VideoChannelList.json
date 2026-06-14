@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelList.json",
+  "title": "VideoChannelList",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "example": 1
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/VideoChannel"
+          },
+          {
+            "$ref": "#/components/schemas/Actor"
+          }
+        ]
+      }
+    }
+  }
+}

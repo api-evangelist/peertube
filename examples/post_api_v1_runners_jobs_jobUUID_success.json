@@ -1,0 +1,87 @@
+{
+  "operationId": "post_api_v1_runners_jobs_jobUUID_success",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/{jobUUID}/success",
+  "summary": "Post job success",
+  "description": "API used by PeerTube runners",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        },
+        "jobToken": {
+          "type": "string"
+        },
+        "payload": {
+          "anyOf": [
+            {
+              "type": "object",
+              "title": "VOD web video transcoding",
+              "properties": {
+                "videoFile": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "VOD HLS transcoding",
+              "properties": {
+                "videoFile": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "resolutionPlaylistFile": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "VOD audio merge transcoding",
+              "properties": {
+                "videoFile": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "title": "Live RTMP to HLS transcoding"
+            }
+          ]
+        }
+      },
+      "required": [
+        "runnerToken",
+        "jobToken",
+        "payload"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/NotificationSettingValue.json",
+  "title": "NotificationSettingValue",
+  "type": "integer",
+  "description": "Notification type. One of the following values, or a sum of multiple values:\n- `0` NONE\n- `1` WEB\n- `2` EMAIL\n"
+}

@@ -1,0 +1,24 @@
+{
+  "operationId": "putUserInfo",
+  "method": "PUT",
+  "path": "/api/v1/users/me",
+  "summary": "Update my user information",
+  "description": "",
+  "tags": [
+    "My User"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/UpdateMe"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoUploadRequestResumable.json",
+  "title": "VideoUploadRequestResumable",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/VideoUploadRequestCommon"
+    },
+    {
+      "type": "object",
+      "required": [
+        "filename"
+      ],
+      "properties": {
+        "filename": {
+          "description": "Video filename including extension",
+          "type": "string",
+          "format": "filename",
+          "example": "what_is_peertube.mp4"
+        },
+        "thumbnailfile": {
+          "description": "Video thumbnail file",
+          "type": "string",
+          "format": "binary"
+        },
+        "previewfile": {
+          "description": "Deprecated in PeerTube v8.1, use thumbnailfile instead",
+          "deprecated": true,
+          "type": "string",
+          "format": "binary"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/RunnerJobType.json",
+  "title": "RunnerJobType",
+  "type": "string",
+  "enum": [
+    "vod-web-video-transcoding",
+    "vod-hls-transcoding",
+    "vod-audio-merge-transcoding",
+    "live-rtmp-hls-transcoding"
+  ]
+}

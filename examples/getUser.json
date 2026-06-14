@@ -1,0 +1,28 @@
+{
+  "operationId": "getUser",
+  "method": "GET",
+  "path": "/api/v1/users/{id}",
+  "summary": "Get a user",
+  "description": "",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [
+    {
+      "name": "withStats",
+      "in": "query",
+      "required": false,
+      "description": "include statistics about the user (only available as a moderator/admin)",
+      "schema": {
+        "type": "boolean"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "As an admin/moderator, you can request a response augmented with statistics about the user's\nmoderation relations and videos usage, by using the `withStats` parameter.\n",
+      "examples": {}
+    }
+  }
+}

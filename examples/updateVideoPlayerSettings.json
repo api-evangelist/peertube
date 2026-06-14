@@ -1,0 +1,36 @@
+{
+  "operationId": "updateVideoPlayerSettings",
+  "method": "PUT",
+  "path": "/api/v1/player-settings/videos/{id}",
+  "summary": "Update video player settings",
+  "description": "Update player settings for a specific video",
+  "tags": [
+    "Player Settings"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/PlayerVideoSettingsUpdate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

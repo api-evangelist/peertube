@@ -1,0 +1,28 @@
+{
+  "operationId": "get_api_v1_automatic-tags_policies_accounts_accountName_comments",
+  "method": "GET",
+  "path": "/api/v1/automatic-tags/policies/accounts/{accountName}/comments",
+  "summary": "Get account auto tag policies on comments",
+  "description": "**PeerTube >= 6.2**",
+  "tags": [
+    "Automatic Tags"
+  ],
+  "parameters": [
+    {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "description": "account name to get auto tag policies",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

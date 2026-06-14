@@ -1,0 +1,46 @@
+{
+  "operationId": "blockAccount",
+  "method": "POST",
+  "path": "/api/v1/users/me/blocklist/accounts",
+  "summary": "Block an account by my account",
+  "description": "Add an account to the authenticated user's blocklist",
+  "tags": [
+    "Account Blocklist"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "accountName": {
+          "type": "string",
+          "description": "Account name to block (format: name@host)",
+          "example": "user@example.com"
+        }
+      },
+      "required": [
+        "accountName"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation - account blocked",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid account name",
+      "examples": {}
+    },
+    "401": {
+      "description": "authentication required",
+      "examples": {}
+    },
+    "404": {
+      "description": "account not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "operationId": "generateVideoCaption",
+  "method": "POST",
+  "path": "/api/v1/videos/{id}/captions/generate",
+  "summary": "Generate a video caption",
+  "description": "**PeerTube >= 6.2** This feature has to be enabled by the administrator",
+  "tags": [
+    "Video Captions"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "forceTranscription": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

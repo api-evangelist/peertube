@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/PlayerThemeVideoSetting.json",
+  "title": "PlayerThemeVideoSetting",
+  "type": "string",
+  "enum": [
+    "channel-default",
+    "instance-default",
+    "galaxy",
+    "lucide"
+  ],
+  "description": "Player theme setting for a video:\n  - `channel-default` Use the channel default theme\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
+}

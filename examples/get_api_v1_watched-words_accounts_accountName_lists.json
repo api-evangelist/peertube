@@ -1,0 +1,28 @@
+{
+  "operationId": "get_api_v1_watched-words_accounts_accountName_lists",
+  "method": "GET",
+  "path": "/api/v1/watched-words/accounts/{accountName}/lists",
+  "summary": "List account watched words",
+  "description": "**PeerTube >= 6.2**",
+  "tags": [
+    "Watched Words"
+  ],
+  "parameters": [
+    {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "description": "account name to list watched words",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

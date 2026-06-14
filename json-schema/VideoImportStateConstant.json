@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoImportStateConstant.json",
+  "title": "VideoImportStateConstant",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "enum": [
+        1,
+        2,
+        3
+      ],
+      "description": "The video import state (Pending = `1`, Success = `2`, Failed = `3`)"
+    },
+    "label": {
+      "type": "string",
+      "example": "Pending"
+    }
+  }
+}

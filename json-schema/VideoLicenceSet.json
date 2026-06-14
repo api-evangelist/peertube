@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoLicenceSet.json",
+  "title": "VideoLicenceSet",
+  "type": "integer",
+  "description": "licence id of the video (see [/videos/licences](#operation/getLicences))",
+  "example": 2
+}

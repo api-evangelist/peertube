@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Thumbnail.json",
+  "title": "Thumbnail",
+  "properties": {
+    "fileUrl": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "aspectRatio": {
+      "type": "string",
+      "example": "16:9"
+    }
+  }
+}

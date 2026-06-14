@@ -1,0 +1,43 @@
+{
+  "operationId": "post_api_v1_config_instance-logo_logoType_pick",
+  "method": "POST",
+  "path": "/api/v1/config/instance-logo/{logoType}/pick",
+  "summary": "Update instance logo",
+  "description": "",
+  "tags": [
+    "Config"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "multipart/form-data",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "logofile": {
+          "description": "The file to upload.",
+          "type": "string",
+          "format": "binary"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "413": {
+      "description": "image file too large",
+      "examples": {}
+    }
+  }
+}

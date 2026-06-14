@@ -1,0 +1,24 @@
+{
+  "operationId": "addVideoChannelSync",
+  "method": "POST",
+  "path": "/api/v1/video-channel-syncs",
+  "summary": "Create a synchronization for a video channel",
+  "description": "",
+  "tags": [
+    "Channels Sync"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/VideoChannelSyncCreate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "operationId": "userImportResumableInit",
+  "method": "POST",
+  "path": "/api/v1/users/{userId}/imports/import-resumable",
+  "summary": "Initialize the resumable user import",
+  "description": "**PeerTube >= 6.1** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to initialize the import of the archive",
+  "tags": [
+    "User Imports"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/UserImportResumable"
+    },
+    "example": {}
+  },
+  "responses": {
+    "201": {
+      "description": "created",
+      "examples": {}
+    }
+  }
+}

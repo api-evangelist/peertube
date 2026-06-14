@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoStatsOverall.json",
+  "title": "VideoStatsOverall",
+  "properties": {
+    "averageWatchTime": {
+      "type": "number"
+    },
+    "totalWatchTime": {
+      "type": "number"
+    },
+    "viewersPeak": {
+      "type": "number"
+    },
+    "totalViewers": {
+      "type": "number"
+    },
+    "viewersPeakDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "isoCode": {
+            "type": "string"
+          },
+          "viewers": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "subdivisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "viewers": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

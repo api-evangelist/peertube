@@ -1,0 +1,46 @@
+{
+  "operationId": "requestTwoFactor",
+  "method": "POST",
+  "path": "/api/v1/users/{id}/two-factor/request",
+  "summary": "Request two factor auth",
+  "description": "Request two factor authentication for a user",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "currentPassword": {
+          "type": "string",
+          "description": "Password of the currently authenticated user"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "invalid password",
+      "examples": {}
+    },
+    "404": {
+      "description": "user not found",
+      "examples": {}
+    }
+  }
+}

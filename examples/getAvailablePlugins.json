@@ -1,0 +1,71 @@
+{
+  "operationId": "getAvailablePlugins",
+  "method": "GET",
+  "path": "/api/v1/plugins/available",
+  "summary": "List available plugins",
+  "description": "",
+  "tags": [
+    "Plugins"
+  ],
+  "parameters": [
+    {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "pluginType",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "integer"
+      }
+    },
+    {
+      "name": "currentPeerTubeEngine",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "503": {
+      "description": "plugin index unavailable",
+      "examples": {}
+    }
+  }
+}

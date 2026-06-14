@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserNotificationSettings.json",
+  "title": "UserNotificationSettings",
+  "properties": {
+    "abuseAsModerator": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "videoAutoBlacklistAsModerator": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newUserRegistration": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newVideoFromSubscription": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "blacklistOnMyVideo": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "myVideoPublished": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "myVideoImportFinished": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "commentMention": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newCommentOnMyVideo": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newFollow": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newInstanceFollower": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "autoInstanceFollowing": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "abuseStateChange": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "abuseNewMessage": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newPeerTubeVersion": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "newPluginVersion": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "myVideoStudioEditionFinished": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    },
+    "myVideoTranscriptionGenerated": {
+      "$ref": "#/components/schemas/NotificationSettingValue"
+    }
+  }
+}

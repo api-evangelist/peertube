@@ -1,0 +1,26 @@
+{
+  "operationId": "delete_api_v1_video-playlists_playlistId",
+  "method": "DELETE",
+  "path": "/api/v1/video-playlists/{playlistId}",
+  "summary": "Delete a video playlist",
+  "description": "",
+  "tags": [
+    "Video Playlists"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

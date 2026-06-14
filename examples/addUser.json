@@ -1,0 +1,28 @@
+{
+  "operationId": "addUser",
+  "method": "POST",
+  "path": "/api/v1/users",
+  "summary": "Create a user",
+  "description": "",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/AddUser"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "user created",
+      "examples": {}
+    },
+    "403": {
+      "description": "insufficient authority to create an admin or moderator",
+      "examples": {}
+    }
+  }
+}

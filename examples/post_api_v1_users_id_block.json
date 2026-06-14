@@ -1,0 +1,52 @@
+{
+  "operationId": "post_api_v1_users_id_block",
+  "method": "POST",
+  "path": "/api/v1/users/{id}/block",
+  "summary": "Block a user",
+  "description": "Prevent a user from logging in and interacting with the instance",
+  "tags": [
+    "Users"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "description": "Optional reason for blocking the user",
+          "minLength": 0,
+          "maxLength": 500
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid user id",
+      "examples": {}
+    },
+    "403": {
+      "description": "insufficient permissions to block users",
+      "examples": {}
+    },
+    "404": {
+      "description": "user not found",
+      "examples": {}
+    }
+  }
+}

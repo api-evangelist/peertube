@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/shortUUID.json",
+  "title": "shortUUID",
+  "type": "string",
+  "description": "translation of a uuid v4 with a bigger alphabet to have a shorter uuid",
+  "example": "2y84q2MQUMWPbiEcxNXMgC"
+}

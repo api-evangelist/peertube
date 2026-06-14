@@ -1,0 +1,36 @@
+{
+  "operationId": "updateChannelPlayerSettings",
+  "method": "PUT",
+  "path": "/api/v1/player-settings/video-channels/{channelHandle}",
+  "summary": "Update channel player settings",
+  "description": "Update default player settings for a video channel.",
+  "tags": [
+    "Player Settings"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/PlayerChannelSettingsUpdate"
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video channel not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,2106 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "peertube": "https://joinpeertube.org/ns#",
+    "activitypub": "https://www.w3.org/ns/activitystreams#",
+    "api": "https://docs.joinpeertube.org/api/",
+    "openapi": "https://spec.openapis.org/oas/v3.1#"
+  },
+  "@type": "SoftwareApplication",
+  "name": "PeerTube",
+  "version": "8.1.0",
+  "description": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be us",
+  "url": "https://joinpeertube.org/",
+  "applicationCategory": "VideoHosting",
+  "license": "https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE",
+  "operationCount": 290,
+  "schemaCount": 171,
+  "apiTags": [
+    "Abuses",
+    "Account Blocklist",
+    "Accounts",
+    "Automatic Tags",
+    "Channels Sync",
+    "Client Config",
+    "Config",
+    "Contact",
+    "Debug",
+    "Homepage",
+    "Instance Follows",
+    "Instance Redundancy",
+    "Job",
+    "Live Videos",
+    "Logs",
+    "My History",
+    "My Notifications",
+    "My Subscriptions",
+    "My User",
+    "Ownership Change",
+    "Player Settings",
+    "Plugins",
+    "Register",
+    "Runner Jobs",
+    "Runner Registration Token",
+    "Runners",
+    "Search",
+    "Server Blocklist",
+    "Session",
+    "Static Video Files",
+    "Stats",
+    "User Exports",
+    "User Imports",
+    "Users",
+    "Video",
+    "Video Blocks",
+    "Video Captions",
+    "Video Channels",
+    "Video Chapters",
+    "Video Comments",
+    "Video Download",
+    "Video Embed Privacy",
+    "Video Feeds",
+    "Video Files",
+    "Video Imports",
+    "Video Mirroring",
+    "Video Passwords",
+    "Video Playlists",
+    "Video Rates",
+    "Video Stats",
+    "Video Transcoding",
+    "Video Upload",
+    "Videos",
+    "Watched Words"
+  ],
+  "apiEndpoints": [
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/static/web-videos/{filename}",
+      "name": "",
+      "description": "Get public Web Video file"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/static/web-videos/private/{filename}",
+      "name": "",
+      "description": "Get private Web Video file"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/static/streaming-playlists/hls/{filename}",
+      "name": "",
+      "description": "Get public HLS video file"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/static/streaming-playlists/hls/private/{filename}",
+      "name": "",
+      "description": "Get private HLS video file"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/download/videos/generate/{videoIdOrUUID}",
+      "name": "",
+      "description": "Download video file"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/feeds/video-comments.{format}",
+      "name": "getSyndicatedComments",
+      "description": "Comments on videos feeds"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/feeds/videos.{format}",
+      "name": "getSyndicatedVideos",
+      "description": "Common videos feeds"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/feeds/subscriptions.{format}",
+      "name": "getSyndicatedSubscriptionVideos",
+      "description": "Videos of subscriptions feeds"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/feeds/podcast/videos.xml",
+      "name": "getVideosPodcastFeed",
+      "description": "Videos podcast feed"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}",
+      "name": "getAccount",
+      "description": "Get an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}/videos",
+      "name": "getAccountVideos",
+      "description": "List videos of an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}/followers",
+      "name": "getAccountFollowers",
+      "description": "List followers of an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts",
+      "name": "getAccounts",
+      "description": "List accounts"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config",
+      "name": "getConfig",
+      "description": "Get instance public configuration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/about",
+      "name": "getAbout",
+      "description": "Get instance \"About\" information"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/custom",
+      "name": "getCustomConfig",
+      "description": "Get instance runtime configuration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/custom",
+      "name": "putCustomConfig",
+      "description": "Set instance runtime configuration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/custom",
+      "name": "delCustomConfig",
+      "description": "Delete instance runtime configuration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/instance-banner/pick",
+      "name": "",
+      "description": "Update instance banner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/instance-banner",
+      "name": "",
+      "description": "Delete instance banner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/instance-avatar/pick",
+      "name": "",
+      "description": "Update instance avatar"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/instance-avatar",
+      "name": "",
+      "description": "Delete instance avatar"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/instance-logo/{logoType}/pick",
+      "name": "",
+      "description": "Update instance logo"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/config/instance-logo/{logoType}",
+      "name": "",
+      "description": "Delete instance logo"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/custom-pages/homepage/instance",
+      "name": "",
+      "description": "Get instance custom homepage"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/custom-pages/homepage/instance",
+      "name": "",
+      "description": "Set instance custom homepage"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/jobs/pause",
+      "name": "",
+      "description": "Pause job queue"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/jobs/resume",
+      "name": "",
+      "description": "Resume job queue"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/jobs/{state}",
+      "name": "getJobs",
+      "description": "List instance jobs"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/followers",
+      "name": "",
+      "description": "List instances following the server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/followers/{handle}",
+      "name": "",
+      "description": "Remove or reject a follower to your server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/followers/{handle}/reject",
+      "name": "",
+      "description": "Reject a pending follower to your server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/followers/{handle}/accept",
+      "name": "",
+      "description": "Accept a pending follower to your server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/following",
+      "name": "",
+      "description": "List instances followed by the server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/following",
+      "name": "",
+      "description": "Follow a list of actors (PeerTube instance, channel or account)"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/following/{hostOrHandle}",
+      "name": "",
+      "description": "Unfollow an actor (PeerTube instance, channel or account)"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users",
+      "name": "addUser",
+      "description": "Create a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users",
+      "name": "getUsers",
+      "description": "List users"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}",
+      "name": "delUser",
+      "description": "Delete a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}",
+      "name": "getUser",
+      "description": "Get a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}",
+      "name": "putUser",
+      "description": "Update a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/block",
+      "name": "",
+      "description": "Block a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/unblock",
+      "name": "",
+      "description": "Unblock a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/oauth-clients/local",
+      "name": "getOAuthClient",
+      "description": "Login prerequisite"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/token",
+      "name": "getOAuthToken",
+      "description": "Login"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/revoke-token",
+      "name": "revokeOAuthToken",
+      "description": "Logout"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/token-sessions",
+      "name": "",
+      "description": "List token sessions"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/token-sessions/{tokenSessionId}/revoke",
+      "name": "",
+      "description": "List token sessions"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/ask-send-verify-email",
+      "name": "resendEmailToVerifyUser",
+      "description": "Resend user verification link"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations/ask-send-verify-email",
+      "name": "resendEmailToVerifyRegistration",
+      "description": "Resend verification link to registration request email"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/verify-email",
+      "name": "verifyUser",
+      "description": "Verify a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations/{registrationId}/verify-email",
+      "name": "verifyRegistrationEmail",
+      "description": "Verify a registration email"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/ask-reset-password",
+      "name": "",
+      "description": "Ask to reset password"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/reset-password",
+      "name": "",
+      "description": "Reset password"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/two-factor/request",
+      "name": "requestTwoFactor",
+      "description": "Request two factor auth"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/two-factor/confirm-request",
+      "name": "confirmTwoFactorRequest",
+      "description": "Confirm two factor auth"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{id}/two-factor/disable",
+      "name": "disableTwoFactor",
+      "description": "Disable two factor auth"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/imports/import-resumable",
+      "name": "userImportResumableInit",
+      "description": "Initialize the resumable user import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/imports/import-resumable",
+      "name": "userImportResumable",
+      "description": "Send chunk for the resumable user import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/imports/import-resumable",
+      "name": "userImportResumableCancel",
+      "description": "Cancel the resumable user import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/imports/latest",
+      "name": "getLatestUserImport",
+      "description": "Get latest user import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/exports/request",
+      "name": "requestUserExport",
+      "description": "Request user export"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/exports",
+      "name": "listUserExports",
+      "description": "List user exports"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/{userId}/exports/{id}",
+      "name": "deleteUserExport",
+      "description": "Delete a user export"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me",
+      "name": "getUserInfo",
+      "description": "Get my user information"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me",
+      "name": "putUserInfo",
+      "description": "Update my user information"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me",
+      "name": "deleteMe",
+      "description": "Delete my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/videos/comments",
+      "name": "",
+      "description": "List comments on user's videos"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/videos/imports",
+      "name": "",
+      "description": "Get video imports of my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/video-quota-used",
+      "name": "",
+      "description": "Get my user used quota"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/videos/{videoIdOrUUID}/rating",
+      "name": "",
+      "description": "Get rate of my user for a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/videos",
+      "name": "",
+      "description": "List videos of my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/subscriptions",
+      "name": "",
+      "description": "List my user subscriptions"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/subscriptions",
+      "name": "",
+      "description": "Add subscription to my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/subscriptions/exist",
+      "name": "",
+      "description": "Get if subscriptions exist for my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/subscriptions/videos",
+      "name": "",
+      "description": "List videos of subscriptions of my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/subscriptions/{subscriptionHandle}",
+      "name": "",
+      "description": "Get subscription of my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/subscriptions/{subscriptionHandle}",
+      "name": "",
+      "description": "Delete subscription of my user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/notifications",
+      "name": "",
+      "description": "List my notifications"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/notifications/read",
+      "name": "",
+      "description": "Mark notifications as read by their id"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/notifications/read-all",
+      "name": "",
+      "description": "Mark all my notification as read"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/notification-settings",
+      "name": "",
+      "description": "Update my notification settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/new-feature-info/read",
+      "name": "",
+      "description": "Mark feature info as read"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/history/videos",
+      "name": "",
+      "description": "List watched videos history"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/history/videos/{videoIdOrUUID}",
+      "name": "",
+      "description": "Delete history element"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/history/videos/remove",
+      "name": "",
+      "description": "Clear video history"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/avatar/pick",
+      "name": "",
+      "description": "Update my user avatar"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/avatar",
+      "name": "",
+      "description": "Delete my avatar"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/register",
+      "name": "registerUser",
+      "description": "Register a user"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations/request",
+      "name": "requestRegistration",
+      "description": "Request registration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations/{registrationId}/accept",
+      "name": "acceptRegistration",
+      "description": "Accept registration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations/{registrationId}/reject",
+      "name": "rejectRegistration",
+      "description": "Reject registration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations/{registrationId}",
+      "name": "deleteRegistration",
+      "description": "Delete registration"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/registrations",
+      "name": "listRegistrations",
+      "description": "List registrations"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/ownership",
+      "name": "",
+      "description": "List video ownership changes"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/ownership/{id}/accept",
+      "name": "",
+      "description": "Accept ownership change request"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/ownership/{id}/refuse",
+      "name": "",
+      "description": "Refuse ownership change request"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/ownership/{id}",
+      "name": "",
+      "description": "Delete ownership change request"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{videoIdOrUUID}/ownership",
+      "name": "",
+      "description": "List ownership change requests for a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{videoIdOrUUID}/give-ownership",
+      "name": "",
+      "description": "Request ownership change"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/ownership",
+      "name": "",
+      "description": "List channel ownership changes"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/ownership/{id}/accept",
+      "name": "",
+      "description": "Accept channel ownership change request"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/ownership/{id}/refuse",
+      "name": "",
+      "description": "Refuse channel ownership change request"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/ownership/{id}",
+      "name": "",
+      "description": "Delete channel ownership change request"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/ownership",
+      "name": "",
+      "description": "List ownership change requests for a channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/give-ownership",
+      "name": "",
+      "description": "Request channel ownership change"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/token",
+      "name": "requestVideoToken",
+      "description": "Request video token"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/studio/edit",
+      "name": "",
+      "description": "Create a studio task"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos",
+      "name": "getVideos",
+      "description": "List videos"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/categories",
+      "name": "getCategories",
+      "description": "List available video categories"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/licences",
+      "name": "getLicences",
+      "description": "List available video licences"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/languages",
+      "name": "getLanguages",
+      "description": "List available video languages"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/privacies",
+      "name": "getVideoPrivacyPolicies",
+      "description": "List available video privacy policies"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}",
+      "name": "putVideo",
+      "description": "Update a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}",
+      "name": "getVideo",
+      "description": "Get a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}",
+      "name": "delVideo",
+      "description": "Delete a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/views",
+      "name": "addView",
+      "description": "Notify user is watching a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/stats/overall",
+      "name": "",
+      "description": "Get overall stats of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/stats/user-agent",
+      "name": "",
+      "description": "Get user agent stats of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/stats/retention",
+      "name": "",
+      "description": "Get retention stats of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/stats/timeseries/{metric}",
+      "name": "",
+      "description": "Get timeserie stats of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/upload",
+      "name": "uploadLegacy",
+      "description": "Upload a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/upload-resumable",
+      "name": "uploadResumableInit",
+      "description": "Initialize the resumable upload of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/upload-resumable",
+      "name": "uploadResumable",
+      "description": "Send chunk for the resumable upload of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/upload-resumable",
+      "name": "uploadResumableCancel",
+      "description": "Cancel the resumable upload of a video, deleting any data uploaded so far"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/imports",
+      "name": "importVideo",
+      "description": "Import a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/imports/{id}/cancel",
+      "name": "",
+      "description": "Cancel video import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/imports/{id}/retry",
+      "name": "",
+      "description": "Retry video import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/imports/{id}",
+      "name": "",
+      "description": "Delete video import"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/live",
+      "name": "addLive",
+      "description": "Create a live"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/live/{id}",
+      "name": "getLiveId",
+      "description": "Get information about a live"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/live/{id}",
+      "name": "updateLiveId",
+      "description": "Update information about a live"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/live/{id}/sessions",
+      "name": "",
+      "description": "List live sessions"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/live-session",
+      "name": "",
+      "description": "Get live session of a replay"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/source",
+      "name": "getVideoSource",
+      "description": "Get video source file metadata"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/source/file",
+      "name": "deleteVideoSourceFile",
+      "description": "Delete video source file"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/source/replace-resumable",
+      "name": "replaceVideoSourceResumableInit",
+      "description": "Initialize the resumable replacement of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/source/replace-resumable",
+      "name": "replaceVideoSourceResumable",
+      "description": "Send chunk for the resumable replacement of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/source/replace-resumable",
+      "name": "replaceVideoSourceResumableCancel",
+      "description": "Cancel the resumable replacement of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/abuses",
+      "name": "getMyAbuses",
+      "description": "List my abuses"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses",
+      "name": "getAbuses",
+      "description": "List abuses"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses",
+      "name": "",
+      "description": "Report an abuse"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses/{abuseId}",
+      "name": "",
+      "description": "Update an abuse"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses/{abuseId}",
+      "name": "",
+      "description": "Delete an abuse"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses/{abuseId}/messages",
+      "name": "",
+      "description": "List messages of an abuse"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses/{abuseId}/messages",
+      "name": "",
+      "description": "Add message to an abuse"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/abuses/{abuseId}/messages/{abuseMessageId}",
+      "name": "",
+      "description": "Delete an abuse message"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/blacklist",
+      "name": "addVideoBlock",
+      "description": "Block a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/blacklist",
+      "name": "delVideoBlock",
+      "description": "Unblock a video by its id"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/blacklist",
+      "name": "getVideoBlocks",
+      "description": "List video blocks"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/storyboards",
+      "name": "listVideoStoryboards",
+      "description": "List storyboards of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/captions",
+      "name": "getVideoCaptions",
+      "description": "List captions of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/captions/generate",
+      "name": "generateVideoCaption",
+      "description": "Generate a video caption"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/captions/{captionLanguage}",
+      "name": "addVideoCaption",
+      "description": "Add or replace a video caption"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/captions/{captionLanguage}",
+      "name": "delVideoCaption",
+      "description": "Delete a video caption"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/chapters",
+      "name": "getVideoChapters",
+      "description": "Get chapters of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/chapters",
+      "name": "replaceVideoChapters",
+      "description": "Replace video chapters"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/embed-privacy",
+      "name": "getVideoEmbedPrivacy",
+      "description": "Get video embed privacy"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/embed-privacy",
+      "name": "updateVideoEmbedPrivacy",
+      "description": "Update video embed privacy"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/embed-privacy/allowed",
+      "name": "isVideoEmbedOnDomainAllowed",
+      "description": "Check if embed is allowed"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/passwords",
+      "name": "listVideoPasswords",
+      "description": "List video passwords"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/passwords",
+      "name": "updateVideoPasswordList",
+      "description": "Update video passwords"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/passwords",
+      "name": "addVideoPassword",
+      "description": "Add a video password"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/passwords/{passwordId}",
+      "name": "removeVideoPassword",
+      "description": "Delete a video password"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels",
+      "name": "getVideoChannels",
+      "description": "List video channels"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels",
+      "name": "addVideoChannel",
+      "description": "Create a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}",
+      "name": "getVideoChannel",
+      "description": "Get a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}",
+      "name": "putVideoChannel",
+      "description": "Update a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}",
+      "name": "delVideoChannel",
+      "description": "Delete a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/videos",
+      "name": "getVideoChannelVideos",
+      "description": "List videos of a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/activities",
+      "name": "listVideoChannelActivities",
+      "description": "List activities of a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/video-playlists",
+      "name": "",
+      "description": "List playlists of a channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/video-playlists/reorder",
+      "name": "reorderVideoPlaylistsOfChannel",
+      "description": "Reorder channel playlists"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/followers",
+      "name": "getVideoChannelFollowers",
+      "description": "List followers of a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/avatar/pick",
+      "name": "",
+      "description": "Update channel avatar"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/avatar",
+      "name": "",
+      "description": "Delete channel avatar"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/banner/pick",
+      "name": "",
+      "description": "Update channel banner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/banner",
+      "name": "",
+      "description": "Delete channel banner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/import-videos",
+      "name": "",
+      "description": "Import videos in channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channel-syncs",
+      "name": "addVideoChannelSync",
+      "description": "Create a synchronization for a video channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channel-syncs/{channelSyncId}",
+      "name": "delVideoChannelSync",
+      "description": "Delete a video channel synchronization"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channel-syncs/{channelSyncId}/sync",
+      "name": "triggerVideoChannelSync",
+      "description": "Triggers the channel synchronization job, fetching all the videos from the remote channel"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/player-settings/videos/{id}",
+      "name": "getVideoPlayerSettings",
+      "description": "Get video player settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/player-settings/videos/{id}",
+      "name": "updateVideoPlayerSettings",
+      "description": "Update video player settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/player-settings/video-channels/{channelHandle}",
+      "name": "getChannelPlayerSettings",
+      "description": "Get channel player settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/player-settings/video-channels/{channelHandle}",
+      "name": "updateChannelPlayerSettings",
+      "description": "Update channel player settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/privacies",
+      "name": "getPlaylistPrivacyPolicies",
+      "description": "List available playlist privacy policies"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists",
+      "name": "getPlaylists",
+      "description": "List video playlists"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists",
+      "name": "addPlaylist",
+      "description": "Create a video playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}",
+      "name": "",
+      "description": "Get a video playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}",
+      "name": "",
+      "description": "Update a video playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}",
+      "name": "",
+      "description": "Delete a video playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}/videos",
+      "name": "getVideoPlaylistVideos",
+      "description": "List videos of a playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}/videos",
+      "name": "addVideoPlaylistVideo",
+      "description": "Add a video in a playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}/videos/reorder",
+      "name": "reorderVideoPlaylist",
+      "description": "Reorder playlist elements"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}/videos/{playlistElementId}",
+      "name": "putVideoPlaylistVideo",
+      "description": "Update a playlist element"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-playlists/{playlistId}/videos/{playlistElementId}",
+      "name": "delVideoPlaylistVideo",
+      "description": "Delete an element from a playlist"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/video-playlists/videos-exist",
+      "name": "",
+      "description": "Check video exists in my playlists"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}/video-playlists",
+      "name": "",
+      "description": "List playlists of an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}/video-channels",
+      "name": "",
+      "description": "List video channels of an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}/video-channel-syncs",
+      "name": "",
+      "description": "List the synchronizations of video channels of an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/accounts/{name}/ratings",
+      "name": "",
+      "description": "List ratings of an account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/comment-threads",
+      "name": "",
+      "description": "List threads of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/comment-threads",
+      "name": "",
+      "description": "Create a thread"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/comment-threads/{threadId}",
+      "name": "",
+      "description": "Get a thread"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/comments",
+      "name": "",
+      "description": "List instance comments"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/comments/{commentId}",
+      "name": "",
+      "description": "Reply to a thread of a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/comments/{commentId}",
+      "name": "",
+      "description": "Delete a comment or a reply"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/comments/{commentId}/approve",
+      "name": "",
+      "description": "Approve a comment"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/rate",
+      "name": "",
+      "description": "Like/dislike a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/hls",
+      "name": "delVideoHLS",
+      "description": "Delete video HLS files"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/web-videos",
+      "name": "delVideoWebVideos",
+      "description": "Delete video Web Video files"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/videos/{id}/transcoding",
+      "name": "createVideoTranscoding",
+      "description": "Create a transcoding job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/search/videos",
+      "name": "searchVideos",
+      "description": "Search videos"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/search/video-channels",
+      "name": "searchChannels",
+      "description": "Search channels"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/search/video-playlists",
+      "name": "searchPlaylists",
+      "description": "Search playlists"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/blocklist/status",
+      "name": "",
+      "description": "Get block status of accounts/hosts"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/blocklist/accounts",
+      "name": "getMyBlockedAccounts",
+      "description": "List accounts blocked by my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/blocklist/accounts",
+      "name": "blockAccount",
+      "description": "Block an account by my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/blocklist/accounts/{accountName}",
+      "name": "unblockAccount",
+      "description": "Unblock an account by my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/blocklist/servers",
+      "name": "getMyBlockedServers",
+      "description": "List servers blocked by my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/blocklist/servers",
+      "name": "blockServer",
+      "description": "Block a server by my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/users/me/blocklist/servers/{host}",
+      "name": "unblockServer",
+      "description": "Unblock a server by my account"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/blocklist/accounts",
+      "name": "",
+      "description": "List blocked accounts by server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/blocklist/accounts",
+      "name": "",
+      "description": "Block an account by server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/blocklist/accounts/{accountName}",
+      "name": "",
+      "description": "Unblock an account by server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/blocklist/servers",
+      "name": "",
+      "description": "List blocked servers by server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/blocklist/servers",
+      "name": "",
+      "description": "Block a server by server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/blocklist/servers/{host}",
+      "name": "",
+      "description": "Unblock a server by server"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/redundancy/{host}",
+      "name": "",
+      "description": "Update a server redundancy policy"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/redundancy/videos",
+      "name": "getMirroredVideos",
+      "description": "List videos being mirrored"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/redundancy/videos",
+      "name": "putMirroredVideo",
+      "description": "Mirror a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/redundancy/videos/{redundancyId}",
+      "name": "delMirroredVideo",
+      "description": "Delete a mirror done on a video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/stats",
+      "name": "getInstanceStats",
+      "description": "Get instance stats"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/contact",
+      "name": "contactAdministrator",
+      "description": "Contact the instance administrators"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/debug",
+      "name": "getDebug",
+      "description": "Get debug information"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/debug/run-command",
+      "name": "runDebugCommand",
+      "description": "Run a debug command"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/logs/client",
+      "name": "sendClientLog",
+      "description": "Send client log"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/logs",
+      "name": "getInstanceLogs",
+      "description": "Get instance logs"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/server/audit-logs",
+      "name": "getInstanceAuditLogs",
+      "description": "Get instance audit logs"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins",
+      "name": "getPlugins",
+      "description": "List plugins"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/available",
+      "name": "getAvailablePlugins",
+      "description": "List available plugins"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/install",
+      "name": "addPlugin",
+      "description": "Install a plugin"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/update",
+      "name": "updatePlugin",
+      "description": "Update a plugin"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/uninstall",
+      "name": "uninstallPlugin",
+      "description": "Uninstall a plugin"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/{npmName}",
+      "name": "getPlugin",
+      "description": "Get a plugin"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/{npmName}/settings",
+      "name": "",
+      "description": "Set a plugin's settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/{npmName}/public-settings",
+      "name": "",
+      "description": "Get a plugin's public settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/plugins/{npmName}/registered-settings",
+      "name": "",
+      "description": "Get a plugin's registered settings"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/metrics/playback",
+      "name": "",
+      "description": "Create playback metrics"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/registration-tokens/generate",
+      "name": "",
+      "description": "Generate registration token"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/registration-tokens/{registrationTokenId}",
+      "name": "",
+      "description": "Remove registration token"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/registration-tokens",
+      "name": "",
+      "description": "List registration tokens"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/register",
+      "name": "",
+      "description": "Register a new runner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/unregister",
+      "name": "",
+      "description": "Unregister a runner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/{runnerId}",
+      "name": "",
+      "description": "Delete a runner"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners",
+      "name": "",
+      "description": "List runners"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/request",
+      "name": "",
+      "description": "Request a new job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/accept",
+      "name": "",
+      "description": "Accept job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/abort",
+      "name": "",
+      "description": "Abort job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/update",
+      "name": "",
+      "description": "Update job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/error",
+      "name": "",
+      "description": "Post job error"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/success",
+      "name": "",
+      "description": "Post job success"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/max-quality/audio",
+      "name": "",
+      "description": "Download the max-quality audio file for a job video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/max-quality",
+      "name": "",
+      "description": "Download the max-quality video file for a job video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/thumbnails/max-quality",
+      "name": "",
+      "description": "Download the max-quality thumbnail for a job video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/previews/max-quality",
+      "name": "",
+      "description": "Download the max-quality preview for a job video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/studio/task-files/{filename}",
+      "name": "",
+      "description": "Download a video studio task file for a job video"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}/cancel",
+      "name": "",
+      "description": "Cancel a job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs/{jobUUID}",
+      "name": "",
+      "description": "Delete a job"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/runners/jobs",
+      "name": "",
+      "description": "List jobs"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/automatic-tags/policies/accounts/{accountName}/comments",
+      "name": "",
+      "description": "Get account auto tag policies on comments"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/automatic-tags/policies/accounts/{accountName}/comments",
+      "name": "",
+      "description": "Update account auto tag policies on comments"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/automatic-tags/accounts/{accountName}/available",
+      "name": "",
+      "description": "Get account available auto tags"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/automatic-tags/server/available",
+      "name": "",
+      "description": "Get server available auto tags"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/accounts/{accountName}/lists",
+      "name": "",
+      "description": "List account watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/accounts/{accountName}/lists",
+      "name": "",
+      "description": "Add account watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/accounts/{accountName}/lists/{listId}",
+      "name": "",
+      "description": "Update account watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/accounts/{accountName}/lists/{listId}",
+      "name": "",
+      "description": "Delete account watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/server/lists",
+      "name": "",
+      "description": "List server watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/server/lists",
+      "name": "",
+      "description": "Add server watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "PUT",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/server/lists/{listId}",
+      "name": "",
+      "description": "Update server watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/watched-words/server/lists/{listId}",
+      "name": "",
+      "description": "Delete server watched words"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/client-config/update-language",
+      "name": "updateClientLanguage",
+      "description": "Update client language"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/client-config/update-interface-language",
+      "name": "updateClientInterfaceLanguage",
+      "description": "Update client language"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "GET",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/collaborators",
+      "name": "listVideoChannelCollaborators",
+      "description": "List channel collaborators"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/collaborators/invite",
+      "name": "inviteVideoChannelCollaborator",
+      "description": "Invite a collaborator"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/collaborators/{collaboratorId}/accept",
+      "name": "acceptVideoChannelCollaborator",
+      "description": "Accept a collaboration invitation"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "POST",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/collaborators/{collaboratorId}/reject",
+      "name": "rejectVideoChannelCollaborator",
+      "description": "Reject a collaboration invitation"
+    },
+    {
+      "@type": "EntryPoint",
+      "httpMethod": "DELETE",
+      "urlTemplate": "https://{instance}/api/v1/api/v1/video-channels/{channelHandle}/collaborators/{collaboratorId}",
+      "name": "removeVideoChannelCollaborator",
+      "description": "Remove a channel collaborator"
+    }
+  ]
+}

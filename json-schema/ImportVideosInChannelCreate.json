@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/ImportVideosInChannelCreate.json",
+  "title": "ImportVideosInChannelCreate",
+  "type": "object",
+  "properties": {
+    "externalChannelUrl": {
+      "type": "string",
+      "example": "https://youtube.com/c/UC_myfancychannel"
+    },
+    "videoChannelSyncId": {
+      "type": "integer",
+      "description": "If part of a channel sync process, specify its id to assign video imports to this channel synchronization"
+    }
+  },
+  "required": [
+    "externalChannelUrl"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "operationId": "get_api_v1_videos_id_stats_timeseries_metric",
+  "method": "GET",
+  "path": "/api/v1/videos/{id}/stats/timeseries/{metric}",
+  "summary": "Get timeserie stats of a video",
+  "description": "",
+  "tags": [
+    "Video Stats"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "metric",
+      "in": "path",
+      "required": true,
+      "description": "The metric to get",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "viewers",
+          "aggregateWatchTime"
+        ]
+      }
+    },
+    {
+      "name": "startDate",
+      "in": "query",
+      "required": false,
+      "description": "Filter stats by start date",
+      "schema": {
+        "type": "string",
+        "format": "date-time"
+      }
+    },
+    {
+      "name": "endDate",
+      "in": "query",
+      "required": false,
+      "description": "Filter stats by end date",
+      "schema": {
+        "type": "string",
+        "format": "date-time"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

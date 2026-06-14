@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelEdit.json",
+  "title": "VideoChannelEdit",
+  "properties": {
+    "displayName": {
+      "description": "Channel display name"
+    },
+    "description": {
+      "description": "Channel description"
+    },
+    "support": {
+      "description": "How to support/fund the channel"
+    }
+  }
+}

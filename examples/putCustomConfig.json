@@ -1,0 +1,22 @@
+{
+  "operationId": "putCustomConfig",
+  "method": "PUT",
+  "path": "/api/v1/config/custom",
+  "summary": "Set instance runtime configuration",
+  "description": "",
+  "tags": [
+    "Config"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "Arises when:\n  - the emailer is disabled and the instance is open to registrations\n  - web videos and hls are disabled with transcoding enabled - you need at least one enabled\n",
+      "examples": {}
+    }
+  }
+}

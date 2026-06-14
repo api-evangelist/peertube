@@ -1,0 +1,35 @@
+{
+  "operationId": "updateClientLanguage",
+  "method": "POST",
+  "path": "/api/v1/client-config/update-language",
+  "summary": "Update client language",
+  "description": "Set a cookie so that the next time the client refreshes the HTML of the web interface, PeerTube uses the selected language.",
+  "tags": [
+    "Client Config"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "language": {
+          "type": "string",
+          "nullable": true,
+          "description": "Language code to set",
+          "example": "en-US"
+        }
+      },
+      "required": [
+        "language"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

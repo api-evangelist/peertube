@@ -1,0 +1,55 @@
+{
+  "operationId": "put_api_v1_videos_id_rate",
+  "method": "PUT",
+  "path": "/api/v1/videos/{id}/rate",
+  "summary": "Like/dislike a video",
+  "description": "",
+  "tags": [
+    "Video Rates"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "rating": {
+          "type": "string",
+          "enum": [
+            "like",
+            "dislike"
+          ]
+        }
+      },
+      "required": [
+        "rating"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video does not exist",
+      "examples": {}
+    }
+  }
+}

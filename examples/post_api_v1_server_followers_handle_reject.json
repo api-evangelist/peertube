@@ -1,0 +1,33 @@
+{
+  "operationId": "post_api_v1_server_followers_handle_reject",
+  "method": "POST",
+  "path": "/api/v1/server/followers/{handle}/reject",
+  "summary": "Reject a pending follower to your server",
+  "description": "",
+  "tags": [
+    "Instance Follows"
+  ],
+  "parameters": [
+    {
+      "name": "handle",
+      "in": "path",
+      "required": true,
+      "description": "The remote actor handle to remove from your followers",
+      "schema": {
+        "type": "string",
+        "format": "email"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "follower not found",
+      "examples": {}
+    }
+  }
+}

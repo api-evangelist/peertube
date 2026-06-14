@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/usernameChannel.json",
+  "title": "usernameChannel",
+  "type": "string",
+  "description": "immutable name of the channel, used to interact with its actor",
+  "example": "framasoft_videos",
+  "pattern": "/^[a-zA-Z0-9\\\\-_.:]+$/",
+  "minLength": 1,
+  "maxLength": 50
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/LiveVideoResponse.json",
+  "title": "LiveVideoResponse",
+  "properties": {
+    "rtmpUrl": {
+      "type": "string",
+      "description": "Included in the response if an appropriate token is provided"
+    },
+    "rtmpsUrl": {
+      "type": "string",
+      "description": "Included in the response if an appropriate token is provided"
+    },
+    "streamKey": {
+      "type": "string",
+      "description": "RTMP stream key to use to stream into this live video. Included in the response if an appropriate token is provided"
+    },
+    "saveReplay": {
+      "type": "boolean"
+    },
+    "replaySettings": {
+      "$ref": "#/components/schemas/LiveVideoReplaySettings"
+    },
+    "permanentLive": {
+      "description": "User can stream multiple times in a permanent live",
+      "type": "boolean"
+    },
+    "latencyMode": {
+      "description": "User can select live latency mode if enabled by the instance",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LiveVideoLatencyMode"
+        }
+      ]
+    },
+    "schedules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LiveSchedule"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "post_api_v1_users_me_notifications_read-all",
+  "method": "POST",
+  "path": "/api/v1/users/me/notifications/read-all",
+  "summary": "Mark all my notification as read",
+  "description": "",
+  "tags": [
+    "My Notifications"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

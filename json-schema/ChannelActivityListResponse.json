@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/ChannelActivityListResponse.json",
+  "title": "ChannelActivityListResponse",
+  "properties": {
+    "total": {
+      "type": "integer",
+      "example": 1
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "account": {
+            "nullable": true,
+            "description": "The account may have been deleted",
+            "$ref": "#/components/schemas/AccountSummary"
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/VideoChannelActivityAction"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          },
+          "targetType": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/VideoChannelActivityTarget"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "channel": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "name": {
+                "type": "string"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "url"
+              }
+            }
+          },
+          "video": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "name": {
+                "type": "string"
+              },
+              "uuid": {
+                "$ref": "#/components/schemas/UUIDv4"
+              },
+              "shortUUID": {
+                "$ref": "#/components/schemas/shortUUID"
+              },
+              "url": {
+                "type": "string",
+                "format": "url"
+              },
+              "isLive": {
+                "type": "boolean"
+              }
+            }
+          },
+          "videoImport": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "name": {
+                "type": "string"
+              },
+              "uuid": {
+                "$ref": "#/components/schemas/UUIDv4"
+              },
+              "shortUUID": {
+                "$ref": "#/components/schemas/shortUUID"
+              },
+              "url": {
+                "type": "string",
+                "format": "url"
+              },
+              "targetUrl": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          },
+          "playlist": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "name": {
+                "type": "string"
+              },
+              "uuid": {
+                "$ref": "#/components/schemas/UUIDv4"
+              },
+              "shortUUID": {
+                "$ref": "#/components/schemas/shortUUID"
+              },
+              "url": {
+                "type": "string",
+                "format": "url"
+              }
+            }
+          },
+          "channelSync": {
+            "nullable": true,
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/components/schemas/id"
+              },
+              "externalChannelUrl": {
+                "type": "string",
+                "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

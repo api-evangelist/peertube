@@ -1,0 +1,32 @@
+{
+  "operationId": "acceptRegistration",
+  "method": "POST",
+  "path": "/api/v1/users/registrations/{registrationId}/accept",
+  "summary": "Accept registration",
+  "description": "",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "$ref": "#/components/schemas/UserRegistrationAcceptOrReject"
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

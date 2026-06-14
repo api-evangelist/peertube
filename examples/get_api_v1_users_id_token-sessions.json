@@ -1,0 +1,26 @@
+{
+  "operationId": "get_api_v1_users_id_token-sessions",
+  "method": "GET",
+  "path": "/api/v1/users/{id}/token-sessions",
+  "summary": "List token sessions",
+  "description": "",
+  "tags": [
+    "Session"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

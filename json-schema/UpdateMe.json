@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UpdateMe.json",
+  "title": "UpdateMe",
+  "properties": {
+    "password": {
+      "$ref": "#/components/schemas/password"
+    },
+    "currentPassword": {
+      "$ref": "#/components/schemas/password"
+    },
+    "email": {
+      "description": "new email used for login and service communications",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/User/properties/email"
+        }
+      ]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "new name of the user in its representations",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "nsfwPolicy": {
+      "type": "string",
+      "description": "new NSFW display policy",
+      "enum": [
+        "true",
+        "false",
+        "both"
+      ]
+    },
+    "nsfwFlagsDisplayed": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "nsfwFlagsHidden": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "nsfwFlagsWarned": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "nsfwFlagsBlurred": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "p2pEnabled": {
+      "type": "boolean",
+      "description": "whether to enable P2P in the player or not"
+    },
+    "autoPlayVideo": {
+      "type": "boolean",
+      "description": "new preference regarding playing videos automatically"
+    },
+    "autoPlayNextVideo": {
+      "type": "boolean",
+      "description": "new preference regarding playing following videos automatically"
+    },
+    "autoPlayNextVideoPlaylist": {
+      "type": "boolean",
+      "description": "new preference regarding playing following playlist videos automatically"
+    },
+    "videosHistoryEnabled": {
+      "type": "boolean",
+      "description": "whether to keep track of watched history or not"
+    },
+    "videoLanguages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "list of languages to filter videos down to"
+    },
+    "language": {
+      "type": "string",
+      "description": "default language for this user"
+    },
+    "theme": {
+      "type": "string"
+    },
+    "noInstanceConfigWarningModal": {
+      "type": "boolean"
+    },
+    "noAccountSetupWarningModal": {
+      "type": "boolean"
+    },
+    "noWelcomeModal": {
+      "type": "boolean"
+    }
+  }
+}

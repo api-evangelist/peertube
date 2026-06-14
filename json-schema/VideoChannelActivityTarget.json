@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelActivityTarget.json",
+  "title": "VideoChannelActivityTarget",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "description": "The activity target:\n  - VIDEO: 1,\n  - PLAYLIST: 2,\n  - CHANNEL: 3,\n  - CHANNEL_SYNC: 4,\n  - VIDEO_IMPORT: 5\n"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoSummary.json",
+  "title": "VideoSummary",
+  "properties": {
+    "id": {
+      "description": "object id for the video",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/id"
+        }
+      ]
+    },
+    "uuid": {
+      "description": "universal identifier for the video, that can be used across instances",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/UUIDv4"
+        }
+      ]
+    },
+    "shortUUID": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/shortUUID"
+        }
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "isLive": {
+      "type": "boolean"
+    },
+    "nsfw": {
+      "type": "boolean"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "thumbnails": {
+      "description": "**PeerTube >= 8.1** Array of thumbnails for the video",
+      "type": "array"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/VideoChannelSummary"
+    }
+  }
+}

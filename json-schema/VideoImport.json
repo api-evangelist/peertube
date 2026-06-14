@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoImport.json",
+  "title": "VideoImport",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "targetUrl": {
+      "type": "string",
+      "format": "url",
+      "description": "remote URL where to find the import's source video",
+      "example": "https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d"
+    },
+    "magnetUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "magnet URI allowing to resolve the import's source video",
+      "pattern": "/magnet:\\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i"
+    },
+    "torrentfile": {
+      "type": "string",
+      "format": "binary",
+      "description": "Torrent file containing only the video file"
+    },
+    "torrentName": {
+      "type": "string"
+    },
+    "state": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoImportStateConstant"
+        }
+      ]
+    },
+    "error": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "video": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Video"
+        }
+      ]
+    }
+  }
+}

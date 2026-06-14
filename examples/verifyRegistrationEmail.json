@@ -1,0 +1,49 @@
+{
+  "operationId": "verifyRegistrationEmail",
+  "method": "POST",
+  "path": "/api/v1/users/registrations/{registrationId}/verify-email",
+  "summary": "Verify a registration email",
+  "description": "Following a user registration request, the user will receive an email asking to click a link\ncontaining a secret.\n",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "verificationString": {
+          "type": "string",
+          "format": "url"
+        }
+      },
+      "required": [
+        "verificationString"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "invalid verification string",
+      "examples": {}
+    },
+    "404": {
+      "description": "registration not found",
+      "examples": {}
+    }
+  }
+}

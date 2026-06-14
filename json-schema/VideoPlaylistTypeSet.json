@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoPlaylistTypeSet.json",
+  "title": "VideoPlaylistTypeSet",
+  "type": "integer",
+  "enum": [
+    1,
+    2
+  ],
+  "description": "The video playlist type (Regular = `1`, Watch Later = `2`)"
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "getOAuthClient",
+  "method": "GET",
+  "path": "/api/v1/oauth-clients/local",
+  "summary": "Login prerequisite",
+  "description": "You need to retrieve a client id and secret before [logging in](#operation/getOAuthToken).",
+  "tags": [
+    "Session"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

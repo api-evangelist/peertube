@@ -1,0 +1,33 @@
+{
+  "operationId": "deleteUserExport",
+  "method": "DELETE",
+  "path": "/api/v1/users/{userId}/exports/{id}",
+  "summary": "Delete a user export",
+  "description": "**PeerTube >= 6.1**",
+  "tags": [
+    "User Exports"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

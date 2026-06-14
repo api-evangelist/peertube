@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/OAuthClient.json",
+  "title": "OAuthClient",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "pattern": "/^[a-z0-9]$/",
+      "maxLength": 32,
+      "minLength": 32,
+      "example": "v1ikx5hnfop4mdpnci8nsqh93c45rldf"
+    },
+    "client_secret": {
+      "type": "string",
+      "pattern": "/^[a-zA-Z0-9]$/",
+      "maxLength": 32,
+      "minLength": 32,
+      "example": "AjWiOapPltI6EnsWQwlFarRtLh4u8tDt"
+    }
+  }
+}

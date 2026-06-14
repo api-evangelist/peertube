@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/RunnerRegistrationToken.json",
+  "title": "RunnerRegistrationToken",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "registrationToken": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "registeredRunnersCount": {
+      "type": "integer"
+    }
+  }
+}

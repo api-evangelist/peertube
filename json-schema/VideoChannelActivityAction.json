@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelActivityAction.json",
+  "title": "VideoChannelActivityAction",
+  "type": "integer",
+  "enum": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "description": "The activity action:\n  - CREATE: 1\n  - UPDATE: 2\n  - DELETE: 3\n  - UPDATE_CAPTIONS: 4\n  - UPDATE_CHAPTERS: 5\n  - UPDATE_PASSWORDS: 6\n  - CREATE_STUDIO_TASKS: 7\n  - UPDATE_SOURCE_FILE: 8\n  - UPDATE_ELEMENTS: 9\n  - REMOVE_CHANNEL_OWNERSHIP: 10\n  - CREATE_CHANNEL_OWNERSHIP: 11\n"
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "delete_api_v1_users_me_avatar",
+  "method": "DELETE",
+  "path": "/api/v1/users/me/avatar",
+  "summary": "Delete my avatar",
+  "description": "",
+  "tags": [
+    "My User"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

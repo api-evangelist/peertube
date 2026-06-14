@@ -1,0 +1,37 @@
+{
+  "operationId": "delete_api_v1_watched-words_accounts_accountName_lists_listId",
+  "method": "DELETE",
+  "path": "/api/v1/watched-words/accounts/{accountName}/lists/{listId}",
+  "summary": "Delete account watched words",
+  "description": "**PeerTube >= 6.2**",
+  "tags": [
+    "Watched Words"
+  ],
+  "parameters": [
+    {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "description": "",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "listId",
+      "in": "path",
+      "required": true,
+      "description": "list of watched words to delete",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "operationId": "inviteVideoChannelCollaborator",
+  "method": "POST",
+  "path": "/api/v1/video-channels/{channelHandle}/collaborators/invite",
+  "summary": "Invite a collaborator",
+  "description": "**PeerTube >= 8.0**  Invite a local user to collaborate on the specified video channel.",
+  "tags": [
+    "Video Channels"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "accountHandle": {
+          "type": "string",
+          "description": "Local user username to invite"
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "Collaborator invited",
+      "examples": {}
+    }
+  }
+}

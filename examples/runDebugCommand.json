@@ -1,0 +1,68 @@
+{
+  "operationId": "runDebugCommand",
+  "method": "POST",
+  "path": "/api/v1/server/debug/run-command",
+  "summary": "Run a debug command",
+  "description": "Run an internal debug command as an administrator.",
+  "tags": [
+    "Debug"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "enum": [
+                "remove-dandling-resumable-uploads",
+                "remove-expired-user-exports",
+                "process-video-stats-buffer",
+                "process-video-viewers",
+                "process-update-videos-scheduler",
+                "process-video-channel-sync-latest",
+                "process-remove-old-stats"
+              ]
+            }
+          },
+          "required": [
+            "command"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "enum": [
+                "test-emails"
+              ]
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            }
+          },
+          "required": [
+            "command",
+            "email"
+          ]
+        }
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid command or invalid email",
+      "examples": {}
+    }
+  }
+}

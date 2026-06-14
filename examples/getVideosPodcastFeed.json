@@ -1,0 +1,32 @@
+{
+  "operationId": "getVideosPodcastFeed",
+  "method": "GET",
+  "path": "/feeds/podcast/videos.xml",
+  "summary": "Videos podcast feed",
+  "description": "",
+  "tags": [
+    "Video Feeds"
+  ],
+  "parameters": [
+    {
+      "name": "videoChannelId",
+      "in": "query",
+      "required": true,
+      "description": "Limit listing to a specific video channel",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video channel not found",
+      "examples": {}
+    }
+  }
+}

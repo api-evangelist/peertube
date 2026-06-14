@@ -1,0 +1,30 @@
+{
+  "operationId": "delete_api_v1_abuses_abuseId",
+  "method": "DELETE",
+  "path": "/api/v1/abuses/{abuseId}",
+  "summary": "Delete an abuse",
+  "description": "",
+  "tags": [
+    "Abuses"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "block not found",
+      "examples": {}
+    }
+  }
+}

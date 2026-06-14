@@ -1,0 +1,26 @@
+{
+  "operationId": "deleteRegistration",
+  "method": "DELETE",
+  "path": "/api/v1/users/registrations/{registrationId}",
+  "summary": "Delete registration",
+  "description": "Delete the registration entry. It will not remove the user associated with this registration (if any)",
+  "tags": [
+    "Register"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

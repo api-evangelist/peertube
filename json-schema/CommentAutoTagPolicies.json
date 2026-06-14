@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/CommentAutoTagPolicies.json",
+  "title": "CommentAutoTagPolicies",
+  "properties": {
+    "review": {
+      "type": "array",
+      "description": "Auto tags that automatically set the comment in review state",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

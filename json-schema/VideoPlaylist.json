@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoPlaylist.json",
+  "title": "VideoPlaylist",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "uuid": {
+      "$ref": "#/components/schemas/UUIDv4"
+    },
+    "shortUUID": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/shortUUID"
+        }
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 1000
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "isLocal": {
+      "type": "boolean"
+    },
+    "videoLength": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "thumbnailPath": {
+      "description": "Deprecated in PeerTube v8.1, use thumbnails instead",
+      "deprecated": true,
+      "type": "string"
+    },
+    "thumbnails": {
+      "description": "**PeerTube >= 8.1** Array of thumbnails for the playlist",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Thumbnail"
+      }
+    },
+    "privacy": {
+      "$ref": "#/components/schemas/VideoPlaylistPrivacyConstant"
+    },
+    "type": {
+      "$ref": "#/components/schemas/VideoPlaylistTypeConstant"
+    },
+    "ownerAccount": {
+      "$ref": "#/components/schemas/AccountSummary"
+    },
+    "videoChannel": {
+      "$ref": "#/components/schemas/VideoChannelSummary"
+    },
+    "videoChannelPosition": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position of the playlist in the channel"
+    }
+  }
+}

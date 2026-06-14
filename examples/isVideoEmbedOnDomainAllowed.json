@@ -1,0 +1,39 @@
+{
+  "operationId": "isVideoEmbedOnDomainAllowed",
+  "method": "GET",
+  "path": "/api/v1/videos/{id}/embed-privacy/allowed",
+  "summary": "Check if embed is allowed",
+  "description": "**PeerTube >= 8.1** Check if video embed is allowed on a specific domain according to the video embed privacy settings",
+  "tags": [
+    "Video Embed Privacy"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "domain",
+      "in": "query",
+      "required": true,
+      "description": "The domain to check if embed is allowed",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid request",
+      "examples": {}
+    }
+  }
+}

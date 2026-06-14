@@ -1,0 +1,26 @@
+{
+  "operationId": "delete_api_v1_videos_imports_id",
+  "method": "DELETE",
+  "path": "/api/v1/videos/imports/{id}",
+  "summary": "Delete video import",
+  "description": "Delete ended video import",
+  "tags": [
+    "Video Imports"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

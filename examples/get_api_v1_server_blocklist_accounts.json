@@ -1,0 +1,40 @@
+{
+  "operationId": "get_api_v1_server_blocklist_accounts",
+  "method": "GET",
+  "path": "/api/v1/server/blocklist/accounts",
+  "summary": "List blocked accounts by server",
+  "description": "",
+  "tags": [
+    "Server Blocklist"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

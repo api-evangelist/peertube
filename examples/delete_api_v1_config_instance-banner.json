@@ -1,0 +1,18 @@
+{
+  "operationId": "delete_api_v1_config_instance-banner",
+  "method": "DELETE",
+  "path": "/api/v1/config/instance-banner",
+  "summary": "Delete instance banner",
+  "description": "",
+  "tags": [
+    "Config"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

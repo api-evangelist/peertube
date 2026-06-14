@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserAdminFlags.json",
+  "title": "UserAdminFlags",
+  "type": "integer",
+  "enum": [
+    0,
+    1
+  ],
+  "description": "Admin flags for the user (None = `0`, Bypass video blocklist = `1`)",
+  "example": 1
+}

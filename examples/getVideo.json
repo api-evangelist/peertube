@@ -1,0 +1,41 @@
+{
+  "operationId": "getVideo",
+  "method": "GET",
+  "path": "/api/v1/videos/{id}",
+  "summary": "Get a video",
+  "description": "",
+  "tags": [
+    "Video"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "401": {
+      "description": "Requires authentication or the video requires a password",
+      "examples": {}
+    },
+    "403": {
+      "description": "Invalid authentication or the video requires a password",
+      "examples": {}
+    }
+  }
+}

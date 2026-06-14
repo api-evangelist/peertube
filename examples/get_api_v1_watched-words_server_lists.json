@@ -1,0 +1,18 @@
+{
+  "operationId": "get_api_v1_watched-words_server_lists",
+  "method": "GET",
+  "path": "/api/v1/watched-words/server/lists",
+  "summary": "List server watched words",
+  "description": "**PeerTube >= 6.2**",
+  "tags": [
+    "Watched Words"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

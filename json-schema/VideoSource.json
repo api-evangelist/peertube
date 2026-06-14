@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoSource.json",
+  "title": "VideoSource",
+  "properties": {
+    "inputFilename": {
+      "type": "string",
+      "description": "Uploaded/imported filename"
+    },
+    "fileDownloadUrl": {
+      "type": "string",
+      "description": "**PeerTube >= 6.1** If enabled by the admin, the video source file is kept on the server and can be downloaded by the owner"
+    },
+    "resolution": {
+      "description": "**PeerTube >= 6.1**",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoResolutionConstant"
+        }
+      ]
+    },
+    "size": {
+      "type": "integer",
+      "description": "**PeerTube >= 6.1** Video file size in bytes"
+    },
+    "fps": {
+      "type": "number",
+      "description": "**PeerTube >= 6.1** Frames per second of the video file"
+    },
+    "width": {
+      "type": "integer",
+      "description": "**PeerTube >= 6.1** Video stream width"
+    },
+    "height": {
+      "type": "integer",
+      "description": "**PeerTube >= 6.1** Video stream height"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

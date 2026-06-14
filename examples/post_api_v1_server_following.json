@@ -1,0 +1,45 @@
+{
+  "operationId": "post_api_v1_server_following",
+  "method": "POST",
+  "path": "/api/v1/server/following",
+  "summary": "Follow a list of actors (PeerTube instance, channel or account)",
+  "description": "",
+  "tags": [
+    "Instance Follows"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "hosts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "hostname"
+          },
+          "uniqueItems": true
+        },
+        "handles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "500": {
+      "description": "cannot follow a non-HTTPS server",
+      "examples": {}
+    }
+  }
+}

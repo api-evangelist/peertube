@@ -1,0 +1,68 @@
+{
+  "operationId": "post_api_v1_runners_jobs_jobUUID_files_videos_videoIdOrUUID_studio_task-files_filename",
+  "method": "POST",
+  "path": "/api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/studio/task-files/{filename}",
+  "summary": "Download a video studio task file for a job video",
+  "description": "API used by PeerTube runners.",
+  "tags": [
+    "Runner Jobs"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "filename",
+      "in": "path",
+      "required": true,
+      "description": "Name of the task file to download",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        },
+        "jobToken": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "runnerToken",
+        "jobToken"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "the file is not associated with this edition task",
+      "examples": {}
+    },
+    "403": {
+      "description": "the job is not associated with this video",
+      "examples": {}
+    }
+  }
+}

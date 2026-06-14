@@ -1,0 +1,56 @@
+{
+  "operationId": "get_api_v1_accounts_name_video-channel-syncs",
+  "method": "GET",
+  "path": "/api/v1/accounts/{name}/video-channel-syncs",
+  "summary": "List the synchronizations of video channels of an account",
+  "description": "",
+  "tags": [
+    "Video Channels",
+    "Channels Sync",
+    "Accounts"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

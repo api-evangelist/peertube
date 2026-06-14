@@ -1,0 +1,18 @@
+{
+  "operationId": "delete_api_v1_config_instance-avatar",
+  "method": "DELETE",
+  "path": "/api/v1/config/instance-avatar",
+  "summary": "Delete instance avatar",
+  "description": "",
+  "tags": [
+    "Config"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

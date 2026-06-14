@@ -1,0 +1,33 @@
+{
+  "operationId": "delete_api_v1_abuses_abuseId_messages_abuseMessageId",
+  "method": "DELETE",
+  "path": "/api/v1/abuses/{abuseId}/messages/{abuseMessageId}",
+  "summary": "Delete an abuse message",
+  "description": "",
+  "tags": [
+    "Abuses"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

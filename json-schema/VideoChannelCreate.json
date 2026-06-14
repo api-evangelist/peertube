@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideoChannelCreate.json",
+  "title": "VideoChannelCreate",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/VideoChannelEdit"
+    },
+    {
+      "properties": {
+        "name": {
+          "description": "username of the channel to create",
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/usernameChannel"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "required": [
+    "name",
+    "displayName"
+  ]
+}

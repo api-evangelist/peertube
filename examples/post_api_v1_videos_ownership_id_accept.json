@@ -1,0 +1,57 @@
+{
+  "operationId": "post_api_v1_videos_ownership_id_accept",
+  "method": "POST",
+  "path": "/api/v1/videos/ownership/{id}/accept",
+  "summary": "Accept ownership change request",
+  "description": "",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "channelId": {
+          "type": "integer",
+          "description": "Target channel id owned by the authenticated user"
+        }
+      },
+      "required": [
+        "channelId"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "ownership change request already accepted/refused or invalid target channel id",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot terminate an ownership change of another user",
+      "examples": {}
+    },
+    "413": {
+      "description": "quota exceeded for the target account/channel",
+      "examples": {}
+    },
+    "404": {
+      "description": "video ownership change not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "operationId": "delete_api_v1_videos_ownership_id",
+  "method": "DELETE",
+  "path": "/api/v1/videos/ownership/{id}",
+  "summary": "Delete ownership change request",
+  "description": "Delete an ownership change request. Only users who can manage the video can delete the request.",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "ownership request already accepted or refused",
+      "examples": {}
+    },
+    "403": {
+      "description": "only users who can manage the video can delete an ownership change request",
+      "examples": {}
+    },
+    "404": {
+      "description": "video ownership change not found",
+      "examples": {}
+    }
+  }
+}

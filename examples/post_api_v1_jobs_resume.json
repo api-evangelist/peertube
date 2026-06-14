@@ -1,0 +1,18 @@
+{
+  "operationId": "post_api_v1_jobs_resume",
+  "method": "POST",
+  "path": "/api/v1/jobs/resume",
+  "summary": "Resume job queue",
+  "description": "",
+  "tags": [
+    "Job"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "getInstanceStats",
+  "method": "GET",
+  "path": "/api/v1/server/stats",
+  "summary": "Get instance stats",
+  "description": "Get instance public statistics. This endpoint is cached.",
+  "tags": [
+    "Stats"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

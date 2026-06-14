@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Video.json",
+  "title": "Video",
+  "properties": {
+    "id": {
+      "description": "object id for the video",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/id"
+        }
+      ]
+    },
+    "uuid": {
+      "description": "universal identifier for the video, that can be used across instances",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/UUIDv4"
+        }
+      ]
+    },
+    "shortUUID": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/shortUUID"
+        }
+      ]
+    },
+    "isLive": {
+      "type": "boolean"
+    },
+    "liveSchedules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LiveSchedule"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2017-10-01T10:52:46.396000+00:00",
+      "description": "time at which the video object was first drafted"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2018-10-01T10:52:46.396000+00:00",
+      "description": "time at which the video was marked as ready for playback (with restrictions depending on `privacy`). Usually set after a `state` evolution."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2021-05-04T08:01:01.502000+00:00",
+      "description": "last time the video's metadata was modified"
+    },
+    "originallyPublishedAt": {
+      "type": "string",
+      "nullable": true,
+      "format": "date-time",
+      "example": "2010-10-01T10:52:46.396000+00:00",
+      "description": "used to represent a date of first publication, prior to the practical publication date of `publishedAt`"
+    },
+    "category": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoConstantNumber-Category"
+        }
+      ],
+      "description": "category in which the video is classified"
+    },
+    "licence": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoConstantNumber-Licence"
+        }
+      ],
+      "description": "licence under which the video is distributed"
+    },
+    "language": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoConstantString-Language"
+        }
+      ],
+      "description": "main language used in the video"
+    },
+    "privacy": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoPrivacyConstant"
+        }
+      ],
+      "description": "privacy policy used to distribute the video"
+    },
+    "truncatedDescription": {
+      "type": "string",
+      "nullable": true,
+      "example": "**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\\r\\n\\r\\n\n**Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**\\r\\n*A decentralized video hosting network, based on fr...\n",
+      "minLength": 3,
+      "maxLength": 250,
+      "description": "truncated description of the video, written in Markdown.\n"
+    },
+    "duration": {
+      "type": "integer",
+      "example": 1419,
+      "format": "seconds",
+      "description": "duration of the video in seconds"
+    },
+    "aspectRatio": {
+      "type": "number",
+      "nullable": true,
+      "format": "float",
+      "example": 1.778,
+      "description": "**PeerTube >= 6.1** Aspect ratio of the video stream"
+    },
+    "isLocal": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string",
+      "description": "title of the video",
+      "example": "What is PeerTube?",
+      "minLength": 3,
+      "maxLength": 120
+    },
+    "thumbnailPath": {
+      "description": "Deprecated in PeerTube v8.1, use thumbnails instead",
+      "deprecated": true,
+      "type": "string"
+    },
+    "previewPath": {
+      "description": "Deprecated in PeerTube v8.1, use thumbnails instead",
+      "deprecated": true,
+      "type": "string"
+    },
+    "thumbnails": {
+      "description": "**PeerTube >= 8.1** Array of thumbnails for the video",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Thumbnail"
+      }
+    },
+    "embedPath": {
+      "type": "string",
+      "example": "/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee"
+    },
+    "views": {
+      "type": "integer",
+      "example": 1337
+    },
+    "likes": {
+      "type": "integer",
+      "example": 42
+    },
+    "dislikes": {
+      "type": "integer",
+      "example": 7
+    },
+    "comments": {
+      "description": "**PeerTube >= 7.2** Number of comments on the video",
+      "type": "integer"
+    },
+    "nsfw": {
+      "type": "boolean"
+    },
+    "nsfwFlags": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/NSFWFlag"
+        }
+      ]
+    },
+    "nsfwSummary": {
+      "type": "string",
+      "description": "**PeerTube >= 7.2** More information about the sensitive content of the video"
+    },
+    "waitTranscoding": {
+      "type": "boolean",
+      "nullable": true
+    },
+    "state": {
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoStateConstant"
+        }
+      ],
+      "description": "represents the internal state of the video processing within the PeerTube instance"
+    },
+    "scheduledUpdate": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoScheduledUpdate"
+        }
+      ]
+    },
+    "blacklisted": {
+      "nullable": true,
+      "type": "boolean"
+    },
+    "blacklistedReason": {
+      "nullable": true,
+      "type": "string"
+    },
+    "account": {
+      "$ref": "#/components/schemas/AccountSummary"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/VideoChannelSummary"
+    },
+    "userHistory": {
+      "nullable": true,
+      "type": "object",
+      "properties": {
+        "currentTime": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

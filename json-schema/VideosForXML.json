@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/VideosForXML.json",
+  "title": "VideosForXML",
+  "type": "array",
+  "xml": {
+    "wrapped": true,
+    "name": "channel"
+  },
+  "items": {
+    "type": "object",
+    "xml": {
+      "name": "item"
+    },
+    "properties": {
+      "link": {
+        "type": "string",
+        "format": "url",
+        "description": "video watch page URL"
+      },
+      "guid": {
+        "type": "string",
+        "description": "video canonical URL"
+      },
+      "pubDate": {
+        "type": "string",
+        "format": "date-time",
+        "description": "video publication date"
+      },
+      "description": {
+        "type": "string",
+        "description": "video description"
+      },
+      "content:encoded": {
+        "type": "string",
+        "description": "video description"
+      },
+      "dc:creator": {
+        "type": "string",
+        "description": "publisher user name"
+      },
+      "media:category": {
+        "type": "integer",
+        "description": "video category (MRSS)"
+      },
+      "media:community": {
+        "type": "object",
+        "description": "see [media:community](https://www.rssboard.org/media-rss#media-community) (MRSS)",
+        "properties": {
+          "media:statistics": {
+            "type": "object",
+            "properties": {
+              "views": {
+                "type": "integer",
+                "xml": {
+                  "attribute": true
+                }
+              }
+            }
+          }
+        }
+      },
+      "media:embed": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "video embed path, relative to the canonical URL domain (MRSS)",
+            "xml": {
+              "attribute": true
+            }
+          }
+        }
+      },
+      "media:player": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "url",
+            "description": "video watch path, relative to the canonical URL domain (MRSS)",
+            "xml": {
+              "attribute": true
+            }
+          }
+        }
+      },
+      "media:thumbnail": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "url",
+            "xml": {
+              "attribute": true
+            }
+          },
+          "height": {
+            "type": "integer",
+            "xml": {
+              "attribute": true
+            }
+          },
+          "width": {
+            "type": "integer",
+            "xml": {
+              "attribute": true
+            }
+          }
+        }
+      },
+      "media:title": {
+        "type": "string",
+        "description": "see [media:title](https://www.rssboard.org/media-rss#media-title) (MRSS). We only use `plain` titles."
+      },
+      "media:description": {
+        "type": "string"
+      },
+      "media:rating": {
+        "type": "string",
+        "enum": [
+          "nonadult",
+          "adult"
+        ],
+        "description": "see [media:rating](https://www.rssboard.org/media-rss#media-rating) (MRSS)"
+      },
+      "enclosure": {
+        "type": "object",
+        "description": "main streamable file for the video",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "url",
+            "xml": {
+              "attribute": true
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "application/x-bittorrent"
+            ],
+            "xml": {
+              "attribute": true
+            }
+          },
+          "length": {
+            "type": "integer",
+            "xml": {
+              "attribute": true
+            }
+          }
+        }
+      },
+      "media:group": {
+        "type": "array",
+        "description": "list of streamable files for the video. see [media:peerLink](https://www.rssboard.org/media-rss#media-peerlink) and [media:content](https://www.rssboard.org/media-rss#media-content) or  (MRSS)",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/components/schemas/MRSSPeerLink"
+            },
+            {
+              "$ref": "#/components/schemas/MRSSGroupContent"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

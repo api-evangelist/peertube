@@ -1,0 +1,18 @@
+{
+  "operationId": "revokeOAuthToken",
+  "method": "POST",
+  "path": "/api/v1/users/revoke-token",
+  "summary": "Logout",
+  "description": "Revokes your access token and its associated refresh token, destroying your current session.",
+  "tags": [
+    "Session"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

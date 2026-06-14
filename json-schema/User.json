@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/User.json",
+  "title": "User",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "username": {
+      "$ref": "#/components/schemas/username"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "The user email"
+    },
+    "emailVerified": {
+      "type": "boolean",
+      "description": "Has the user confirmed their email address?"
+    },
+    "emailPublic": {
+      "type": "boolean",
+      "description": "Has the user accepted to display the email publicly?"
+    },
+    "nsfwPolicy": {
+      "$ref": "#/components/schemas/NSFWPolicy"
+    },
+    "nsfwFlagsDisplayed": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "nsfwFlagsHidden": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "nsfwFlagsWarned": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "nsfwFlagsBlurred": {
+      "$ref": "#/components/schemas/NSFWFlag"
+    },
+    "adminFlags": {
+      "$ref": "#/components/schemas/UserAdminFlags"
+    },
+    "autoPlayNextVideo": {
+      "type": "boolean",
+      "description": "Automatically start playing the upcoming video after the currently playing video"
+    },
+    "autoPlayNextVideoPlaylist": {
+      "type": "boolean",
+      "description": "Automatically start playing the video on the playlist after the currently playing video"
+    },
+    "autoPlayVideo": {
+      "type": "boolean",
+      "description": "Automatically start playing the video on the watch page"
+    },
+    "p2pEnabled": {
+      "type": "boolean",
+      "description": "whether to enable P2P in the player or not"
+    },
+    "videosHistoryEnabled": {
+      "type": "boolean",
+      "description": "whether to keep track of watched history or not"
+    },
+    "videoLanguages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "list of languages to filter videos down to"
+    },
+    "language": {
+      "type": "string",
+      "description": "default language for this user"
+    },
+    "videoQuota": {
+      "type": "integer",
+      "description": "The user video quota in bytes",
+      "example": -1
+    },
+    "videoQuotaDaily": {
+      "type": "integer",
+      "description": "The user daily video quota in bytes",
+      "example": -1
+    },
+    "role": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/UserRole"
+        },
+        "label": {
+          "type": "string",
+          "enum": [
+            "User",
+            "Moderator",
+            "Administrator"
+          ]
+        }
+      }
+    },
+    "theme": {
+      "type": "string",
+      "description": "Theme enabled by this user"
+    },
+    "account": {
+      "$ref": "#/components/schemas/Account"
+    },
+    "notificationSettings": {
+      "$ref": "#/components/schemas/UserNotificationSettings"
+    },
+    "videoChannels": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VideoChannel"
+      }
+    },
+    "blocked": {
+      "type": "boolean"
+    },
+    "blockedReason": {
+      "type": "string"
+    },
+    "noInstanceConfigWarningModal": {
+      "type": "boolean"
+    },
+    "noAccountSetupWarningModal": {
+      "type": "boolean"
+    },
+    "noWelcomeModal": {
+      "type": "boolean"
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "pluginAuth": {
+      "type": "string",
+      "description": "Auth plugin to use to authenticate the user"
+    },
+    "lastLoginDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "twoFactorEnabled": {
+      "type": "boolean",
+      "description": "Whether the user has enabled two-factor authentication or not"
+    },
+    "newFeaturesInfoRead": {
+      "type": "number",
+      "description": "New features information the user has read"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "operationId": "get_api_v1_videos_videoIdOrUUID_ownership",
+  "method": "GET",
+  "path": "/api/v1/videos/{videoIdOrUUID}/ownership",
+  "summary": "List ownership change requests for a video",
+  "description": "List all ownership change requests for a specific video. The authenticated user must be able to manage the video.",
+  "tags": [
+    "Ownership Change"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "state",
+      "in": "query",
+      "required": false,
+      "description": "Filter by ownership change state",
+      "schema": {
+        "$ref": "#/components/schemas/ChangeOwnershipState"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": "sort",
+      "in": "query",
+      "required": false,
+      "description": "",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "-createdAt",
+          "createdAt"
+        ]
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "403": {
+      "description": "cannot manage the video",
+      "examples": {}
+    },
+    "404": {
+      "description": "video not found",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "getInstanceAuditLogs",
+  "method": "GET",
+  "path": "/api/v1/server/audit-logs",
+  "summary": "Get instance audit logs",
+  "description": "",
+  "tags": [
+    "Logs"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

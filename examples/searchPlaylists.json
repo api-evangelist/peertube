@@ -1,0 +1,75 @@
+{
+  "operationId": "searchPlaylists",
+  "method": "GET",
+  "path": "/api/v1/search/video-playlists",
+  "summary": "Search playlists",
+  "description": "",
+  "tags": [
+    "Search",
+    "Video Playlists"
+  ],
+  "parameters": [
+    {
+      "name": "search",
+      "in": "query",
+      "required": true,
+      "description": "String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete playlist information and interact with it.\n",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    },
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "500": {
+      "description": "search index unavailable",
+      "examples": {}
+    }
+  }
+}

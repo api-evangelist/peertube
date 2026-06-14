@@ -1,0 +1,32 @@
+{
+  "operationId": "post_api_v1_runners_unregister",
+  "method": "POST",
+  "path": "/api/v1/runners/unregister",
+  "summary": "Unregister a runner",
+  "description": "API used by PeerTube runners",
+  "tags": [
+    "Runners"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "runnerToken": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "runnerToken"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

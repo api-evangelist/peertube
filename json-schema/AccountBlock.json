@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/AccountBlock.json",
+  "title": "AccountBlock",
+  "properties": {
+    "byAccount": {
+      "$ref": "#/components/schemas/Account"
+    },
+    "blockedAccount": {
+      "$ref": "#/components/schemas/Account",
+      "type": "boolean"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

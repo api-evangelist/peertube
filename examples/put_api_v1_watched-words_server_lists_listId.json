@@ -1,0 +1,45 @@
+{
+  "operationId": "put_api_v1_watched-words_server_lists_listId",
+  "method": "PUT",
+  "path": "/api/v1/watched-words/server/lists/{listId}",
+  "summary": "Update server watched words",
+  "description": "**PeerTube >= 6.2**",
+  "tags": [
+    "Watched Words"
+  ],
+  "parameters": [
+    {
+      "name": "listId",
+      "in": "path",
+      "required": true,
+      "description": "list of watched words to update",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "listName": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

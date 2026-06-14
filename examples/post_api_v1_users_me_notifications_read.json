@@ -1,0 +1,36 @@
+{
+  "operationId": "post_api_v1_users_me_notifications_read",
+  "method": "POST",
+  "path": "/api/v1/users/me/notifications/read",
+  "summary": "Mark notifications as read by their id",
+  "description": "",
+  "tags": [
+    "My Notifications"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "description": "ids of the notifications to mark as read",
+          "items": {
+            "type": "integer"
+          }
+        }
+      },
+      "required": [
+        "ids"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

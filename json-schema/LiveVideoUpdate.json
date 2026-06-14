@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/LiveVideoUpdate.json",
+  "title": "LiveVideoUpdate",
+  "properties": {
+    "saveReplay": {
+      "type": "boolean"
+    },
+    "replaySettings": {
+      "$ref": "#/components/schemas/LiveVideoReplaySettings"
+    },
+    "permanentLive": {
+      "description": "User can stream multiple times in a permanent live",
+      "type": "boolean"
+    },
+    "latencyMode": {
+      "description": "User can select live latency mode if enabled by the instance",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/LiveVideoLatencyMode"
+        }
+      ]
+    },
+    "schedules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LiveSchedule"
+      }
+    }
+  }
+}

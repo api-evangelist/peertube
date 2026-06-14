@@ -1,0 +1,32 @@
+{
+  "operationId": "delMirroredVideo",
+  "method": "DELETE",
+  "path": "/api/v1/server/redundancy/videos/{redundancyId}",
+  "summary": "Delete a mirror done on a video",
+  "description": "",
+  "tags": [
+    "Video Mirroring"
+  ],
+  "parameters": [
+    {
+      "name": "redundancyId",
+      "in": "path",
+      "required": true,
+      "description": "id of an existing redundancy on a video",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "video redundancy not found",
+      "examples": {}
+    }
+  }
+}

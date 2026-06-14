@@ -1,0 +1,38 @@
+{
+  "operationId": "uninstallPlugin",
+  "method": "POST",
+  "path": "/api/v1/plugins/uninstall",
+  "summary": "Uninstall a plugin",
+  "description": "",
+  "tags": [
+    "Plugins"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "npmName": {
+          "type": "string",
+          "description": "name of the plugin/theme in its package.json",
+          "example": "peertube-plugin-auth-ldap"
+        }
+      },
+      "required": [
+        "npmName"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "existing plugin not found",
+      "examples": {}
+    }
+  }
+}

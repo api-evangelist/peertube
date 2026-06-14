@@ -1,0 +1,40 @@
+{
+  "operationId": "post_api_v1_users_me_subscriptions",
+  "method": "POST",
+  "path": "/api/v1/users/me/subscriptions",
+  "summary": "Add subscription to my user",
+  "description": "",
+  "tags": [
+    "My Subscriptions"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "format": "uri",
+          "description": "uri of the video channels to subscribe to"
+        }
+      },
+      "required": [
+        "uri"
+      ]
+    },
+    "example": {
+      "default": {
+        "value": {
+          "uri": "008a0e54-375d-49d0-8379-143202e24152@video.lqdn.fr"
+        }
+      }
+    }
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

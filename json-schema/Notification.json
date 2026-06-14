@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/Notification.json",
+  "title": "Notification",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "type": {
+      "$ref": "#/components/schemas/NotificationType"
+    },
+    "read": {
+      "type": "boolean"
+    },
+    "video": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/VideoInfo"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "channel": {
+              "$ref": "#/components/schemas/ActorInfo"
+            }
+          }
+        }
+      ]
+    },
+    "videoImport": {
+      "nullable": true,
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        },
+        "video": {
+          "nullable": true,
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/VideoInfo"
+            }
+          ]
+        },
+        "torrentName": {
+          "type": "string",
+          "nullable": true
+        },
+        "magnetUri": {
+          "$ref": "#/components/schemas/VideoImport/properties/magnetUri"
+        },
+        "targetUri": {
+          "type": "string",
+          "format": "uri",
+          "nullable": true
+        }
+      }
+    },
+    "comment": {
+      "nullable": true,
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        },
+        "threadId": {
+          "type": "integer"
+        },
+        "video": {
+          "$ref": "#/components/schemas/VideoInfo"
+        },
+        "account": {
+          "$ref": "#/components/schemas/ActorInfo"
+        },
+        "heldForReview": {
+          "type": "boolean"
+        }
+      }
+    },
+    "videoAbuse": {
+      "nullable": true,
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        },
+        "video": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/VideoInfo"
+            }
+          ]
+        }
+      }
+    },
+    "videoBlacklist": {
+      "nullable": true,
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        },
+        "video": {
+          "allOf": [
+            {
+              "$ref": "#/components/schemas/VideoInfo"
+            }
+          ]
+        }
+      }
+    },
+    "account": {
+      "nullable": true,
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/ActorInfo"
+        }
+      ]
+    },
+    "actorFollow": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "id": {
+          "$ref": "#/components/schemas/id"
+        },
+        "follower": {
+          "$ref": "#/components/schemas/ActorInfo"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "accepted"
+          ]
+        },
+        "following": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "account",
+                "channel",
+                "instance"
+              ]
+            },
+            "name": {
+              "type": "string"
+            },
+            "displayName": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string",
+              "format": "hostname"
+            }
+          }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

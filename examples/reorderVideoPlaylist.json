@@ -1,0 +1,53 @@
+{
+  "operationId": "reorderVideoPlaylist",
+  "method": "POST",
+  "path": "/api/v1/video-playlists/{playlistId}/videos/reorder",
+  "summary": "Reorder playlist elements",
+  "description": "",
+  "tags": [
+    "Video Playlists"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "startPosition": {
+          "type": "integer",
+          "description": "Start position of the element to reorder",
+          "minimum": 1
+        },
+        "insertAfterPosition": {
+          "type": "integer",
+          "description": "New position for the block to reorder, to add the block before the first element",
+          "minimum": 0
+        },
+        "reorderLength": {
+          "type": "integer",
+          "description": "How many element from `startPosition` to reorder",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "startPosition",
+        "insertAfterPosition"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

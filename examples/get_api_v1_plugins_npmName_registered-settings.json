@@ -1,0 +1,30 @@
+{
+  "operationId": "get_api_v1_plugins_npmName_registered-settings",
+  "method": "GET",
+  "path": "/api/v1/plugins/{npmName}/registered-settings",
+  "summary": "Get a plugin's registered settings",
+  "description": "",
+  "tags": [
+    "Plugins"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "plugin not found",
+      "examples": {}
+    }
+  }
+}

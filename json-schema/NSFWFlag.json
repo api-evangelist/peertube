@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/NSFWFlag.json",
+  "title": "NSFWFlag",
+  "type": "integer",
+  "enum": [
+    0,
+    1,
+    2,
+    4
+  ],
+  "description": "\nNSFW flags (can be combined using bitwise or operator)\n- `0` NONE\n- `1` VIOLENT\n- `2` EXPLICIT_SEX\n"
+}

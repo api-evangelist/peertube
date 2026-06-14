@@ -1,0 +1,48 @@
+{
+  "operationId": "updateVideoEmbedPrivacy",
+  "method": "PUT",
+  "path": "/api/v1/videos/{id}/embed-privacy",
+  "summary": "Update video embed privacy",
+  "description": "**PeerTube >= 8.1**",
+  "tags": [
+    "Video Embed Privacy"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "$ref": "#/components/schemas/VideoEmbedPrivacy"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "example": "example.com"
+          }
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "400": {
+      "description": "invalid request",
+      "examples": {}
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/PlayerVideoSettingsUpdate.json",
+  "title": "PlayerVideoSettingsUpdate",
+  "type": "object",
+  "properties": {
+    "theme": {
+      "$ref": "#/components/schemas/PlayerThemeVideoSetting"
+    }
+  },
+  "required": [
+    "theme"
+  ],
+  "description": "Player settings update for a video"
+}

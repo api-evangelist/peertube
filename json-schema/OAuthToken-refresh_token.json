@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/OAuthToken-refresh_token.json",
+  "title": "OAuthToken-refresh_token",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/OAuthClient"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "grant_type": {
+          "type": "string",
+          "enum": [
+            "refresh_token"
+          ]
+        },
+        "refresh_token": {
+          "type": "string",
+          "example": "2e0d675df9fc96d2e4ec8a3ebbbf45eca9137bb7"
+        }
+      }
+    }
+  ],
+  "required": [
+    "client_id",
+    "client_secret",
+    "grant_type",
+    "refresh_token"
+  ]
+}

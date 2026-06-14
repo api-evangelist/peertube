@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/MRSSGroupContent.json",
+  "title": "MRSSGroupContent",
+  "type": "object",
+  "xml": {
+    "name": "media:content"
+  },
+  "properties": {
+    "url": {
+      "type": "string",
+      "format": "url",
+      "xml": {
+        "attribute": true
+      }
+    },
+    "fileSize": {
+      "type": "integer",
+      "xml": {
+        "attribute": true
+      }
+    },
+    "type": {
+      "type": "string",
+      "xml": {
+        "attribute": true
+      }
+    },
+    "framerate": {
+      "type": "integer",
+      "xml": {
+        "attribute": true
+      }
+    },
+    "duration": {
+      "type": "integer",
+      "xml": {
+        "attribute": true
+      }
+    },
+    "height": {
+      "type": "integer",
+      "xml": {
+        "attribute": true
+      }
+    },
+    "lang": {
+      "type": "string",
+      "xml": {
+        "attribute": true
+      }
+    }
+  }
+}

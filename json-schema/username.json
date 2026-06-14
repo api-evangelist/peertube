@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/username.json",
+  "title": "username",
+  "type": "string",
+  "description": "immutable name of the user, used to find or mention its actor",
+  "example": "chocobozzz",
+  "pattern": "/^[a-z0-9._]+$/",
+  "minLength": 1,
+  "maxLength": 50
+}

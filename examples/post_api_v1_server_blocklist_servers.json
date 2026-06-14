@@ -1,0 +1,38 @@
+{
+  "operationId": "post_api_v1_server_blocklist_servers",
+  "method": "POST",
+  "path": "/api/v1/server/blocklist/servers",
+  "summary": "Block a server by server",
+  "description": "",
+  "tags": [
+    "Server Blocklist"
+  ],
+  "parameters": [],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "host": {
+          "type": "string",
+          "format": "hostname",
+          "description": "server domain to block"
+        }
+      },
+      "required": [
+        "host"
+      ]
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "409": {
+      "description": "self-blocking forbidden",
+      "examples": {}
+    }
+  }
+}

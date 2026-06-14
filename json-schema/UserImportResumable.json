@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/peertube/main/json-schema/UserImportResumable.json",
+  "title": "UserImportResumable",
+  "properties": {
+    "filename": {
+      "description": "Archive filename including extension",
+      "type": "string",
+      "format": "filename",
+      "example": "user-export-6-2024-02-09T10_12_11.682Z"
+    }
+  }
+}

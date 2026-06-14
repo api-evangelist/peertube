@@ -1,0 +1,18 @@
+{
+  "operationId": "getInstanceLogs",
+  "method": "GET",
+  "path": "/api/v1/server/logs",
+  "summary": "Get instance logs",
+  "description": "",
+  "tags": [
+    "Logs"
+  ],
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "successful operation",
+      "examples": {}
+    }
+  }
+}

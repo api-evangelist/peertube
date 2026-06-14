@@ -1,0 +1,42 @@
+{
+  "operationId": "put_api_v1_plugins_npmName_settings",
+  "method": "PUT",
+  "path": "/api/v1/plugins/{npmName}/settings",
+  "summary": "Set a plugin's settings",
+  "description": "",
+  "tags": [
+    "Plugins"
+  ],
+  "parameters": [
+    {
+      "name": null,
+      "in": null,
+      "required": false,
+      "description": "",
+      "schema": {}
+    }
+  ],
+  "requestBody": {
+    "contentType": "application/json",
+    "schema": {
+      "type": "object",
+      "properties": {
+        "settings": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "example": {}
+  },
+  "responses": {
+    "204": {
+      "description": "successful operation",
+      "examples": {}
+    },
+    "404": {
+      "description": "plugin not found",
+      "examples": {}
+    }
+  }
+}
