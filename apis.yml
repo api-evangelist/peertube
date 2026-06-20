@@ -1,6 +1,6 @@
 name: PeerTube
 description: PeerTube is a free, decentralized, and federated video hosting platform developed by Framasoft as an open-source alternative to centralized video services like YouTube. It enables anyone to self-host a video platform that federates with other instances via ActivityPub, forming a global network of over 1,600 platforms hosting more than one million videos. The REST API supports video uploading and management, channel and playlist operations, live streaming, search and discovery across federated nodes, content moderation, plugin management, and distributed transcoding via remote runner jobs.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Video
   - Decentralized
@@ -15,7 +15,7 @@ modified: "2026-06-13"
 apis:
   - name: PeerTube REST API
     description: The PeerTube REST API provides comprehensive access to all platform functionality including video upload and management, user accounts, channels, playlists, live streaming, moderation, instance configuration, federation, and distributed transcoding. The API is defined by an OpenAPI 3.0 specification and uses OAuth 2.0 for authentication with three role levels (Administrator, Moderator, User). Rate limiting is enforced per endpoint class with headers exposing limit state.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.joinpeertube.org/api/rest-getting-started
     baseURL: https://{instance}/api/v1
     tags:
