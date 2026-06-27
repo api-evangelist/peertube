@@ -67,7 +67,7 @@ common:
     url: https://github.com/Chocobozzz/PeerTube
   - type: Blog
     url: https://framablog.org/
-  - type: Forum
+  - type: Forums
     url: https://framacolibri.org/c/peertube
   - type: MobileApp
     url: https://joinpeertube.org/apps
