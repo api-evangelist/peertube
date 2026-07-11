@@ -59,6 +59,8 @@ apis:
       - key: openapi-version
         value: 3.0.3
 common:
+  - type: OAuthScopes
+    url: scopes/peertube-scopes.yml
   - type: Website
     url: https://joinpeertube.org/
   - type: Documentation

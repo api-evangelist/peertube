@@ -1,0 +1,58 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.json, openapi/openapi.yaml
+schemes:
+- name: OAuth2
+  source: openapi/openapi.json
+  flows:
+  - flow: password
+    tokenUrl: /api/v1/users/token
+  description: |-
+    Authenticating via OAuth requires the following steps:
+    - Have an activated account
+    - [Generate] an access token for that account at `/api/v1/users/token`.
+    - Make requests with the *Authorization: Bearer <token\>* header
+    - Profit, depending on the role assigned to the account
+
+    Note that the __access token is valid for 1 day__ and is given
+    along with a __refresh token valid for 2 weeks__.
+
+    [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+- name: OAuth2
+  source: openapi/openapi.yaml
+  flows:
+  - flow: password
+    tokenUrl: /api/v1/users/token
+  description: |-
+    Authenticating via OAuth requires the following steps:
+    - Have an activated account
+    - [Generate] an access token for that account at `/api/v1/users/token`.
+    - Make requests with the *Authorization: Bearer <token\>* header
+    - Profit, depending on the role assigned to the account
+
+    Note that the __access token is valid for 1 day__ and is given
+    along with a __refresh token valid for 2 weeks__.
+
+    [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+scopes:
+- scope: admin
+  description: Admin scope
+  flows:
+  - password
+  sources:
+  - openapi/openapi.json
+  - openapi/openapi.yaml
+- scope: moderator
+  description: Moderator scope
+  flows:
+  - password
+  sources:
+  - openapi/openapi.json
+  - openapi/openapi.yaml
+- scope: user
+  description: User scope
+  flows:
+  - password
+  sources:
+  - openapi/openapi.json
+  - openapi/openapi.yaml
