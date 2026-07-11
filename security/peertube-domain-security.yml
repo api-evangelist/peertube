@@ -1,0 +1,35 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: joinpeertube.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 26 14:14:34 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: docs.joinpeertube.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 14 22:00:37 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: peertube2.cpy.re
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 28 10:43:39 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+domains:
+- domain: joinpeertube.org
+  dnssec: true
+  caa:
+  - 0 issue "letsencrypt.org"
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: cpy.re
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

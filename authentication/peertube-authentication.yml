@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.json, openapi/openapi.yaml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - password
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: password
+    tokenUrl: /api/v1/users/token
+    scopes: 3
+  description: |-
+    Authenticating via OAuth requires the following steps:
+    - Have an activated account
+    - [Generate] an access token for that account at `/api/v1/users/token`.
+    - Make requests with the *Authorization: Bearer <token\>* header
+    - Profit, depending on the role assigned to the account
+
+    Note that the __access token is valid for 1 day__ and is given
+    along with a __refresh token valid for 2 weeks__.
+
+    [Generate
+  sources:
+  - openapi/openapi.json
+  - openapi/openapi.yaml

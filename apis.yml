@@ -59,6 +59,10 @@ apis:
       - key: openapi-version
         value: 3.0.3
 common:
+  - type: DomainSecurity
+    url: security/peertube-domain-security.yml
+  - type: Authentication
+    url: authentication/peertube-authentication.yml
   - type: OAuthScopes
     url: scopes/peertube-scopes.yml
   - type: Website
