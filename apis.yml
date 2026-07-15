@@ -59,6 +59,8 @@ apis:
       - key: openapi-version
         value: 3.0.3
 common:
+  - type: AgenticAccess
+    url: agentic-access/peertube-agentic-access.yml
   - type: DomainSecurity
     url: security/peertube-domain-security.yml
   - type: Authentication
