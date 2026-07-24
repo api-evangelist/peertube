@@ -1,0 +1,733 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Video Comments API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Video Comments
+  description: 'Operations dealing with comments to a video. Comments are organized in threads: adding a comment in response to the video starts a thread, adding a reply to a comment adds it to its root comment thread.
+
+    '
+paths:
+  /api/v1/users/me/videos/comments:
+    get:
+      summary: List comments on user's videos
+      description: '**PeerTube >= 6.2**'
+      security:
+      - OAuth2: []
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/searchAccountForComments'
+      - $ref: '#/components/parameters/searchVideoForComments'
+      - $ref: '#/components/parameters/videoId'
+      - $ref: '#/components/parameters/videoChannelId'
+      - $ref: '#/components/parameters/autoTagOneOfComment'
+      - $ref: '#/components/parameters/isHeldForReview'
+      - $ref: '#/components/parameters/includeCollaborations'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VideoCommentForOwnerOrAdmin'
+  /api/v1/videos/{id}/comment-threads:
+    get:
+      summary: List threads of a video
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/idOrUUID'
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/commentsSort'
+      - $ref: '#/components/parameters/videoPasswordHeader'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentThreadResponse'
+    post:
+      summary: Create a thread
+      security:
+      - OAuth2: []
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/idOrUUID'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentThreadPostResponse'
+        '404':
+          description: video does not exist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  allOf:
+                  - $ref: '#/components/schemas/VideoComment/properties/text'
+                  format: markdown
+                  maxLength: 10000
+              required:
+              - text
+  /api/v1/videos/{id}/comment-threads/{threadId}:
+    get:
+      summary: Get a thread
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/idOrUUID'
+      - $ref: '#/components/parameters/threadId'
+      - $ref: '#/components/parameters/videoPasswordHeader'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoCommentThreadTree'
+  /api/v1/videos/comments:
+    get:
+      summary: List instance comments
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/searchAccountForComments'
+      - $ref: '#/components/parameters/searchVideoForComments'
+      - $ref: '#/components/parameters/videoId'
+      - $ref: '#/components/parameters/videoChannelId'
+      - $ref: '#/components/parameters/autoTagOneOfComment'
+      - $ref: '#/components/parameters/isLocal'
+      - $ref: '#/components/parameters/onLocalVideo'
+      - $ref: '#/components/parameters/includeMuted'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VideoCommentForOwnerOrAdmin'
+  /api/v1/videos/{id}/comments/{commentId}:
+    post:
+      summary: Reply to a thread of a video
+      security:
+      - OAuth2: []
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/idOrUUID'
+      - $ref: '#/components/parameters/commentId'
+      - $ref: '#/components/parameters/videoPasswordHeader'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentThreadPostResponse'
+        '404':
+          description: thread or video does not exist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  allOf:
+                  - $ref: '#/components/schemas/VideoComment/properties/text'
+                  format: markdown
+                  maxLength: 10000
+              required:
+              - text
+    delete:
+      summary: Delete a comment or a reply
+      security:
+      - OAuth2: []
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/idOrUUID'
+      - $ref: '#/components/parameters/commentId'
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: cannot remove comment of another user
+        '404':
+          description: comment or video does not exist
+        '409':
+          description: comment is already deleted
+  /api/v1/videos/{id}/comments/{commentId}/approve:
+    post:
+      summary: Approve a comment
+      description: '**PeerTube >= 6.2** Approve a comment that requires a review'
+      security:
+      - OAuth2: []
+      tags:
+      - Video Comments
+      parameters:
+      - $ref: '#/components/parameters/idOrUUID'
+      - $ref: '#/components/parameters/commentId'
+      responses:
+        '204':
+          description: successful operation
+components:
+  parameters:
+    includeMuted:
+      name: includeMuted
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 8.2** Include comments from muted accounts'
+    searchVideoForComments:
+      name: searchVideo
+      in: query
+      required: false
+      description: Filter comments by searching on the video
+      schema:
+        type: string
+    searchAccountForComments:
+      name: searchAccount
+      in: query
+      required: false
+      description: Filter comments by searching on the account
+      schema:
+        type: string
+    videoPasswordHeader:
+      name: x-peertube-video-password
+      description: Required on password protected video
+      in: header
+      required: false
+      schema:
+        type: string
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    commentId:
+      name: commentId
+      in: path
+      required: true
+      description: The comment id
+      schema:
+        $ref: '#/components/schemas/VideoComment/properties/id'
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    isHeldForReview:
+      name: isHeldForReview
+      in: query
+      required: false
+      description: only display comments that are held for review
+      schema:
+        type: boolean
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
+    commentsSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort comments by criteria
+      schema:
+        type: string
+        enum:
+        - -createdAt
+        - -totalReplies
+    videoId:
+      name: videoId
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Limit results on this specific video
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    videoChannelId:
+      name: videoChannelId
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Limit results on this specific video channel
+    autoTagOneOfComment:
+      name: autoTagOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 6.2** filter on comments that contain one of these automatic tags'
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+      style: form
+      explode: true
+    onLocalVideo:
+      name: onLocalVideo
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Display only objects of local or remote videos
+    isLocal:
+      name: isLocal
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only local or remote objects'
+    includeCollaborations:
+      name: includeCollaborations
+      in: query
+      required: false
+      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
+      schema:
+        type: boolean
+    threadId:
+      name: threadId
+      in: path
+      required: true
+      description: The thread id (root comment id)
+      schema:
+        type: integer
+  schemas:
+    VideoComment:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        text:
+          type: string
+          format: html
+          description: Text of the comment
+          minLength: 1
+          example: This video is wonderful!
+        threadId:
+          $ref: '#/components/schemas/id'
+        inReplyToCommentId:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/id'
+        videoId:
+          $ref: '#/components/schemas/Video/properties/id'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          nullable: true
+          type: string
+          format: date-time
+          default: null
+        isDeleted:
+          type: boolean
+          default: false
+        heldForReview:
+          type: boolean
+        totalRepliesFromVideoAuthor:
+          type: integer
+          minimum: 0
+        totalReplies:
+          type: integer
+          minimum: 0
+        account:
+          $ref: '#/components/schemas/Account'
+    VideoStateConstant:
+      properties:
+        id:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          description: 'The video state:
+
+            - `1`: Published
+
+            - `2`: To transcode
+
+            - `3`: To import
+
+            - `4`: Waiting for live stream
+
+            - `5`: Live ended
+
+            - `6`: To move to an external storage (object storage...)
+
+            - `7`: Transcoding failed
+
+            - `8`: Moving to an external storage failed
+
+            - `9`: To edit using studio edition feature
+
+            '
+        label:
+          type: string
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type: boolean
+          nullable: true
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    User:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+    CommentThreadPostResponse:
+      properties:
+        comment:
+          $ref: '#/components/schemas/VideoComment'
+    Video:
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/VideoStateConstant'
+          description: represents the internal state of the video processing within the PeerTube instance
+        id:
+          description: object id for the video
+          allOf:
+          - $ref: '#/components/schemas/id'
+        uuid:
+          description: universal identifier for the video, that can be used across instances
+          allOf:
+          - $ref: '#/components/schemas/UUIDv4'
+        name:
+          type: string
+          description: title of the video
+          example: What is PeerTube?
+          minLength: 3
+          maxLength: 120
+    VideoInfo:
+      properties:
+        id:
+          $ref: '#/components/schemas/Video/properties/id'
+        uuid:
+          $ref: '#/components/schemas/Video/properties/uuid'
+        name:
+          $ref: '#/components/schemas/Video/properties/name'
+        state:
+          $ref: '#/components/schemas/Video/properties/state'
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    CommentThreadResponse:
+      properties:
+        total:
+          type: integer
+          description: Total threads (included deleted ones) on this video
+        totalNotDeletedComments:
+          type: integer
+          description: Total not-deleted threads (included deleted ones) on this video
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/VideoComment'
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    VideoCommentForOwnerOrAdmin:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          $ref: '#/components/schemas/VideoComment/properties/url'
+        text:
+          $ref: '#/components/schemas/VideoComment/properties/text'
+        heldForReview:
+          $ref: '#/components/schemas/VideoComment/properties/heldForReview'
+        threadId:
+          $ref: '#/components/schemas/VideoComment/properties/threadId'
+        inReplyToCommentId:
+          $ref: '#/components/schemas/VideoComment/properties/inReplyToCommentId'
+        createdAt:
+          $ref: '#/components/schemas/VideoComment/properties/createdAt'
+        updatedAt:
+          $ref: '#/components/schemas/VideoComment/properties/updatedAt'
+        account:
+          $ref: '#/components/schemas/VideoComment/properties/account'
+        video:
+          $ref: '#/components/schemas/VideoInfo'
+        automaticTags:
+          type: array
+          items:
+            type: string
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoCommentThreadTree:
+      properties:
+        comment:
+          $ref: '#/components/schemas/VideoComment'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/VideoCommentThreadTree'
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            nullable: true
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type: string
+            nullable: true
+            description: text or bio displayed on the account's profile
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

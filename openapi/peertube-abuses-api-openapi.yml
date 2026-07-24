@@ -1,0 +1,761 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Abuses
+  description: 'Abuses deal with reports of local or remote videos/comments/accounts alike.
+
+    '
+paths:
+  /api/v1/users/me/abuses:
+    get:
+      summary: List my abuses
+      operationId: getMyAbuses
+      security:
+      - OAuth2: []
+      tags:
+      - Abuses
+      parameters:
+      - name: id
+        in: query
+        description: only list the report with this id
+        schema:
+          type: integer
+      - name: state
+        in: query
+        schema:
+          $ref: '#/components/schemas/AbuseStateSet'
+      - $ref: '#/components/parameters/abusesSort'
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Abuse'
+  /api/v1/abuses:
+    get:
+      summary: List abuses
+      operationId: getAbuses
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      tags:
+      - Abuses
+      parameters:
+      - name: id
+        in: query
+        description: only list the report with this id
+        schema:
+          type: integer
+      - name: predefinedReason
+        in: query
+        description: predefined reason the listed reports should contain
+        schema:
+          $ref: '#/components/schemas/PredefinedAbuseReasons'
+      - name: search
+        in: query
+        description: plain search that will match with video titles, reporter names and more
+        schema:
+          type: string
+      - name: state
+        in: query
+        schema:
+          $ref: '#/components/schemas/AbuseStateSet'
+      - name: searchReporter
+        in: query
+        description: only list reports of a specific reporter
+        schema:
+          type: string
+      - name: searchReportee
+        description: only list reports of a specific reportee
+        in: query
+        schema:
+          type: string
+      - name: searchVideo
+        in: query
+        description: only list reports of a specific video
+        schema:
+          type: string
+      - name: searchVideoChannel
+        in: query
+        description: only list reports of a specific video channel
+        schema:
+          type: string
+      - name: videoIs
+        in: query
+        description: only list deleted or blocklisted videos
+        schema:
+          type: string
+          enum:
+          - deleted
+          - blacklisted
+      - name: filter
+        in: query
+        description: only list account, comment or video reports
+        schema:
+          type: string
+          enum:
+          - video
+          - comment
+          - account
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/abusesSort'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Abuse'
+    post:
+      summary: Report an abuse
+      security:
+      - OAuth2: []
+      tags:
+      - Abuses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  description: Reason why the user reports this video
+                  type: string
+                  minLength: 2
+                  maxLength: 3000
+                predefinedReasons:
+                  $ref: '#/components/schemas/PredefinedAbuseReasons'
+                video:
+                  type: object
+                  properties:
+                    id:
+                      description: Video id to report
+                      allOf:
+                      - $ref: '#/components/schemas/Video/properties/id'
+                    startAt:
+                      type: integer
+                      format: seconds
+                      description: Timestamp in the video that marks the beginning of the report
+                      minimum: 0
+                    endAt:
+                      type: integer
+                      format: seconds
+                      description: Timestamp in the video that marks the ending of the report
+                      minimum: 0
+                comment:
+                  type: object
+                  properties:
+                    id:
+                      description: Comment id to report
+                      allOf:
+                      - $ref: '#/components/schemas/VideoComment/properties/id'
+                account:
+                  type: object
+                  properties:
+                    id:
+                      description: Account id to report
+                      type: integer
+              required:
+              - reason
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  abuse:
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/components/schemas/id'
+        '400':
+          description: incorrect request parameters
+  /api/v1/abuses/{abuseId}:
+    put:
+      summary: Update an abuse
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      tags:
+      - Abuses
+      parameters:
+      - $ref: '#/components/parameters/abuseId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                state:
+                  $ref: '#/components/schemas/AbuseStateSet'
+                moderationComment:
+                  type: string
+                  description: Update the report comment visible only to the moderation team
+                  minLength: 2
+                  maxLength: 3000
+      responses:
+        '204':
+          description: successful operation
+        '404':
+          description: abuse not found
+    delete:
+      tags:
+      - Abuses
+      summary: Delete an abuse
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      parameters:
+      - $ref: '#/components/parameters/abuseId'
+      responses:
+        '204':
+          description: successful operation
+        '404':
+          description: block not found
+  /api/v1/abuses/{abuseId}/messages:
+    get:
+      summary: List messages of an abuse
+      security:
+      - OAuth2: []
+      tags:
+      - Abuses
+      parameters:
+      - $ref: '#/components/parameters/abuseId'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AbuseMessage'
+    post:
+      summary: Add message to an abuse
+      security:
+      - OAuth2: []
+      tags:
+      - Abuses
+      parameters:
+      - $ref: '#/components/parameters/abuseId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  description: Message to send
+                  type: string
+                  minLength: 2
+                  maxLength: 3000
+              required:
+              - message
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: incorrect request parameters
+  /api/v1/abuses/{abuseId}/messages/{abuseMessageId}:
+    delete:
+      summary: Delete an abuse message
+      security:
+      - OAuth2: []
+      tags:
+      - Abuses
+      parameters:
+      - $ref: '#/components/parameters/abuseId'
+      - $ref: '#/components/parameters/abuseMessageId'
+      responses:
+        '204':
+          description: successful operation
+components:
+  parameters:
+    abusesSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort abuses by criteria
+      schema:
+        type: string
+        enum:
+        - -id
+        - -createdAt
+        - -state
+    abuseMessageId:
+      name: abuseMessageId
+      in: path
+      required: true
+      description: Abuse message id
+      schema:
+        $ref: '#/components/schemas/AbuseMessage/properties/id'
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    abuseId:
+      name: abuseId
+      in: path
+      required: true
+      description: Abuse id
+      schema:
+        $ref: '#/components/schemas/Abuse/properties/id'
+  schemas:
+    AbusePredefinedReasons:
+      type: array
+      items:
+        type: string
+        enum:
+        - violentOrAbusive
+        - hatefulOrAbusive
+        - spamOrMisleading
+        - privacy
+        - rights
+        - serverRules
+        - thumbnails
+        - captions
+      example:
+      - spamOrMisleading
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type: boolean
+          nullable: true
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Thumbnail:
+      properties:
+        fileUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        aspectRatio:
+          type: string
+          example: '16:9'
+    User:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+    Video:
+      properties:
+        id:
+          description: object id for the video
+          allOf:
+          - $ref: '#/components/schemas/id'
+    AbuseStateSet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The abuse state (Pending = `1`, Rejected = `2`, Accepted = `3`)
+    AbuseStateConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/AbuseStateSet'
+        label:
+          type: string
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    PredefinedAbuseReasons:
+      description: Reason categories that help triage reports
+      type: array
+      maxItems: 8
+      items:
+        type: string
+        enum:
+        - violentOrAbusive
+        - hatefulOrAbusive
+        - spamOrMisleading
+        - privacy
+        - rights
+        - serverRules
+        - thumbnails
+        - captions
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    AbuseMessage:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        message:
+          type: string
+          minLength: 2
+          maxLength: 3000
+        byModerator:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        account:
+          $ref: '#/components/schemas/AccountSummary'
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    VideoChannel:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - type: object
+        properties:
+          displayName:
+            type: string
+            description: editable name of the channel, displayed in its representations
+            example: Videos of Framasoft
+            minLength: 1
+            maxLength: 120
+          description:
+            type: string
+            nullable: true
+            example: Videos made with <3 by Framasoft
+            minLength: 3
+            maxLength: 1000
+          support:
+            type: string
+            nullable: true
+            description: text shown by default on all videos of this channel, to tell the audience how to support it
+            example: Please support our work on https://soutenir.framasoft.org/en/ <3
+            minLength: 3
+            maxLength: 1000
+          isLocal:
+            type: boolean
+          updatedAt:
+            type: string
+            format: date-time
+          banners:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActorImage'
+          ownerAccount:
+            $ref: '#/components/schemas/Account'
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    Abuse:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        reason:
+          type: string
+          example: The video is a spam
+          minLength: 2
+          maxLength: 3000
+        predefinedReasons:
+          $ref: '#/components/schemas/AbusePredefinedReasons'
+        reporterAccount:
+          $ref: '#/components/schemas/Account'
+        state:
+          $ref: '#/components/schemas/AbuseStateConstant'
+        moderationComment:
+          type: string
+          example: Decided to ban the server since it spams us regularly
+          minLength: 2
+          maxLength: 3000
+        video:
+          type: object
+          properties:
+            id:
+              type: integer
+            uuid:
+              $ref: '#/components/schemas/UUIDv4'
+            shortUUID:
+              $ref: '#/components/schemas/shortUUID'
+            name:
+              type: string
+            nsfw:
+              type: boolean
+            startAt:
+              type: string
+              format: date-time
+            endAt:
+              type: string
+              format: date-time
+            deleted:
+              type: boolean
+            blacklisted:
+              type: boolean
+            thumbnailPath:
+              description: Deprecated in PeerTube v8.1, use thumbnails instead
+              deprecated: true
+              type: string
+            thumbnails:
+              description: '**PeerTube >= 8.1** Array of thumbnails for the video'
+              type: array
+              items:
+                $ref: '#/components/schemas/Thumbnail'
+            channel:
+              $ref: '#/components/schemas/VideoChannel'
+        createdAt:
+          type: string
+          format: date-time
+    AccountSummary:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            nullable: true
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type: string
+            nullable: true
+            description: text or bio displayed on the account's profile
+    VideoComment:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

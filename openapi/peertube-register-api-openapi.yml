@@ -1,0 +1,569 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Register API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Register
+  description: 'As a visitor, you can use this API to open an account (if registrations are open on
+
+    that PeerTube instance). As an admin, you should use the dedicated [User creation
+
+    API](#operation/addUser) instead.
+
+    '
+paths:
+  /api/v1/users/ask-send-verify-email:
+    post:
+      summary: Resend user verification link
+      operationId: resendEmailToVerifyUser
+      tags:
+      - Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+              required:
+              - email
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/registrations/ask-send-verify-email:
+    post:
+      summary: Resend verification link to registration request email
+      operationId: resendEmailToVerifyRegistration
+      tags:
+      - Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: Registration email
+              required:
+              - email
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/{id}/verify-email:
+    post:
+      summary: Verify a user
+      operationId: verifyUser
+      description: 'Following a user registration, the new user will receive an email asking to click a link
+
+        containing a secret.
+
+        This endpoint can also be used to verify a new email set in the user account.
+
+        '
+      tags:
+      - Register
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verificationString:
+                  type: string
+                  format: url
+                isPendingEmail:
+                  type: boolean
+              required:
+              - verificationString
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: invalid verification string
+        '404':
+          description: user not found
+  /api/v1/users/registrations/{registrationId}/verify-email:
+    post:
+      summary: Verify a registration email
+      operationId: verifyRegistrationEmail
+      description: 'Following a user registration request, the user will receive an email asking to click a link
+
+        containing a secret.
+
+        '
+      tags:
+      - Register
+      parameters:
+      - $ref: '#/components/parameters/registrationId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verificationString:
+                  type: string
+                  format: url
+              required:
+              - verificationString
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: invalid verification string
+        '404':
+          description: registration not found
+  /api/v1/users/register:
+    post:
+      summary: Register a user
+      operationId: registerUser
+      description: Signup has to be enabled and signup approval is not required
+      tags:
+      - Register
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  state:
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/components/schemas/UserRegistrationState'
+                      label:
+                        type: string
+        '400':
+          description: request error
+        '403':
+          description: user registration is not enabled, user limit is reached, registration is not allowed for the ip, requires approval or blocked by a plugin
+        '409':
+          description: a user with this username, channel name or email already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+        required: true
+  /api/v1/users/registrations/request:
+    post:
+      summary: Request registration
+      description: Signup has to be enabled and require approval on the instance
+      operationId: requestRegistration
+      tags:
+      - Register
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  state:
+                    type: object
+                    properties:
+                      id:
+                        $ref: '#/components/schemas/UserRegistrationState'
+                      label:
+                        type: string
+        '400':
+          description: request error or signup approval is not enabled on the instance
+        '403':
+          description: user registration is not enabled, user limit is reached, registration is not allowed for the ip or blocked by a plugin
+        '409':
+          description: a user or registration with this username, channel name or email already exists
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationRequest'
+  /api/v1/users/registrations/{registrationId}/accept:
+    post:
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      summary: Accept registration
+      operationId: acceptRegistration
+      tags:
+      - Register
+      parameters:
+      - $ref: '#/components/parameters/registrationId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationAcceptOrReject'
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/registrations/{registrationId}/reject:
+    post:
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      summary: Reject registration
+      operationId: rejectRegistration
+      tags:
+      - Register
+      parameters:
+      - $ref: '#/components/parameters/registrationId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationAcceptOrReject'
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/registrations/{registrationId}:
+    delete:
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      summary: Delete registration
+      description: Delete the registration entry. It will not remove the user associated with this registration (if any)
+      operationId: deleteRegistration
+      tags:
+      - Register
+      parameters:
+      - $ref: '#/components/parameters/registrationId'
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/registrations:
+    get:
+      security:
+      - OAuth2:
+        - admin
+        - moderator
+      summary: List registrations
+      operationId: listRegistrations
+      tags:
+      - Register
+      parameters:
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - -createdAt
+          - createdAt
+          - state
+          - -state
+      - name: stateOneOf
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserRegistrationState'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserRegistration'
+components:
+  schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    UserRegistration:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        state:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/UserRegistrationState'
+            label:
+              type: string
+        registrationReason:
+          type: string
+        moderationResponse:
+          type: string
+          nullable: true
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        emailVerified:
+          type: boolean
+        accountDisplayName:
+          type: string
+        channelHandle:
+          type: string
+        channelDisplayName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        user:
+          type: object
+          nullable: true
+          description: If the registration has been accepted, this is a partial user object created by the registration
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+    usernameChannel:
+      type: string
+      description: immutable name of the channel, used to interact with its actor
+      example: framasoft_videos
+      pattern: /^[a-zA-Z0-9\\-_.:]+$/
+      minLength: 1
+      maxLength: 50
+    UserRegistrationState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The registration state (Pending = `1`, Rejected = `2`, Accepted = `3`)
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    UserRegistrationAcceptOrReject:
+      type: object
+      properties:
+        moderationResponse:
+          type: string
+          description: Moderation response to send to the user
+        preventEmailDelivery:
+          type: boolean
+          description: Set it to true if you don't want PeerTube to send an email to the user
+      required:
+      - moderationResponse
+    UserRegistrationRequest:
+      allOf:
+      - $ref: '#/components/schemas/RegisterUser'
+      - type: object
+        properties:
+          registrationReason:
+            type: string
+            description: reason for the user to register on the instance
+        required:
+        - registrationReason
+    RegisterUser:
+      properties:
+        username:
+          description: immutable name of the user, used to find or mention its actor
+          allOf:
+          - $ref: '#/components/schemas/username'
+        password:
+          $ref: '#/components/schemas/password'
+        email:
+          type: string
+          format: email
+          description: email of the user, used for login or service communications
+        displayName:
+          type: string
+          description: editable name of the user, displayed in its representations
+          minLength: 1
+          maxLength: 120
+        channel:
+          type: object
+          description: channel base information used to create the first channel of the user
+          properties:
+            name:
+              $ref: '#/components/schemas/usernameChannel'
+            displayName:
+              type: string
+      required:
+      - username
+      - password
+      - email
+  parameters:
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    registrationId:
+      name: registrationId
+      in: path
+      required: true
+      description: Registration ID
+      schema:
+        $ref: '#/components/schemas/id'
+    id:
+      name: id
+      in: path
+      required: true
+      description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

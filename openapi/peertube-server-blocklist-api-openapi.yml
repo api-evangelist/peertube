@@ -1,0 +1,465 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Server Blocklist API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Server Blocklist
+paths:
+  /api/v1/blocklist/status:
+    get:
+      tags:
+      - Server Blocklist
+      summary: Get block status of accounts/hosts
+      parameters:
+      - name: accounts
+        in: query
+        description: Check if these accounts are blocked
+        example:
+        - goofy@example.com
+        - donald@example.com
+        schema:
+          type: array
+          items:
+            type: string
+      - name: hosts
+        in: query
+        description: Check if these hosts are blocked
+        example:
+        - example.com
+        schema:
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlockStatus'
+  /api/v1/server/blocklist/accounts:
+    get:
+      tags:
+      - Server Blocklist
+      summary: List blocked accounts by server
+      security:
+      - OAuth2:
+        - admin
+      parameters:
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/sort'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AccountBlock'
+    post:
+      tags:
+      - Server Blocklist
+      summary: Block an account by server
+      security:
+      - OAuth2:
+        - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountName:
+                  type: string
+                  example: chocobozzz@example.org
+                  description: account to block, in the form `username@domain`
+              required:
+              - accountName
+      responses:
+        '200':
+          description: successful operation
+        '409':
+          description: self-blocking forbidden
+  /api/v1/server/blocklist/accounts/{accountName}:
+    delete:
+      tags:
+      - Server Blocklist
+      summary: Unblock an account by server
+      security:
+      - OAuth2:
+        - admin
+      parameters:
+      - name: accountName
+        in: path
+        required: true
+        description: account to unblock, in the form `username@domain`
+        schema:
+          type: string
+      responses:
+        '201':
+          description: successful operation
+        '404':
+          description: account or account block does not exist
+  /api/v1/server/blocklist/servers:
+    get:
+      tags:
+      - Server Blocklist
+      summary: List blocked servers by server
+      security:
+      - OAuth2:
+        - admin
+      parameters:
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/sort'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerBlock'
+    post:
+      tags:
+      - Server Blocklist
+      summary: Block a server by server
+      security:
+      - OAuth2:
+        - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                host:
+                  type: string
+                  format: hostname
+                  description: server domain to block
+              required:
+              - host
+      responses:
+        '204':
+          description: successful operation
+        '409':
+          description: self-blocking forbidden
+  /api/v1/server/blocklist/servers/{host}:
+    delete:
+      tags:
+      - Server Blocklist
+      summary: Unblock a server by server
+      security:
+      - OAuth2:
+        - admin
+      parameters:
+      - name: host
+        in: path
+        required: true
+        description: server domain to unblock
+        schema:
+          type: string
+          format: hostname
+      responses:
+        '204':
+          description: successful operation
+        '404':
+          description: server block does not exist
+components:
+  schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    ServerBlock:
+      properties:
+        byAccount:
+          $ref: '#/components/schemas/Account'
+        blockedServer:
+          type: object
+          properties:
+            host:
+              type: string
+              format: hostname
+        createdAt:
+          type: string
+          format: date-time
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    BlockStatus:
+      properties:
+        accounts:
+          type: object
+          additionalProperties:
+            x-additionalPropertiesName: account
+            type: object
+            properties:
+              blockedByServer:
+                type: boolean
+              blockedByUser:
+                type: boolean
+        hosts:
+          type: object
+          additionalProperties:
+            x-additionalPropertiesName: host
+            type: object
+            properties:
+              blockedByServer:
+                type: boolean
+              blockedByUser:
+                type: boolean
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type: boolean
+          nullable: true
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    AccountBlock:
+      properties:
+        byAccount:
+          $ref: '#/components/schemas/Account'
+        blockedAccount:
+          $ref: '#/components/schemas/Account'
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            nullable: true
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type: string
+            nullable: true
+            description: text or bio displayed on the account's profile
+    User:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+  parameters:
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

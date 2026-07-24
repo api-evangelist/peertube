@@ -1,0 +1,1059 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Videos API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Videos
+paths:
+  /api/v1/users/me/videos/imports:
+    get:
+      summary: Get video imports of my user
+      security:
+      - OAuth2:
+        - user
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/sort'
+      - $ref: '#/components/parameters/includeCollaborations'
+      - name: videoId
+        in: query
+        required: false
+        description: Filter on import video ID
+        schema:
+          type: integer
+      - name: targetUrl
+        in: query
+        required: false
+        description: Filter on import target URL
+        schema:
+          type: string
+      - name: videoChannelSyncId
+        in: query
+        required: false
+        description: Filter on imports created by a specific channel synchronization
+        schema:
+          type: number
+      - name: search
+        in: query
+        required: false
+        description: Search in video names
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoImportsList'
+  /api/v1/users/me/videos:
+    get:
+      summary: List videos of my user
+      security:
+      - OAuth2:
+        - user
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/channelNameOneOf'
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/skipCount'
+      - $ref: '#/components/parameters/videosSort'
+      - $ref: '#/components/parameters/nsfw'
+      - $ref: '#/components/parameters/nsfwFlagsIncluded'
+      - $ref: '#/components/parameters/nsfwFlagsExcluded'
+      - $ref: '#/components/parameters/isLive'
+      - $ref: '#/components/parameters/includeScheduledLive'
+      - $ref: '#/components/parameters/categoryOneOf'
+      - $ref: '#/components/parameters/licenceOneOf'
+      - $ref: '#/components/parameters/languageOneOf'
+      - $ref: '#/components/parameters/tagsOneOf'
+      - $ref: '#/components/parameters/tagsAllOf'
+      - $ref: '#/components/parameters/isLocal'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/hasHLSFiles'
+      - $ref: '#/components/parameters/hasWebVideoFiles'
+      - $ref: '#/components/parameters/host'
+      - $ref: '#/components/parameters/autoTagOneOfVideo'
+      - $ref: '#/components/parameters/stateOneOfVideo'
+      - $ref: '#/components/parameters/privacyOneOf'
+      - $ref: '#/components/parameters/excludeAlreadyWatched'
+      - $ref: '#/components/parameters/search'
+      - $ref: '#/components/parameters/includeCollaborations'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoListResponse'
+  /api/v1/users/me/subscriptions/videos:
+    get:
+      summary: List videos of subscriptions of my user
+      security:
+      - OAuth2:
+        - user
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/skipCount'
+      - $ref: '#/components/parameters/videosSort'
+      - $ref: '#/components/parameters/nsfw'
+      - $ref: '#/components/parameters/nsfwFlagsIncluded'
+      - $ref: '#/components/parameters/nsfwFlagsExcluded'
+      - $ref: '#/components/parameters/isLive'
+      - $ref: '#/components/parameters/includeScheduledLive'
+      - $ref: '#/components/parameters/categoryOneOf'
+      - $ref: '#/components/parameters/licenceOneOf'
+      - $ref: '#/components/parameters/languageOneOf'
+      - $ref: '#/components/parameters/tagsOneOf'
+      - $ref: '#/components/parameters/tagsAllOf'
+      - $ref: '#/components/parameters/isLocal'
+      - $ref: '#/components/parameters/include'
+      - $ref: '#/components/parameters/hasHLSFiles'
+      - $ref: '#/components/parameters/hasWebVideoFiles'
+      - $ref: '#/components/parameters/host'
+      - $ref: '#/components/parameters/autoTagOneOfVideo'
+      - $ref: '#/components/parameters/stateOneOfVideo'
+      - $ref: '#/components/parameters/privacyOneOf'
+      - $ref: '#/components/parameters/excludeAlreadyWatched'
+      - $ref: '#/components/parameters/search'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VideoListResponse'
+  /api/v1/video-playlists/{playlistId}/videos:
+    get:
+      summary: List videos of a playlist
+      operationId: getVideoPlaylistVideos
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/playlistId'
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    maxItems: 100
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          description: Playlist element id
+                          allOf:
+                          - $ref: '#/components/schemas/id'
+                        position:
+                          type: integer
+                          example: 2
+                        startTimestamp:
+                          type: integer
+                          nullable: true
+                          example: 10
+                          format: seconds
+                        stopTimestamp:
+                          type: integer
+                          nullable: true
+                          example: 41
+                          format: seconds
+                        video:
+                          $ref: '#/components/schemas/Video'
+    post:
+      summary: Add a video in a playlist
+      operationId: addVideoPlaylistVideo
+      security:
+      - OAuth2: []
+      tags:
+      - Videos
+      parameters:
+      - $ref: '#/components/parameters/playlistId'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  videoPlaylistElement:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                videoId:
+                  oneOf:
+                  - $ref: '#/components/schemas/Video/properties/uuid'
+                  - $ref: '#/components/schemas/Video/properties/id'
+                  description: Video to add in the playlist
+                startTimestamp:
+                  type: integer
+                  format: seconds
+                  description: Start the video at this specific timestamp
+                stopTimestamp:
+                  type: integer
+                  format: seconds
+                  description: Stop the video at this specific timestamp
+              required:
+              - videoId
+components:
+  schemas:
+    VideoImportsList:
+      properties:
+        total:
+          type: integer
+          example: 1
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/VideoImport'
+    VideoConstantNumber-Licence:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLicenceSet'
+        label:
+          type: string
+          example: Attribution - Share Alike
+    VideoStateConstant:
+      properties:
+        id:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          description: 'The video state:
+
+            - `1`: Published
+
+            - `2`: To transcode
+
+            - `3`: To import
+
+            - `4`: Waiting for live stream
+
+            - `5`: Live ended
+
+            - `6`: To move to an external storage (object storage...)
+
+            - `7`: Transcoding failed
+
+            - `8`: Moving to an external storage failed
+
+            - `9`: To edit using studio edition feature
+
+            '
+        label:
+          type: string
+    VideoConstantString-Language:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        label:
+          type: string
+          example: English
+    VideoListResponse:
+      properties:
+        total:
+          type: integer
+          example: 1
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Video'
+    VideoPlaylist:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+    Thumbnail:
+      properties:
+        fileUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        aspectRatio:
+          type: string
+          example: '16:9'
+    Video:
+      properties:
+        id:
+          description: object id for the video
+          allOf:
+          - $ref: '#/components/schemas/id'
+        uuid:
+          description: universal identifier for the video, that can be used across instances
+          allOf:
+          - $ref: '#/components/schemas/UUIDv4'
+        shortUUID:
+          allOf:
+          - $ref: '#/components/schemas/shortUUID'
+        isLive:
+          type: boolean
+        liveSchedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/LiveSchedule'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2017-10-01T10:52:46.396000+00:00'
+          description: time at which the video object was first drafted
+        publishedAt:
+          type: string
+          format: date-time
+          example: '2018-10-01T10:52:46.396000+00:00'
+          description: time at which the video was marked as ready for playback (with restrictions depending on `privacy`). Usually set after a `state` evolution.
+        updatedAt:
+          type: string
+          format: date-time
+          example: '2021-05-04T08:01:01.502000+00:00'
+          description: last time the video's metadata was modified
+        originallyPublishedAt:
+          type: string
+          nullable: true
+          format: date-time
+          example: '2010-10-01T10:52:46.396000+00:00'
+          description: used to represent a date of first publication, prior to the practical publication date of `publishedAt`
+        category:
+          allOf:
+          - $ref: '#/components/schemas/VideoConstantNumber-Category'
+          description: category in which the video is classified
+        licence:
+          allOf:
+          - $ref: '#/components/schemas/VideoConstantNumber-Licence'
+          description: licence under which the video is distributed
+        language:
+          allOf:
+          - $ref: '#/components/schemas/VideoConstantString-Language'
+          description: main language used in the video
+        privacy:
+          allOf:
+          - $ref: '#/components/schemas/VideoPrivacyConstant'
+          description: privacy policy used to distribute the video
+        truncatedDescription:
+          type: string
+          nullable: true
+          example: '**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\r\n\r\n
+
+            **Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**\r\n*A decentralized video hosting network, based on fr...
+
+            '
+          minLength: 3
+          maxLength: 250
+          description: 'truncated description of the video, written in Markdown.
+
+            '
+        duration:
+          type: integer
+          example: 1419
+          format: seconds
+          description: duration of the video in seconds
+        aspectRatio:
+          type: number
+          nullable: true
+          format: float
+          example: 1.778
+          description: '**PeerTube >= 6.1** Aspect ratio of the video stream'
+        isLocal:
+          type: boolean
+        name:
+          type: string
+          description: title of the video
+          example: What is PeerTube?
+          minLength: 3
+          maxLength: 120
+        thumbnailPath:
+          description: Deprecated in PeerTube v8.1, use thumbnails instead
+          deprecated: true
+          type: string
+        previewPath:
+          description: Deprecated in PeerTube v8.1, use thumbnails instead
+          deprecated: true
+          type: string
+        thumbnails:
+          description: '**PeerTube >= 8.1** Array of thumbnails for the video'
+          type: array
+          items:
+            $ref: '#/components/schemas/Thumbnail'
+        embedPath:
+          type: string
+          example: /videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee
+        views:
+          type: integer
+          example: 1337
+        likes:
+          type: integer
+          example: 42
+        dislikes:
+          type: integer
+          example: 7
+        comments:
+          description: '**PeerTube >= 7.2** Number of comments on the video'
+          type: integer
+        nsfw:
+          type: boolean
+        nsfwFlags:
+          allOf:
+          - $ref: '#/components/schemas/NSFWFlag'
+        nsfwSummary:
+          type: string
+          description: '**PeerTube >= 7.2** More information about the sensitive content of the video'
+        waitTranscoding:
+          type: boolean
+          nullable: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/VideoStateConstant'
+          description: represents the internal state of the video processing within the PeerTube instance
+        scheduledUpdate:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/VideoScheduledUpdate'
+        blacklisted:
+          nullable: true
+          type: boolean
+        blacklistedReason:
+          nullable: true
+          type: string
+        account:
+          $ref: '#/components/schemas/AccountSummary'
+        channel:
+          $ref: '#/components/schemas/VideoChannelSummary'
+        userHistory:
+          nullable: true
+          type: object
+          properties:
+            currentTime:
+              type: integer
+    VideoImport:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        targetUrl:
+          type: string
+          format: url
+          description: remote URL where to find the import's source video
+          example: https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d
+        magnetUri:
+          type: string
+          format: uri
+          description: magnet URI allowing to resolve the import's source video
+          pattern: /magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i
+        torrentfile:
+          type: string
+          format: binary
+          description: Torrent file containing only the video file
+        torrentName:
+          type: string
+        state:
+          allOf:
+          - $ref: '#/components/schemas/VideoImportStateConstant'
+        error:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        video:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Video'
+    VideoPrivacyConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        label:
+          type: string
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    LiveSchedule:
+      properties:
+        startAt:
+          type: string
+          format: date-time
+          description: Date when the stream is scheduled to air at
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    VideoChannelSummary:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
+    VideoConstantNumber-Category:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoCategorySet'
+        label:
+          type: string
+          example: Science & Technology
+    NSFWFlag:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` VIOLENT
+
+        - `2` EXPLICIT_SEX
+
+        '
+    VideoLicenceSet:
+      type: integer
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
+    AccountSummary:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    VideoCategorySet:
+      type: integer
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      example: 15
+    VideoImportStateConstant:
+      properties:
+        id:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          description: The video import state (Pending = `1`, Success = `2`, Failed = `3`)
+        label:
+          type: string
+          example: Pending
+    VideoScheduledUpdate:
+      properties:
+        privacy:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        updateAt:
+          type: string
+          format: date-time
+          description: When to update the video
+      required:
+      - updateAt
+  parameters:
+    autoTagOneOfVideo:
+      name: autoTagOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags'
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+      style: form
+      explode: true
+    hasWebVideoFiles:
+      name: hasWebVideoFiles
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 6.0** Display only videos that have Web Video files'
+    include:
+      name: include
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+      description: '**Only administrators and moderators can use this parameter**
+
+
+        Include additional videos in results (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` NOT_PUBLISHED_STATE
+
+        - `2` BLACKLISTED
+
+        - `4` BLOCKED_OWNER
+
+        - `8` FILES
+
+        - `16` CAPTIONS
+
+        - `32` VIDEO SOURCE
+
+        '
+    tagsOneOf:
+      name: tagsOneOf
+      in: query
+      required: false
+      description: tag(s) of the video
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          maxItems: 5
+          items:
+            type: string
+      style: form
+      explode: true
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    hasHLSFiles:
+      name: hasHLSFiles
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only videos that have HLS files'
+    languageOneOf:
+      name: languageOneOf
+      in: query
+      required: false
+      description: language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoLanguageSet'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoLanguageSet'
+      style: form
+      explode: true
+    privacyOneOf:
+      name: privacyOneOf
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/VideoPrivacySet'
+      description: '**PeerTube >= 4.0** Display only videos in this specific privacy/privacies'
+    includeScheduledLive:
+      name: includeScheduledLive
+      in: query
+      required: false
+      description: whether or not include live that are scheduled for later
+      schema:
+        type: boolean
+    host:
+      name: host
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Find elements owned by this host
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    categoryOneOf:
+      name: categoryOneOf
+      in: query
+      required: false
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoCategorySet'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoCategorySet'
+      style: form
+      explode: true
+    nsfw:
+      name: nsfw
+      in: query
+      required: false
+      description: whether to include nsfw videos, if any
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    playlistId:
+      name: playlistId
+      in: path
+      required: true
+      description: Playlist id
+      schema:
+        $ref: '#/components/schemas/VideoPlaylist/properties/id'
+    nsfwFlagsExcluded:
+      name: nsfwFlagsExcluded
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/NSFWFlag'
+    excludeAlreadyWatched:
+      name: excludeAlreadyWatched
+      in: query
+      description: Whether or not to exclude videos that are in the user's video history
+      schema:
+        type: boolean
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
+    nsfwFlagsIncluded:
+      name: nsfwFlagsIncluded
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/NSFWFlag'
+    stateOneOfVideo:
+      name: stateOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states'
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoStateConstant/properties/id'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoStateConstant/properties/id'
+      style: form
+      explode: true
+    licenceOneOf:
+      name: licenceOneOf
+      in: query
+      required: false
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoLicenceSet'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoLicenceSet'
+      style: form
+      explode: true
+    videosSort:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+        - name
+        - -duration
+        - -createdAt
+        - -publishedAt
+        - -views
+        - -likes
+        - -comments
+        - -trending
+        - -hot
+        - -best
+        description: "Sort videos by criteria (prefixing with `-` means `DESC` order):\n  * `hot` - Adaptation of Reddit \"hot\" algorithm taking into account video views, likes, dislikes and comments and publication date\n  * `best` - Same than `hot`, but also takes into account user video history\n  * `trending` - Sort videos by recent views (\"recent\" is defined by the admin)\n  * `views` - Sort videos using their `views` counter\n  * `publishedAt` - Sort by video publication date (when it became publicly available)\n"
+    isLocal:
+      name: isLocal
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only local or remote objects'
+    includeCollaborations:
+      name: includeCollaborations
+      in: query
+      required: false
+      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
+      schema:
+        type: boolean
+    channelNameOneOf:
+      name: channelNameOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 7.2** Filter on videos that are published by a channel with one of these names'
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+      style: form
+      explode: true
+    isLive:
+      name: isLive
+      in: query
+      required: false
+      description: whether or not the video is a live
+      schema:
+        type: boolean
+    skipCount:
+      name: skipCount
+      in: query
+      required: false
+      description: if you don't need the `total` in the response
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+        default: 'false'
+    tagsAllOf:
+      name: tagsAllOf
+      in: query
+      required: false
+      description: tag(s) of the video, where all should be present in the video
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+      style: form
+      explode: true
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

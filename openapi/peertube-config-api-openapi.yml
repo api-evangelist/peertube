@@ -1,0 +1,999 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Config API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Config
+  description: 'Each server exposes public information regarding supported videos and options.
+
+    '
+paths:
+  /api/v1/config:
+    get:
+      tags:
+      - Config
+      summary: Get instance public configuration
+      operationId: getConfig
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerConfig'
+              examples:
+                nightly:
+                  externalValue: https://peertube2.cpy.re/api/v1/config
+  /api/v1/config/about:
+    get:
+      summary: Get instance "About" information
+      operationId: getAbout
+      tags:
+      - Config
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerConfigAbout'
+              examples:
+                nightly:
+                  externalValue: https://peertube2.cpy.re/api/v1/config/about
+  /api/v1/config/custom:
+    get:
+      summary: Get instance runtime configuration
+      operationId: getCustomConfig
+      tags:
+      - Config
+      security:
+      - OAuth2:
+        - admin
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerConfigCustom'
+    put:
+      summary: Set instance runtime configuration
+      operationId: putCustomConfig
+      tags:
+      - Config
+      security:
+      - OAuth2:
+        - admin
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          x-summary: field inconsistencies
+          description: "Arises when:\n  - the emailer is disabled and the instance is open to registrations\n  - web videos and hls are disabled with transcoding enabled - you need at least one enabled\n"
+    delete:
+      summary: Delete instance runtime configuration
+      operationId: delCustomConfig
+      tags:
+      - Config
+      security:
+      - OAuth2:
+        - admin
+      responses:
+        '200':
+          description: successful operation
+  /api/v1/config/instance-banner/pick:
+    post:
+      summary: Update instance banner
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Config
+      responses:
+        '204':
+          description: successful operation
+        '413':
+          description: image file too large
+          headers:
+            X-File-Maximum-Size:
+              schema:
+                type: string
+                format: Nginx size
+              description: Maximum file size for the banner
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                bannerfile:
+                  description: The file to upload.
+                  type: string
+                  format: binary
+            encoding:
+              bannerfile:
+                contentType: image/png, image/jpeg
+  /api/v1/config/instance-banner:
+    delete:
+      summary: Delete instance banner
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Config
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/config/instance-avatar/pick:
+    post:
+      summary: Update instance avatar
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Config
+      responses:
+        '204':
+          description: successful operation
+        '413':
+          description: image file too large
+          headers:
+            X-File-Maximum-Size:
+              schema:
+                type: string
+                format: Nginx size
+              description: Maximum file size for the avatar
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatarfile:
+                  description: The file to upload.
+                  type: string
+                  format: binary
+            encoding:
+              avatarfile:
+                contentType: image/png, image/jpeg
+  /api/v1/config/instance-avatar:
+    delete:
+      summary: Delete instance avatar
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Config
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/config/instance-logo/{logoType}/pick:
+    post:
+      summary: Update instance logo
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Config
+      parameters:
+      - $ref: '#/components/parameters/logoTypeParam'
+      responses:
+        '204':
+          description: successful operation
+        '413':
+          description: image file too large
+          headers:
+            X-File-Maximum-Size:
+              schema:
+                type: string
+                format: Nginx size
+              description: Maximum file size for the banner
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                logofile:
+                  description: The file to upload.
+                  type: string
+                  format: binary
+            encoding:
+              logofile:
+                contentType: image/png, image/jpeg
+  /api/v1/config/instance-logo/{logoType}:
+    delete:
+      summary: Delete instance logo
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Config
+      parameters:
+      - $ref: '#/components/parameters/logoTypeParam'
+      responses:
+        '204':
+          description: successful operation
+components:
+  schemas:
+    VideoCommentsPolicySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
+    VideoPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
+    ServerConfigCustom:
+      properties:
+        instance:
+          type: object
+          properties:
+            name:
+              type: string
+            shortDescription:
+              type: string
+            description:
+              type: string
+            terms:
+              type: string
+            codeOfConduct:
+              type: string
+            creationReason:
+              type: string
+            moderationInformation:
+              type: string
+            administrator:
+              type: string
+            maintenanceLifetime:
+              type: string
+            businessModel:
+              type: string
+            hardwareInformation:
+              type: string
+            languages:
+              type: array
+              items:
+                type: string
+            categories:
+              type: array
+              items:
+                type: number
+            isNSFW:
+              type: boolean
+            defaultNSFWPolicy:
+              type: string
+            serverCountry:
+              type: string
+            support:
+              type: object
+              properties:
+                text:
+                  type: string
+            social:
+              type: object
+              properties:
+                externalLink:
+                  type: string
+                mastodonLink:
+                  type: string
+                blueskyLink:
+                  type: string
+                xLink:
+                  type: string
+            defaultClientRoute:
+              type: string
+            customizations:
+              type: object
+              properties:
+                javascript:
+                  type: string
+                css:
+                  type: string
+        theme:
+          type: object
+          properties:
+            default:
+              type: string
+        services:
+          type: object
+          properties:
+            twitter:
+              type: object
+              properties:
+                username:
+                  type: string
+        cache:
+          type: object
+          properties:
+            previews:
+              type: object
+              properties:
+                size:
+                  type: integer
+            captions:
+              type: object
+              properties:
+                size:
+                  type: integer
+        signup:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            limit:
+              type: integer
+            requiresEmailVerification:
+              type: boolean
+        admin:
+          type: object
+          properties:
+            email:
+              type: string
+              format: email
+        contactForm:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        user:
+          type: object
+          description: Settings that apply to new users, if registration is enabled
+          properties:
+            videoQuota:
+              type: integer
+              example: 16810141515
+            videoQuotaDaily:
+              type: integer
+              example: 1681014151
+        transcoding:
+          type: object
+          description: Settings pertaining to transcoding jobs
+          properties:
+            enabled:
+              type: boolean
+            originalFile:
+              type: object
+              properties:
+                keep:
+                  type: boolean
+            allowAdditionalExtensions:
+              type: boolean
+              description: Allow your users to upload .mkv, .mov, .avi, .wmv, .flv, .f4v, .3g2, .3gp, .mts, m2ts, .mxf, .nut videos
+            allowAudioFiles:
+              type: boolean
+              description: If a user uploads an audio file, PeerTube will create a video by merging the preview file and the audio file
+            threads:
+              type: integer
+              description: Amount of threads used by ffmpeg for 1 transcoding job
+            concurrency:
+              type: number
+              description: Amount of transcoding jobs to execute in parallel
+            profile:
+              type: string
+              enum:
+              - default
+              description: 'New profiles can be added by plugins ; available in core PeerTube: ''default''.
+
+                '
+            resolutions:
+              type: object
+              description: Resolutions to transcode _new videos_ to
+              properties:
+                0p:
+                  type: boolean
+                144p:
+                  type: boolean
+                240p:
+                  type: boolean
+                360p:
+                  type: boolean
+                480p:
+                  type: boolean
+                720p:
+                  type: boolean
+                1080p:
+                  type: boolean
+                1440p:
+                  type: boolean
+                2160p:
+                  type: boolean
+            web_videos:
+              type: object
+              description: Web Video specific settings
+              properties:
+                enabled:
+                  type: boolean
+            hls:
+              type: object
+              description: HLS specific settings
+              properties:
+                enabled:
+                  type: boolean
+                splitAudioAndVideo:
+                  type: boolean
+        import:
+          type: object
+          properties:
+            videos:
+              type: object
+              properties:
+                http:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                torrent:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+            video_channel_synchronization:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+        autoBlacklist:
+          type: object
+          properties:
+            videos:
+              type: object
+              properties:
+                ofUsers:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+        followers:
+          type: object
+          properties:
+            instance:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                manualApproval:
+                  type: boolean
+        storyboard:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        defaults:
+          type: object
+          properties:
+            publish:
+              type: object
+              properties:
+                downloadEnabled:
+                  type: boolean
+                commentsPolicy:
+                  $ref: '#/components/schemas/VideoCommentsPolicySet'
+                privacy:
+                  $ref: '#/components/schemas/VideoPrivacySet'
+                licence:
+                  $ref: '#/components/schemas/VideoLicenceSet'
+            p2p:
+              type: object
+              properties:
+                webapp:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                embed:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+            player:
+              type: object
+              properties:
+                autoPlay:
+                  type: boolean
+    ServerConfigAbout:
+      properties:
+        instance:
+          type: object
+          properties:
+            name:
+              type: string
+            shortDescription:
+              type: string
+            description:
+              type: string
+            terms:
+              type: string
+            codeOfConduct:
+              type: string
+            hardwareInformation:
+              type: string
+            creationReason:
+              type: string
+            moderationInformation:
+              type: string
+            administrator:
+              type: string
+            maintenanceLifetime:
+              type: string
+            businessModel:
+              type: string
+            languages:
+              type: array
+              items:
+                type: string
+            categories:
+              type: array
+              items:
+                type: integer
+            avatars:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActorImage'
+            banners:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActorImage'
+    ServerConfig:
+      properties:
+        instance:
+          type: object
+          properties:
+            name:
+              type: string
+            shortDescription:
+              type: string
+            defaultClientRoute:
+              type: string
+            isNSFW:
+              type: boolean
+            defaultNSFWPolicy:
+              type: string
+            serverCountry:
+              type: string
+            defaultLanguage:
+              type: string
+            support:
+              type: object
+              properties:
+                text:
+                  type: string
+            social:
+              type: object
+              properties:
+                externalLink:
+                  type: string
+                mastodonLink:
+                  type: string
+                blueskyLink:
+                  type: string
+                xLink:
+                  type: string
+            customizations:
+              type: object
+              properties:
+                javascript:
+                  type: string
+                css:
+                  type: string
+            avatars:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActorImage'
+            banners:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActorImage'
+        search:
+          type: object
+          properties:
+            remoteUri:
+              type: object
+              properties:
+                users:
+                  type: boolean
+                anonymous:
+                  type: boolean
+        plugin:
+          type: object
+          properties:
+            registered:
+              type: array
+              items:
+                type: string
+        theme:
+          type: object
+          properties:
+            registered:
+              type: array
+              items:
+                type: string
+        email:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        contactForm:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        serverVersion:
+          type: string
+        serverCommit:
+          type: string
+        signup:
+          type: object
+          properties:
+            allowed:
+              type: boolean
+            allowedForCurrentIP:
+              type: boolean
+            requiresEmailVerification:
+              type: boolean
+        transcoding:
+          type: object
+          properties:
+            hls:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+            web_videos:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+            enabledResolutions:
+              type: array
+              items:
+                $ref: '#/components/schemas/VideoResolutionSet'
+        import:
+          type: object
+          properties:
+            videos:
+              type: object
+              properties:
+                http:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                torrent:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+            videoChannelSynchronization:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+            users:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+        export:
+          type: object
+          properties:
+            users:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                exportExpiration:
+                  type: number
+                  description: In milliseconds
+                maxUserVideoQuota:
+                  type: number
+                  description: In bytes
+        autoBlacklist:
+          type: object
+          properties:
+            videos:
+              type: object
+              properties:
+                ofUsers:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+        avatar:
+          type: object
+          properties:
+            file:
+              type: object
+              properties:
+                size:
+                  type: object
+                  properties:
+                    max:
+                      type: integer
+            extensions:
+              type: array
+              items:
+                type: string
+        video:
+          type: object
+          properties:
+            image:
+              type: object
+              properties:
+                extensions:
+                  type: array
+                  items:
+                    type: string
+                size:
+                  type: object
+                  properties:
+                    max:
+                      type: integer
+            file:
+              type: object
+              properties:
+                extensions:
+                  type: array
+                  items:
+                    type: string
+        videoCaption:
+          type: object
+          properties:
+            file:
+              type: object
+              properties:
+                size:
+                  type: object
+                  properties:
+                    max:
+                      type: integer
+                extensions:
+                  type: array
+                  items:
+                    type: string
+        user:
+          type: object
+          properties:
+            videoQuota:
+              type: integer
+              description: In bytes
+              example: 16810141515
+            videoQuotaDaily:
+              type: integer
+              description: In bytes
+              example: 1681014151
+        trending:
+          type: object
+          properties:
+            videos:
+              type: object
+              properties:
+                intervalDays:
+                  type: integer
+        tracker:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        followings:
+          type: object
+          properties:
+            instance:
+              type: object
+              properties:
+                autoFollowIndex:
+                  type: object
+                  properties:
+                    indexUrl:
+                      type: string
+                      format: url
+        federation:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        homepage:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        openTelemetry:
+          type: object
+          description: PeerTube >= 6.1
+          properties:
+            metrics:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                playbackStatsInterval:
+                  type: number
+                  description: Milliseconds
+        views:
+          type: object
+          description: PeerTube >= 6.1
+          properties:
+            views:
+              type: object
+              properties:
+                watchingInterval:
+                  type: object
+                  properties:
+                    anonymous:
+                      type: number
+                      description: Milliseconds
+                    users:
+                      type: number
+                      description: Milliseconds
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    VideoResolutionSet:
+      type: integer
+      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
+
+
+        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
+
+        '
+      example: 240
+    VideoLicenceSet:
+      type: integer
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
+  parameters:
+    logoTypeParam:
+      name: logoType
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - favicon
+        - header-wide
+        - header-square
+        - opengraph
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

@@ -1,0 +1,403 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Session API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Session
+  x-displayName: Login/Logout
+  description: 'Sessions deal with access tokens over time. Only __one session token can currently be used at a time__.
+
+    '
+paths:
+  /api/v1/oauth-clients/local:
+    get:
+      summary: Login prerequisite
+      description: You need to retrieve a client id and secret before [logging in](#operation/getOAuthToken).
+      operationId: getOAuthClient
+      tags:
+      - Session
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthClient'
+          links:
+            UseOAuthClientToLogin:
+              operationId: getOAuthToken
+              parameters:
+                client_id: $response.body#/client_id
+                client_secret: $response.body#/client_secret
+      x-codeSamples:
+      - lang: Shell
+        source: 'API="https://peertube2.cpy.re/api/v1"
+
+
+          ## AUTH
+
+          curl -s "$API/oauth-clients/local"
+
+          '
+  /api/v1/users/token:
+    post:
+      summary: Login
+      operationId: getOAuthToken
+      description: With your [client id and secret](#operation/getOAuthClient), you can retrieve an access and refresh tokens.
+      tags:
+      - Session
+      parameters:
+      - name: x-peertube-otp
+        in: header
+        schema:
+          type: string
+        required: false
+        description: If the user enabled two factor authentication, you need to provide the OTP code in this header
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/OAuthToken-password'
+              - $ref: '#/components/schemas/OAuthToken-refresh_token'
+              discriminator:
+                propertyName: grant_type
+                mapping:
+                  password: '#/components/schemas/OAuthToken-password'
+                  refresh_token: '#/components/schemas/OAuthToken-refresh_token'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token_type:
+                    type: string
+                    example: Bearer
+                  access_token:
+                    type: string
+                    example: 90286a0bdf0f7315d9d3fe8dabf9e1d2be9c97d0
+                    description: valid for 1 day
+                  refresh_token:
+                    type: string
+                    example: 2e0d675df9fc96d2e4ec8a3ebbbf45eca9137bb7
+                    description: valid for 2 weeks
+                  expires_in:
+                    type: integer
+                    minimum: 0
+                    example: 14399
+                  refresh_token_expires_in:
+                    type: integer
+                    minimum: 0
+                    example: 1209600
+        '400':
+          x-summary: client or credentials are invalid
+          description: 'Disambiguate via `code`:
+
+            - `invalid_client` for an unmatched `client_id`
+
+            - `invalid_grant` for unmatched credentials
+
+            '
+        '401':
+          x-summary: token expired or two factor header is missing
+          description: 'Disambiguate via `code`:
+
+            - default value for a regular authentication failure
+
+            - `invalid_token` for an expired token
+
+            - `missing_two_factor` if two factor header is missing
+
+            '
+      x-codeSamples:
+      - lang: Shell
+        source: "## DEPENDENCIES: jq\nAPI=\"https://peertube2.cpy.re/api/v1\"\nUSERNAME=\"<your_username>\"\nPASSWORD=\"<your_password>\"\n\n## AUTH\nclient_id=$(curl -s \"$API/oauth-clients/local\" | jq -r \".client_id\")\nclient_secret=$(curl -s \"$API/oauth-clients/local\" | jq -r \".client_secret\")\ncurl -s \"$API/users/token\" \\\n  --data client_id=\"$client_id\" \\\n  --data client_secret=\"$client_secret\" \\\n  --data grant_type=password \\\n  --data username=\"$USERNAME\" \\\n  --data-urlencode password=\"$PASSWORD\" \\\n  | jq -r \".access_token\"\n"
+  /api/v1/users/revoke-token:
+    post:
+      summary: Logout
+      description: Revokes your access token and its associated refresh token, destroying your current session.
+      operationId: revokeOAuthToken
+      tags:
+      - Session
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: successful operation
+  /api/v1/users/{id}/token-sessions:
+    get:
+      summary: List token sessions
+      parameters:
+      - $ref: '#/components/parameters/id'
+      tags:
+      - Session
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenSession'
+  /api/v1/users/{id}/token-sessions/{tokenSessionId}/revoke:
+    get:
+      summary: List token sessions
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/tokenSessionId'
+      tags:
+      - Session
+      security:
+      - OAuth2: []
+      responses:
+        '200':
+          description: successful operation
+components:
+  schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    OAuthToken-refresh_token:
+      allOf:
+      - $ref: '#/components/schemas/OAuthClient'
+      - type: object
+        properties:
+          grant_type:
+            type: string
+            enum:
+            - refresh_token
+          refresh_token:
+            type: string
+            example: 2e0d675df9fc96d2e4ec8a3ebbbf45eca9137bb7
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - refresh_token
+    User:
+      properties:
+        username:
+          $ref: '#/components/schemas/username'
+    OAuthToken-password:
+      allOf:
+      - $ref: '#/components/schemas/OAuthClient'
+      - type: object
+        properties:
+          grant_type:
+            type: string
+            enum:
+            - password
+          username:
+            $ref: '#/components/schemas/User/properties/username'
+          password:
+            $ref: '#/components/schemas/password'
+          externalAuthToken:
+            type: string
+            description: If you want to authenticate using an external authentication token you got from an auth plugin (like `peertube-plugin-auth-openid-connect` for example) instead of a password or a refresh token, provide it here.
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - username
+    TokenSession:
+      properties:
+        id:
+          type: integer
+        currentSession:
+          type: boolean
+          description: Is this session the current one?
+        loginDevice:
+          type: string
+          description: Device used to login
+        loginIP:
+          type: string
+          format: ipv4
+          description: IP address used to login
+        loginDate:
+          type: string
+          format: date-time
+          description: Date of the login
+        lastActivityDevice:
+          type: string
+        lastActivityIP:
+          type: string
+          format: ipv4
+        lastActivityDate:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    OAuthClient:
+      properties:
+        client_id:
+          type: string
+          pattern: /^[a-z0-9]$/
+          maxLength: 32
+          minLength: 32
+          example: v1ikx5hnfop4mdpnci8nsqh93c45rldf
+        client_secret:
+          type: string
+          pattern: /^[a-zA-Z0-9]$/
+          maxLength: 32
+          minLength: 32
+          example: AjWiOapPltI6EnsWQwlFarRtLh4u8tDt
+  parameters:
+    tokenSessionId:
+      name: tokenSessionId
+      in: path
+      required: true
+      description: Token session Id
+      schema:
+        $ref: '#/components/schemas/id'
+    id:
+      name: id
+      in: path
+      required: true
+      description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

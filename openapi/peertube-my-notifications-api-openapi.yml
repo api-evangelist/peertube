@@ -1,0 +1,556 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses My Notifications API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: My Notifications
+  description: 'Notifications following new videos, follows or reports. They allow you to keep track of the interactions and overall important information that concerns you. You MAY set per-notification type delivery preference, to receive the info either by mail, by in-browser notification or both.
+
+    '
+paths:
+  /api/v1/users/me/notifications:
+    get:
+      summary: List my notifications
+      security:
+      - OAuth2: []
+      tags:
+      - My Notifications
+      parameters:
+      - name: typeOneOf
+        in: query
+        description: only list notifications of these types
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/NotificationType'
+      - name: unread
+        in: query
+        description: only list unread notifications
+        schema:
+          type: boolean
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/sort'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationListResponse'
+  /api/v1/users/me/notifications/read:
+    post:
+      summary: Mark notifications as read by their id
+      security:
+      - OAuth2: []
+      tags:
+      - My Notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  description: ids of the notifications to mark as read
+                  items:
+                    type: integer
+              required:
+              - ids
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/me/notifications/read-all:
+    post:
+      summary: Mark all my notification as read
+      security:
+      - OAuth2: []
+      tags:
+      - My Notifications
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/me/notification-settings:
+    put:
+      summary: Update my notification settings
+      security:
+      - OAuth2: []
+      tags:
+      - My Notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserNotificationSettings'
+      responses:
+        '204':
+          description: successful operation
+components:
+  schemas:
+    NotificationSettingValue:
+      type: integer
+      description: 'Notification type. One of the following values, or a sum of multiple values:
+
+        - `0` NONE
+
+        - `1` WEB
+
+        - `2` EMAIL
+
+        '
+    VideoStateConstant:
+      properties:
+        id:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          description: 'The video state:
+
+            - `1`: Published
+
+            - `2`: To transcode
+
+            - `3`: To import
+
+            - `4`: Waiting for live stream
+
+            - `5`: Live ended
+
+            - `6`: To move to an external storage (object storage...)
+
+            - `7`: Transcoding failed
+
+            - `8`: Moving to an external storage failed
+
+            - `9`: To edit using studio edition feature
+
+            '
+        label:
+          type: string
+    Notification:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        type:
+          $ref: '#/components/schemas/NotificationType'
+        read:
+          type: boolean
+        video:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/VideoInfo'
+          - type: object
+            properties:
+              channel:
+                $ref: '#/components/schemas/ActorInfo'
+        videoImport:
+          nullable: true
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            video:
+              nullable: true
+              allOf:
+              - $ref: '#/components/schemas/VideoInfo'
+            torrentName:
+              type: string
+              nullable: true
+            magnetUri:
+              $ref: '#/components/schemas/VideoImport/properties/magnetUri'
+            targetUri:
+              type: string
+              format: uri
+              nullable: true
+        comment:
+          nullable: true
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            threadId:
+              type: integer
+            video:
+              $ref: '#/components/schemas/VideoInfo'
+            account:
+              $ref: '#/components/schemas/ActorInfo'
+            heldForReview:
+              type: boolean
+        videoAbuse:
+          nullable: true
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            video:
+              allOf:
+              - $ref: '#/components/schemas/VideoInfo'
+        videoBlacklist:
+          nullable: true
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            video:
+              allOf:
+              - $ref: '#/components/schemas/VideoInfo'
+        account:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/ActorInfo'
+        actorFollow:
+          type: object
+          nullable: true
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            follower:
+              $ref: '#/components/schemas/ActorInfo'
+            state:
+              type: string
+              enum:
+              - pending
+              - accepted
+            following:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - account
+                  - channel
+                  - instance
+                name:
+                  type: string
+                displayName:
+                  type: string
+                host:
+                  type: string
+                  format: hostname
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    NotificationListResponse:
+      properties:
+        total:
+          type: integer
+          example: 1
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Notification'
+    Video:
+      properties:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/VideoStateConstant'
+          description: represents the internal state of the video processing within the PeerTube instance
+        id:
+          description: object id for the video
+          allOf:
+          - $ref: '#/components/schemas/id'
+        uuid:
+          description: universal identifier for the video, that can be used across instances
+          allOf:
+          - $ref: '#/components/schemas/UUIDv4'
+        name:
+          type: string
+          description: title of the video
+          example: What is PeerTube?
+          minLength: 3
+          maxLength: 120
+    VideoInfo:
+      properties:
+        id:
+          $ref: '#/components/schemas/Video/properties/id'
+        uuid:
+          $ref: '#/components/schemas/Video/properties/uuid'
+        name:
+          $ref: '#/components/schemas/Video/properties/name'
+        state:
+          $ref: '#/components/schemas/Video/properties/state'
+    ActorInfo:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          type: string
+        displayName:
+          type: string
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    UserNotificationSettings:
+      properties:
+        abuseAsModerator:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        videoAutoBlacklistAsModerator:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newUserRegistration:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newVideoFromSubscription:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        blacklistOnMyVideo:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoPublished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoImportFinished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        commentMention:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newCommentOnMyVideo:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newFollow:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newInstanceFollower:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        autoInstanceFollowing:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        abuseStateChange:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        abuseNewMessage:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newPeerTubeVersion:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newPluginVersion:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoStudioEditionFinished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoTranscriptionGenerated:
+          $ref: '#/components/schemas/NotificationSettingValue'
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    NotificationType:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
+      - 27
+      - 28
+      - 29
+      - 30
+      - 31
+      description: "Notification type. One of the following values:\n\n  - `1` NEW_VIDEO_FROM_SUBSCRIPTION\n\n  - `2` NEW_COMMENT_ON_MY_VIDEO\n\n  - `3` NEW_ABUSE_FOR_MODERATORS\n\n  - `4` BLACKLIST_ON_MY_VIDEO\n\n  - `5` UNBLACKLIST_ON_MY_VIDEO\n\n  - `6` MY_VIDEO_PUBLISHED\n\n  - `7` MY_VIDEO_IMPORT_SUCCESS\n\n  - `8` MY_VIDEO_IMPORT_ERROR\n\n  - `9` NEW_USER_REGISTRATION\n\n  - `10` NEW_FOLLOW\n\n  - `11` COMMENT_MENTION\n\n  - `12` VIDEO_AUTO_BLACKLIST_FOR_MODERATORS\n\n  - `13` NEW_INSTANCE_FOLLOWER\n\n  - `14` AUTO_INSTANCE_FOLLOWING\n\n  - `15` ABUSE_STATE_CHANGE\n\n  - `16` ABUSE_NEW_MESSAGE\n\n  - `17` NEW_PLUGIN_VERSION\n\n  - `18` NEW_PEERTUBE_VERSION\n\n  - `19` MY_VIDEO_STUDIO_EDITION_FINISHED\n\n  - `20` NEW_USER_REGISTRATION_REQUEST\n\n  - `21` NEW_LIVE_FROM_SUBSCRIPTION\n\n  - `22` MY_VIDEO_TRANSCRIPTION_GENERATED\n\n  - `23` INVITED_TO_COLLABORATE_TO_CHANNEL\n\n  - `24` ACCEPTED_TO_COLLABORATE_TO_CHANNEL\n\n  - `25` REFUSED_TO_COLLABORATE_TO_CHANNEL\n\n  - `26` VIDEO_OWNERSHIP_CHANGED_REQUEST\n\n  - `27` VIDEO_OWNERSHIP_CHANGED_ACCEPTED\n\n  - `28` VIDEO_OWNERSHIP_CHANGED_REJECTED\n\n  - `29` CHANNEL_OWNERSHIP_CHANGED_REQUEST\n\n  - `30` CHANNEL_OWNERSHIP_CHANGED_ACCEPTED\n\n  - `31` CHANNEL_OWNERSHIP_CHANGED_REJECTED\n"
+    VideoImport:
+      properties:
+        magnetUri:
+          type: string
+          format: uri
+          description: magnet URI allowing to resolve the import's source video
+          pattern: /magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i
+  parameters:
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

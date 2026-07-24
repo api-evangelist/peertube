@@ -1,0 +1,809 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Runner Jobs API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Runner Jobs
+  description: Manage runner jobs and runner-side job execution.
+paths:
+  /api/v1/runners/jobs/request:
+    post:
+      summary: Request a new job
+      description: API used by PeerTube runners
+      tags:
+      - Runner Jobs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobTypes:
+                  type: array
+                  description: Filter jobs depending on their types
+                  items:
+                    type: string
+              required:
+              - runnerToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  availableJobs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        uuid:
+                          $ref: '#/components/schemas/UUIDv4'
+                        type:
+                          $ref: '#/components/schemas/RunnerJobType'
+                        payload:
+                          $ref: '#/components/schemas/RunnerJobPayload'
+  /api/v1/runners/jobs/{jobUUID}/accept:
+    post:
+      summary: Accept job
+      description: API used by PeerTube runners
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+              required:
+              - runnerToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job:
+                    allOf:
+                    - $ref: '#/components/schemas/RunnerJob'
+                    - type: object
+                      properties:
+                        jobToken:
+                          type: string
+  /api/v1/runners/jobs/{jobUUID}/abort:
+    post:
+      summary: Abort job
+      description: API used by PeerTube runners
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+                reason:
+                  type: string
+                  description: Why the runner aborts this job
+              required:
+              - runnerToken
+              - jobToken
+              - reason
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/runners/jobs/{jobUUID}/update:
+    post:
+      summary: Update job
+      description: API used by PeerTube runners
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+                progress:
+                  type: integer
+                  description: Update job progression percentage (optional)
+                payload:
+                  anyOf:
+                  - type: object
+                    description: Provide live transcoding chunks update
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - add-chunk
+                        - remove-chunk
+                      masterPlaylistFile:
+                        type: string
+                        format: binary
+                      resolutionPlaylistFile:
+                        type: string
+                        format: binary
+                      resolutionPlaylistFilename:
+                        type: string
+                      videoChunkFile:
+                        type: string
+                        format: binary
+                      videoChunkFilename:
+                        type: string
+              required:
+              - runnerToken
+              - jobToken
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/runners/jobs/{jobUUID}/error:
+    post:
+      summary: Post job error
+      description: API used by PeerTube runners
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+                message:
+                  type: string
+                  description: Why the runner failed to process this job
+              required:
+              - runnerToken
+              - jobToken
+              - message
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/runners/jobs/{jobUUID}/success:
+    post:
+      summary: Post job success
+      description: API used by PeerTube runners
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+                payload:
+                  anyOf:
+                  - type: object
+                    title: VOD web video transcoding
+                    properties:
+                      videoFile:
+                        type: string
+                        format: binary
+                  - type: object
+                    title: VOD HLS transcoding
+                    properties:
+                      videoFile:
+                        type: string
+                        format: binary
+                      resolutionPlaylistFile:
+                        type: string
+                        format: binary
+                  - type: object
+                    title: VOD audio merge transcoding
+                    properties:
+                      videoFile:
+                        type: string
+                        format: binary
+                  - type: object
+                    title: Live RTMP to HLS transcoding
+              required:
+              - runnerToken
+              - jobToken
+              - payload
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/max-quality/audio:
+    post:
+      summary: Download the max-quality audio file for a job video
+      description: API used by PeerTube runners.
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      - $ref: '#/components/parameters/videoIdOrUUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+              required:
+              - runnerToken
+              - jobToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: the job is not associated with this video
+  /api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/max-quality:
+    post:
+      summary: Download the max-quality video file for a job video
+      description: API used by PeerTube runners.
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      - $ref: '#/components/parameters/videoIdOrUUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+              required:
+              - runnerToken
+              - jobToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: the job is not associated with this video
+  /api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/thumbnails/max-quality:
+    post:
+      summary: Download the max-quality thumbnail for a job video
+      description: API used by PeerTube runners.
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      - $ref: '#/components/parameters/videoIdOrUUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+              required:
+              - runnerToken
+              - jobToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: the job is not associated with this video
+  /api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/previews/max-quality:
+    post:
+      summary: Download the max-quality preview for a job video
+      description: API used by PeerTube runners.
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      - $ref: '#/components/parameters/videoIdOrUUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+              required:
+              - runnerToken
+              - jobToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '403':
+          description: the job is not associated with this video
+  /api/v1/runners/jobs/{jobUUID}/files/videos/{videoIdOrUUID}/studio/task-files/{filename}:
+    post:
+      summary: Download a video studio task file for a job video
+      description: API used by PeerTube runners.
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      - $ref: '#/components/parameters/videoIdOrUUID'
+      - name: filename
+        in: path
+        required: true
+        description: Name of the task file to download
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runnerToken:
+                  type: string
+                jobToken:
+                  type: string
+              required:
+              - runnerToken
+              - jobToken
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: the file is not associated with this edition task
+        '403':
+          description: the job is not associated with this video
+  /api/v1/runners/jobs/{jobUUID}/cancel:
+    post:
+      summary: Cancel a job
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/runners/jobs/{jobUUID}:
+    delete:
+      summary: Delete a job
+      description: The endpoint will first cancel the job if needed, and then remove it from the database. Children jobs will also be removed
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobUUID'
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/runners/jobs:
+    get:
+      summary: List jobs
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Runner Jobs
+      parameters:
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/runnerJobSort'
+      - $ref: '#/components/parameters/search'
+      - name: stateOneOf
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/RunnerJobState'
+      - name: typeOneOf
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/RunnerJobType'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RunnerJobAdmin'
+components:
+  schemas:
+    RunnerJobState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      description: "The runner job state:\n  - `1` Pending\n  - `2` Processing\n  - `3` Completed\n  - `4` Errored\n  - `5` Waiting for a parent job\n  - `6` Cancelled\n  - `7` Parent had an error\n  - `8` Parent has been cancelled\n"
+    RunnerJob:
+      properties:
+        uuid:
+          $ref: '#/components/schemas/UUIDv4'
+        type:
+          $ref: '#/components/schemas/RunnerJobType'
+        state:
+          $ref: '#/components/schemas/RunnerJobStateConstant'
+        payload:
+          $ref: '#/components/schemas/RunnerJobPayload'
+        failures:
+          type: integer
+          description: Number of times a remote runner failed to process this job. After too many failures, the job in "error" state
+        error:
+          nullable: true
+          type: string
+          description: Error message if the job is errored
+        progress:
+          type: integer
+          description: Percentage progress
+        priority:
+          type: integer
+          description: Job priority (less has more priority)
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        startedAt:
+          type: string
+          format: date-time
+        finishedAt:
+          type: string
+          format: date-time
+        parent:
+          nullable: true
+          description: If job has a parent job
+          type: object
+          properties:
+            type:
+              $ref: '#/components/schemas/RunnerJobType'
+            state:
+              $ref: '#/components/schemas/RunnerJobStateConstant'
+            uuid:
+              $ref: '#/components/schemas/UUIDv4'
+        runner:
+          nullable: true
+          description: If job is associated to a runner
+          properties:
+            id:
+              type: number
+            name:
+              type: string
+            description:
+              type: string
+    RunnerJobStateConstant:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RunnerJobState'
+        label:
+          type: string
+          example: Processing
+    RunnerJobType:
+      type: string
+      enum:
+      - vod-web-video-transcoding
+      - vod-hls-transcoding
+      - vod-audio-merge-transcoding
+      - live-rtmp-hls-transcoding
+    RunnerJobAdmin:
+      allOf:
+      - $ref: '#/components/schemas/RunnerJob'
+      - type: object
+        properties:
+          privatePayload:
+            type: object
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    RunnerJobPayload:
+      anyOf:
+      - type: object
+        title: VOD web video transcoding
+        properties:
+          input:
+            type: object
+            properties:
+              videoFileUrl:
+                type: string
+          output:
+            type: object
+            properties:
+              resolution:
+                type: number
+              fps:
+                type: number
+      - type: object
+        title: VOD HLS transcoding
+        properties:
+          input:
+            type: object
+            properties:
+              videoFileUrl:
+                type: string
+          output:
+            type: object
+            properties:
+              resolution:
+                type: number
+              fps:
+                type: number
+      - type: object
+        title: VOD audio merge transcoding
+        properties:
+          input:
+            type: object
+            properties:
+              audioFileUrl:
+                type: string
+              previewFileUrl:
+                type: string
+          output:
+            type: object
+            properties:
+              resolution:
+                type: number
+              fps:
+                type: number
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+  parameters:
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    videoIdOrUUID:
+      name: videoIdOrUUID
+      in: path
+      required: true
+      description: Video id or UUID
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    jobUUID:
+      name: jobUUID
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/UUIDv4'
+    runnerJobSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort runner jobs by criteria
+      schema:
+        type: string
+        enum:
+        - updatedAt
+        - createdAt
+        - priority
+        - state
+        - progress
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners

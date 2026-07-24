@@ -1,0 +1,985 @@
+openapi: 3.0.3
+info:
+  title: PeerTube Abuses Users API
+  version: 8.1.0
+  contact:
+    name: PeerTube Community
+    url: https://joinpeertube.org
+  license:
+    name: AGPLv3.0
+    url: https://github.com/Chocobozzz/PeerTube/blob/master/LICENSE
+  x-logo:
+    url: https://joinpeertube.org/img/brand.png
+    altText: PeerTube Project Homepage
+  description: "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n"
+servers:
+- url: https://peertube2.cpy.re
+  description: Live Test Server (live data - latest nightly version)
+- url: https://peertube3.cpy.re
+  description: Live Test Server (live data - latest RC version)
+- url: https://peertube.cpy.re
+  description: Live Test Server (live data - stable version)
+tags:
+- name: Users
+  description: 'Using some features of PeerTube require authentication, for which User provide different levels of permission as well as associated user information. Each user has a corresponding local Account for federation.
+
+    '
+paths:
+  /api/v1/users:
+    post:
+      summary: Create a user
+      operationId: addUser
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Users
+      responses:
+        '200':
+          description: user created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddUserResponse'
+          links:
+            GetUser:
+              operationId: getUser
+              parameters:
+                id: $response.body#/user/id
+            PutUser:
+              operationId: putUser
+              parameters:
+                id: $response.body#/user/id
+            DelUser:
+              operationId: delUser
+              parameters:
+                id: $response.body#/user/id
+        '403':
+          description: insufficient authority to create an admin or moderator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddUser'
+        description: 'If the smtp server is configured, you can leave the password empty and an email will be sent
+
+          asking the user to set it first.
+
+          '
+        required: true
+    get:
+      summary: List users
+      operationId: getUsers
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/usersSearch'
+      - $ref: '#/components/parameters/usersBlocked'
+      - $ref: '#/components/parameters/usersRole'
+      - $ref: '#/components/parameters/start'
+      - $ref: '#/components/parameters/count'
+      - $ref: '#/components/parameters/usersSort'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /api/v1/users/{id}:
+    parameters:
+    - $ref: '#/components/parameters/id'
+    delete:
+      summary: Delete a user
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Users
+      operationId: delUser
+      responses:
+        '204':
+          description: successful operation
+    get:
+      summary: Get a user
+      security:
+      - OAuth2: []
+      tags:
+      - Users
+      operationId: getUser
+      parameters:
+      - name: withStats
+        in: query
+        description: include statistics about the user (only available as a moderator/admin)
+        schema:
+          type: boolean
+      responses:
+        '200':
+          x-summary: successful operation
+          description: 'As an admin/moderator, you can request a response augmented with statistics about the user''s
+
+            moderation relations and videos usage, by using the `withStats` parameter.
+
+            '
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/User'
+                - $ref: '#/components/schemas/UserWithStats'
+    put:
+      summary: Update a user
+      security:
+      - OAuth2: []
+      tags:
+      - Users
+      operationId: putUser
+      responses:
+        '204':
+          description: successful operation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUser'
+        required: true
+  /api/v1/users/{id}/block:
+    post:
+      summary: Block a user
+      description: Prevent a user from logging in and interacting with the instance
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Optional reason for blocking the user
+                  minLength: 0
+                  maxLength: 500
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: invalid user id
+        '403':
+          description: insufficient permissions to block users
+        '404':
+          description: user not found
+  /api/v1/users/{id}/unblock:
+    post:
+      summary: Unblock a user
+      description: Allow a previously blocked user to login and interact with the instance
+      security:
+      - OAuth2:
+        - admin
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      responses:
+        '204':
+          description: successful operation
+        '400':
+          description: invalid user id
+        '403':
+          description: insufficient permissions to unblock users
+        '404':
+          description: user not found
+  /api/v1/users/ask-send-verify-email:
+    post:
+      summary: Resend user verification link
+      operationId: resendEmailToVerifyUser
+      tags:
+      - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+              required:
+              - email
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/{id}/verify-email:
+    post:
+      summary: Verify a user
+      operationId: verifyUser
+      description: 'Following a user registration, the new user will receive an email asking to click a link
+
+        containing a secret.
+
+        This endpoint can also be used to verify a new email set in the user account.
+
+        '
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verificationString:
+                  type: string
+                  format: url
+                isPendingEmail:
+                  type: boolean
+              required:
+              - verificationString
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: invalid verification string
+        '404':
+          description: user not found
+  /api/v1/users/ask-reset-password:
+    post:
+      summary: Ask to reset password
+      description: An email containing a reset password link
+      tags:
+      - Users
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: User email
+              required:
+              - email
+      responses:
+        '204':
+          description: successful operation
+  /api/v1/users/{id}/reset-password:
+    post:
+      summary: Reset password
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                verificationString:
+                  type: string
+                  format: url
+                password:
+                  type: string
+              required:
+              - verificationString
+              - password
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: invalid verification string
+        '404':
+          description: user not found
+  /api/v1/users/{id}/two-factor/request:
+    post:
+      summary: Request two factor auth
+      operationId: requestTwoFactor
+      description: Request two factor authentication for a user
+      security:
+      - OAuth2: []
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentPassword:
+                  type: string
+                  description: Password of the currently authenticated user
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RequestTwoFactorResponse'
+        '403':
+          description: invalid password
+        '404':
+          description: user not found
+  /api/v1/users/{id}/two-factor/confirm-request:
+    post:
+      summary: Confirm two factor auth
+      operationId: confirmTwoFactorRequest
+      description: Confirm a two factor authentication request
+      security:
+      - OAuth2: []
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requestToken:
+                  type: string
+                  description: Token to identify the two factor request
+                otpToken:
+                  type: string
+                  description: OTP token generated by the app
+              required:
+              - requestToken
+              - otpToken
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: invalid request token or OTP token
+        '404':
+          description: user not found
+  /api/v1/users/{id}/two-factor/disable:
+    post:
+      summary: Disable two factor auth
+      operationId: disableTwoFactor
+      description: Disable two factor authentication of a user
+      security:
+      - OAuth2: []
+      tags:
+      - Users
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentPassword:
+                  type: string
+                  description: Password of the currently authenticated user
+      responses:
+        '204':
+          description: successful operation
+        '403':
+          description: invalid password
+        '404':
+          description: user not found
+components:
+  schemas:
+    NotificationSettingValue:
+      type: integer
+      description: 'Notification type. One of the following values, or a sum of multiple values:
+
+        - `0` NONE
+
+        - `1` WEB
+
+        - `2` EMAIL
+
+        '
+    usernameChannel:
+      type: string
+      description: immutable name of the channel, used to interact with its actor
+      example: framasoft_videos
+      pattern: /^[a-zA-Z0-9\\-_.:]+$/
+      minLength: 1
+      maxLength: 50
+    UserAdminFlags:
+      type: integer
+      enum:
+      - 0
+      - 1
+      description: Admin flags for the user (None = `0`, Bypass video blocklist = `1`)
+      example: 1
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type: boolean
+          nullable: true
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    User:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        username:
+          $ref: '#/components/schemas/username'
+        email:
+          type: string
+          format: email
+          description: The user email
+        emailVerified:
+          type: boolean
+          description: Has the user confirmed their email address?
+        emailPublic:
+          type: boolean
+          description: Has the user accepted to display the email publicly?
+        nsfwPolicy:
+          $ref: '#/components/schemas/NSFWPolicy'
+        nsfwFlagsDisplayed:
+          $ref: '#/components/schemas/NSFWFlag'
+        nsfwFlagsHidden:
+          $ref: '#/components/schemas/NSFWFlag'
+        nsfwFlagsWarned:
+          $ref: '#/components/schemas/NSFWFlag'
+        nsfwFlagsBlurred:
+          $ref: '#/components/schemas/NSFWFlag'
+        adminFlags:
+          $ref: '#/components/schemas/UserAdminFlags'
+        autoPlayNextVideo:
+          type: boolean
+          description: Automatically start playing the upcoming video after the currently playing video
+        autoPlayNextVideoPlaylist:
+          type: boolean
+          description: Automatically start playing the video on the playlist after the currently playing video
+        autoPlayVideo:
+          type: boolean
+          description: Automatically start playing the video on the watch page
+        p2pEnabled:
+          type: boolean
+          description: whether to enable P2P in the player or not
+        videosHistoryEnabled:
+          type: boolean
+          description: whether to keep track of watched history or not
+        videoLanguages:
+          type: array
+          items:
+            type: string
+          description: list of languages to filter videos down to
+        language:
+          type: string
+          description: default language for this user
+        videoQuota:
+          type: integer
+          description: The user video quota in bytes
+          example: -1
+        videoQuotaDaily:
+          type: integer
+          description: The user daily video quota in bytes
+          example: -1
+        role:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/UserRole'
+            label:
+              type: string
+              enum:
+              - User
+              - Moderator
+              - Administrator
+        theme:
+          type: string
+          description: Theme enabled by this user
+        account:
+          $ref: '#/components/schemas/Account'
+        notificationSettings:
+          $ref: '#/components/schemas/UserNotificationSettings'
+        videoChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/VideoChannel'
+        blocked:
+          type: boolean
+        blockedReason:
+          type: string
+        noInstanceConfigWarningModal:
+          type: boolean
+        noAccountSetupWarningModal:
+          type: boolean
+        noWelcomeModal:
+          type: boolean
+        createdAt:
+          type: string
+        pluginAuth:
+          type: string
+          description: Auth plugin to use to authenticate the user
+        lastLoginDate:
+          type: string
+          format: date-time
+        twoFactorEnabled:
+          type: boolean
+          description: Whether the user has enabled two-factor authentication or not
+        newFeaturesInfoRead:
+          type: number
+          description: New features information the user has read
+    UserWithStats:
+      allOf:
+      - $ref: '#/components/schemas/User'
+      - properties:
+          videosCount:
+            type: integer
+            description: Count of videos published
+          abusesCount:
+            type: integer
+            description: Count of reports/abuses of which the user is a target
+          abusesAcceptedCount:
+            type: integer
+            description: Count of reports/abuses created by the user and accepted/acted upon by the moderation team
+          abusesCreatedCount:
+            type: integer
+            description: Count of reports/abuses created by the user
+          videoCommentsCount:
+            type: integer
+            description: Count of comments published
+    AddUserResponse:
+      properties:
+        user:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            account:
+              type: object
+              properties:
+                id:
+                  $ref: '#/components/schemas/id'
+    UserRole:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      description: The user role (Admin = `0`, Moderator = `1`, User = `2`)
+      example: 2
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    UserNotificationSettings:
+      properties:
+        abuseAsModerator:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        videoAutoBlacklistAsModerator:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newUserRegistration:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newVideoFromSubscription:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        blacklistOnMyVideo:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoPublished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoImportFinished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        commentMention:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newCommentOnMyVideo:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newFollow:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newInstanceFollower:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        autoInstanceFollowing:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        abuseStateChange:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        abuseNewMessage:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newPeerTubeVersion:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newPluginVersion:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoStudioEditionFinished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoTranscriptionGenerated:
+          $ref: '#/components/schemas/NotificationSettingValue'
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    VideoChannel:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - type: object
+        properties:
+          displayName:
+            type: string
+            description: editable name of the channel, displayed in its representations
+            example: Videos of Framasoft
+            minLength: 1
+            maxLength: 120
+          description:
+            type: string
+            nullable: true
+            example: Videos made with <3 by Framasoft
+            minLength: 3
+            maxLength: 1000
+          support:
+            type: string
+            nullable: true
+            description: text shown by default on all videos of this channel, to tell the audience how to support it
+            example: Please support our work on https://soutenir.framasoft.org/en/ <3
+            minLength: 3
+            maxLength: 1000
+          isLocal:
+            type: boolean
+          updatedAt:
+            type: string
+            format: date-time
+          banners:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActorImage'
+          ownerAccount:
+            $ref: '#/components/schemas/Account'
+    UpdateUser:
+      properties:
+        email:
+          description: The updated email of the user
+          allOf:
+          - $ref: '#/components/schemas/User/properties/email'
+        emailVerified:
+          type: boolean
+          description: Set the email as verified
+        videoQuota:
+          type: integer
+          description: The updated video quota of the user in bytes
+        videoQuotaDaily:
+          type: integer
+          description: The updated daily video quota of the user in bytes
+        pluginAuth:
+          type: string
+          nullable: true
+          description: The auth plugin to use to authenticate the user
+          example: peertube-plugin-auth-saml2
+        role:
+          $ref: '#/components/schemas/UserRole'
+        adminFlags:
+          $ref: '#/components/schemas/UserAdminFlags'
+        password:
+          $ref: '#/components/schemas/password'
+    AddUser:
+      properties:
+        username:
+          $ref: '#/components/schemas/username'
+        password:
+          $ref: '#/components/schemas/password'
+        email:
+          type: string
+          format: email
+          description: The user email
+        videoQuota:
+          type: integer
+          description: The user video quota in bytes
+          example: -1
+        videoQuotaDaily:
+          type: integer
+          description: The user daily video quota in bytes
+          example: -1
+        channelName:
+          $ref: '#/components/schemas/usernameChannel'
+        role:
+          $ref: '#/components/schemas/UserRole'
+        adminFlags:
+          $ref: '#/components/schemas/UserAdminFlags'
+      required:
+      - username
+      - password
+      - email
+      - role
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    NSFWPolicy:
+      type: string
+      enum:
+      - display
+      - warn
+      - do_not_list
+    NSFWFlag:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` VIOLENT
+
+        - `2` EXPLICIT_SEX
+
+        '
+    RequestTwoFactorResponse:
+      properties:
+        otpRequest:
+          type: object
+          properties:
+            requestToken:
+              type: string
+              description: The token to send to confirm this request
+            secret:
+              type: string
+              description: The OTP secret
+            uri:
+              type: string
+              description: The OTP URI
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            nullable: true
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type: string
+            nullable: true
+            description: text or bio displayed on the account's profile
+  parameters:
+    usersSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort users by criteria
+      schema:
+        type: string
+        enum:
+        - -id
+        - -username
+        - -createdAt
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    usersBlocked:
+      name: blocked
+      in: query
+      required: false
+      description: Filter results down to (un)banned users
+      schema:
+        type: boolean
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    id:
+      name: id
+      in: path
+      required: true
+      description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+    usersRole:
+      name: role
+      in: query
+      required: false
+      description: Filter results down to users with a specific role
+      schema:
+        $ref: '#/components/schemas/UserRole'
+    usersSearch:
+      name: search
+      in: query
+      required: false
+      description: Plain text search that will match with user usernames or emails
+      schema:
+        type: string
+  securitySchemes:
+    OAuth2:
+      description: 'Authenticating via OAuth requires the following steps:
+
+        - Have an activated account
+
+        - [Generate] an access token for that account at `/api/v1/users/token`.
+
+        - Make requests with the *Authorization: Bearer <token\>* header
+
+        - Profit, depending on the role assigned to the account
+
+
+        Note that the __access token is valid for 1 day__ and is given
+
+        along with a __refresh token valid for 2 weeks__.
+
+
+        [Generate]: https://docs.joinpeertube.org/api/rest-getting-started
+
+        '
+      type: oauth2
+      flows:
+        password:
+          tokenUrl: /api/v1/users/token
+          scopes:
+            admin: Admin scope
+            moderator: Moderator scope
+            user: User scope
+externalDocs:
+  url: https://docs.joinpeertube.org/api-rest-reference.html
+x-tagGroups:
+- name: Static endpoints
+  tags:
+  - Static Video Files
+- name: Download
+  tags:
+  - Video Download
+- name: Feeds
+  tags:
+  - Video Feeds
+- name: Auth
+  tags:
+  - Register
+  - Session
+- name: Accounts
+  tags:
+  - Accounts
+  - Users
+  - User Exports
+  - User Imports
+  - My User
+  - My Subscriptions
+  - My Notifications
+  - My History
+- name: Videos
+  tags:
+  - Video
+  - Video Upload
+  - Video Imports
+  - Video Captions
+  - Video Chapters
+  - Video Channels
+  - Video Comments
+  - Video Rates
+  - Video Playlists
+  - Video Stats
+  - Ownership Change
+  - Video Mirroring
+  - Video Files
+  - Video Transcoding
+  - Live Videos
+  - Channels Sync
+  - Video Passwords
+  - Video Embed Privacy
+- name: Search
+  tags:
+  - Search
+- name: Moderation
+  tags:
+  - Abuses
+  - Video Blocks
+  - Account Blocklist
+  - Server Blocklist
+  - Automatic Tags
+  - Watched Words
+- name: Instance
+  tags:
+  - Config
+  - Client Config
+  - Homepage
+  - Instance Follows
+  - Instance Redundancy
+  - Plugins
+  - Stats
+  - Logs
+  - Job
+- name: Remote Jobs
+  tags:
+  - Runner Registration Token
+  - Runner Jobs
+  - Runners
