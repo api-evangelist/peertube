@@ -1,6 +1,19 @@
 name: PeerTube
 description: PeerTube is a free, decentralized, and federated video hosting platform developed by Framasoft as an open-source alternative to centralized video services like YouTube. It enables anyone to self-host a video platform that federates with other instances via ActivityPub, forming a global network of over 1,600 platforms hosting more than one million videos. The REST API supports video uploading and management, channel and playlist operations, live streaming, search and discovery across federated nodes, content moderation, plugin management, and distributed transcoding via remote runner jobs.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/peertube.png
 tags:
   - Video
   - Decentralized
@@ -13,51 +26,1667 @@ url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/a
 specificationVersion: "0.19"
 modified: "2026-06-13"
 apis:
-  - name: PeerTube REST API
-    description: The PeerTube REST API provides comprehensive access to all platform functionality including video upload and management, user accounts, channels, playlists, live streaming, moderation, instance configuration, federation, and distributed transcoding. The API is defined by an OpenAPI 3.0 specification and uses OAuth 2.0 for authentication with three role levels (Administrator, Moderator, User). Rate limiting is enforced per endpoint class with headers exposing limit state.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.joinpeertube.org/api/rest-getting-started
-    baseURL: https://{instance}/api/v1
-    tags:
-      - Video
-      - Channels
-      - Playlists
-      - Live Streaming
-      - Federation
-      - Moderation
-      - Accounts
-      - Search
-    properties:
-      - type: Documentation
-        url: https://docs.joinpeertube.org/api/rest-getting-started
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/Chocobozzz/PeerTube/develop/support/doc/api/openapi.yaml
-      - type: APIReference
-        url: https://docs.joinpeertube.org/api-rest-reference.html
-      - type: Plugins
-        url: https://docs.joinpeertube.org/api/plugins
-      - type: EmbedPlayer
-        url: https://docs.joinpeertube.org/api/embed-player
-      - type: ActivityPub
-        url: https://docs.joinpeertube.org/api/activitypub
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
-    contact:
-      - FN: PeerTube Documentation
-        url: https://docs.joinpeertube.org/
-      - FN: PeerTube GitHub
-        url: https://github.com/Chocobozzz/PeerTube
-    meta:
-      - key: authentication
-        value: OAuth 2.0 (Password Grant) + Bearer Token
-      - key: version
-        value: v1
-      - key: openapi-version
-        value: 3.0.3
+- aid: peertube:peertube-abuses-api
+  name: PeerTube Abuses API
+  description: Abuses deal with reports of local or remote videos/comments/accounts alike.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Abuses
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-abuses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-account-blocklist-api
+  name: PeerTube Account Blocklist API
+  description: The Account Blocklist API from PeerTube — 5 operation(s) for account blocklist.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Account Blocklist
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-account-blocklist-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-accounts-api
+  name: PeerTube Accounts API
+  description: >-
+    Accounts encompass remote accounts discovered across the federation, and correspond to the main Actor,
+    along with video channels a user can create, which are also Actors.
+
+    When a comment is posted, it is done with your Account's Actor.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-automatic-tags-api
+  name: PeerTube Automatic Tags API
+  description: >-
+    Automatic tags set on objects (like comments or videos) by specific rules (external link, watched
+    words, etc.)
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Automatic Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-automatic-tags-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-channels-sync-api
+  name: PeerTube Channels Sync API
+  description: >-
+    Operations dealing with synchronizing PeerTube user's channel with channels of other platforms
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Channels Sync
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-channels-sync-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-client-config-api
+  name: PeerTube Client Config API
+  description: Configuration of the web client.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Client Config
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-client-config-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-config-api
+  name: PeerTube Config API
+  description: Each server exposes public information regarding supported videos and options.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Config
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-config-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-contact-api
+  name: PeerTube Contact API
+  description: Send a message to the instance administrators.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Contact
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-contact-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-debug-api
+  name: PeerTube Debug API
+  description: Administrative debug endpoints.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Debug
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-debug-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-homepage-api
+  name: PeerTube Homepage API
+  description: Get and update the custom homepage
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Homepage
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-homepage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-instance-follows-api
+  name: PeerTube Instance Follows API
+  description: >-
+    Managing servers which the instance interacts with is crucial to the concept of federation in PeerTube
+    and external video indexation. The PeerTube server then deals with inter-server ActivityPub operations
+    and propagates information across its social graph by posting activities to actors' inbox endpoints.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Instance Follows
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-instance-follows-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-instance-redundancy-api
+  name: PeerTube Instance Redundancy API
+  description: >-
+    Redundancy is part of the inter-server solidarity that PeerTube fosters. Manage the list of instances
+    you wish to help by seeding their videos according to the policy of video selection of your choice.
+    Note that you have a similar functionality to mirror individual videos, see [video mirroring](#tag/Video-Mirroring).
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Instance Redundancy
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-instance-redundancy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-job-api
+  name: PeerTube Job API
+  description: >-
+    Jobs are long-running tasks enqueued and processed by the instance itself. No additional worker registration
+    is currently available.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Job
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-job-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-live-videos-api
+  name: PeerTube Live Videos API
+  description: The Live Videos API from PeerTube — 4 operation(s) for live videos.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Live Videos
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-live-videos-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-logs-api
+  name: PeerTube Logs API
+  description: Operations dealing with client, server and audit logs.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-logs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-my-history-api
+  name: PeerTube My History API
+  description: Operations related to your watch history.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - My History
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-my-history-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-my-notifications-api
+  name: PeerTube My Notifications API
+  description: >-
+    Notifications following new videos, follows or reports. They allow you to keep track of the interactions
+    and overall important information that concerns you. You MAY set per-notification type delivery preference,
+    to receive the info either by mail, by in-browser notification or both.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - My Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-my-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-my-subscriptions-api
+  name: PeerTube My Subscriptions API
+  description: >-
+    Operations related to your subscriptions to video channels, their new videos, and how to keep up to
+    date with their latest publications!
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - My Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-my-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-my-user-api
+  name: PeerTube My User API
+  description: Operations related to your own User, when logged-in.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - My User
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-my-user-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-ownership-change-api
+  name: PeerTube Ownership Change API
+  description: The Ownership Change API from PeerTube — 12 operation(s) for ownership change.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Ownership Change
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-ownership-change-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-player-settings-api
+  name: PeerTube Player Settings API
+  description: Operations dealing with video player settings for videos and channels.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Player Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-player-settings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-plugins-api
+  name: PeerTube Plugins API
+  description: Managing plugins installed from a local path or from NPM, or search for new ones.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Plugins
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-plugins-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-register-api
+  name: PeerTube Register API
+  description: >-
+    As a visitor, you can use this API to open an account (if registrations are open on
+
+    that PeerTube instance). As an admin, you should use the dedicated [User creation
+
+    API](#operation/addUser) instead.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Register
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-register-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-runner-jobs-api
+  name: PeerTube Runner Jobs API
+  description: Manage runner jobs and runner-side job execution.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Runner Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-runner-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-runner-registration-token-api
+  name: PeerTube Runner Registration Token API
+  description: Manage runner registration tokens.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Runner Registration Token
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-runner-registration-token-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-runners-api
+  name: PeerTube Runners API
+  description: Register, list and remove remote runners.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Runners
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-runners-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-search-api
+  name: PeerTube Search API
+  description: >-
+    The search helps to find _videos_ or _channels_ from within the instance and beyond.
+
+    Videos from other instances federated by the instance (that is, instances
+
+    followed by the instance) can be found via keywords and other criteria of
+
+    the advanced search.
+
+
+    Administrators can also enable the use of a remote search system, indexing
+
+    videos and channels that may not be federated by the instance.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-server-blocklist-api
+  name: PeerTube Server Blocklist API
+  description: The Server Blocklist API from PeerTube — 5 operation(s) for server blocklist.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Server Blocklist
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-server-blocklist-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-session-api
+  name: PeerTube Session API
+  description: >-
+    Sessions deal with access tokens over time. Only __one session token can currently be used at a time__.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Session
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-session-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-static-video-files-api
+  name: PeerTube Static Video Files API
+  description: The Static Video Files API from PeerTube — 4 operation(s) for static video files.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Static Video Files
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-static-video-files-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-stats-api
+  name: PeerTube Stats API
+  description: Statistics
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-stats-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-user-exports-api
+  name: PeerTube User Exports API
+  description: To create an archive of user data.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - User Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-user-exports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-user-imports-api
+  name: PeerTube User Imports API
+  description: To import an archive of user data.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - User Imports
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-user-imports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-users-api
+  name: PeerTube Users API
+  description: >-
+    Using some features of PeerTube require authentication, for which User provide different levels of
+    permission as well as associated user information. Each user has a corresponding local Account for
+    federation.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-api
+  name: PeerTube Video API
+  description: Operations dealing with listing, uploading, fetching or modifying videos.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-blocks-api
+  name: PeerTube Video Blocks API
+  description: >-
+    Operations dealing with blocking videos (removing them from view and preventing interactions).
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Blocks
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-blocks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-captions-api
+  name: PeerTube Video Captions API
+  description: Operations dealing with listing, adding and removing closed captions of a video.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Captions
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-captions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-channels-api
+  name: PeerTube Video Channels API
+  description: >-
+    Operations dealing with the creation, modification and listing of videos within a channel.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Channels
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-channels-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-chapters-api
+  name: PeerTube Video Chapters API
+  description: Operations dealing with managing chapters of a video.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Chapters
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-chapters-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-comments-api
+  name: PeerTube Video Comments API
+  description: >-
+    Operations dealing with comments to a video. Comments are organized in threads: adding a comment in
+    response to the video starts a thread, adding a reply to a comment adds it to its root comment thread.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-comments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-download-api
+  name: PeerTube Video Download API
+  description: Download video files
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Download
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-download-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-embed-privacy-api
+  name: PeerTube Video Embed Privacy API
+  description: The Video Embed Privacy API from PeerTube — 2 operation(s) for video embed privacy.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Embed Privacy
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-embed-privacy-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-feeds-api
+  name: PeerTube Video Feeds API
+  description: Server syndication feeds of videos
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Feeds
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-feeds-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-files-api
+  name: PeerTube Video Files API
+  description: Operations on video files
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Files
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-files-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-imports-api
+  name: PeerTube Video Imports API
+  description: Operations dealing with listing, adding and removing video imports.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Imports
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-imports-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-mirroring-api
+  name: PeerTube Video Mirroring API
+  description: >-
+    PeerTube instances can mirror videos from one another, and help distribute some videos.
+
+
+    For importing videos as your own, refer to [video imports](#operation/importVideo).
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Mirroring
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-mirroring-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-passwords-api
+  name: PeerTube Video Passwords API
+  description: Operations on video passwords.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Passwords
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-passwords-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-playlists-api
+  name: PeerTube Video Playlists API
+  description: >-
+    Operations dealing with playlists of videos. Playlists are bound to users and/or channels.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Playlists
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-playlists-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-rates-api
+  name: PeerTube Video Rates API
+  description: Like/dislike a video.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-rates-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-stats-api
+  name: PeerTube Video Stats API
+  description: Video statistics
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-stats-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-transcoding-api
+  name: PeerTube Video Transcoding API
+  description: Video transcoding related operations
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Transcoding
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-transcoding-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-video-upload-api
+  name: PeerTube Video Upload API
+  description: >-
+    Operations dealing with adding video or audio. PeerTube supports two upload modes, and three import
+    modes.
+
+
+    ### Upload
+
+
+    - [_legacy_](#operation/uploadLegacy), where the video file is sent in a single request
+
+    - [_resumable_](#operation/uploadResumableInit), where the video file is sent in chunks
+
+
+    You can upload videos more reliably by using the resumable variant. Its protocol lets
+
+    you resume an upload operation after a network interruption or other transmission failure,
+
+    saving time and bandwidth in the event of network failures.
+
+
+    Favor using resumable uploads in any of the following cases:
+
+    - You are transferring large files
+
+    - The likelihood of a network interruption is high
+
+    - Uploads are originating from a device with a low-bandwidth or unstable Internet connection, such
+    as a mobile device
+
+
+    ### Import
+
+
+    - _URL_-based: where the URL points to any service supported by [youtube-dl](https://ytdl-org.github.io/youtube-dl/)
+
+    - _magnet_-based: where the URI resolves to a BitTorrent resource containing a single supported video
+    file
+
+    - _torrent_-based: where the metainfo file resolves to a BitTorrent resource containing a single supported
+    video file
+
+
+    The import function is practical when the desired video/audio is available online. It makes PeerTube
+
+    download it for you, saving you as much bandwidth and avoiding any instability or limitation your
+    network might have.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Video Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-video-upload-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-videos-api
+  name: PeerTube Videos API
+  description: The Videos API from PeerTube — 4 operation(s) for videos.
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Videos
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-videos-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
+- aid: peertube:peertube-watched-words-api
+  name: PeerTube Watched Words API
+  description: Manage list of watched words to detect patterns on objects (like comments of videos)
+  humanURL: https://docs.joinpeertube.org/api/rest-getting-started
+  baseURL: https://{instance}/api/v1
+  tags:
+  - Watched Words
+  properties:
+  - type: OpenAPI
+    url: openapi/peertube-watched-words-api-openapi.yml
+  - type: Documentation
+    url: https://docs.joinpeertube.org/api/rest-getting-started
+  - type: APIReference
+    url: https://docs.joinpeertube.org/api-rest-reference.html
+  - type: Plugins
+    url: https://docs.joinpeertube.org/api/plugins
+  - type: EmbedPlayer
+    url: https://docs.joinpeertube.org/api/embed-player
+  - type: ActivityPub
+    url: https://docs.joinpeertube.org/api/activitypub
+  - type: Plans
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/peertube-agentic-access.yml
