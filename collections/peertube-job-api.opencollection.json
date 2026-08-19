@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Job API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Pause job queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/jobs/pause",
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Pause job queue"
+        },
+        {
+          "info": {
+            "name": "Resume job queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/jobs/resume",
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Resume job queue"
+        },
+        {
+          "info": {
+            "name": "List instance jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/jobs/:state",
+            "params": [
+              {
+                "name": "state",
+                "value": "",
+                "type": "path",
+                "description": "The state of the job ('' for for no filter)"
+              },
+              {
+                "name": "jobType",
+                "value": "",
+                "type": "query",
+                "description": "job type"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List instance jobs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

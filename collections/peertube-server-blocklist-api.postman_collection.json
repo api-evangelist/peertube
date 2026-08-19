@@ -1,0 +1,1049 @@
+{
+  "item": [
+    {
+      "id": "5371db17-860f-46c7-ad7a-ce72e796bad1",
+      "name": "Server Blocklist",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83a979ca-88e6-4b98-9cae-b3a4b9e07b8e",
+          "name": "Get block status of accounts/hosts",
+          "request": {
+            "name": "Get block status of accounts/hosts",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "blocklist",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "Check if these accounts are blocked"
+                },
+                {
+                  "disabled": false,
+                  "key": "accounts",
+                  "value": "<string>",
+                  "description": "Check if these accounts are blocked"
+                },
+                {
+                  "disabled": false,
+                  "key": "hosts",
+                  "value": "<string>",
+                  "description": "Check if these hosts are blocked"
+                },
+                {
+                  "disabled": false,
+                  "key": "hosts",
+                  "value": "<string>",
+                  "description": "Check if these hosts are blocked"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd178f58-2ed6-4258-aa1c-b84f0d97120b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "blocklist",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accounts",
+                      "value": "goofy@example.com"
+                    },
+                    {
+                      "key": "accounts",
+                      "value": "donald@example.com"
+                    },
+                    {
+                      "key": "hosts",
+                      "value": "example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accounts\": {\n    \"key_0\": {\n      \"blockedByServer\": false,\n      \"blockedByUser\": true\n    },\n    \"key_1\": {\n      \"blockedByServer\": true,\n      \"blockedByUser\": true\n    },\n    \"key_2\": {\n      \"blockedByServer\": true,\n      \"blockedByUser\": true\n    },\n    \"key_3\": {\n      \"blockedByServer\": false,\n      \"blockedByUser\": true\n    }\n  },\n  \"hosts\": {\n    \"key_0\": {\n      \"blockedByServer\": true,\n      \"blockedByUser\": true\n    },\n    \"key_1\": {\n      \"blockedByServer\": true,\n      \"blockedByUser\": false\n    },\n    \"key_2\": {\n      \"blockedByServer\": true,\n      \"blockedByUser\": true\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4d34b36-4bdd-4157-9003-9fc5f99f0680",
+          "name": "List blocked accounts by server",
+          "request": {
+            "name": "List blocked accounts by server",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "server",
+                "blocklist",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0cd49de7-0e95-4cf8-bc1b-ddf586dbb204",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"byAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"YkgInFaiIIrmbZedl.ge\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 9648,\n        \"followersCount\": 1064,\n        \"createdAt\": \"1970-12-04T09:36:03.423Z\",\n        \"updatedAt\": \"2018-10-24T08:23:22.001Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"blockedAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"MkKixtsHJGJixw.xvhk\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 4022,\n        \"followersCount\": 2852,\n        \"createdAt\": \"2021-07-23T19:03:11.938Z\",\n        \"updatedAt\": \"1968-05-13T19:18:29.558Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"createdAt\": \"2007-12-28T03:23:26.166Z\"\n    },\n    {\n      \"byAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"wEHpTubuzIBcxgmGKkjVpdV.axkp\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 3265,\n        \"followersCount\": 8995,\n        \"createdAt\": \"1983-06-17T04:10:40.373Z\",\n        \"updatedAt\": \"1974-02-08T16:19:47.497Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"blockedAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"wOggv.hhfq\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 7660,\n        \"followersCount\": 7713,\n        \"createdAt\": \"1974-09-07T09:26:29.336Z\",\n        \"updatedAt\": \"1970-01-10T20:48:36.272Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"createdAt\": \"2018-01-13T22:39:09.375Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d3b8da6-2878-4320-8375-74c8473e3416",
+          "name": "Block an account by server",
+          "request": {
+            "name": "Block an account by server",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "server",
+                "blocklist",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "343097d3-ca71-4758-85b5-83b99816ee54",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountName\": \"chocobozzz@example.org\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "12891c88-f9d1-4b63-9f8a-e3a7314564c1",
+              "name": "self-blocking forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountName\": \"chocobozzz@example.org\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bcd4b1f-541f-4ecf-8111-b19474831ae6",
+          "name": "Unblock an account by server",
+          "request": {
+            "name": "Unblock an account by server",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "server",
+                "blocklist",
+                "accounts",
+                ":accountName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountName",
+                  "description": "(Required) account to unblock, in the form `username@domain`"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bfad05ef-42ef-471e-9dd4-f6a30f29c2d3",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "accounts",
+                    ":accountName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountName",
+                      "description": "(Required) account to unblock, in the form `username@domain`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a023fc4-e5e7-4415-9628-317f590c2f6a",
+              "name": "account or account block does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "accounts",
+                    ":accountName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountName",
+                      "description": "(Required) account to unblock, in the form `username@domain`"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2666b09-179e-4744-a92c-ad07ddc20b8b",
+          "name": "List blocked servers by server",
+          "request": {
+            "name": "List blocked servers by server",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "server",
+                "blocklist",
+                "servers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef5d7061-d560-4401-8b47-e01127b01b95",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"byAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"ePmXRPAVPsFCTiL.rm\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 1590,\n        \"followersCount\": 550,\n        \"createdAt\": \"1971-03-15T08:46:37.985Z\",\n        \"updatedAt\": \"1981-04-22T23:28:32.821Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"blockedServer\": {\n        \"host\": \"xZYPOtQomRXWBrnnLEJozeQeZbktscrag.fe\"\n      },\n      \"createdAt\": \"2001-03-19T19:25:39.696Z\"\n    },\n    {\n      \"byAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"ZoUeTlScJyLloBfKmnzsvJHIAJCrQxFMO.pazp\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 748,\n        \"followersCount\": 5285,\n        \"createdAt\": \"1951-02-26T02:53:29.529Z\",\n        \"updatedAt\": \"2021-04-27T03:52:12.351Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"blockedServer\": {\n        \"host\": \"FOnhONwsZiEtt.cxe\"\n      },\n      \"createdAt\": \"1997-01-17T06:50:01.690Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce57ac71-6130-4613-96a6-f92cef74bd34",
+          "name": "Block a server by server",
+          "request": {
+            "name": "Block a server by server",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "server",
+                "blocklist",
+                "servers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"host\": \"<hostname>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5888fc9-3eaf-445e-a5b8-873a15f60408",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": \"<hostname>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0fd7eeb1-b824-4a4c-bee9-a9d49985dd26",
+              "name": "self-blocking forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"host\": \"<hostname>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ac7fe00-255e-47fc-9ac3-a81ee73dbe0e",
+          "name": "Unblock a server by server",
+          "request": {
+            "name": "Unblock a server by server",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "server",
+                "blocklist",
+                "servers",
+                ":host"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<hostname>",
+                  "key": "host",
+                  "description": "(Required) server domain to unblock"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b60e04d8-8c64-49e7-be74-f3bb210203d7",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "servers",
+                    ":host"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<hostname>",
+                      "key": "host",
+                      "description": "(Required) server domain to unblock"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "86a7199d-7fb8-4a71-a914-991612d43284",
+              "name": "server block does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "server",
+                    "blocklist",
+                    "servers",
+                    ":host"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<hostname>",
+                      "key": "host",
+                      "description": "(Required) server domain to unblock"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c6e57781-adf7-4dc7-af88-a1e9e3e3385b",
+    "name": "PeerTube Abuses Server Blocklist API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

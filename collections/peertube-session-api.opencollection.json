@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Session API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Login prerequisite",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/oauth-clients/local"
+          },
+          "docs": "You need to retrieve a client id and secret before [logging in](#operation/getOAuthToken)."
+        },
+        {
+          "info": {
+            "name": "Login",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/users/token",
+            "headers": [
+              {
+                "name": "x-peertube-otp",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "form-urlencoded",
+              "data": []
+            }
+          },
+          "docs": "With your [client id and secret](#operation/getOAuthClient), you can retrieve an access and refresh tokens."
+        },
+        {
+          "info": {
+            "name": "Logout",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/users/revoke-token",
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Revokes your access token and its associated refresh token, destroying your current session."
+        },
+        {
+          "info": {
+            "name": "List token sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/:id/token-sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Entity id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List token sessions"
+        },
+        {
+          "info": {
+            "name": "List token sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/:id/token-sessions/:tokenSessionId/revoke",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Entity id"
+              },
+              {
+                "name": "tokenSessionId",
+                "value": "",
+                "type": "path",
+                "description": "Token session Id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List token sessions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Chapters API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Chapters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get chapters of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/chapters",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ]
+          },
+          "docs": "**PeerTube >= 6.0**"
+        },
+        {
+          "info": {
+            "name": "Replace video chapters",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/chapters",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0**"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

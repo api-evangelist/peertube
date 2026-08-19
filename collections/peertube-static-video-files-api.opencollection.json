@@ -1,0 +1,139 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Static Video Files API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Static Video Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get public Web Video file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/static/web-videos/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "Filename"
+              }
+            ]
+          },
+          "docs": "**PeerTube >= 6.0**"
+        },
+        {
+          "info": {
+            "name": "Get private Web Video file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/static/web-videos/private/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "Filename"
+              },
+              {
+                "name": "videoFileToken",
+                "value": "",
+                "type": "query",
+                "description": "Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0**"
+        },
+        {
+          "info": {
+            "name": "Get public HLS video file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/static/streaming-playlists/hls/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "Filename"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get public HLS video file"
+        },
+        {
+          "info": {
+            "name": "Get private HLS video file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/static/streaming-playlists/hls/private/:filename",
+            "params": [
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "Filename"
+              },
+              {
+                "name": "videoFileToken",
+                "value": "",
+                "type": "query",
+                "description": "Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header."
+              },
+              {
+                "name": "reinjectVideoFileToken",
+                "value": "",
+                "type": "query",
+                "description": "Ask the server to reinject videoFileToken in URLs in m3u8 playlist"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get private HLS video file"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

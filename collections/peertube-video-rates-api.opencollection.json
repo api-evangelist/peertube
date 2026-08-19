@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Rates API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get rate of my user for a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/videos/:videoIdOrUUID/rating",
+            "params": [
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get rate of my user for a video"
+        },
+        {
+          "info": {
+            "name": "Like/dislike a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/rate",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Like/dislike a video"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

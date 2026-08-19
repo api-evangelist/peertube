@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Captions API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Captions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List captions of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/captions",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ]
+          },
+          "docs": "List captions of a video"
+        },
+        {
+          "info": {
+            "name": "Generate a video caption",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/captions/generate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.2** This feature has to be enabled by the administrator"
+        },
+        {
+          "info": {
+            "name": "Add or replace a video caption",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/captions/:captionLanguage",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "captionLanguage",
+                "value": "",
+                "type": "path",
+                "description": "The caption language"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "captionfile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add or replace a video caption"
+        },
+        {
+          "info": {
+            "name": "Delete a video caption",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/captions/:captionLanguage",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "captionLanguage",
+                "value": "",
+                "type": "path",
+                "description": "The caption language"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a video caption"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

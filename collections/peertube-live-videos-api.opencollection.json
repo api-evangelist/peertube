@@ -1,0 +1,276 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Live Videos API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Live Videos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a live",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channelId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "saveReplay",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replaySettings",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "permanentLive",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "latencyMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "thumbnailfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "previewfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "privacy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "category",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "licence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "support",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfw",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfwSummary",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfwFlags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "commentsPolicy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "downloadEnabled",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "schedules",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a live"
+        },
+        {
+          "info": {
+            "name": "Get information about a live",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get information about a live"
+        },
+        {
+          "info": {
+            "name": "Update information about a live",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update information about a live"
+        },
+        {
+          "info": {
+            "name": "List live sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live/:id/sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List all sessions created in a particular live"
+        },
+        {
+          "info": {
+            "name": "Get live session of a replay",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/live-session",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "If the video is a replay of a live, you can find the associated live session using this endpoint"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Homepage API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Homepage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get instance custom homepage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/custom-pages/homepage/instance"
+          },
+          "docs": "Get instance custom homepage"
+        },
+        {
+          "info": {
+            "name": "Set instance custom homepage",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/custom-pages/homepage/instance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Set instance custom homepage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

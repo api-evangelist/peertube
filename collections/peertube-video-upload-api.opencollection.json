@@ -1,0 +1,298 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Upload API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Upload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Upload a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses a single request to upload a video."
+        },
+        {
+          "info": {
+            "name": "Initialize the resumable upload of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload-resumable",
+            "headers": [
+              {
+                "name": "X-Upload-Content-Length",
+                "value": ""
+              },
+              {
+                "name": "X-Upload-Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to initialize the upload of a video"
+        },
+        {
+          "info": {
+            "name": "Send chunk for the resumable upload of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload-resumable",
+            "headers": [
+              {
+                "name": "Content-Range",
+                "value": ""
+              },
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the upload of a video"
+        },
+        {
+          "info": {
+            "name": "Cancel the resumable upload of a video, deleting any data uploaded so far",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload-resumable",
+            "headers": [
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the upload of a video"
+        },
+        {
+          "info": {
+            "name": "Import a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/imports",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Import a torrent or magnetURI or HTTP resource (if enabled by the instance administrator)"
+        },
+        {
+          "info": {
+            "name": "Initialize the resumable replacement of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/replace-resumable",
+            "headers": [
+              {
+                "name": "X-Upload-Content-Length",
+                "value": ""
+              },
+              {
+                "name": "X-Upload-Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to initialize the replacement of a video"
+        },
+        {
+          "info": {
+            "name": "Send chunk for the resumable replacement of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/replace-resumable",
+            "headers": [
+              {
+                "name": "Content-Range",
+                "value": ""
+              },
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the replacement of a video"
+        },
+        {
+          "info": {
+            "name": "Cancel the resumable replacement of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/replace-resumable",
+            "headers": [
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the replacement of a video"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

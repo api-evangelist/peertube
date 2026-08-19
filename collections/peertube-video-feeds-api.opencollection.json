@@ -1,0 +1,244 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Feeds API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Comments on videos feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/feeds/video-comments.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "format expected (we focus on making `rss` the most feature-rich ; it serves [Media RSS](https://www.rssboard.org/media-rss))"
+              },
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "query",
+                "description": "limit listing comments to a specific video"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "limit listing comments to videos of a specific account"
+              },
+              {
+                "name": "accountName",
+                "value": "",
+                "type": "query",
+                "description": "limit listing comments to videos of a specific account"
+              },
+              {
+                "name": "videoChannelId",
+                "value": "",
+                "type": "query",
+                "description": "limit listing comments to videos of a specific video channel"
+              },
+              {
+                "name": "videoChannelName",
+                "value": "",
+                "type": "query",
+                "description": "limit listing comments to videos of a specific video channel"
+              }
+            ]
+          },
+          "docs": "Comments on videos feeds"
+        },
+        {
+          "info": {
+            "name": "Common videos feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/feeds/videos.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "format expected (we focus on making `rss` the most feature-rich ; it serves [Media RSS](https://www.rssboard.org/media-rss))"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "limit listing to a specific account"
+              },
+              {
+                "name": "accountName",
+                "value": "",
+                "type": "query",
+                "description": "limit listing to a specific account"
+              },
+              {
+                "name": "videoChannelId",
+                "value": "",
+                "type": "query",
+                "description": "limit listing to a specific video channel"
+              },
+              {
+                "name": "videoChannelName",
+                "value": "",
+                "type": "query",
+                "description": "limit listing to a specific video channel"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              }
+            ]
+          },
+          "docs": "Common videos feeds"
+        },
+        {
+          "info": {
+            "name": "Videos of subscriptions feeds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/feeds/subscriptions.:format",
+            "params": [
+              {
+                "name": "format",
+                "value": "",
+                "type": "path",
+                "description": "format expected (we focus on making `rss` the most feature-rich ; it serves [Media RSS](https://www.rssboard.org/media-rss))"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "limit listing to a specific account"
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "private token allowing access"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              }
+            ]
+          },
+          "docs": "Videos of subscriptions feeds"
+        },
+        {
+          "info": {
+            "name": "Videos podcast feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/feeds/podcast/videos.xml",
+            "params": [
+              {
+                "name": "videoChannelId",
+                "value": "",
+                "type": "query",
+                "description": "Limit listing to a specific video channel"
+              }
+            ]
+          },
+          "docs": "Videos podcast feed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

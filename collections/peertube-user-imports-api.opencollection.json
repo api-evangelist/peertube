@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses User Imports API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User Imports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Initialize the resumable user import",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/users/:userId/imports/import-resumable",
+            "headers": [
+              {
+                "name": "X-Upload-Content-Length",
+                "value": ""
+              },
+              {
+                "name": "X-Upload-Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.1** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to initialize the import of the archive"
+        },
+        {
+          "info": {
+            "name": "Send chunk for the resumable user import",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/users/:userId/imports/import-resumable",
+            "headers": [
+              {
+                "name": "Content-Range",
+                "value": ""
+              },
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User id"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.1** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the import of the archive"
+        },
+        {
+          "info": {
+            "name": "Cancel the resumable user import",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/users/:userId/imports/import-resumable",
+            "headers": [
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User id"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.1** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the resumable user import"
+        },
+        {
+          "info": {
+            "name": "Get latest user import",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/:userId/imports/latest",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.1**"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

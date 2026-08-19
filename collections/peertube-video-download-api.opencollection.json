@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Download API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Download",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download video file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/download/videos/generate/:videoIdOrUUID",
+            "params": [
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              },
+              {
+                "name": "videoFileIds",
+                "value": "",
+                "type": "query",
+                "description": "streams of video files to mux in the output"
+              },
+              {
+                "name": "videoFileToken",
+                "value": "",
+                "type": "query",
+                "description": "Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header."
+              }
+            ]
+          },
+          "docs": "Generate a mp4 container that contains at most 1 video stream and at most 1 audio stream. Mainly used to merge the HLS audio only video file and the HLS video only resolution file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,490 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Accounts API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              }
+            ]
+          },
+          "docs": "Get an account"
+        },
+        {
+          "info": {
+            "name": "List videos of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/videos",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ]
+          },
+          "docs": "List videos of an account"
+        },
+        {
+          "info": {
+            "name": "List followers of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/followers",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort followers by criteria"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List followers of an account"
+        },
+        {
+          "info": {
+            "name": "List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              }
+            ]
+          },
+          "docs": "List accounts"
+        },
+        {
+          "info": {
+            "name": "List playlists of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-playlists",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "playlistType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              },
+              {
+                "name": "channelNameOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Filter on playlists that are published on a channel with one of these names"
+              }
+            ]
+          },
+          "docs": "List playlists of an account"
+        },
+        {
+          "info": {
+            "name": "List video channels of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-channels",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "withStats",
+                "value": "",
+                "type": "query",
+                "description": "include daily view statistics for the last 30 days and total views (only if authenticated as the account user)"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              }
+            ]
+          },
+          "docs": "List video channels of an account"
+        },
+        {
+          "info": {
+            "name": "List the synchronizations of video channels of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-channel-syncs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              }
+            ]
+          },
+          "docs": "List the synchronizations of video channels of an account"
+        },
+        {
+          "info": {
+            "name": "List ratings of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/ratings",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "rating",
+                "value": "",
+                "type": "query",
+                "description": "Optionally filter which ratings to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List ratings of an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

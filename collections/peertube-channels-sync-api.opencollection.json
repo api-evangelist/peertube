@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Channels Sync API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Channels Sync",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import videos in channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/import-videos",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Import a remote channel/playlist videos into a channel"
+        },
+        {
+          "info": {
+            "name": "Create a synchronization for a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channel-syncs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a synchronization for a video channel"
+        },
+        {
+          "info": {
+            "name": "Delete a video channel synchronization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-channel-syncs/:channelSyncId",
+            "params": [
+              {
+                "name": "channelSyncId",
+                "value": "",
+                "type": "path",
+                "description": "Channel Sync id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a video channel synchronization"
+        },
+        {
+          "info": {
+            "name": "Triggers the channel synchronization job, fetching all the videos from the remote channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channel-syncs/:channelSyncId/sync",
+            "params": [
+              {
+                "name": "channelSyncId",
+                "value": "",
+                "type": "path",
+                "description": "Channel Sync id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Triggers the channel synchronization job, fetching all the videos from the remote channel"
+        },
+        {
+          "info": {
+            "name": "List the synchronizations of video channels of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-channel-syncs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              }
+            ]
+          },
+          "docs": "List the synchronizations of video channels of an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

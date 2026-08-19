@@ -1,0 +1,1722 @@
+{
+  "item": [
+    {
+      "id": "77ce73d7-bb11-42b6-81cc-a8fe9c7b4fb2",
+      "name": "My User",
+      "description": {
+        "content": "Operations related to your own User, when logged-in.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29369f7d-93be-468d-8aac-4a8c57b82806",
+          "name": "Get my user information",
+          "request": {
+            "name": "Get my user information",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6735f334-c498-4f3a-9f80-3e324e8d3956",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 42,\n    \"username\": \"/h.afmpinh/\",\n    \"email\": \"aq803Ij-X@omOjKyWDhffpWJXjtpXKKqbeBnJhw.fk\",\n    \"emailVerified\": true,\n    \"emailPublic\": false,\n    \"nsfwPolicy\": \"warn\",\n    \"nsfwFlagsDisplayed\": 4,\n    \"nsfwFlagsHidden\": 2,\n    \"nsfwFlagsWarned\": 4,\n    \"nsfwFlagsBlurred\": 4,\n    \"adminFlags\": 1,\n    \"autoPlayNextVideo\": false,\n    \"autoPlayNextVideoPlaylist\": false,\n    \"autoPlayVideo\": true,\n    \"p2pEnabled\": true,\n    \"videosHistoryEnabled\": true,\n    \"videoLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"language\": \"string\",\n    \"videoQuota\": -1,\n    \"videoQuotaDaily\": -1,\n    \"role\": {\n      \"id\": 2,\n      \"label\": \"Administrator\"\n    },\n    \"theme\": \"string\",\n    \"account\": {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/aulw/\",\n      \"avatars\": [\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"host\": \"haYJEjYTqePLZpgWrCXR.yh\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 819,\n      \"followersCount\": 9234,\n      \"createdAt\": \"2018-04-15T09:50:08.640Z\",\n      \"updatedAt\": \"1993-04-11T13:34:23.285Z\",\n      \"userId\": 42,\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    },\n    \"notificationSettings\": {\n      \"abuseAsModerator\": 2286,\n      \"videoAutoBlacklistAsModerator\": 1179,\n      \"newUserRegistration\": 6477,\n      \"newVideoFromSubscription\": 4467,\n      \"blacklistOnMyVideo\": 5698,\n      \"myVideoPublished\": 5044,\n      \"myVideoImportFinished\": 6347,\n      \"commentMention\": 2407,\n      \"newCommentOnMyVideo\": 6507,\n      \"newFollow\": 4491,\n      \"newInstanceFollower\": 9197,\n      \"autoInstanceFollowing\": 4508,\n      \"abuseStateChange\": 9992,\n      \"abuseNewMessage\": 3997,\n      \"newPeerTubeVersion\": 7526,\n      \"newPluginVersion\": 5681,\n      \"myVideoStudioEditionFinished\": 6134,\n      \"myVideoTranscriptionGenerated\": 6633\n    },\n    \"videoChannels\": [\n      {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"sRNhfhFwSdRE.mayl\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 9294,\n        \"followersCount\": 6023,\n        \"createdAt\": \"1962-04-01T05:21:32.617Z\",\n        \"updatedAt\": \"2000-09-05T16:11:48.079Z\",\n        \"displayName\": \"Videos of Framasoft\",\n        \"description\": \"Videos made with <3 by Framasoft\",\n        \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n        \"isLocal\": true,\n        \"banners\": [\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"ownerAccount\": {\n          \"userId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"pMxDtnmzNrpCeeNBEGHHS.nckf\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 4043,\n        \"followersCount\": 4383,\n        \"createdAt\": \"1959-04-29T14:43:52.282Z\",\n        \"updatedAt\": \"1967-02-24T22:37:11.193Z\",\n        \"displayName\": \"Videos of Framasoft\",\n        \"description\": \"Videos made with <3 by Framasoft\",\n        \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n        \"isLocal\": false,\n        \"banners\": [\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"ownerAccount\": {\n          \"userId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"blocked\": true,\n    \"blockedReason\": \"string\",\n    \"noInstanceConfigWarningModal\": true,\n    \"noAccountSetupWarningModal\": false,\n    \"noWelcomeModal\": false,\n    \"createdAt\": \"string\",\n    \"pluginAuth\": \"string\",\n    \"lastLoginDate\": \"1999-09-04T14:37:09.926Z\",\n    \"twoFactorEnabled\": true,\n    \"newFeaturesInfoRead\": 3016.507804465118\n  },\n  {\n    \"id\": 42,\n    \"username\": \"/72e.yxq/\",\n    \"email\": \"cm2tnfM4@iJ.bm\",\n    \"emailVerified\": false,\n    \"emailPublic\": false,\n    \"nsfwPolicy\": \"warn\",\n    \"nsfwFlagsDisplayed\": 0,\n    \"nsfwFlagsHidden\": 0,\n    \"nsfwFlagsWarned\": 2,\n    \"nsfwFlagsBlurred\": 4,\n    \"adminFlags\": 1,\n    \"autoPlayNextVideo\": true,\n    \"autoPlayNextVideoPlaylist\": true,\n    \"autoPlayVideo\": false,\n    \"p2pEnabled\": true,\n    \"videosHistoryEnabled\": false,\n    \"videoLanguages\": [\n      \"string\",\n      \"string\"\n    ],\n    \"language\": \"string\",\n    \"videoQuota\": -1,\n    \"videoQuotaDaily\": -1,\n    \"role\": {\n      \"id\": 2,\n      \"label\": \"Moderator\"\n    },\n    \"theme\": \"string\",\n    \"account\": {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/ra5/\",\n      \"avatars\": [\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"host\": \"iQDjY.nui\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 7396,\n      \"followersCount\": 6045,\n      \"createdAt\": \"2010-10-04T08:43:28.288Z\",\n      \"updatedAt\": \"2025-12-29T02:36:43.286Z\",\n      \"userId\": 42,\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    },\n    \"notificationSettings\": {\n      \"abuseAsModerator\": 9966,\n      \"videoAutoBlacklistAsModerator\": 653,\n      \"newUserRegistration\": 6144,\n      \"newVideoFromSubscription\": 8122,\n      \"blacklistOnMyVideo\": 7288,\n      \"myVideoPublished\": 4827,\n      \"myVideoImportFinished\": 662,\n      \"commentMention\": 5869,\n      \"newCommentOnMyVideo\": 7816,\n      \"newFollow\": 2608,\n      \"newInstanceFollower\": 1852,\n      \"autoInstanceFollowing\": 6061,\n      \"abuseStateChange\": 1667,\n      \"abuseNewMessage\": 1667,\n      \"newPeerTubeVersion\": 3501,\n      \"newPluginVersion\": 7336,\n      \"myVideoStudioEditionFinished\": 5242,\n      \"myVideoTranscriptionGenerated\": 6515\n    },\n    \"videoChannels\": [\n      {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"Nu.lcs\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 6597,\n        \"followersCount\": 8011,\n        \"createdAt\": \"2016-01-24T19:57:23.081Z\",\n        \"updatedAt\": \"1984-10-28T11:44:50.587Z\",\n        \"displayName\": \"Videos of Framasoft\",\n        \"description\": \"Videos made with <3 by Framasoft\",\n        \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n        \"isLocal\": false,\n        \"banners\": [\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"ownerAccount\": {\n          \"userId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"DVknJzqaw.eo\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 37,\n        \"followersCount\": 8904,\n        \"createdAt\": \"2004-07-07T19:11:10.475Z\",\n        \"updatedAt\": \"1951-10-07T23:44:44.813Z\",\n        \"displayName\": \"Videos of Framasoft\",\n        \"description\": \"Videos made with <3 by Framasoft\",\n        \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n        \"isLocal\": false,\n        \"banners\": [\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"createdAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"updatedAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"ownerAccount\": {\n          \"userId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    ],\n    \"blocked\": false,\n    \"blockedReason\": \"string\",\n    \"noInstanceConfigWarningModal\": true,\n    \"noAccountSetupWarningModal\": true,\n    \"noWelcomeModal\": false,\n    \"createdAt\": \"string\",\n    \"pluginAuth\": \"string\",\n    \"lastLoginDate\": \"1991-04-13T03:42:37.533Z\",\n    \"twoFactorEnabled\": true,\n    \"newFeaturesInfoRead\": 4825.1409031791945\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b47ff8b3-30af-4927-80fe-ec78893be38e",
+          "name": "Update my user information",
+          "request": {
+            "name": "Update my user information",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<password>\",\n  \"currentPassword\": \"<password>\",\n  \"email\": \"<email>\",\n  \"displayName\": \"<string>\",\n  \"nsfwPolicy\": \"<string>\",\n  \"nsfwFlagsDisplayed\": \"<integer>\",\n  \"nsfwFlagsHidden\": \"<integer>\",\n  \"nsfwFlagsWarned\": \"<integer>\",\n  \"nsfwFlagsBlurred\": \"<integer>\",\n  \"p2pEnabled\": \"<boolean>\",\n  \"autoPlayVideo\": \"<boolean>\",\n  \"autoPlayNextVideo\": \"<boolean>\",\n  \"autoPlayNextVideoPlaylist\": \"<boolean>\",\n  \"videosHistoryEnabled\": \"<boolean>\",\n  \"videoLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"language\": \"<string>\",\n  \"theme\": \"<string>\",\n  \"noInstanceConfigWarningModal\": \"<boolean>\",\n  \"noAccountSetupWarningModal\": \"<boolean>\",\n  \"noWelcomeModal\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "658cfcbe-3b8d-491f-ba31-6fde939ceb1e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<password>\",\n  \"currentPassword\": \"<password>\",\n  \"email\": \"<email>\",\n  \"displayName\": \"<string>\",\n  \"nsfwPolicy\": \"<string>\",\n  \"nsfwFlagsDisplayed\": \"<integer>\",\n  \"nsfwFlagsHidden\": \"<integer>\",\n  \"nsfwFlagsWarned\": \"<integer>\",\n  \"nsfwFlagsBlurred\": \"<integer>\",\n  \"p2pEnabled\": \"<boolean>\",\n  \"autoPlayVideo\": \"<boolean>\",\n  \"autoPlayNextVideo\": \"<boolean>\",\n  \"autoPlayNextVideoPlaylist\": \"<boolean>\",\n  \"videosHistoryEnabled\": \"<boolean>\",\n  \"videoLanguages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"language\": \"<string>\",\n  \"theme\": \"<string>\",\n  \"noInstanceConfigWarningModal\": \"<boolean>\",\n  \"noAccountSetupWarningModal\": \"<boolean>\",\n  \"noWelcomeModal\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d26a096-2605-4152-9f32-dd5a4e20c5aa",
+          "name": "Delete my account",
+          "request": {
+            "name": "Delete my account",
+            "description": {
+              "content": "Delete the authenticated user's account and all associated data",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9087ec9d-0cd9-4665-aa85-2c63103f8be4",
+              "name": "successful operation - account deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e4be7b99-b832-4185-aa96-823e7d2deba0",
+              "name": "invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48a397e7-4c92-4953-b861-b83a58e17453",
+              "name": "authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a9ba311-b686-4990-99ce-41edc5c6937e",
+          "name": "Get video imports of my user",
+          "request": {
+            "name": "Get video imports of my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "videos",
+                "imports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCollaborations",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoId",
+                  "value": "<integer>",
+                  "description": "Filter on import video ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "targetUrl",
+                  "value": "<string>",
+                  "description": "Filter on import target URL"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoChannelSyncId",
+                  "value": "<number>",
+                  "description": "Filter on imports created by a specific channel synchronization"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search in video names"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4ef2db6a-0602-41e4-b3fb-1cc2f614f76c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "videos",
+                    "imports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "includeCollaborations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "videoId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "targetUrl",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "videoChannelSyncId",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"targetUrl\": \"https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"magnetUri\": \"/magnet:?xt=urn:fjqgh0d6:o206y7ep0k2fo6scugsnex15ojqjfzyt/i\",\n      \"torrentfile\": \"string\",\n      \"torrentName\": \"string\",\n      \"state\": {\n        \"id\": 2,\n        \"label\": \"Pending\"\n      },\n      \"error\": \"string\",\n      \"createdAt\": \"1952-09-05T15:51:11.921Z\",\n      \"updatedAt\": \"2000-04-14T09:27:38.956Z\",\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"isLive\": false,\n        \"liveSchedules\": [\n          {\n            \"startAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"startAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n        \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n        \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n        \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n        \"category\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"licence\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"language\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"privacy\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"truncatedDescription\": \"string\",\n        \"duration\": 1419,\n        \"aspectRatio\": 1.778,\n        \"isLocal\": false,\n        \"name\": \"What is PeerTube?\",\n        \"thumbnailPath\": \"string\",\n        \"previewPath\": \"string\",\n        \"thumbnails\": [\n          {\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aspectRatio\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aspectRatio\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n        \"views\": 1337,\n        \"likes\": 42,\n        \"dislikes\": 7,\n        \"comments\": 2313,\n        \"nsfw\": false,\n        \"nsfwFlags\": \"<integer>\",\n        \"nsfwSummary\": \"string\",\n        \"waitTranscoding\": false,\n        \"state\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"scheduledUpdate\": {\n          \"updateAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"privacy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"blacklisted\": false,\n        \"blacklistedReason\": \"string\",\n        \"account\": {\n          \"id\": 9503,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"ktDzKCNjBBddCXtpiwejKW.dap\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"channel\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"edqofgmkFHszAJmHwuocRTjHVfpqt.igjj\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"userHistory\": {\n          \"currentTime\": 933\n        }\n      }\n    },\n    {\n      \"id\": 42,\n      \"targetUrl\": \"https://framatube.org/videos/watch/9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"magnetUri\": \"/magnet:?xt=urn:dxphkafum:mpw8ksu31cci4s56b759fn3iinvp7lyk/i\",\n      \"torrentfile\": \"string\",\n      \"torrentName\": \"string\",\n      \"state\": {\n        \"id\": 2,\n        \"label\": \"Pending\"\n      },\n      \"error\": \"string\",\n      \"createdAt\": \"1981-11-16T07:46:41.311Z\",\n      \"updatedAt\": \"1975-05-30T02:20:18.086Z\",\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"isLive\": true,\n        \"liveSchedules\": [\n          {\n            \"startAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"startAt\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n        \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n        \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n        \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n        \"category\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"licence\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"language\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"privacy\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"truncatedDescription\": \"string\",\n        \"duration\": 1419,\n        \"aspectRatio\": 1.778,\n        \"isLocal\": true,\n        \"name\": \"What is PeerTube?\",\n        \"thumbnailPath\": \"string\",\n        \"previewPath\": \"string\",\n        \"thumbnails\": [\n          {\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aspectRatio\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"fileUrl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"width\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"height\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"aspectRatio\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n        \"views\": 1337,\n        \"likes\": 42,\n        \"dislikes\": 7,\n        \"comments\": 7355,\n        \"nsfw\": true,\n        \"nsfwFlags\": \"<integer>\",\n        \"nsfwSummary\": \"string\",\n        \"waitTranscoding\": true,\n        \"state\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"scheduledUpdate\": {\n          \"updateAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"privacy\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"blacklisted\": true,\n        \"blacklistedReason\": \"string\",\n        \"account\": {\n          \"id\": 3121,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"YDGvDtwgiLNjYluSSGzZlrXMfa.kkz\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"channel\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"rFJXEviNF.mbep\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"userHistory\": {\n          \"currentTime\": 2515\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81f48fb3-8d20-406d-9007-fe858efb8467",
+          "name": "Get my user used quota",
+          "request": {
+            "name": "Get my user used quota",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "video-quota-used"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "589e1588-37a2-4249-8c31-5c96b70034d0",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "video-quota-used"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"videoQuotaUsed\": 16810141515,\n  \"videoQuotaUsedDaily\": 1681014151\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "397acb6f-340c-4b6e-83f9-8f55edcd4ada",
+          "name": "Get rate of my user for a video",
+          "request": {
+            "name": "Get rate of my user for a video",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "videos",
+                ":videoIdOrUUID",
+                "rating"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "videoIdOrUUID",
+                  "description": "(Required) Video id or UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "92eb1812-bd85-4429-9748-406d1bc3648e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "rating"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 42,\n  \"rating\": \"dislike\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d918e4f8-759a-437a-b32d-f70bc67a959a",
+          "name": "List videos of my user",
+          "request": {
+            "name": "List videos of my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "channelNameOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 7.2** Filter on videos that are published by a channel with one of these names"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipCount",
+                  "value": "false",
+                  "description": "if you don't need the `total` in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfw",
+                  "value": "<string>",
+                  "description": "whether to include nsfw videos, if any"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsIncluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsExcluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLive",
+                  "value": "<boolean>",
+                  "description": "whether or not the video is a live"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeScheduledLive",
+                  "value": "<boolean>",
+                  "description": "whether or not include live that are scheduled for later"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryOneOf",
+                  "value": "<integer>",
+                  "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenceOneOf",
+                  "value": "<integer>",
+                  "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+                },
+                {
+                  "disabled": false,
+                  "key": "languageOneOf",
+                  "value": "<string>",
+                  "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsOneOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsAllOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video, where all should be present in the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLocal",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only local or remote objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasHLSFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasWebVideoFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoTagOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "stateOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+                },
+                {
+                  "disabled": false,
+                  "key": "privacyOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeAlreadyWatched",
+                  "value": "<boolean>",
+                  "description": "Whether or not to exclude videos that are in the user's video history"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCollaborations",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4b6cd02b-6331-4bd1-a8bb-56b5383dc169",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "channelNameOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "skipCount",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfwFlagsIncluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsfwFlagsExcluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeScheduledLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryOneOf",
+                      "value": "15"
+                    },
+                    {
+                      "key": "licenceOneOf",
+                      "value": "2"
+                    },
+                    {
+                      "key": "languageOneOf",
+                      "value": "en"
+                    },
+                    {
+                      "key": "tagsOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagsAllOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hasHLSFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasWebVideoFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "privacyOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeAlreadyWatched",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCollaborations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": false,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"1976-03-10T14:29:26.495Z\"\n        },\n        {\n          \"startAt\": \"1991-11-22T21:29:02.675Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": true,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 5308,\n          \"height\": 9125,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 7888,\n          \"height\": 100,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 3106,\n      \"nsfw\": true,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": true,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"1999-05-05T05:09:54.470Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": true,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 5420,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"NsggghYCIDSjZlUHNMRAXZcAcWSgWqk.pra\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8736,\n            \"height\": 8862,\n            \"createdAt\": \"1951-08-07T08:09:45.141Z\",\n            \"updatedAt\": \"1975-07-16T13:59:30.606Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4965,\n            \"height\": 4962,\n            \"createdAt\": \"1971-08-23T11:47:04.695Z\",\n            \"updatedAt\": \"1978-01-07T23:53:27.464Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"wkm.heji\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9118,\n            \"height\": 3254,\n            \"createdAt\": \"2023-09-30T12:51:58.007Z\",\n            \"updatedAt\": \"1955-01-26T04:13:38.599Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5552,\n            \"height\": 5914,\n            \"createdAt\": \"1959-02-12T16:50:04.720Z\",\n            \"updatedAt\": \"1981-11-12T01:15:38.067Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 9152\n      }\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": true,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"1985-10-19T09:27:54.073Z\"\n        },\n        {\n          \"startAt\": \"2014-07-10T08:18:46.669Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": false,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6610,\n          \"height\": 3120,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 4725,\n          \"height\": 3664,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 1363,\n      \"nsfw\": true,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": true,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"2014-01-15T13:16:55.700Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": false,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 5962,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"wHWbdiHMs.mw\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5822,\n            \"height\": 2766,\n            \"createdAt\": \"1997-05-01T02:46:28.380Z\",\n            \"updatedAt\": \"2007-02-18T21:41:15.370Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 755,\n            \"height\": 14,\n            \"createdAt\": \"1991-11-12T02:03:01.990Z\",\n            \"updatedAt\": \"2021-05-23T04:51:30.737Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"BpdhIDiPUNyoijJCPe.wwfb\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8401,\n            \"height\": 9882,\n            \"createdAt\": \"1957-02-03T00:40:36.360Z\",\n            \"updatedAt\": \"1996-08-23T02:52:50.902Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4162,\n            \"height\": 1408,\n            \"createdAt\": \"1974-07-11T11:46:20.388Z\",\n            \"updatedAt\": \"1971-02-21T19:56:40.686Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 5754\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ff34dc1-ce29-4cf9-8b84-4439e4708395",
+          "name": "Mark feature info as read",
+          "request": {
+            "name": "Mark feature info as read",
+            "description": {
+              "content": "**PeerTube >= v8.0.0",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "new-feature-info",
+                "read"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feature\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bccb8f8c-53d3-45e3-8035-3c242f9e56bc",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "new-feature-info",
+                    "read"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feature\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8463cebc-d737-43ae-8850-54d56fd3b6f1",
+          "name": "Update my user avatar",
+          "request": {
+            "name": "Update my user avatar",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "avatar",
+                "pick"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatarfile",
+                  "type": "file",
+                  "contentType": "image/png, image/jpeg",
+                  "description": "The file to upload"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2eaef69-5498-46bf-894a-89cc96eed206",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "avatar",
+                    "pick"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "avatarfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/png, image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"avatars\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 5800,\n      \"height\": 2116,\n      \"createdAt\": \"1960-12-15T00:35:32.439Z\",\n      \"updatedAt\": \"2024-06-02T19:11:59.132Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 1323,\n      \"height\": 1785,\n      \"createdAt\": \"1952-01-13T10:45:30.767Z\",\n      \"updatedAt\": \"2007-07-06T23:41:08.135Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "336250e7-a680-4158-b038-1a7edcb6f060",
+              "name": "image file too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "avatar",
+                    "pick"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to upload",
+                        "type": "text/plain"
+                      },
+                      "key": "avatarfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/png, image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum file size for the avatar",
+                  "key": "X-File-Maximum-Size",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eff61d83-ecbf-41a7-8441-aa93acf85c41",
+          "name": "Delete my avatar",
+          "request": {
+            "name": "Delete my avatar",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "avatar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f8acf236-e2b6-461d-a1b9-bd6597e47e77",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "avatar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "045a0310-4ce9-4e19-8807-d15425a94772",
+          "name": "List my abuses",
+          "request": {
+            "name": "List my abuses",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "abuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>",
+                  "description": "only list the report with this id"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort abuses by criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "82ce9363-6783-4ef3-b2dc-f50b5e4f73f7",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "abuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"reason\": \"The video is a spam\",\n      \"predefinedReasons\": [\n        \"spamOrMisleading\"\n      ],\n      \"reporterAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"AoIKfRVQaRcUEYwuFFSxuXVYBrNm.pww\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 2039,\n        \"followersCount\": 7531,\n        \"createdAt\": \"2008-05-20T23:58:09.180Z\",\n        \"updatedAt\": \"2007-05-05T02:11:18.875Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"moderationComment\": \"Decided to ban the server since it spams us regularly\",\n      \"video\": {\n        \"id\": 7309,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"nsfw\": true,\n        \"startAt\": \"2009-08-29T11:27:58.233Z\",\n        \"endAt\": \"2008-10-27T11:33:44.207Z\",\n        \"deleted\": false,\n        \"blacklisted\": false,\n        \"thumbnailPath\": \"string\",\n        \"thumbnails\": [\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 9143,\n            \"height\": 6893,\n            \"aspectRatio\": \"16:9\"\n          },\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 3913,\n            \"height\": 8587,\n            \"aspectRatio\": \"16:9\"\n          }\n        ],\n        \"channel\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": \"string\",\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"host\": \"CjIB.tsgu\",\n          \"hostRedundancyAllowed\": false,\n          \"followingCount\": 6147,\n          \"followersCount\": 4272,\n          \"createdAt\": \"1971-11-19T07:49:06.401Z\",\n          \"updatedAt\": \"2007-04-15T18:39:08.503Z\",\n          \"displayName\": \"Videos of Framasoft\",\n          \"description\": \"Videos made with <3 by Framasoft\",\n          \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n          \"isLocal\": true,\n          \"banners\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"ownerAccount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"createdAt\": \"1963-03-29T06:08:14.704Z\"\n    },\n    {\n      \"id\": 42,\n      \"reason\": \"The video is a spam\",\n      \"predefinedReasons\": [\n        \"spamOrMisleading\"\n      ],\n      \"reporterAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"JVMwJq.dumj\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 7072,\n        \"followersCount\": 4819,\n        \"createdAt\": \"1986-05-09T14:04:12.888Z\",\n        \"updatedAt\": \"1985-01-31T18:15:33.925Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"moderationComment\": \"Decided to ban the server since it spams us regularly\",\n      \"video\": {\n        \"id\": 1721,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"nsfw\": false,\n        \"startAt\": \"1969-02-15T18:19:04.992Z\",\n        \"endAt\": \"1980-03-01T00:45:52.885Z\",\n        \"deleted\": false,\n        \"blacklisted\": false,\n        \"thumbnailPath\": \"string\",\n        \"thumbnails\": [\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 7170,\n            \"height\": 9785,\n            \"aspectRatio\": \"16:9\"\n          },\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 1797,\n            \"height\": 2086,\n            \"aspectRatio\": \"16:9\"\n          }\n        ],\n        \"channel\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": \"string\",\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"host\": \"SAGg.uc\",\n          \"hostRedundancyAllowed\": true,\n          \"followingCount\": 6626,\n          \"followersCount\": 4032,\n          \"createdAt\": \"1997-02-08T02:45:12.513Z\",\n          \"updatedAt\": \"1998-07-21T18:09:50.733Z\",\n          \"displayName\": \"Videos of Framasoft\",\n          \"description\": \"Videos made with <3 by Framasoft\",\n          \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n          \"isLocal\": false,\n          \"banners\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"ownerAccount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"createdAt\": \"2022-06-27T18:30:55.870Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "26799932-61ca-4cfa-a2f2-f6a39eccc42e",
+    "name": "PeerTube Abuses My User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

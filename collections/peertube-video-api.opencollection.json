@@ -1,0 +1,1542 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List videos of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/videos",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ]
+          },
+          "docs": "List videos of an account"
+        },
+        {
+          "info": {
+            "name": "Request video token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/token",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Request special tokens that expire quickly to use them in some context (like accessing private static files)"
+        },
+        {
+          "info": {
+            "name": "Create a studio task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/studio/edit",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a task to edit a video  (cut, add intro/outro etc)"
+        },
+        {
+          "info": {
+            "name": "List videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ]
+          },
+          "docs": "List videos"
+        },
+        {
+          "info": {
+            "name": "List available video categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/categories"
+          },
+          "docs": "List available video categories"
+        },
+        {
+          "info": {
+            "name": "List available video licences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/licences"
+          },
+          "docs": "List available video licences"
+        },
+        {
+          "info": {
+            "name": "List available video languages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/languages",
+            "params": [
+              {
+                "name": "scope",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** Filter languages by scope. Use `subtitle` to exclude sign languages and other languages that don't make sense for subtitles."
+              }
+            ]
+          },
+          "docs": "List available video languages"
+        },
+        {
+          "info": {
+            "name": "List available video privacy policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/privacies"
+          },
+          "docs": "List available video privacy policies"
+        },
+        {
+          "info": {
+            "name": "Get a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ]
+          },
+          "docs": "Get a video"
+        },
+        {
+          "info": {
+            "name": "Update a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channelId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "thumbnailfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "previewfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "category",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "licence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "privacy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "waitTranscoding",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "support",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfw",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfwSummary",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfwFlags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "commentsPolicy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "downloadEnabled",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "originallyPublishedAt",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "scheduleUpdate",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoPasswords",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a video"
+        },
+        {
+          "info": {
+            "name": "Delete a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a video"
+        },
+        {
+          "info": {
+            "name": "Notify user is watching a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/views",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Call this endpoint regularly (every 5-10 seconds for example) to notify the server the user is watching the video. After a while, PeerTube will increase video's viewers counter. If the user is authenticated, PeerTube will also store the current player time."
+        },
+        {
+          "info": {
+            "name": "Upload a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses a single request to upload a video."
+        },
+        {
+          "info": {
+            "name": "Initialize the resumable upload of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload-resumable",
+            "headers": [
+              {
+                "name": "X-Upload-Content-Length",
+                "value": ""
+              },
+              {
+                "name": "X-Upload-Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to initialize the upload of a video"
+        },
+        {
+          "info": {
+            "name": "Send chunk for the resumable upload of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload-resumable",
+            "headers": [
+              {
+                "name": "Content-Range",
+                "value": ""
+              },
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the upload of a video"
+        },
+        {
+          "info": {
+            "name": "Cancel the resumable upload of a video, deleting any data uploaded so far",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/upload-resumable",
+            "headers": [
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the upload of a video"
+        },
+        {
+          "info": {
+            "name": "Create a live",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "channelId",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "saveReplay",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "replaySettings",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "permanentLive",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "latencyMode",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "thumbnailfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "previewfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "privacy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "category",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "licence",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "language",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "support",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfw",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfwSummary",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "nsfwFlags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "tags",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "commentsPolicy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "downloadEnabled",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "schedules",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a live"
+        },
+        {
+          "info": {
+            "name": "Get information about a live",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get information about a live"
+        },
+        {
+          "info": {
+            "name": "Update information about a live",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/live/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update information about a live"
+        },
+        {
+          "info": {
+            "name": "Get video source file metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get metadata and download link of original video file"
+        },
+        {
+          "info": {
+            "name": "Delete video source file",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/file",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete video source file"
+        },
+        {
+          "info": {
+            "name": "Initialize the resumable replacement of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/replace-resumable",
+            "headers": [
+              {
+                "name": "X-Upload-Content-Length",
+                "value": ""
+              },
+              {
+                "name": "X-Upload-Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to initialize the replacement of a video"
+        },
+        {
+          "info": {
+            "name": "Send chunk for the resumable replacement of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/replace-resumable",
+            "headers": [
+              {
+                "name": "Content-Range",
+                "value": ""
+              },
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to continue, pause or resume the replacement of a video"
+        },
+        {
+          "info": {
+            "name": "Cancel the resumable replacement of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/source/replace-resumable",
+            "headers": [
+              {
+                "name": "Content-Length",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "query",
+                "description": "Created session id to proceed with. If you didn't send chunks in the last hour, it is\nnot valid anymore and you need to initialize a new upload.\n"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.0** Uses [a resumable protocol](https://github.com/kukhariev/node-uploadx/blob/master/proto.md) to cancel the replacement of a video"
+        },
+        {
+          "info": {
+            "name": "List storyboards of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/storyboards",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ]
+          },
+          "docs": "**PeerTube >= 6.0**"
+        },
+        {
+          "info": {
+            "name": "List videos of a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/videos",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ]
+          },
+          "docs": "List videos of a video channel"
+        },
+        {
+          "info": {
+            "name": "Search videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/search/videos",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete video information and interact with it.\n"
+              },
+              {
+                "name": "uuids",
+                "value": "",
+                "type": "query",
+                "description": "Find elements with specific UUIDs"
+              },
+              {
+                "name": "searchTarget",
+                "value": "",
+                "type": "query",
+                "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Get videos that are published after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Get videos that are published before this date"
+              },
+              {
+                "name": "originallyPublishedStartDate",
+                "value": "",
+                "type": "query",
+                "description": "Get videos that are originally published after this date"
+              },
+              {
+                "name": "originallyPublishedEndDate",
+                "value": "",
+                "type": "query",
+                "description": "Get videos that are originally published before this date"
+              },
+              {
+                "name": "durationMin",
+                "value": "",
+                "type": "query",
+                "description": "Get videos that have this minimum duration"
+              },
+              {
+                "name": "durationMax",
+                "value": "",
+                "type": "query",
+                "description": "Get videos that have this maximum duration"
+              }
+            ]
+          },
+          "docs": "Search videos"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

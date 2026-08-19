@@ -1,0 +1,399 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Runner Jobs API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Runner Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a new job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners"
+        },
+        {
+          "info": {
+            "name": "Accept job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/accept",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners"
+        },
+        {
+          "info": {
+            "name": "Abort job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/abort",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners"
+        },
+        {
+          "info": {
+            "name": "Update job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/update",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners"
+        },
+        {
+          "info": {
+            "name": "Post job error",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/error",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners"
+        },
+        {
+          "info": {
+            "name": "Post job success",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/success",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners"
+        },
+        {
+          "info": {
+            "name": "Download the max-quality audio file for a job video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/files/videos/:videoIdOrUUID/max-quality/audio",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners."
+        },
+        {
+          "info": {
+            "name": "Download the max-quality video file for a job video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/files/videos/:videoIdOrUUID/max-quality",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners."
+        },
+        {
+          "info": {
+            "name": "Download the max-quality thumbnail for a job video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/files/videos/:videoIdOrUUID/thumbnails/max-quality",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners."
+        },
+        {
+          "info": {
+            "name": "Download the max-quality preview for a job video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/files/videos/:videoIdOrUUID/previews/max-quality",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners."
+        },
+        {
+          "info": {
+            "name": "Download a video studio task file for a job video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/files/videos/:videoIdOrUUID/studio/task-files/:filename",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "videoIdOrUUID",
+                "value": "",
+                "type": "path",
+                "description": "Video id or UUID"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path",
+                "description": "Name of the task file to download"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "API used by PeerTube runners."
+        },
+        {
+          "info": {
+            "name": "Cancel a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID/cancel",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Cancel a job"
+        },
+        {
+          "info": {
+            "name": "Delete a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs/:jobUUID",
+            "params": [
+              {
+                "name": "jobUUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "The endpoint will first cancel the job if needed, and then remove it from the database. Children jobs will also be removed"
+        },
+        {
+          "info": {
+            "name": "List jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/runners/jobs",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort runner jobs by criteria"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "typeOneOf",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List jobs"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,3457 @@
+{
+  "item": [
+    {
+      "id": "20641941-1c90-4e95-a989-5689c5d39926",
+      "name": "Ownership Change",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ad7efe6-dde0-4d41-988d-77ef951197b9",
+          "name": "List video ownership changes",
+          "request": {
+            "name": "List video ownership changes",
+            "description": {
+              "content": "List ownership change requests received by the authenticated user and requests sent by a channel managed by the authenticated user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                "ownership"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "06b51d6a-530e-4f82-b419-96aa0889f5e8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": 1,\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"hCVMsUbsCOEnGKScVNUPAvDpQufEgc.yr\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 1023,\n        \"followersCount\": 2628,\n        \"createdAt\": \"2004-10-06T05:03:27.214Z\",\n        \"updatedAt\": \"1954-01-03T05:21:26.308Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"strin\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"YBrDelOKiFGZuhQeyEjo.cxs\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 777,\n        \"followersCount\": 9611,\n        \"createdAt\": \"1994-03-30T13:57:05.437Z\",\n        \"updatedAt\": \"1957-09-19T12:56:04.192Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": true,\n        \"publishedAt\": \"1982-02-22T00:52:31.835Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"lEafUvltzEhrcfmxsUoFIwAHDouxFwi.flb\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"GOILvywAiviYASPhLOThwReudjtvI.abt\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3907,\n            \"height\": 9337,\n            \"createdAt\": \"2025-11-04T02:54:21.867Z\",\n            \"updatedAt\": \"2001-10-26T09:59:56.041Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2802,\n            \"height\": 5477,\n            \"createdAt\": \"2011-10-19T21:38:16.553Z\",\n            \"updatedAt\": \"1997-11-18T00:24:56.101Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"1997-10-18T02:39:58.786Z\"\n    },\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": 3,\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"FzUTSEeeYNKXIKKVghXKeePNjkJCi.jh\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 4193,\n        \"followersCount\": 5025,\n        \"createdAt\": \"1975-03-24T14:27:31.758Z\",\n        \"updatedAt\": \"2000-02-09T05:17:59.231Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"iUOIPIXL.wmgx\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 5630,\n        \"followersCount\": 5743,\n        \"createdAt\": \"1968-02-02T15:35:32.678Z\",\n        \"updatedAt\": \"2006-07-28T07:35:24.060Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": false,\n        \"publishedAt\": \"1949-01-04T22:28:22.745Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"xFlsDDnxwdAoQdLGytOHdSHuLZnxrGE.ihm\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"kaEvBewHkyPwkXiztsY.cwz\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4965,\n            \"height\": 9378,\n            \"createdAt\": \"1987-07-27T16:45:10.646Z\",\n            \"updatedAt\": \"1996-12-02T15:18:55.797Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 126,\n            \"height\": 7250,\n            \"createdAt\": \"2000-09-12T13:34:24.245Z\",\n            \"updatedAt\": \"1990-06-03T13:57:02.051Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"2014-06-21T07:14:54.358Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86fc2201-35eb-49bf-a7e2-9ce6429682a8",
+              "name": "authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "599b24ea-f3a8-46d3-98ab-ee0299f9de0d",
+          "name": "Accept ownership change request",
+          "request": {
+            "name": "Accept ownership change request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                "ownership",
+                ":id",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channelId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f98b80c7-d1dc-4e7e-a873-ddf3dbd7486d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f1a7b6f-69c8-41f3-be54-7caff4d627a8",
+              "name": "ownership change request already accepted/refused or invalid target channel id",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b6a083fe-d528-4b42-9d3c-9bf2b617dc17",
+              "name": "cannot terminate an ownership change of another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2f1ef5a9-cd94-46a3-b3c8-39c8896b0dcc",
+              "name": "video ownership change not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "430b5b91-4eff-45ea-a204-7339c4d69606",
+              "name": "quota exceeded for the target account/channel",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channelId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "147c5938-5bb2-4ef3-aeff-25a87b105d79",
+          "name": "Refuse ownership change request",
+          "request": {
+            "name": "Refuse ownership change request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                "ownership",
+                ":id",
+                "refuse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c2c8bdea-fc38-4a1c-8061-f6811f906ff9",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da68388b-48e0-40c4-a544-c6065a5927bc",
+              "name": "ownership change request already accepted/refused",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c800d58-1758-4406-a1aa-0e44038a552d",
+              "name": "cannot terminate an ownership change of another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28fe96a0-d6b3-4915-9484-1d3c07504594",
+              "name": "video ownership change not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d262c2d7-af22-4d1f-bc81-128bbc0d6bda",
+          "name": "Delete ownership change request",
+          "request": {
+            "name": "Delete ownership change request",
+            "description": {
+              "content": "Delete an ownership change request. Only users who can manage the video can delete the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                "ownership",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "89aa284c-31e0-4193-bd94-cd9e21de47f6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f33db85-9d9d-460a-88c6-8f4eb7a55ee5",
+              "name": "ownership request already accepted or refused",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a49c7df1-1d63-430d-b600-50b53df47b30",
+              "name": "only users who can manage the video can delete an ownership change request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ed980fb-2baf-471d-8fb1-39b7f43a0d3e",
+              "name": "video ownership change not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "928dada8-326c-4517-aafc-68a7c8a7953f",
+          "name": "List ownership change requests for a video",
+          "request": {
+            "name": "List ownership change requests for a video",
+            "description": {
+              "content": "List all ownership change requests for a specific video. The authenticated user must be able to manage the video.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":videoIdOrUUID",
+                "ownership"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<integer>",
+                  "description": "Filter by ownership change state"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "videoIdOrUUID",
+                  "description": "(Required) Video id or UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "31d0955f-1eac-422b-ac7c-9b5f8dd9a3be",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"gGsTHqPVPNOItlgOlMCU.wfqb\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 6261,\n        \"followersCount\": 2002,\n        \"createdAt\": \"2012-03-06T04:58:25.231Z\",\n        \"updatedAt\": \"2011-08-01T16:53:17.523Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"cXh.jo\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 1642,\n        \"followersCount\": 5832,\n        \"createdAt\": \"2025-09-03T14:59:05.357Z\",\n        \"updatedAt\": \"1974-06-07T13:30:43.907Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": true,\n        \"publishedAt\": \"1987-04-23T22:22:52.031Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"CLjRdpCOSpIMhabyEQmufH.gn\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"BXoneJefBUtWkZilguUwKltTsju.pez\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6626,\n            \"height\": 1456,\n            \"createdAt\": \"1969-06-17T20:13:20.754Z\",\n            \"updatedAt\": \"1957-04-14T11:26:05.302Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7938,\n            \"height\": 3835,\n            \"createdAt\": \"1983-08-06T20:54:36.926Z\",\n            \"updatedAt\": \"1988-11-10T21:10:17.436Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"2012-10-01T15:25:41.741Z\"\n    },\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"dtgkjAAznEUaEbXUyPzzZVdbohWu.ue\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 8300,\n        \"followersCount\": 4025,\n        \"createdAt\": \"1962-12-10T00:53:11.496Z\",\n        \"updatedAt\": \"1958-11-10T00:51:10.690Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"xwO.hprp\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 664,\n        \"followersCount\": 7282,\n        \"createdAt\": \"1991-04-21T11:47:56.868Z\",\n        \"updatedAt\": \"1951-03-14T04:45:47.971Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": false,\n        \"publishedAt\": \"2009-11-20T00:19:44.047Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"OeXUJKuDYEEU.jxug\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"ovNCtABEmuHeBClfCSB.mzd\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9393,\n            \"height\": 9104,\n            \"createdAt\": \"1984-01-24T12:05:45.324Z\",\n            \"updatedAt\": \"1970-01-31T14:13:58.790Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9992,\n            \"height\": 1209,\n            \"createdAt\": \"1977-08-19T03:26:48.391Z\",\n            \"updatedAt\": \"1986-09-19T16:58:25.322Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"1958-05-04T17:56:45.461Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0caaf3f6-ec03-432b-9e8a-7d93bac7e69b",
+              "name": "cannot manage the video",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ed45d9f1-9675-4033-9c03-824eeb7139db",
+              "name": "video not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd751faf-db7e-4abd-84d0-ac73ff623f7a",
+          "name": "Request ownership change",
+          "request": {
+            "name": "Request ownership change",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":videoIdOrUUID",
+                "give-ownership"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "videoIdOrUUID",
+                  "description": "(Required) Video id or UUID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3a703a8-2e16-48ee-ba1d-abef261b65cf",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "804c755b-62b0-4779-ae9d-df42d9200836",
+              "name": "changing video ownership to a remote account is not supported yet or there is already a pending ownership request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f0edd90-326a-4811-9db0-f72dcd1e6e51",
+              "name": "cannot change ownership of this video",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "43aec2ea-8510-4b7d-b9e2-12bf4e4c359e",
+              "name": "video not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":videoIdOrUUID",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "videoIdOrUUID",
+                      "description": "(Required) Video id or UUID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb46d80e-3e5e-4839-af6b-f1b7957256d4",
+          "name": "List channel ownership changes",
+          "request": {
+            "name": "List channel ownership changes",
+            "description": {
+              "content": "List ownership change requests received by the authenticated user and requests sent by channels managed by the authenticated user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                "ownership"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fa170da2-6caa-4f42-8c23-84e3b556e9da",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"gGsTHqPVPNOItlgOlMCU.wfqb\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 6261,\n        \"followersCount\": 2002,\n        \"createdAt\": \"2012-03-06T04:58:25.231Z\",\n        \"updatedAt\": \"2011-08-01T16:53:17.523Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"cXh.jo\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 1642,\n        \"followersCount\": 5832,\n        \"createdAt\": \"2025-09-03T14:59:05.357Z\",\n        \"updatedAt\": \"1974-06-07T13:30:43.907Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": true,\n        \"publishedAt\": \"1987-04-23T22:22:52.031Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"CLjRdpCOSpIMhabyEQmufH.gn\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"BXoneJefBUtWkZilguUwKltTsju.pez\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6626,\n            \"height\": 1456,\n            \"createdAt\": \"1969-06-17T20:13:20.754Z\",\n            \"updatedAt\": \"1957-04-14T11:26:05.302Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7938,\n            \"height\": 3835,\n            \"createdAt\": \"1983-08-06T20:54:36.926Z\",\n            \"updatedAt\": \"1988-11-10T21:10:17.436Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"2012-10-01T15:25:41.741Z\"\n    },\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"dtgkjAAznEUaEbXUyPzzZVdbohWu.ue\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 8300,\n        \"followersCount\": 4025,\n        \"createdAt\": \"1962-12-10T00:53:11.496Z\",\n        \"updatedAt\": \"1958-11-10T00:51:10.690Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"xwO.hprp\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 664,\n        \"followersCount\": 7282,\n        \"createdAt\": \"1991-04-21T11:47:56.868Z\",\n        \"updatedAt\": \"1951-03-14T04:45:47.971Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": false,\n        \"publishedAt\": \"2009-11-20T00:19:44.047Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"OeXUJKuDYEEU.jxug\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"ovNCtABEmuHeBClfCSB.mzd\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9393,\n            \"height\": 9104,\n            \"createdAt\": \"1984-01-24T12:05:45.324Z\",\n            \"updatedAt\": \"1970-01-31T14:13:58.790Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9992,\n            \"height\": 1209,\n            \"createdAt\": \"1977-08-19T03:26:48.391Z\",\n            \"updatedAt\": \"1986-09-19T16:58:25.322Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"1958-05-04T17:56:45.461Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df5005ec-c94f-4a3e-a633-516008301ba5",
+              "name": "authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2812f75-2341-47d4-979f-9c24d23af853",
+          "name": "Accept channel ownership change request",
+          "request": {
+            "name": "Accept channel ownership change request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                "ownership",
+                ":id",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f7d80b86-a037-474a-9610-58a8a7e3d63f",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "16637394-dab6-4a23-9823-d5d393f58268",
+              "name": "ownership change request already accepted/refused or request type mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "571c07c6-2969-464a-9d4b-1f2641d74118",
+              "name": "cannot terminate an ownership change of another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0d281ea6-a92e-4fe8-bc5e-1cd6bb87bf0b",
+              "name": "channel ownership change not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca0b81bc-7824-4eef-8220-88ad0f510b76",
+              "name": "cannot accept transferring the last channel of the initiator account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23851e4b-7e80-47d1-83eb-6e242281a640",
+              "name": "quota exceeded for the target account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad97c8b4-a54a-4750-a3b3-2509bd47d5ef",
+          "name": "Refuse channel ownership change request",
+          "request": {
+            "name": "Refuse channel ownership change request",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                "ownership",
+                ":id",
+                "refuse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e63ccd5-6693-46d8-b5fc-641d59da89fb",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62263f5c-095e-4816-8dc0-05dc987c4447",
+              "name": "ownership change request already accepted/refused or request type mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7bf9ec02-ae81-4ffe-ba6e-cf45263df42f",
+              "name": "cannot terminate an ownership change of another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "081ffd25-8535-4917-98b8-b9f92ce64245",
+              "name": "channel ownership change not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id",
+                    "refuse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26ffca94-66e0-4e2d-a864-89fa31179aa9",
+          "name": "Delete channel ownership change request",
+          "request": {
+            "name": "Delete channel ownership change request",
+            "description": {
+              "content": "Delete a channel ownership change request. Only channel owners can delete the request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                "ownership",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f264c97e-b05b-484b-9be9-db64f19387e2",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ef72636-5993-4f3f-816d-4a9219307906",
+              "name": "ownership request already accepted/refused or request type mismatch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99146424-d7a9-439d-914f-99c43401fd88",
+              "name": "only channel owners can delete a channel ownership change request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "006b5787-4964-4fac-ae63-5fc7aca9ce0a",
+              "name": "channel ownership change not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    "ownership",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7f263dd-1ace-4bbd-a06e-bf8e99d974b5",
+          "name": "List ownership change requests for a channel",
+          "request": {
+            "name": "List ownership change requests for a channel",
+            "description": {
+              "content": "List all ownership change requests for a specific channel. The authenticated user must be able to manage the channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "ownership"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<integer>",
+                  "description": "Filter by ownership change state"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66983f87-c07a-46ff-9c20-528fa5523765",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"gGsTHqPVPNOItlgOlMCU.wfqb\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 6261,\n        \"followersCount\": 2002,\n        \"createdAt\": \"2012-03-06T04:58:25.231Z\",\n        \"updatedAt\": \"2011-08-01T16:53:17.523Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"cXh.jo\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 1642,\n        \"followersCount\": 5832,\n        \"createdAt\": \"2025-09-03T14:59:05.357Z\",\n        \"updatedAt\": \"1974-06-07T13:30:43.907Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": true,\n        \"publishedAt\": \"1987-04-23T22:22:52.031Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"CLjRdpCOSpIMhabyEQmufH.gn\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"BXoneJefBUtWkZilguUwKltTsju.pez\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6626,\n            \"height\": 1456,\n            \"createdAt\": \"1969-06-17T20:13:20.754Z\",\n            \"updatedAt\": \"1957-04-14T11:26:05.302Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7938,\n            \"height\": 3835,\n            \"createdAt\": \"1983-08-06T20:54:36.926Z\",\n            \"updatedAt\": \"1988-11-10T21:10:17.436Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"2012-10-01T15:25:41.741Z\"\n    },\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"initiatorAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"dtgkjAAznEUaEbXUyPzzZVdbohWu.ue\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 8300,\n        \"followersCount\": 4025,\n        \"createdAt\": \"1962-12-10T00:53:11.496Z\",\n        \"updatedAt\": \"1958-11-10T00:51:10.690Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"nextOwnerAccount\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"xwO.hprp\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 664,\n        \"followersCount\": 7282,\n        \"createdAt\": \"1991-04-21T11:47:56.868Z\",\n        \"updatedAt\": \"1951-03-14T04:45:47.971Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"name\": \"string\",\n        \"isLive\": false,\n        \"nsfw\": false,\n        \"publishedAt\": \"2009-11-20T00:19:44.047Z\",\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"OeXUJKuDYEEU.jxug\",\n          \"avatars\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"ovNCtABEmuHeBClfCSB.mzd\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9393,\n            \"height\": 9104,\n            \"createdAt\": \"1984-01-24T12:05:45.324Z\",\n            \"updatedAt\": \"1970-01-31T14:13:58.790Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9992,\n            \"height\": 1209,\n            \"createdAt\": \"1977-08-19T03:26:48.391Z\",\n            \"updatedAt\": \"1986-09-19T16:58:25.322Z\"\n          }\n        ]\n      },\n      \"createdAt\": \"1958-05-04T17:56:45.461Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2369df17-164c-4313-ac57-34cdb961f46e",
+              "name": "invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a0957adc-73b0-4585-8eb0-1c0091e8afa4",
+              "name": "cannot manage the channel",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "502233fc-d4ac-483f-9de8-2b0fe25f99c5",
+              "name": "channel not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "state",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c925e828-43f5-4c9d-81bf-98774b3d8677",
+          "name": "Request channel ownership change",
+          "request": {
+            "name": "Request channel ownership change",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "give-ownership"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80015429-4fd0-47b0-acd1-4f906d1015e6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5acd207-8274-452f-a83c-ba18059e66b6",
+              "name": "changing channel ownership to this target is invalid or there is already a pending ownership request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "28dd86ad-cc89-44df-a746-f50bae2d5b47",
+              "name": "cannot change ownership of this channel",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ccf2c19f-b26f-46f7-895f-82a26083ec6b",
+              "name": "channel not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "give-ownership"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5f0e364f-d02d-4651-8991-ac8694f45e7b",
+    "name": "PeerTube Abuses Ownership Change API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

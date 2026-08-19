@@ -1,0 +1,3334 @@
+{
+  "item": [
+    {
+      "id": "597aadd5-5a80-49f7-bd05-3af0cc04baaa",
+      "name": "Video Channels",
+      "description": {
+        "content": "Operations dealing with the creation, modification and listing of videos within a channel.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b129e794-a929-404c-b1f3-56b4390facdd",
+          "name": "List video channels",
+          "request": {
+            "name": "List video channels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "247bd2f5-260f-44aa-aa11-7beb634dcf78",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/2blgl5ag/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 3754,\n          \"height\": 9305,\n          \"createdAt\": \"1968-01-17T18:10:21.058Z\",\n          \"updatedAt\": \"1948-11-08T04:24:11.817Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7845,\n          \"height\": 8570,\n          \"createdAt\": \"2007-05-11T07:25:20.212Z\",\n          \"updatedAt\": \"2006-04-10T09:33:38.736Z\"\n        }\n      ],\n      \"host\": \"rmmZkguHIbzIyZNWlhNMgIzfYw.ztdg\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 9529,\n      \"followersCount\": 2093,\n      \"createdAt\": \"2006-03-20T11:14:13.933Z\",\n      \"updatedAt\": \"2012-09-20T21:57:02.193Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": false,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 323,\n          \"height\": 9019,\n          \"createdAt\": \"1947-08-06T04:49:15.154Z\",\n          \"updatedAt\": \"1985-10-22T09:37:06.428Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 604,\n          \"height\": 1453,\n          \"createdAt\": \"1958-02-24T21:53:31.262Z\",\n          \"updatedAt\": \"1984-10-11T20:23:56.221Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/ff.avksflfq/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 944,\n          \"height\": 9394,\n          \"createdAt\": \"1951-02-07T03:38:48.906Z\",\n          \"updatedAt\": \"1978-02-08T07:27:37.476Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 6919,\n          \"height\": 337,\n          \"createdAt\": \"1970-12-11T16:07:12.299Z\",\n          \"updatedAt\": \"1966-04-06T22:34:31.390Z\"\n        }\n      ],\n      \"host\": \"grdtYUwjSWXnikKtaRAYomhP.ue\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 5668,\n      \"followersCount\": 3229,\n      \"createdAt\": \"2006-03-05T05:37:25.045Z\",\n      \"updatedAt\": \"1973-11-14T23:00:33.717Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": true,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 9289,\n          \"height\": 7108,\n          \"createdAt\": \"1999-04-07T14:59:02.329Z\",\n          \"updatedAt\": \"2007-11-15T16:51:03.761Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 2997,\n          \"height\": 9804,\n          \"createdAt\": \"2012-01-12T18:44:24.036Z\",\n          \"updatedAt\": \"1948-05-23T10:33:04.661Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "572b1c03-71e5-40ec-9323-4409c90a45a2",
+          "name": "Create a video channel",
+          "request": {
+            "name": "Create a video channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": {},\n  \"description\": {},\n  \"support\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e701545-44cb-4daf-813b-d8a8f84ad075",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"displayName\": {},\n  \"description\": {},\n  \"support\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"videoChannel\": {\n    \"id\": 42\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e51179a0-b322-48ca-9900-ebe13e203643",
+          "name": "Get a video channel",
+          "request": {
+            "name": "Get a video channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4a4257f-a07e-4f49-adcd-d0e2b4ff7c67",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 42,\n  \"url\": \"string\",\n  \"name\": \"/e62/\",\n  \"avatars\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 8869,\n      \"height\": 1279,\n      \"createdAt\": \"1949-04-26T09:08:31.844Z\",\n      \"updatedAt\": \"1996-01-17T07:07:37.077Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 5849,\n      \"height\": 9181,\n      \"createdAt\": \"1989-10-27T14:58:14.473Z\",\n      \"updatedAt\": \"2001-09-04T20:34:32.816Z\"\n    }\n  ],\n  \"host\": \"kHYETmKKy.qwhc\",\n  \"hostRedundancyAllowed\": true,\n  \"followingCount\": 1025,\n  \"followersCount\": 2488,\n  \"createdAt\": \"1992-08-03T00:20:23.501Z\",\n  \"updatedAt\": \"1959-09-17T04:06:32.743Z\",\n  \"displayName\": \"Videos of Framasoft\",\n  \"description\": \"Videos made with <3 by Framasoft\",\n  \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n  \"isLocal\": true,\n  \"banners\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 7659,\n      \"height\": 4776,\n      \"createdAt\": \"1970-01-09T19:02:50.819Z\",\n      \"updatedAt\": \"1959-09-23T02:17:43.261Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 9198,\n      \"height\": 3391,\n      \"createdAt\": \"2008-05-25T14:14:10.821Z\",\n      \"updatedAt\": \"1987-06-09T07:04:48.765Z\"\n    }\n  ],\n  \"ownerAccount\": {\n    \"id\": 42,\n    \"url\": \"string\",\n    \"name\": \"/g1do1el7pi/\",\n    \"avatars\": [\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 9117,\n        \"height\": 9431,\n        \"createdAt\": \"1972-01-22T12:57:55.200Z\",\n        \"updatedAt\": \"2001-04-14T06:02:21.590Z\"\n      },\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 4467,\n        \"height\": 2751,\n        \"createdAt\": \"1971-01-22T06:24:29.986Z\",\n        \"updatedAt\": \"1970-07-24T04:21:07.197Z\"\n      }\n    ],\n    \"host\": \"F.cp\",\n    \"hostRedundancyAllowed\": false,\n    \"followingCount\": 6801,\n    \"followersCount\": 4186,\n    \"createdAt\": \"1968-10-11T08:40:18.503Z\",\n    \"updatedAt\": \"1983-02-22T16:14:11.914Z\",\n    \"userId\": 42,\n    \"displayName\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1c3634b-79ad-48d2-a89c-e7630143797d",
+          "name": "Update a video channel",
+          "request": {
+            "name": "Update a video channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": {},\n  \"description\": {},\n  \"support\": {},\n  \"bulkVideosSupportUpdate\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9870cace-820e-4305-afe4-a730778f4a37",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": {},\n  \"description\": {},\n  \"support\": {},\n  \"bulkVideosSupportUpdate\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4f0b418-42b2-446c-adf9-140aa7a13319",
+          "name": "Delete a video channel",
+          "request": {
+            "name": "Delete a video channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6e101622-b757-4022-a2c8-9b42715fe3d5",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6e11197-4df9-4d93-a6b9-9b044d4eadec",
+          "name": "List videos of a video channel",
+          "request": {
+            "name": "List videos of a video channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipCount",
+                  "value": "false",
+                  "description": "if you don't need the `total` in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfw",
+                  "value": "<string>",
+                  "description": "whether to include nsfw videos, if any"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsIncluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsExcluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLive",
+                  "value": "<boolean>",
+                  "description": "whether or not the video is a live"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeScheduledLive",
+                  "value": "<boolean>",
+                  "description": "whether or not include live that are scheduled for later"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryOneOf",
+                  "value": "<integer>",
+                  "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenceOneOf",
+                  "value": "<integer>",
+                  "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+                },
+                {
+                  "disabled": false,
+                  "key": "languageOneOf",
+                  "value": "<string>",
+                  "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsOneOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsAllOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video, where all should be present in the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLocal",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only local or remote objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasHLSFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasWebVideoFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoTagOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "stateOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+                },
+                {
+                  "disabled": false,
+                  "key": "privacyOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeAlreadyWatched",
+                  "value": "<boolean>",
+                  "description": "Whether or not to exclude videos that are in the user's video history"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9a7c19f2-d3d7-46d8-ac9c-4b2070ba4647",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "skipCount",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfwFlagsIncluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsfwFlagsExcluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeScheduledLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryOneOf",
+                      "value": "15"
+                    },
+                    {
+                      "key": "licenceOneOf",
+                      "value": "2"
+                    },
+                    {
+                      "key": "languageOneOf",
+                      "value": "en"
+                    },
+                    {
+                      "key": "tagsOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagsAllOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hasHLSFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasWebVideoFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "privacyOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeAlreadyWatched",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": false,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"1968-11-27T22:03:18.374Z\"\n        },\n        {\n          \"startAt\": \"1990-03-29T07:20:45.290Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": false,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 2592,\n          \"height\": 3197,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 186,\n          \"height\": 2027,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 1380,\n      \"nsfw\": false,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": true,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"1967-07-30T15:31:59.905Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": true,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 3601,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"XOh.jpi\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 1194,\n            \"height\": 730,\n            \"createdAt\": \"1999-09-19T03:42:33.325Z\",\n            \"updatedAt\": \"1969-09-23T10:46:14.335Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2484,\n            \"height\": 906,\n            \"createdAt\": \"1956-05-08T04:33:02.393Z\",\n            \"updatedAt\": \"2011-02-15T07:41:49.243Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"yJGASVaZcVVXEmqPvOPsrcFzI.rfd\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6835,\n            \"height\": 3847,\n            \"createdAt\": \"1994-08-11T01:18:50.288Z\",\n            \"updatedAt\": \"1983-03-18T08:28:36.626Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6690,\n            \"height\": 1524,\n            \"createdAt\": \"1997-05-28T21:19:33.852Z\",\n            \"updatedAt\": \"1951-02-13T13:13:05.795Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 8184\n      }\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": false,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"1993-05-27T09:14:33.508Z\"\n        },\n        {\n          \"startAt\": \"1953-09-02T09:27:05.634Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": true,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 2800,\n          \"height\": 9197,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1238,\n          \"height\": 4314,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 9357,\n      \"nsfw\": true,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": true,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"1970-01-18T18:23:13.457Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": true,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 326,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"hjnTebekUaYQpxuTFoQwjtw.kfv\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9811,\n            \"height\": 9186,\n            \"createdAt\": \"1979-02-19T12:32:20.710Z\",\n            \"updatedAt\": \"1965-02-01T11:38:34.208Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2906,\n            \"height\": 4842,\n            \"createdAt\": \"1964-08-03T22:35:23.020Z\",\n            \"updatedAt\": \"1982-09-14T06:34:30.429Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"gDJDXpcUOtxzSwDZSyA.fo\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6361,\n            \"height\": 4409,\n            \"createdAt\": \"1978-12-24T19:23:21.363Z\",\n            \"updatedAt\": \"1978-11-20T08:14:00.997Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3548,\n            \"height\": 9780,\n            \"createdAt\": \"1953-11-20T22:59:38.265Z\",\n            \"updatedAt\": \"1975-03-30T14:36:30.335Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 4610\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5fe4ec8-a007-47b0-9fe5-64fda3edec0e",
+          "name": "List activities of a video channel",
+          "request": {
+            "name": "List activities of a video channel",
+            "description": {
+              "content": "**PeerTube >= 8.0**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "activities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70d58ae8-61e2-4a09-b321-e6a6802bf8b8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "activities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 4455,\n      \"account\": {\n        \"id\": 5253,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"TZuMgEFIjhGMPIuMZBiRQUUDxfo.eze\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 1281,\n            \"height\": 8350,\n            \"createdAt\": \"1971-08-23T23:37:44.417Z\",\n            \"updatedAt\": \"1949-07-27T08:12:08.773Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 713,\n            \"height\": 2599,\n            \"createdAt\": \"1979-12-20T06:37:01.080Z\",\n            \"updatedAt\": \"2018-04-09T02:49:02.524Z\"\n          }\n        ]\n      },\n      \"action\": {\n        \"id\": 3,\n        \"label\": \"string\"\n      },\n      \"targetType\": {\n        \"id\": 4,\n        \"label\": \"string\"\n      },\n      \"details\": {\n        \"key_0\": 9448\n      },\n      \"createdAt\": \"1958-12-03T11:54:49.202Z\",\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"url\": \"string\",\n        \"isLive\": true\n      },\n      \"videoImport\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"url\": \"string\",\n        \"targetUrl\": \"http://VV.yrT1j3nl3l83Pea+eZAIT+9cXZE\"\n      },\n      \"playlist\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"url\": \"string\"\n      },\n      \"channelSync\": {\n        \"id\": 42,\n        \"externalChannelUrl\": \"https://PujyqbMzJlqqPkNQMNTLoghiGytkwlzs.ffHTsUZFWhFIZtnq3oD\"\n      }\n    },\n    {\n      \"id\": 3601,\n      \"account\": {\n        \"id\": 1272,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"cnyp.xj\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 337,\n            \"height\": 1722,\n            \"createdAt\": \"1949-09-27T23:53:23.400Z\",\n            \"updatedAt\": \"2016-04-12T18:06:01.351Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9796,\n            \"height\": 4780,\n            \"createdAt\": \"2012-03-05T23:03:37.179Z\",\n            \"updatedAt\": \"2009-04-28T07:30:17.918Z\"\n          }\n        ]\n      },\n      \"action\": {\n        \"id\": 6,\n        \"label\": \"string\"\n      },\n      \"targetType\": {\n        \"id\": 5,\n        \"label\": \"string\"\n      },\n      \"details\": {\n        \"key_0\": 6608,\n        \"key_1\": 9119.068658411472\n      },\n      \"createdAt\": \"2005-11-18T17:39:51.629Z\",\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"url\": \"string\",\n        \"isLive\": true\n      },\n      \"videoImport\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"url\": \"string\",\n        \"targetUrl\": \"http://hBjIphNmFigecNikYPH.cxY8OtAOLuacPiLwlY9V3TkpErd9i2s.U7nh-i\"\n      },\n      \"playlist\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"url\": \"string\"\n      },\n      \"channelSync\": {\n        \"id\": 42,\n        \"externalChannelUrl\": \"http://ZuMvKdVuDppvWGNofmxTbVeFVJYrB.rvalr3XB8myLbWJFqILcyipafG\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "406cd064-df11-45ec-b02a-e858131895f4",
+          "name": "List playlists of a channel",
+          "request": {
+            "name": "List playlists of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "playlistType",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cba5dbd0-856f-44b0-a8a5-bcafc383486d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "playlistType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1949-11-18T17:32:20.113Z\",\n      \"updatedAt\": \"2011-02-08T00:27:38.377Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 3163,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 3729,\n          \"height\": 6274,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 7376,\n          \"height\": 9336,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 2,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 2292,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"WMAPIAXxerWGVLVpuGA.yr\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 1331,\n            \"height\": 7975,\n            \"createdAt\": \"2022-01-21T15:26:27.709Z\",\n            \"updatedAt\": \"1985-04-26T13:49:44.915Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5204,\n            \"height\": 9274,\n            \"createdAt\": \"2007-10-05T22:12:24.757Z\",\n            \"updatedAt\": \"1975-06-14T20:20:43.217Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"wWKAFWTVhbEPgVVyrWALsSKYQEEBB.ll\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6236,\n            \"height\": 7699,\n            \"createdAt\": \"1974-07-02T18:22:41.957Z\",\n            \"updatedAt\": \"1956-08-30T03:14:34.521Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5544,\n            \"height\": 9456,\n            \"createdAt\": \"2011-10-15T02:58:36.492Z\",\n            \"updatedAt\": \"2000-03-02T22:34:47.540Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 4710\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1961-09-07T22:16:43.734Z\",\n      \"updatedAt\": \"1947-03-07T20:33:22.002Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 5058,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1589,\n          \"height\": 9642,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1952,\n          \"height\": 5254,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 1,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 3017,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"WrW.ykd\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7877,\n            \"height\": 8984,\n            \"createdAt\": \"1982-06-25T20:32:27.352Z\",\n            \"updatedAt\": \"2017-08-09T20:22:32.947Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6528,\n            \"height\": 5534,\n            \"createdAt\": \"2000-04-05T19:41:17.055Z\",\n            \"updatedAt\": \"1969-08-05T01:08:02.764Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"JDL.yyy\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6976,\n            \"height\": 1407,\n            \"createdAt\": \"1992-04-15T05:16:15.881Z\",\n            \"updatedAt\": \"1960-11-06T14:01:18.926Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7571,\n            \"height\": 3513,\n            \"createdAt\": \"2015-05-30T03:10:54.291Z\",\n            \"updatedAt\": \"1985-08-18T12:42:26.302Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 8438\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d14f6d61-44c0-45ae-be69-9ce9dc9c085e",
+          "name": "Reorder channel playlists",
+          "request": {
+            "name": "Reorder channel playlists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "video-playlists",
+                "reorder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startPosition\": \"<integer>\",\n  \"insertAfterPosition\": \"<integer>\",\n  \"reorderLength\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1d5181a-32f7-431b-9fa8-4f8134873eff",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "video-playlists",
+                    "reorder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startPosition\": \"<integer>\",\n  \"insertAfterPosition\": \"<integer>\",\n  \"reorderLength\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb839295-f2cc-489e-8698-f945eb1b0ec4",
+          "name": "List followers of a video channel",
+          "request": {
+            "name": "List followers of a video channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "followers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort followers by criteria"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cb886103-2099-40de-b411-d68f14562323",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "followers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"follower\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": \"/_h9n/\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2863,\n            \"height\": 497,\n            \"createdAt\": \"1959-03-30T05:23:53.151Z\",\n            \"updatedAt\": \"1971-08-01T15:10:16.316Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9026,\n            \"height\": 1892,\n            \"createdAt\": \"2023-06-08T08:36:41.563Z\",\n            \"updatedAt\": \"1970-01-07T00:58:38.009Z\"\n          }\n        ],\n        \"host\": \"WXyaBhEMlAsaCCqcJPMpQGPYcbAC.rldp\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 1456,\n        \"followersCount\": 616,\n        \"createdAt\": \"1992-07-20T21:26:36.114Z\",\n        \"updatedAt\": \"1997-07-14T03:21:14.696Z\"\n      },\n      \"following\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": \"/yc36xp/\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3828,\n            \"height\": 9693,\n            \"createdAt\": \"2009-02-09T04:07:12.266Z\",\n            \"updatedAt\": \"1987-01-28T23:18:51.942Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6326,\n            \"height\": 5854,\n            \"createdAt\": \"1979-12-16T10:00:20.912Z\",\n            \"updatedAt\": \"1967-07-03T01:24:04.601Z\"\n          }\n        ],\n        \"host\": \"TIexqVJWgHUniuBeJPLDnLZT.aiu\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 3664,\n        \"followersCount\": 8077,\n        \"createdAt\": \"1972-06-26T07:01:41.012Z\",\n        \"updatedAt\": \"1955-07-26T23:10:37.193Z\"\n      },\n      \"score\": 601.5106305525142,\n      \"state\": \"pending\",\n      \"createdAt\": \"2009-10-13T06:07:38.857Z\",\n      \"updatedAt\": \"2012-09-16T00:52:59.229Z\"\n    },\n    {\n      \"id\": 42,\n      \"follower\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": \"/g7bqh3/\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8175,\n            \"height\": 8824,\n            \"createdAt\": \"1970-06-28T12:22:42.231Z\",\n            \"updatedAt\": \"1993-04-09T15:06:14.620Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7117,\n            \"height\": 8071,\n            \"createdAt\": \"1991-04-08T09:36:04.683Z\",\n            \"updatedAt\": \"1955-05-30T16:09:14.778Z\"\n          }\n        ],\n        \"host\": \"GanXIJJMR.pymh\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 1177,\n        \"followersCount\": 2063,\n        \"createdAt\": \"1994-10-11T22:27:41.531Z\",\n        \"updatedAt\": \"2011-07-29T18:25:50.018Z\"\n      },\n      \"following\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": \"/eyrg2aaeh/\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3687,\n            \"height\": 5020,\n            \"createdAt\": \"1980-09-28T15:12:31.298Z\",\n            \"updatedAt\": \"1947-05-21T14:12:47.580Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 931,\n            \"height\": 9758,\n            \"createdAt\": \"1996-09-27T04:32:14.210Z\",\n            \"updatedAt\": \"1952-06-11T02:07:07.682Z\"\n          }\n        ],\n        \"host\": \"JMRCKvlhizrZlYdzbtFNnGcDRfXkSnGtM.ab\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 2179,\n        \"followersCount\": 8119,\n        \"createdAt\": \"1975-09-29T02:33:24.324Z\",\n        \"updatedAt\": \"2017-03-06T10:31:07.823Z\"\n      },\n      \"score\": 2016.2414525235029,\n      \"state\": \"accepted\",\n      \"createdAt\": \"1975-01-13T10:15:31.230Z\",\n      \"updatedAt\": \"1991-04-17T22:40:11.534Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d888056-75f5-4453-9a7e-e5700c6790e8",
+          "name": "Update channel avatar",
+          "request": {
+            "name": "Update channel avatar",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "avatar",
+                "pick"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatarfile",
+                  "type": "file",
+                  "contentType": "image/png, image/jpeg",
+                  "description": "The file to upload."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "417b3364-ca21-4552-ac4e-3b09171985ec",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "avatar",
+                    "pick"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "avatarfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/png, image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"avatars\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 8852,\n      \"height\": 6888,\n      \"createdAt\": \"2012-07-18T07:28:57.031Z\",\n      \"updatedAt\": \"2011-05-02T02:08:16.059Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 3835,\n      \"height\": 2733,\n      \"createdAt\": \"2012-06-06T16:15:39.444Z\",\n      \"updatedAt\": \"2012-06-11T01:25:48.718Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f9f94f5-02b9-4eb5-af7e-d3b43d32bac2",
+              "name": "image file too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "avatar",
+                    "pick"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "avatarfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/png, image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum file size for the avatar",
+                  "key": "X-File-Maximum-Size",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3fedd132-fc02-4d55-8e9d-d566af42ee74",
+          "name": "Delete channel avatar",
+          "request": {
+            "name": "Delete channel avatar",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "avatar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fd17b62c-ff4d-4ee7-a17c-a00fee4670de",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "avatar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58f2338d-ebf6-4964-9193-1248a9bdbda5",
+          "name": "Update channel banner",
+          "request": {
+            "name": "Update channel banner",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "banner",
+                "pick"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "bannerfile",
+                  "type": "file",
+                  "contentType": "image/png, image/jpeg",
+                  "description": "The file to upload."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7928a147-e627-44dc-a024-32e1f35bb410",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "banner",
+                    "pick"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "bannerfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/png, image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"banners\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 8572,\n      \"height\": 3408,\n      \"createdAt\": \"1976-09-24T10:42:17.273Z\",\n      \"updatedAt\": \"2011-06-16T08:35:05.909Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 5972,\n      \"height\": 517,\n      \"createdAt\": \"1948-08-19T20:22:30.622Z\",\n      \"updatedAt\": \"1958-04-26T16:21:39.160Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3fa4899-3563-4baa-9e94-08be2a81941c",
+              "name": "image file too large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "banner",
+                    "pick"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "The file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "bannerfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/png, image/jpeg"
+                    }
+                  ]
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Maximum file size for the banner",
+                  "key": "X-File-Maximum-Size",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be154913-b9ca-47cb-96bd-e14583e9ca18",
+          "name": "Delete channel banner",
+          "request": {
+            "name": "Delete channel banner",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "banner"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e9d937cb-f50d-4544-8de1-be3e63fa649e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "banner"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb8fd18a-ce4f-47f6-a562-7a61f22d47f0",
+          "name": "Import videos in channel",
+          "request": {
+            "name": "Import videos in channel",
+            "description": {
+              "content": "Import a remote channel/playlist videos into a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "import-videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"externalChannelUrl\": \"<string>\",\n  \"videoChannelSyncId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d4ae067-f559-40a4-9cce-eee728c871a8",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "import-videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"externalChannelUrl\": \"https://youtube.com/c/UC_myfancychannel\",\n  \"videoChannelSyncId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1327bcb4-522a-4de7-b97f-9e07376bdbdf",
+          "name": "List video channels of an account",
+          "request": {
+            "name": "List video channels of an account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "accounts",
+                ":name",
+                "video-channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "withStats",
+                  "value": "<boolean>",
+                  "description": "include daily view statistics for the last 30 days and total views (only if authenticated as the account user)"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCollaborations",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The username or handle of the account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63d24104-d51f-42e0-b395-b7d258a39206",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":name",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "withStats",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "includeCollaborations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The username or handle of the account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/8ppur/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 3113,\n          \"height\": 789,\n          \"createdAt\": \"1973-11-06T13:02:02.123Z\",\n          \"updatedAt\": \"2026-04-04T07:59:42.418Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8164,\n          \"height\": 4188,\n          \"createdAt\": \"1961-03-06T05:03:00.552Z\",\n          \"updatedAt\": \"2018-06-16T18:00:34.228Z\"\n        }\n      ],\n      \"host\": \"VbEsbDR.pm\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 7134,\n      \"followersCount\": 5747,\n      \"createdAt\": \"2019-11-24T18:38:19.246Z\",\n      \"updatedAt\": \"2012-07-13T11:06:55.813Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": true,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7185,\n          \"height\": 1812,\n          \"createdAt\": \"1987-08-13T08:55:11.375Z\",\n          \"updatedAt\": \"2018-11-03T21:13:38.419Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7759,\n          \"height\": 9525,\n          \"createdAt\": \"2016-05-27T23:27:57.472Z\",\n          \"updatedAt\": \"1979-03-17T08:23:29.842Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/65ei/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7993,\n          \"height\": 4399,\n          \"createdAt\": \"1982-10-27T01:16:51.805Z\",\n          \"updatedAt\": \"1969-07-18T08:18:03.544Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8487,\n          \"height\": 1877,\n          \"createdAt\": \"1978-08-26T07:06:01.275Z\",\n          \"updatedAt\": \"2009-10-14T08:00:16.657Z\"\n        }\n      ],\n      \"host\": \"BVKxT.mf\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 4046,\n      \"followersCount\": 7109,\n      \"createdAt\": \"1990-10-18T09:57:30.668Z\",\n      \"updatedAt\": \"2011-11-24T03:47:34.187Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": false,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8821,\n          \"height\": 2559,\n          \"createdAt\": \"1954-12-20T19:08:21.671Z\",\n          \"updatedAt\": \"1971-05-19T03:46:43.546Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7927,\n          \"height\": 2995,\n          \"createdAt\": \"2024-10-22T23:59:40.705Z\",\n          \"updatedAt\": \"1985-11-09T16:22:45.799Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "210d970b-4f34-4b25-918a-a84360d68514",
+          "name": "List the synchronizations of video channels of an account",
+          "request": {
+            "name": "List the synchronizations of video channels of an account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "accounts",
+                ":name",
+                "video-channel-syncs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCollaborations",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The username or handle of the account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d905e624-39e4-4e39-9935-cac5cb80d9ef",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":name",
+                    "video-channel-syncs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "includeCollaborations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The username or handle of the account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": 2,\n        \"label\": \"PROCESSING\"\n      },\n      \"externalChannelUrl\": \"https://youtube.com/c/UC_myfancychannel\",\n      \"createdAt\": \"1965-05-26T15:27:23.918Z\",\n      \"lastSyncAt\": \"1968-01-06T21:19:53.512Z\",\n      \"channel\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"qfOH.uhlo\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 3473,\n        \"followersCount\": 6171,\n        \"createdAt\": \"1994-03-21T13:10:29.472Z\",\n        \"updatedAt\": \"2010-12-10T18:40:56.844Z\",\n        \"displayName\": \"Videos of Framasoft\",\n        \"description\": \"Videos made with <3 by Framasoft\",\n        \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n        \"isLocal\": true,\n        \"banners\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"ownerAccount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": 42,\n      \"state\": {\n        \"id\": 2,\n        \"label\": \"PROCESSING\"\n      },\n      \"externalChannelUrl\": \"https://youtube.com/c/UC_myfancychannel\",\n      \"createdAt\": \"2022-01-26T12:21:46.289Z\",\n      \"lastSyncAt\": \"1964-11-15T22:07:54.251Z\",\n      \"channel\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"nxSYN.hr\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 4112,\n        \"followersCount\": 9885,\n        \"createdAt\": \"2005-04-23T19:33:46.781Z\",\n        \"updatedAt\": \"1973-03-28T07:48:35.948Z\",\n        \"displayName\": \"Videos of Framasoft\",\n        \"description\": \"Videos made with <3 by Framasoft\",\n        \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n        \"isLocal\": false,\n        \"banners\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"ownerAccount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4a09025-eb0c-4700-a538-4fa900bd97c8",
+          "name": "Search channels",
+          "request": {
+            "name": "Search channels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "video-channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete channel information and interact with it.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTarget",
+                  "value": "<string>",
+                  "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9337eef-fb19-4924-87cc-3720e61ef67e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/8ppur/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 3113,\n          \"height\": 789,\n          \"createdAt\": \"1973-11-06T13:02:02.123Z\",\n          \"updatedAt\": \"2026-04-04T07:59:42.418Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8164,\n          \"height\": 4188,\n          \"createdAt\": \"1961-03-06T05:03:00.552Z\",\n          \"updatedAt\": \"2018-06-16T18:00:34.228Z\"\n        }\n      ],\n      \"host\": \"VbEsbDR.pm\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 7134,\n      \"followersCount\": 5747,\n      \"createdAt\": \"2019-11-24T18:38:19.246Z\",\n      \"updatedAt\": \"2012-07-13T11:06:55.813Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": true,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7185,\n          \"height\": 1812,\n          \"createdAt\": \"1987-08-13T08:55:11.375Z\",\n          \"updatedAt\": \"2018-11-03T21:13:38.419Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7759,\n          \"height\": 9525,\n          \"createdAt\": \"2016-05-27T23:27:57.472Z\",\n          \"updatedAt\": \"1979-03-17T08:23:29.842Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/65ei/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7993,\n          \"height\": 4399,\n          \"createdAt\": \"1982-10-27T01:16:51.805Z\",\n          \"updatedAt\": \"1969-07-18T08:18:03.544Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8487,\n          \"height\": 1877,\n          \"createdAt\": \"1978-08-26T07:06:01.275Z\",\n          \"updatedAt\": \"2009-10-14T08:00:16.657Z\"\n        }\n      ],\n      \"host\": \"BVKxT.mf\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 4046,\n      \"followersCount\": 7109,\n      \"createdAt\": \"1990-10-18T09:57:30.668Z\",\n      \"updatedAt\": \"2011-11-24T03:47:34.187Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": false,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8821,\n          \"height\": 2559,\n          \"createdAt\": \"1954-12-20T19:08:21.671Z\",\n          \"updatedAt\": \"1971-05-19T03:46:43.546Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7927,\n          \"height\": 2995,\n          \"createdAt\": \"2024-10-22T23:59:40.705Z\",\n          \"updatedAt\": \"1985-11-09T16:22:45.799Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fca3f15-8515-4521-838b-4109f9f48175",
+              "name": "search index unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57c5762f-34d7-4f7e-8c93-eae557408895",
+          "name": "List channel collaborators",
+          "request": {
+            "name": "List channel collaborators",
+            "description": {
+              "content": "**PeerTube >= 8.0**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "collaborators"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dca09a31-ad29-43bf-bc29-3997cde2c0f4",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "collaborators"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"account\": {\n        \"id\": 8815,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"utLaLvIkWLbCUEkcfINmd.zpt\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2158,\n            \"height\": 431,\n            \"createdAt\": \"1988-07-20T11:03:16.183Z\",\n            \"updatedAt\": \"1978-01-09T12:03:14.608Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 1228,\n            \"height\": 7749,\n            \"createdAt\": \"1991-01-22T03:09:48.919Z\",\n            \"updatedAt\": \"1998-06-10T13:24:26.539Z\"\n          }\n        ]\n      },\n      \"state\": {\n        \"id\": 1,\n        \"label\": \"string\"\n      },\n      \"createdAt\": \"1979-09-01T01:01:47.585Z\",\n      \"updatedAt\": \"1989-06-03T15:11:22.931Z\"\n    },\n    {\n      \"id\": 42,\n      \"account\": {\n        \"id\": 5752,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"ovmibQfyKPwxAJzRRwo.tje\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 1070,\n            \"height\": 9024,\n            \"createdAt\": \"2017-02-20T04:44:50.355Z\",\n            \"updatedAt\": \"2018-09-20T12:35:24.441Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8862,\n            \"height\": 8759,\n            \"createdAt\": \"1989-01-05T19:53:00.040Z\",\n            \"updatedAt\": \"1982-12-17T01:22:42.392Z\"\n          }\n        ]\n      },\n      \"state\": {\n        \"id\": 1,\n        \"label\": \"string\"\n      },\n      \"createdAt\": \"1992-02-29T05:47:59.230Z\",\n      \"updatedAt\": \"2003-01-19T02:50:41.548Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36b90150-b94d-4ec0-8a95-c468d3e9b373",
+          "name": "Invite a collaborator",
+          "request": {
+            "name": "Invite a collaborator",
+            "description": {
+              "content": "**PeerTube >= 8.0**  Invite a local user to collaborate on the specified video channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "collaborators",
+                "invite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountHandle\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35311dad-3bbe-4514-80f7-d6b00bba840b",
+              "name": "Collaborator invited",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "collaborators",
+                    "invite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountHandle\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collaborator\": {\n    \"id\": 42,\n    \"account\": {\n      \"id\": 2700,\n      \"name\": \"string\",\n      \"displayName\": \"string\",\n      \"url\": \"string\",\n      \"host\": \"RCRTQtksHmqxxlvG.vimw\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 6976,\n          \"height\": 5371,\n          \"createdAt\": \"1948-04-03T11:26:49.874Z\",\n          \"updatedAt\": \"1950-06-12T14:11:20.035Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 2427,\n          \"height\": 8358,\n          \"createdAt\": \"2018-09-07T16:19:10.666Z\",\n          \"updatedAt\": \"1963-02-24T20:51:31.573Z\"\n        }\n      ]\n    },\n    \"state\": {\n      \"id\": 1,\n      \"label\": \"string\"\n    },\n    \"createdAt\": \"2019-12-18T22:15:10.965Z\",\n    \"updatedAt\": \"1963-02-19T08:15:03.392Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "190359cc-b41c-4755-8d85-b51715edfd42",
+          "name": "Accept a collaboration invitation",
+          "request": {
+            "name": "Accept a collaboration invitation",
+            "description": {
+              "content": "**PeerTube >= 8.0**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "collaborators",
+                ":collaboratorId",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "collaboratorId",
+                  "description": "(Required) The collaborator id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "be64e7e0-b67c-40fa-879d-4a1d8fa89ecf",
+              "name": "Collaboration accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "collaborators",
+                    ":collaboratorId",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collaboratorId",
+                      "description": "(Required) The collaborator id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bde2721d-eb5f-47fa-bb1d-e668c4c1b4d1",
+          "name": "Reject a collaboration invitation",
+          "request": {
+            "name": "Reject a collaboration invitation",
+            "description": {
+              "content": "**PeerTube >= 8.0**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "collaborators",
+                ":collaboratorId",
+                "reject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "collaboratorId",
+                  "description": "(Required) The collaborator id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8d53e6e3-9601-410f-9cc6-a554c7786240",
+              "name": "Collaboration rejected",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "collaborators",
+                    ":collaboratorId",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collaboratorId",
+                      "description": "(Required) The collaborator id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6cd3fdc-ed92-4a7b-aa0d-57ba9c0ef24f",
+          "name": "Remove a channel collaborator",
+          "request": {
+            "name": "Remove a channel collaborator",
+            "description": {
+              "content": "**PeerTube >= 8.0** Only the channel owner or the collaborator themselves can remove a collaborator from a channel",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "collaborators",
+                ":collaboratorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "collaboratorId",
+                  "description": "(Required) The collaborator id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0283f61b-8219-49f2-be7a-32c26e52544d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "collaborators",
+                    ":collaboratorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "collaboratorId",
+                      "description": "(Required) The collaborator id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a08d9871-2a93-443c-b8ae-4384176cd8a6",
+    "name": "PeerTube Abuses Video Channels API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

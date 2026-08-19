@@ -1,0 +1,955 @@
+{
+  "item": [
+    {
+      "id": "ff86d806-292a-4f2d-a8c1-606627040202",
+      "name": "Search",
+      "description": {
+        "content": "The search helps to find _videos_ or _channels_ from within the instance and beyond.\nVideos from other instances federated by the instance (that is, instances\nfollowed by the instance) can be found via keywords and other criteria of\nthe advanced search.\n\nAdministrators can also enable the use of a remote search system, indexing\nvideos and channels that may not be federated by the instance.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c93bffe6-e89b-48c5-80ee-57480a4a7af3",
+          "name": "Search videos",
+          "request": {
+            "name": "Search videos",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete video information and interact with it.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTarget",
+                  "value": "<string>",
+                  "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipCount",
+                  "value": "false",
+                  "description": "if you don't need the `total` in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfw",
+                  "value": "<string>",
+                  "description": "whether to include nsfw videos, if any"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsIncluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsExcluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLive",
+                  "value": "<boolean>",
+                  "description": "whether or not the video is a live"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeScheduledLive",
+                  "value": "<boolean>",
+                  "description": "whether or not include live that are scheduled for later"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryOneOf",
+                  "value": "<integer>",
+                  "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenceOneOf",
+                  "value": "<integer>",
+                  "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+                },
+                {
+                  "disabled": false,
+                  "key": "languageOneOf",
+                  "value": "<string>",
+                  "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsOneOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsAllOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video, where all should be present in the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLocal",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only local or remote objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasHLSFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasWebVideoFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoTagOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "stateOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+                },
+                {
+                  "disabled": false,
+                  "key": "privacyOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeAlreadyWatched",
+                  "value": "<boolean>",
+                  "description": "Whether or not to exclude videos that are in the user's video history"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "Get videos that are published after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "Get videos that are published before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "originallyPublishedStartDate",
+                  "value": "<dateTime>",
+                  "description": "Get videos that are originally published after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "originallyPublishedEndDate",
+                  "value": "<dateTime>",
+                  "description": "Get videos that are originally published before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "durationMin",
+                  "value": "<integer>",
+                  "description": "Get videos that have this minimum duration"
+                },
+                {
+                  "disabled": false,
+                  "key": "durationMax",
+                  "value": "<integer>",
+                  "description": "Get videos that have this maximum duration"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dee11b15-b473-4057-b532-7bfc78eea97c",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "skipCount",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfwFlagsIncluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsfwFlagsExcluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeScheduledLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryOneOf",
+                      "value": "15"
+                    },
+                    {
+                      "key": "licenceOneOf",
+                      "value": "2"
+                    },
+                    {
+                      "key": "languageOneOf",
+                      "value": "en"
+                    },
+                    {
+                      "key": "tagsOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagsAllOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hasHLSFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasWebVideoFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "privacyOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeAlreadyWatched",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "originallyPublishedStartDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "originallyPublishedEndDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "durationMin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "durationMax",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": true,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"2015-04-22T14:27:29.187Z\"\n        },\n        {\n          \"startAt\": \"1954-05-25T12:56:33.900Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": false,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6413,\n          \"height\": 6637,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1375,\n          \"height\": 5375,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 4569,\n      \"nsfw\": false,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": false,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"2003-12-10T21:46:29.032Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": true,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 2401,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"zxaDb.yql\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7309,\n            \"height\": 2352,\n            \"createdAt\": \"1966-05-25T03:06:28.039Z\",\n            \"updatedAt\": \"1969-09-01T11:38:43.028Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3071,\n            \"height\": 2570,\n            \"createdAt\": \"1997-05-28T03:07:43.936Z\",\n            \"updatedAt\": \"1964-08-24T04:16:42.253Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"jbJvUCJRPxDnaurnXYKOkY.owhp\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6149,\n            \"height\": 6564,\n            \"createdAt\": \"2011-02-14T04:46:04.292Z\",\n            \"updatedAt\": \"1993-01-29T21:09:12.656Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3392,\n            \"height\": 2201,\n            \"createdAt\": \"2008-07-14T19:48:39.614Z\",\n            \"updatedAt\": \"2003-02-16T13:06:41.613Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 4743\n      }\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": true,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"1956-05-06T09:20:16.205Z\"\n        },\n        {\n          \"startAt\": \"2008-08-03T21:23:11.472Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": false,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6322,\n          \"height\": 6775,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 9007,\n          \"height\": 8098,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 9981,\n      \"nsfw\": true,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": false,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"1980-06-26T01:29:36.066Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": true,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 6386,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"enlUUeNrPpU.nhec\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8937,\n            \"height\": 3760,\n            \"createdAt\": \"2005-11-09T09:33:47.338Z\",\n            \"updatedAt\": \"1979-11-03T11:40:44.855Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 665,\n            \"height\": 8137,\n            \"createdAt\": \"1997-06-09T22:11:04.148Z\",\n            \"updatedAt\": \"2015-04-08T20:14:24.130Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"zCHtC.dwj\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 440,\n            \"height\": 248,\n            \"createdAt\": \"1985-11-20T08:20:22.376Z\",\n            \"updatedAt\": \"1987-08-04T23:17:10.616Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9454,\n            \"height\": 9420,\n            \"createdAt\": \"1983-12-11T21:47:25.438Z\",\n            \"updatedAt\": \"1947-04-12T23:42:49.507Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 1202\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23d7025c-ad12-4d21-b489-a1d332977403",
+              "name": "search index unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "skipCount",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfwFlagsIncluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsfwFlagsExcluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeScheduledLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryOneOf",
+                      "value": "15"
+                    },
+                    {
+                      "key": "licenceOneOf",
+                      "value": "2"
+                    },
+                    {
+                      "key": "languageOneOf",
+                      "value": "en"
+                    },
+                    {
+                      "key": "tagsOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagsAllOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hasHLSFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasWebVideoFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "privacyOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeAlreadyWatched",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "originallyPublishedStartDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "originallyPublishedEndDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "durationMin",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "durationMax",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b55272d-60e1-4ec0-85b5-1f9a08127015",
+          "name": "Search channels",
+          "request": {
+            "name": "Search channels",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "video-channels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete channel information and interact with it.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTarget",
+                  "value": "<string>",
+                  "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3802638-42d2-4a15-8439-694993fc8fe4",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/hjcl/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 6068,\n          \"height\": 6335,\n          \"createdAt\": \"1982-02-05T07:20:54.555Z\",\n          \"updatedAt\": \"1968-11-05T13:11:29.529Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 5332,\n          \"height\": 9474,\n          \"createdAt\": \"1973-08-27T11:02:42.437Z\",\n          \"updatedAt\": \"2026-07-29T16:01:41.537Z\"\n        }\n      ],\n      \"host\": \"kNIXHWQHMjRsSwNd.kz\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 4800,\n      \"followersCount\": 5668,\n      \"createdAt\": \"2006-02-12T08:05:37.248Z\",\n      \"updatedAt\": \"1960-12-01T16:11:54.174Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": true,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 5736,\n          \"height\": 5070,\n          \"createdAt\": \"1993-05-06T09:49:53.786Z\",\n          \"updatedAt\": \"1974-12-08T16:47:15.043Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 1083,\n          \"height\": 4103,\n          \"createdAt\": \"2014-02-14T07:07:24.610Z\",\n          \"updatedAt\": \"2020-10-28T01:11:48.691Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/5rw/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7093,\n          \"height\": 5843,\n          \"createdAt\": \"1956-06-09T05:08:01.181Z\",\n          \"updatedAt\": \"1999-02-21T23:23:03.799Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7564,\n          \"height\": 6481,\n          \"createdAt\": \"2021-03-01T17:34:30.294Z\",\n          \"updatedAt\": \"2025-01-22T21:32:18.429Z\"\n        }\n      ],\n      \"host\": \"IocDpgYxkaFfPeVuOEtCVdPLbGXrCOAw.tro\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 1973,\n      \"followersCount\": 8937,\n      \"createdAt\": \"1998-08-30T18:44:24.284Z\",\n      \"updatedAt\": \"1983-03-09T10:55:05.863Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": true,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 4890,\n          \"height\": 4668,\n          \"createdAt\": \"1955-04-06T00:08:52.533Z\",\n          \"updatedAt\": \"2025-12-29T11:41:03.721Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7721,\n          \"height\": 4480,\n          \"createdAt\": \"1957-02-14T12:10:01.643Z\",\n          \"updatedAt\": \"1960-11-05T19:41:33.854Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bceb683a-c981-4a90-9c12-e3ba0a86bcb9",
+              "name": "search index unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-channels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eec38b9-ad63-4133-b82a-b140ba46d5e3",
+          "name": "Search playlists",
+          "request": {
+            "name": "Search playlists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete playlist information and interact with it.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTarget",
+                  "value": "<string>",
+                  "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cbdd6602-1804-4c21-a75f-fafde6f6a62d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1971-11-30T13:37:20.297Z\",\n      \"updatedAt\": \"2021-08-22T00:33:23.933Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 2459,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6456,\n          \"height\": 9920,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1300,\n          \"height\": 1275,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 2,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": 1,\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 3014,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"JvhsRvsQWoYiNULYkVqZVkYMHYWScIR.rse\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6872,\n            \"height\": 8239,\n            \"createdAt\": \"1966-11-21T18:44:43.072Z\",\n            \"updatedAt\": \"1948-05-31T21:53:30.764Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3864,\n            \"height\": 7758,\n            \"createdAt\": \"2008-01-27T05:07:07.997Z\",\n            \"updatedAt\": \"2016-12-17T06:50:33.046Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"MIvHhhOBQvPRxlfL.ldz\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5718,\n            \"height\": 2395,\n            \"createdAt\": \"1954-05-20T20:19:14.389Z\",\n            \"updatedAt\": \"1977-08-28T02:07:08.628Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2871,\n            \"height\": 4075,\n            \"createdAt\": \"1953-10-08T09:20:09.056Z\",\n            \"updatedAt\": \"1991-07-14T01:46:05.749Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 5530\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1996-05-08T18:50:53.640Z\",\n      \"updatedAt\": \"1967-11-18T02:11:48.929Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 3566,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1929,\n          \"height\": 3073,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6324,\n          \"height\": 6634,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 2,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": 2,\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 9495,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"uuwWnw.hxeu\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8675,\n            \"height\": 8519,\n            \"createdAt\": \"2011-10-17T04:57:41.386Z\",\n            \"updatedAt\": \"2017-11-05T11:13:25.019Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5430,\n            \"height\": 3599,\n            \"createdAt\": \"2000-12-01T23:44:29.657Z\",\n            \"updatedAt\": \"1981-03-27T10:28:43.117Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"wwMNVmvVgIfFRvqr.yzzj\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4578,\n            \"height\": 9222,\n            \"createdAt\": \"2014-01-15T15:26:05.231Z\",\n            \"updatedAt\": \"2015-03-04T22:55:59.713Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4637,\n            \"height\": 7052,\n            \"createdAt\": \"1976-11-08T05:10:20.182Z\",\n            \"updatedAt\": \"1962-04-05T20:17:01.280Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 8535\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b6c1dff-6612-4265-9848-d41ba8b5a382",
+              "name": "search index unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c24fb436-6c11-485e-8fad-f1b14b2099fd",
+    "name": "PeerTube Abuses Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

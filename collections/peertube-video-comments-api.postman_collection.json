@@ -1,0 +1,1517 @@
+{
+  "item": [
+    {
+      "id": "a26e758d-ef4f-4806-90f8-82c74c48b4ce",
+      "name": "Video Comments",
+      "description": {
+        "content": "Operations dealing with comments to a video. Comments are organized in threads: adding a comment in response to the video starts a thread, adding a reply to a comment adds it to its root comment thread.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50600706-40cc-4a65-ab14-a2b555a7e8e8",
+          "name": "List comments on user's videos",
+          "request": {
+            "name": "List comments on user's videos",
+            "description": {
+              "content": "**PeerTube >= 6.2**",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "videos",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchAccount",
+                  "value": "<string>",
+                  "description": "Filter comments by searching on the account"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchVideo",
+                  "value": "<string>",
+                  "description": "Filter comments by searching on the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoId",
+                  "value": "<integer>",
+                  "description": "Limit results on this specific video"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoChannelId",
+                  "value": "<integer>",
+                  "description": "Limit results on this specific video channel"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoTagOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 6.2** filter on comments that contain one of these automatic tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "isHeldForReview",
+                  "value": "<boolean>",
+                  "description": "only display comments that are held for review"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCollaborations",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c5f8f0fb-9160-4cbe-ac04-4a2b8f4f98bd",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "videos",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchAccount",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchVideo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "videoId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "videoChannelId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isHeldForReview",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeCollaborations",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"text\": \"This video is wonderful!\",\n      \"heldForReview\": false,\n      \"threadId\": 42,\n      \"inReplyToCommentId\": 42,\n      \"createdAt\": \"1987-07-22T22:58:01.800Z\",\n      \"updatedAt\": \"2000-04-20T04:36:02.527Z\",\n      \"account\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"djXbRCkwgydocZZ.tbv\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 9081,\n        \"followersCount\": 2198,\n        \"createdAt\": \"1953-02-17T03:31:19.087Z\",\n        \"updatedAt\": \"2021-04-12T01:18:10.450Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"name\": \"What is PeerTube?\",\n        \"state\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"automaticTags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"text\": \"This video is wonderful!\",\n      \"heldForReview\": false,\n      \"threadId\": 42,\n      \"inReplyToCommentId\": 42,\n      \"createdAt\": \"1982-08-23T19:53:51.010Z\",\n      \"updatedAt\": \"1986-10-28T02:13:18.809Z\",\n      \"account\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"GJokbvxOncfrIHmTKexvyJhJreVlNRA.lqh\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 2892,\n        \"followersCount\": 2398,\n        \"createdAt\": \"1973-02-23T21:47:52.411Z\",\n        \"updatedAt\": \"2009-04-17T09:53:54.956Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"stri\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"name\": \"What is PeerTube?\",\n        \"state\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"automaticTags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15ba0beb-9249-4f76-873f-ba2b8766d1f0",
+          "name": "List threads of a video",
+          "request": {
+            "name": "List threads of a video",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":id",
+                "comment-threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort comments by criteria"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Required on password protected video",
+                "key": "x-peertube-video-password",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dd73f07f-7dcf-413a-9b4e-cd38d27ba3d1",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comment-threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Required on password protected video",
+                    "key": "x-peertube-video-password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 4814,\n  \"totalNotDeletedComments\": 189,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"text\": \"This video is wonderful!\",\n      \"threadId\": 42,\n      \"inReplyToCommentId\": 42,\n      \"videoId\": 42,\n      \"createdAt\": \"1985-10-19T02:34:28.938Z\",\n      \"updatedAt\": \"1999-01-28T19:56:51.350Z\",\n      \"deletedAt\": null,\n      \"isDeleted\": false,\n      \"heldForReview\": false,\n      \"totalRepliesFromVideoAuthor\": 8299,\n      \"totalReplies\": 2707,\n      \"account\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"j.cf\",\n        \"hostRedundancyAllowed\": false,\n        \"followingCount\": 5645,\n        \"followersCount\": 2023,\n        \"createdAt\": \"1979-04-14T03:11:24.392Z\",\n        \"updatedAt\": \"1987-01-19T21:44:32.470Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"text\": \"This video is wonderful!\",\n      \"threadId\": 42,\n      \"inReplyToCommentId\": 42,\n      \"videoId\": 42,\n      \"createdAt\": \"1963-04-08T00:34:13.039Z\",\n      \"updatedAt\": \"1985-07-25T06:37:24.482Z\",\n      \"deletedAt\": null,\n      \"isDeleted\": false,\n      \"heldForReview\": false,\n      \"totalRepliesFromVideoAuthor\": 1355,\n      \"totalReplies\": 9291,\n      \"account\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"name\": {\n          \"description\": \"immutable name of the actor, used to find or mention it\",\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"USAvmOILXSwJIums.mu\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 719,\n        \"followersCount\": 2980,\n        \"createdAt\": \"1947-03-23T21:47:21.435Z\",\n        \"updatedAt\": \"2009-06-21T03:57:03.481Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58b68991-ebba-4491-a7c0-a600e7f00111",
+          "name": "Create a thread",
+          "request": {
+            "name": "Create a thread",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":id",
+                "comment-threads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<html>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e81a87e9-54c2-452c-acdc-c2e34d7f518b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comment-threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"This video is wonderful!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": {\n    \"id\": 42,\n    \"url\": \"string\",\n    \"text\": \"This video is wonderful!\",\n    \"threadId\": 42,\n    \"inReplyToCommentId\": 42,\n    \"videoId\": 42,\n    \"createdAt\": \"2014-11-05T01:58:18.088Z\",\n    \"updatedAt\": \"1962-08-15T03:46:01.283Z\",\n    \"deletedAt\": null,\n    \"isDeleted\": false,\n    \"heldForReview\": true,\n    \"totalRepliesFromVideoAuthor\": 4451,\n    \"totalReplies\": 205,\n    \"account\": {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/3tos_wq/\",\n      \"avatars\": [\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"host\": \"WafkibCCVsSjKBkfjvgeJfQRCaeoCY.mnyn\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 4177,\n      \"followersCount\": 7660,\n      \"createdAt\": \"1981-02-09T08:50:05.638Z\",\n      \"updatedAt\": \"2002-01-26T23:06:48.678Z\",\n      \"userId\": 42,\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0745b4bd-43a6-4d85-a979-f5d9fbc3ea03",
+              "name": "video does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comment-threads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"This video is wonderful!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4aa45e91-8c7b-4a51-b825-1c0f4718f483",
+          "name": "Get a thread",
+          "request": {
+            "name": "Get a thread",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":id",
+                "comment-threads",
+                ":threadId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "threadId",
+                  "description": "(Required) The thread id (root comment id)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Required on password protected video",
+                "key": "x-peertube-video-password",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e6152a4-9569-4934-8b28-8360fad0ff00",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comment-threads",
+                    ":threadId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "threadId",
+                      "description": "(Required) The thread id (root comment id)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Required on password protected video",
+                    "key": "x-peertube-video-password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": {\n    \"id\": 42,\n    \"url\": \"string\",\n    \"text\": \"This video is wonderful!\",\n    \"threadId\": 42,\n    \"inReplyToCommentId\": 42,\n    \"videoId\": 42,\n    \"createdAt\": \"1955-07-28T09:05:09.588Z\",\n    \"updatedAt\": \"1965-03-18T04:18:03.887Z\",\n    \"deletedAt\": null,\n    \"isDeleted\": false,\n    \"heldForReview\": false,\n    \"totalRepliesFromVideoAuthor\": 5742,\n    \"totalReplies\": 1759,\n    \"account\": {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/8y_k/\",\n      \"avatars\": [\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"host\": \"CQmjAGCWKbX.ejnt\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 9546,\n      \"followersCount\": 3228,\n      \"createdAt\": \"1958-05-30T14:32:02.427Z\",\n      \"updatedAt\": \"1953-03-14T01:37:34.063Z\",\n      \"userId\": 42,\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  },\n  \"children\": [\n    {\n      \"comment\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"text\": \"This video is wonderful!\",\n        \"threadId\": 42,\n        \"inReplyToCommentId\": 42,\n        \"videoId\": 42,\n        \"createdAt\": \"1968-08-08T03:40:32.512Z\",\n        \"updatedAt\": \"1974-08-05T15:16:57.717Z\",\n        \"deletedAt\": null,\n        \"isDeleted\": false,\n        \"heldForReview\": false,\n        \"totalRepliesFromVideoAuthor\": 4959,\n        \"totalReplies\": 4183,\n        \"account\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"avatars\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"host\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hostRedundancyAllowed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"followingCount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"followersCount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": \"string\",\n          \"description\": \"string\"\n        }\n      },\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/VideoCommentThreadTree detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/VideoCommentThreadTree detected>\"\n        }\n      ]\n    },\n    {\n      \"comment\": {\n        \"id\": 42,\n        \"url\": \"string\",\n        \"text\": \"This video is wonderful!\",\n        \"threadId\": 42,\n        \"inReplyToCommentId\": 42,\n        \"videoId\": 42,\n        \"createdAt\": \"1976-08-22T06:58:46.020Z\",\n        \"updatedAt\": \"1997-06-24T07:29:38.418Z\",\n        \"deletedAt\": null,\n        \"isDeleted\": false,\n        \"heldForReview\": false,\n        \"totalRepliesFromVideoAuthor\": 6422,\n        \"totalReplies\": 8133,\n        \"account\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"avatars\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"host\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"hostRedundancyAllowed\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"followingCount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"followersCount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"displayName\": \"string\",\n          \"description\": \"string\"\n        }\n      },\n      \"children\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/VideoCommentThreadTree detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/VideoCommentThreadTree detected>\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dc8c8a0-9c5a-46d4-b5f7-bebd3e9932b1",
+          "name": "List instance comments",
+          "request": {
+            "name": "List instance comments",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchAccount",
+                  "value": "<string>",
+                  "description": "Filter comments by searching on the account"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchVideo",
+                  "value": "<string>",
+                  "description": "Filter comments by searching on the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoId",
+                  "value": "<integer>",
+                  "description": "Limit results on this specific video"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoChannelId",
+                  "value": "<integer>",
+                  "description": "Limit results on this specific video channel"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoTagOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 6.2** filter on comments that contain one of these automatic tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLocal",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only local or remote objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "onLocalVideo",
+                  "value": "<boolean>",
+                  "description": "Display only objects of local or remote videos"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeMuted",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.2** Include comments from muted accounts"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ad7d8356-78fe-4ef3-bfd5-364acde937ff",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchAccount",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchVideo",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "videoId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "videoChannelId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "onLocalVideo",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeMuted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"text\": \"This video is wonderful!\",\n      \"heldForReview\": false,\n      \"threadId\": 42,\n      \"inReplyToCommentId\": 42,\n      \"createdAt\": \"2004-07-20T23:05:11.130Z\",\n      \"updatedAt\": \"1965-09-05T01:17:14.205Z\",\n      \"account\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"VPcMGFLsezczrwClDGHkjuEqRiFpII.vjhc\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 8346,\n        \"followersCount\": 9906,\n        \"createdAt\": \"1949-09-29T14:59:19.663Z\",\n        \"updatedAt\": \"1988-08-22T22:25:55.802Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"name\": \"What is PeerTube?\",\n        \"state\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"automaticTags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"text\": \"This video is wonderful!\",\n      \"heldForReview\": false,\n      \"threadId\": 42,\n      \"inReplyToCommentId\": 42,\n      \"createdAt\": \"2001-10-06T19:26:14.870Z\",\n      \"updatedAt\": \"1980-12-30T11:31:53.306Z\",\n      \"account\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": \"string\",\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"host\": \"siNpqwirSgOjjWynesuDfgQvRZ.wdjb\",\n        \"hostRedundancyAllowed\": true,\n        \"followingCount\": 8858,\n        \"followersCount\": 3494,\n        \"createdAt\": \"2016-02-25T16:34:54.315Z\",\n        \"updatedAt\": \"1979-11-28T19:44:09.428Z\",\n        \"userId\": {\n          \"description\": \"object id for the user tied to this account\",\n          \"nullable\": true,\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      },\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"name\": \"What is PeerTube?\",\n        \"state\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"automaticTags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "804a0273-0e46-4991-847c-fb7973dbd28b",
+          "name": "Reply to a thread of a video",
+          "request": {
+            "name": "Reply to a thread of a video",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":id",
+                "comments",
+                ":commentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "commentId",
+                  "description": "(Required) The comment id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Required on password protected video",
+                "key": "x-peertube-video-password",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"text\": \"<html>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "172ba018-6720-4027-a058-32b972945190",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Required on password protected video",
+                    "key": "x-peertube-video-password",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"This video is wonderful!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"comment\": {\n    \"id\": 42,\n    \"url\": \"string\",\n    \"text\": \"This video is wonderful!\",\n    \"threadId\": 42,\n    \"inReplyToCommentId\": 42,\n    \"videoId\": 42,\n    \"createdAt\": \"2014-11-05T01:58:18.088Z\",\n    \"updatedAt\": \"1962-08-15T03:46:01.283Z\",\n    \"deletedAt\": null,\n    \"isDeleted\": false,\n    \"heldForReview\": true,\n    \"totalRepliesFromVideoAuthor\": 4451,\n    \"totalReplies\": 205,\n    \"account\": {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/3tos_wq/\",\n      \"avatars\": [\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"path\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"fileUrl\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"width\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"height\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"createdAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updatedAt\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"host\": \"WafkibCCVsSjKBkfjvgeJfQRCaeoCY.mnyn\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 4177,\n      \"followersCount\": 7660,\n      \"createdAt\": \"1981-02-09T08:50:05.638Z\",\n      \"updatedAt\": \"2002-01-26T23:06:48.678Z\",\n      \"userId\": 42,\n      \"displayName\": \"string\",\n      \"description\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a3d427f-a541-4830-aba5-593c87f76ac2",
+              "name": "thread or video does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Required on password protected video",
+                    "key": "x-peertube-video-password",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"text\": \"This video is wonderful!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d663228-af3d-4c8c-8a01-10585dcd79fe",
+          "name": "Delete a comment or a reply",
+          "request": {
+            "name": "Delete a comment or a reply",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":id",
+                "comments",
+                ":commentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "commentId",
+                  "description": "(Required) The comment id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b02c157d-44f2-4223-b010-6a5e79bafc6e",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "682678e1-2767-44af-982f-ff46b880c2ba",
+              "name": "cannot remove comment of another user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2b4e5c0-44c3-4ab9-be79-e46377d24684",
+              "name": "comment or video does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5fa06021-b428-4ca2-b863-413d01405469",
+              "name": "comment is already deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "384771f7-6ae9-4789-b204-ebf21ac891e7",
+          "name": "Approve a comment",
+          "request": {
+            "name": "Approve a comment",
+            "description": {
+              "content": "**PeerTube >= 6.2** Approve a comment that requires a review",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "videos",
+                ":id",
+                "comments",
+                ":commentId",
+                "approve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The object id, uuid or short uuid"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "commentId",
+                  "description": "(Required) The comment id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e3eb7614-0373-4e13-83f0-90362c9abd12",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "videos",
+                    ":id",
+                    "comments",
+                    ":commentId",
+                    "approve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The object id, uuid or short uuid"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commentId",
+                      "description": "(Required) The comment id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b748cede-cc31-4482-a725-48f7982e280f",
+    "name": "PeerTube Abuses Video Comments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

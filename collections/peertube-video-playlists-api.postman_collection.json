@@ -1,0 +1,2176 @@
+{
+  "item": [
+    {
+      "id": "fac471ba-b1f4-4231-84c5-cfd4392fda09",
+      "name": "Video Playlists",
+      "description": {
+        "content": "Operations dealing with playlists of videos. Playlists are bound to users and/or channels.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "887eab65-d686-4a1a-9faa-9eb55473280f",
+          "name": "List playlists of a channel",
+          "request": {
+            "name": "List playlists of a channel",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "playlistType",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73daa098-5bf7-4332-aa96-cd8290262e7b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "playlistType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1947-07-18T23:15:00.427Z\",\n      \"updatedAt\": \"1956-05-14T17:59:41.382Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": true,\n      \"videoLength\": 6408,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 9279,\n          \"height\": 1154,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 7536,\n          \"height\": 170,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 2,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 1009,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"cMqhmAEcBNNkGui.cct\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8186,\n            \"height\": 5397,\n            \"createdAt\": \"1973-03-13T15:40:03.924Z\",\n            \"updatedAt\": \"1976-03-28T05:19:36.700Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9228,\n            \"height\": 5944,\n            \"createdAt\": \"1991-05-25T14:07:50.083Z\",\n            \"updatedAt\": \"1988-12-18T15:06:59.231Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"bFpQUATdHFDxca.zsm\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5863,\n            \"height\": 7166,\n            \"createdAt\": \"1973-07-18T03:37:47.106Z\",\n            \"updatedAt\": \"1973-01-02T10:48:27.913Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4599,\n            \"height\": 5222,\n            \"createdAt\": \"1956-04-23T21:00:54.397Z\",\n            \"updatedAt\": \"2016-07-27T15:04:37.237Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 2899\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"2016-12-24T00:37:28.911Z\",\n      \"updatedAt\": \"2019-02-23T03:52:03.358Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": true,\n      \"videoLength\": 3864,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6778,\n          \"height\": 5205,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 9767,\n          \"height\": 6234,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 3,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 1410,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"pqRvbXuUJfcAIvZYEAcxbo.ql\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6878,\n            \"height\": 5363,\n            \"createdAt\": \"1948-12-09T11:14:32.442Z\",\n            \"updatedAt\": \"2002-05-26T12:47:35.887Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4239,\n            \"height\": 3144,\n            \"createdAt\": \"1951-12-03T01:53:33.948Z\",\n            \"updatedAt\": \"1971-09-12T05:10:30.601Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"HWlw.jcs\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9560,\n            \"height\": 7322,\n            \"createdAt\": \"1981-02-12T03:43:43.711Z\",\n            \"updatedAt\": \"1995-01-27T11:14:58.276Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6079,\n            \"height\": 6748,\n            \"createdAt\": \"1985-04-24T10:18:51.063Z\",\n            \"updatedAt\": \"2020-05-30T21:59:22.282Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 8294\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e29c472a-6fa5-440f-a439-bb131d728bdc",
+          "name": "Reorder channel playlists",
+          "request": {
+            "name": "Reorder channel playlists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-channels",
+                ":channelHandle",
+                "video-playlists",
+                "reorder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "channelHandle",
+                  "description": "(Required) The video channel handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startPosition\": \"<integer>\",\n  \"insertAfterPosition\": \"<integer>\",\n  \"reorderLength\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e97fef45-56c1-42da-950e-1e8dace6b2ed",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-channels",
+                    ":channelHandle",
+                    "video-playlists",
+                    "reorder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "channelHandle",
+                      "description": "(Required) The video channel handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startPosition\": \"<integer>\",\n  \"insertAfterPosition\": \"<integer>\",\n  \"reorderLength\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a25bef41-af60-4c54-bfd0-a5a38eb2c41c",
+          "name": "List available playlist privacy policies",
+          "request": {
+            "name": "List available playlist privacy policies",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                "privacies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42582fa1-2337-4ad4-8d77-1899b09b70cd",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    "privacies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"externalValue\": \"https://peertube2.cpy.re/api/v1/video-playlists/privacies\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6b4e17c-4650-4114-9913-eb5c161b1bdc",
+          "name": "List video playlists",
+          "request": {
+            "name": "List video playlists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "playlistType",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b193ee50-f8b1-4615-8580-7c2c322a5bc9",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "playlistType",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"2007-11-16T14:28:37.133Z\",\n      \"updatedAt\": \"1984-07-10T14:02:55.472Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 94,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 4441,\n          \"height\": 2329,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 2581,\n          \"height\": 6137,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 1,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 5262,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"ZteHiWzVeEFw.ucd\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5076,\n            \"height\": 3751,\n            \"createdAt\": \"1999-08-20T06:14:46.642Z\",\n            \"updatedAt\": \"1991-12-02T06:29:03.644Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9227,\n            \"height\": 1695,\n            \"createdAt\": \"1975-11-06T03:04:20.887Z\",\n            \"updatedAt\": \"2021-10-31T02:27:14.575Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"dPuBKYAAUBDnaWSbLitD.aef\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7126,\n            \"height\": 2874,\n            \"createdAt\": \"2001-06-15T11:40:14.320Z\",\n            \"updatedAt\": \"1970-07-15T19:33:07.904Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8340,\n            \"height\": 8432,\n            \"createdAt\": \"1975-03-20T20:14:20.549Z\",\n            \"updatedAt\": \"1972-06-04T08:14:10.206Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 8737\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1981-06-17T15:15:00.168Z\",\n      \"updatedAt\": \"1970-01-07T12:20:03.884Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": true,\n      \"videoLength\": 2501,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 4485,\n          \"height\": 411,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 6333,\n          \"height\": 1927,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": 3,\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 4343,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"C.kwiw\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 1989,\n            \"height\": 958,\n            \"createdAt\": \"1977-05-13T02:49:22.139Z\",\n            \"updatedAt\": \"2015-10-30T16:06:39.822Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4293,\n            \"height\": 6688,\n            \"createdAt\": \"2017-11-26T21:08:05.139Z\",\n            \"updatedAt\": \"1965-10-28T06:21:57.728Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"lL.tiea\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6084,\n            \"height\": 4904,\n            \"createdAt\": \"1961-07-24T05:50:52.048Z\",\n            \"updatedAt\": \"2025-12-20T19:20:03.760Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5108,\n            \"height\": 5254,\n            \"createdAt\": \"1958-11-28T18:31:33.898Z\",\n            \"updatedAt\": \"1952-10-13T15:27:55.230Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 9652\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a342823e-74f0-4a5c-9f52-472cb5986f6a",
+          "name": "Create a video playlist",
+          "request": {
+            "name": "Create a video playlist",
+            "description": {
+              "content": "If the video playlist is set as public, `videoChannelId` is mandatory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "displayName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) Video playlist display name"
+                },
+                {
+                  "key": "thumbnailfile",
+                  "type": "file",
+                  "contentType": "image/jpeg",
+                  "description": "Video playlist thumbnail file"
+                },
+                {
+                  "key": "privacy",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Video playlist description"
+                },
+                {
+                  "key": "videoChannelId",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Video channel in which the playlist will be published"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ab948de-3a73-4c29-b5c0-43bff37b8bbf",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) Video playlist display name",
+                        "type": "text/plain"
+                      },
+                      "key": "displayName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Video playlist thumbnail file",
+                        "type": "text/plain"
+                      },
+                      "key": "thumbnailfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/jpeg"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "privacy",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Video playlist description",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Video channel in which the playlist will be published",
+                        "type": "text/plain"
+                      },
+                      "key": "videoChannelId",
+                      "value": "42",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"videoPlaylist\": {\n    \"id\": 42,\n    \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n    \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8cf2ba0-34e3-462e-9b8e-ff5f348228e6",
+          "name": "Get a video playlist",
+          "request": {
+            "name": "Get a video playlist",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7035d68-af68-418b-a1af-cc6c1854a71b",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 42,\n  \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n  \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n  \"createdAt\": \"2001-01-22T09:05:50.236Z\",\n  \"updatedAt\": \"1975-01-05T17:08:29.168Z\",\n  \"description\": \"string\",\n  \"displayName\": \"string\",\n  \"isLocal\": false,\n  \"videoLength\": 6416,\n  \"thumbnailPath\": \"string\",\n  \"thumbnails\": [\n    {\n      \"fileUrl\": \"string\",\n      \"width\": 3008,\n      \"height\": 2142,\n      \"aspectRatio\": \"16:9\"\n    },\n    {\n      \"fileUrl\": \"string\",\n      \"width\": 9265,\n      \"height\": 3500,\n      \"aspectRatio\": \"16:9\"\n    }\n  ],\n  \"privacy\": {\n    \"id\": \"<integer>\",\n    \"label\": \"string\"\n  },\n  \"type\": {\n    \"id\": \"<integer>\",\n    \"label\": \"string\"\n  },\n  \"ownerAccount\": {\n    \"id\": 6526,\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"url\": \"string\",\n    \"host\": \"zXPCrfNOovsUYWhubRxRiHiqytzAn.vxer\",\n    \"avatars\": [\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 4549,\n        \"height\": 832,\n        \"createdAt\": \"1986-12-20T05:18:29.482Z\",\n        \"updatedAt\": \"2010-03-28T03:12:10.132Z\"\n      },\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 4168,\n        \"height\": 6318,\n        \"createdAt\": \"2018-07-10T14:40:28.246Z\",\n        \"updatedAt\": \"2017-07-24T00:16:12.086Z\"\n      }\n    ]\n  },\n  \"videoChannel\": {\n    \"id\": 42,\n    \"name\": \"string\",\n    \"displayName\": \"string\",\n    \"url\": \"string\",\n    \"host\": \"WOeVPgJOuhpHAVztqj.ic\",\n    \"avatars\": [\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 7482,\n        \"height\": 5793,\n        \"createdAt\": \"1989-04-24T15:53:35.568Z\",\n        \"updatedAt\": \"2000-12-31T08:07:07.006Z\"\n      },\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 8643,\n        \"height\": 5577,\n        \"createdAt\": \"1990-07-16T00:28:29.516Z\",\n        \"updatedAt\": \"1968-12-15T02:43:45.726Z\"\n      }\n    ]\n  },\n  \"videoChannelPosition\": 3597\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e43d653b-410d-473c-b558-d1339cc36c4a",
+          "name": "Update a video playlist",
+          "request": {
+            "name": "Update a video playlist",
+            "description": {
+              "content": "If the video playlist is set as public, the playlist must have a assigned channel.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "displayName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Video playlist display name"
+                },
+                {
+                  "key": "thumbnailfile",
+                  "type": "file",
+                  "contentType": "image/jpeg",
+                  "description": "Video playlist thumbnail file"
+                },
+                {
+                  "key": "privacy",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "description",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "Video playlist description"
+                },
+                {
+                  "key": "videoChannelId",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "Video channel in which the playlist will be published"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e3a054e3-378f-4b7f-8fc0-00ba35aaaa12",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "Video playlist display name",
+                        "type": "text/plain"
+                      },
+                      "key": "displayName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Video playlist thumbnail file",
+                        "type": "text/plain"
+                      },
+                      "key": "thumbnailfile",
+                      "value": "<binary>",
+                      "type": "text",
+                      "contentType": "image/jpeg"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "privacy",
+                      "value": "<integer>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Video playlist description",
+                        "type": "text/plain"
+                      },
+                      "key": "description",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "Video channel in which the playlist will be published",
+                        "type": "text/plain"
+                      },
+                      "key": "videoChannelId",
+                      "value": "42",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "29bf08ba-9305-4936-91bc-081470385d4a",
+          "name": "Delete a video playlist",
+          "request": {
+            "name": "Delete a video playlist",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2a649a32-babe-47a6-a252-caeb9ef399d2",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf86d717-8182-490e-98a6-deb6ffa1dd18",
+          "name": "List videos of a playlist",
+          "request": {
+            "name": "List videos of a playlist",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d4f4c97-56f6-4923-a73e-d7281713667a",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"position\": 2,\n      \"startTimestamp\": 10,\n      \"stopTimestamp\": 41,\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"isLive\": false,\n        \"liveSchedules\": [\n          {\n            \"startAt\": \"2001-11-04T16:50:12.406Z\"\n          },\n          {\n            \"startAt\": \"1981-02-05T07:36:35.833Z\"\n          }\n        ],\n        \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n        \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n        \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n        \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n        \"category\": {\n          \"id\": 15,\n          \"label\": \"Science & Technology\"\n        },\n        \"licence\": {\n          \"id\": 2,\n          \"label\": \"Attribution - Share Alike\"\n        },\n        \"language\": {\n          \"id\": \"en\",\n          \"label\": \"English\"\n        },\n        \"privacy\": {\n          \"id\": 4,\n          \"label\": \"string\"\n        },\n        \"truncatedDescription\": \"string\",\n        \"duration\": 1419,\n        \"aspectRatio\": 1.778,\n        \"isLocal\": false,\n        \"name\": \"What is PeerTube?\",\n        \"thumbnailPath\": \"string\",\n        \"previewPath\": \"string\",\n        \"thumbnails\": [\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 9980,\n            \"height\": 47,\n            \"aspectRatio\": \"16:9\"\n          },\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 8286,\n            \"height\": 484,\n            \"aspectRatio\": \"16:9\"\n          }\n        ],\n        \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n        \"views\": 1337,\n        \"likes\": 42,\n        \"dislikes\": 7,\n        \"comments\": 7806,\n        \"nsfw\": false,\n        \"nsfwFlags\": 1,\n        \"nsfwSummary\": \"string\",\n        \"waitTranscoding\": true,\n        \"state\": {\n          \"id\": 1,\n          \"label\": \"string\"\n        },\n        \"scheduledUpdate\": {\n          \"updateAt\": \"1947-08-07T05:00:51.397Z\",\n          \"privacy\": 5\n        },\n        \"blacklisted\": true,\n        \"blacklistedReason\": \"string\",\n        \"account\": {\n          \"id\": 4236,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"pNJzrXQaMlziolnsJScF.jnyq\",\n          \"avatars\": [\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"AQOXBtyrlcvXZwXQGrEHxV.zr\",\n          \"avatars\": [\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"userHistory\": {\n          \"currentTime\": 5960\n        }\n      }\n    },\n    {\n      \"id\": 42,\n      \"position\": 2,\n      \"startTimestamp\": 10,\n      \"stopTimestamp\": 41,\n      \"video\": {\n        \"id\": 42,\n        \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n        \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n        \"isLive\": false,\n        \"liveSchedules\": [\n          {\n            \"startAt\": \"2018-03-07T09:36:43.252Z\"\n          },\n          {\n            \"startAt\": \"1985-08-15T22:49:38.651Z\"\n          }\n        ],\n        \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n        \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n        \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n        \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n        \"category\": {\n          \"id\": 15,\n          \"label\": \"Science & Technology\"\n        },\n        \"licence\": {\n          \"id\": 2,\n          \"label\": \"Attribution - Share Alike\"\n        },\n        \"language\": {\n          \"id\": \"en\",\n          \"label\": \"English\"\n        },\n        \"privacy\": {\n          \"id\": 2,\n          \"label\": \"string\"\n        },\n        \"truncatedDescription\": \"string\",\n        \"duration\": 1419,\n        \"aspectRatio\": 1.778,\n        \"isLocal\": true,\n        \"name\": \"What is PeerTube?\",\n        \"thumbnailPath\": \"string\",\n        \"previewPath\": \"string\",\n        \"thumbnails\": [\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 841,\n            \"height\": 8060,\n            \"aspectRatio\": \"16:9\"\n          },\n          {\n            \"fileUrl\": \"string\",\n            \"width\": 4224,\n            \"height\": 9439,\n            \"aspectRatio\": \"16:9\"\n          }\n        ],\n        \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n        \"views\": 1337,\n        \"likes\": 42,\n        \"dislikes\": 7,\n        \"comments\": 1741,\n        \"nsfw\": true,\n        \"nsfwFlags\": 1,\n        \"nsfwSummary\": \"string\",\n        \"waitTranscoding\": false,\n        \"state\": {\n          \"id\": 1,\n          \"label\": \"string\"\n        },\n        \"scheduledUpdate\": {\n          \"updateAt\": \"1948-01-12T16:39:01.686Z\",\n          \"privacy\": 4\n        },\n        \"blacklisted\": true,\n        \"blacklistedReason\": \"string\",\n        \"account\": {\n          \"id\": 2530,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"Kl.ao\",\n          \"avatars\": [\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"channel\": {\n          \"id\": 42,\n          \"name\": \"string\",\n          \"displayName\": \"string\",\n          \"url\": \"string\",\n          \"host\": \"cQurjJlMpwLskOCIfuLMrRTqni.qqw\",\n          \"avatars\": [\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fileUrl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"width\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"height\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"userHistory\": {\n          \"currentTime\": 8621\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2c4435a-d448-483d-acd3-6816cfccb2b0",
+          "name": "Add a video in a playlist",
+          "request": {
+            "name": "Add a video in a playlist",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"videoId\": \"<uuid>\",\n  \"startTimestamp\": \"<seconds>\",\n  \"stopTimestamp\": \"<seconds>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8bc72f14-2d76-4665-b7bc-91c61972363d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"videoId\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n  \"startTimestamp\": \"<seconds>\",\n  \"stopTimestamp\": \"<seconds>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"videoPlaylistElement\": {\n    \"id\": 2\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a70efeef-399f-459e-9dde-541d60727e96",
+          "name": "Reorder playlist elements",
+          "request": {
+            "name": "Reorder playlist elements",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId",
+                "videos",
+                "reorder"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startPosition\": \"<integer>\",\n  \"insertAfterPosition\": \"<integer>\",\n  \"reorderLength\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ffad8ca-9082-4fd1-937e-955e8af1cf61",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId",
+                    "videos",
+                    "reorder"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startPosition\": \"<integer>\",\n  \"insertAfterPosition\": \"<integer>\",\n  \"reorderLength\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d97b201-1636-4e97-851c-c5aea09a850b",
+          "name": "Update a playlist element",
+          "request": {
+            "name": "Update a playlist element",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId",
+                "videos",
+                ":playlistElementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistElementId",
+                  "description": "(Required) Playlist element id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startTimestamp\": \"<seconds>\",\n  \"stopTimestamp\": \"<seconds>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1052022e-1e4d-41ce-8aa5-9870b216141d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId",
+                    "videos",
+                    ":playlistElementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistElementId",
+                      "description": "(Required) Playlist element id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTimestamp\": \"<seconds>\",\n  \"stopTimestamp\": \"<seconds>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "801e9ba6-acf0-49eb-8db7-03c6f8e9f10b",
+          "name": "Delete an element from a playlist",
+          "request": {
+            "name": "Delete an element from a playlist",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "video-playlists",
+                ":playlistId",
+                "videos",
+                ":playlistElementId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistId",
+                  "description": "(Required) Playlist id"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "playlistElementId",
+                  "description": "(Required) Playlist element id"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd37b53f-e6a6-4425-9f0d-2d97b47ddd9a",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "video-playlists",
+                    ":playlistId",
+                    "videos",
+                    ":playlistElementId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistId",
+                      "description": "(Required) Playlist id"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "playlistElementId",
+                      "description": "(Required) Playlist element id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d75d33b7-3461-438e-91d7-32df90672b72",
+          "name": "Check video exists in my playlists",
+          "request": {
+            "name": "Check video exists in my playlists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "video-playlists",
+                "videos-exist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "videoIds",
+                  "value": "<integer>",
+                  "description": "(Required) The video ids to check"
+                },
+                {
+                  "disabled": false,
+                  "key": "videoIds",
+                  "value": "<integer>",
+                  "description": "(Required) The video ids to check"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f918c4b0-f45a-47d0-a346-4578552da2f0",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "video-playlists",
+                    "videos-exist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "videoIds",
+                      "value": "42"
+                    },
+                    {
+                      "key": "videoIds",
+                      "value": "42"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"videoId\": [\n    {\n      \"playlistElementId\": 6331,\n      \"playlistId\": 3630,\n      \"startTimestamp\": 3366,\n      \"stopTimestamp\": 9789\n    },\n    {\n      \"playlistElementId\": 7803,\n      \"playlistId\": 6337,\n      \"startTimestamp\": 6578,\n      \"stopTimestamp\": 3200\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7f11506-2cea-4d1d-9d4e-0121aff6ec9a",
+          "name": "List playlists of an account",
+          "request": {
+            "name": "List playlists of an account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "accounts",
+                ":name",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                },
+                {
+                  "disabled": false,
+                  "key": "playlistType",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCollaborations",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+                },
+                {
+                  "disabled": false,
+                  "key": "channelNameOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 8.0** Filter on playlists that are published on a channel with one of these names"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The username or handle of the account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0fac13f-4983-4d4a-a4e0-fd3d0fbe9dcc",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "accounts",
+                    ":name",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "playlistType",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeCollaborations",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "channelNameOneOf",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The username or handle of the account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1964-01-13T02:12:44.020Z\",\n      \"updatedAt\": \"1989-07-23T09:47:20.680Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 5109,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 8832,\n          \"height\": 3210,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1087,\n          \"height\": 907,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 7459,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"YixWCHoVDtHzzij.fqkg\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2870,\n            \"height\": 2350,\n            \"createdAt\": \"1965-01-13T15:05:49.149Z\",\n            \"updatedAt\": \"2020-02-03T20:28:18.654Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2388,\n            \"height\": 1816,\n            \"createdAt\": \"1991-04-01T07:29:26.902Z\",\n            \"updatedAt\": \"1994-07-20T02:17:55.218Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"OkPQbJOzbSq.xo\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7200,\n            \"height\": 6676,\n            \"createdAt\": \"2007-01-26T04:44:30.046Z\",\n            \"updatedAt\": \"1988-07-31T18:58:23.055Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8881,\n            \"height\": 5263,\n            \"createdAt\": \"1948-12-03T15:48:10.927Z\",\n            \"updatedAt\": \"1979-04-05T11:34:36.318Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 5545\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"2017-11-23T20:18:49.970Z\",\n      \"updatedAt\": \"1993-02-17T05:33:35.773Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": true,\n      \"videoLength\": 1334,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 2109,\n          \"height\": 328,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 8684,\n          \"height\": 5406,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 2643,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"HNgImWi.mkgn\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8173,\n            \"height\": 8390,\n            \"createdAt\": \"1990-06-28T17:48:33.993Z\",\n            \"updatedAt\": \"1972-05-26T11:25:21.936Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2344,\n            \"height\": 3454,\n            \"createdAt\": \"1994-04-22T00:59:19.235Z\",\n            \"updatedAt\": \"2017-02-22T20:29:44.664Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"zkobCWdaDTmCEgcIHIxz.lv\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6612,\n            \"height\": 4061,\n            \"createdAt\": \"1964-12-01T14:37:34.209Z\",\n            \"updatedAt\": \"1992-03-01T11:32:06.709Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9270,\n            \"height\": 1485,\n            \"createdAt\": \"1989-09-16T02:00:39.646Z\",\n            \"updatedAt\": \"1954-09-04T19:37:40.408Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 5278\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a517591-ab52-4370-abef-11948c521d17",
+          "name": "Search playlists",
+          "request": {
+            "name": "Search playlists",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "search",
+                "video-playlists"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "(Required) String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete playlist information and interact with it.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTarget",
+                  "value": "<string>",
+                  "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort column"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4c48069-67d9-4176-aedc-d7096b43c48d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"1964-01-13T02:12:44.020Z\",\n      \"updatedAt\": \"1989-07-23T09:47:20.680Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": false,\n      \"videoLength\": 5109,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 8832,\n          \"height\": 3210,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1087,\n          \"height\": 907,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 7459,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"YixWCHoVDtHzzij.fqkg\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2870,\n            \"height\": 2350,\n            \"createdAt\": \"1965-01-13T15:05:49.149Z\",\n            \"updatedAt\": \"2020-02-03T20:28:18.654Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2388,\n            \"height\": 1816,\n            \"createdAt\": \"1991-04-01T07:29:26.902Z\",\n            \"updatedAt\": \"1994-07-20T02:17:55.218Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"OkPQbJOzbSq.xo\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7200,\n            \"height\": 6676,\n            \"createdAt\": \"2007-01-26T04:44:30.046Z\",\n            \"updatedAt\": \"1988-07-31T18:58:23.055Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8881,\n            \"height\": 5263,\n            \"createdAt\": \"1948-12-03T15:48:10.927Z\",\n            \"updatedAt\": \"1979-04-05T11:34:36.318Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 5545\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"createdAt\": \"2017-11-23T20:18:49.970Z\",\n      \"updatedAt\": \"1993-02-17T05:33:35.773Z\",\n      \"description\": \"string\",\n      \"displayName\": \"string\",\n      \"isLocal\": true,\n      \"videoLength\": 1334,\n      \"thumbnailPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 2109,\n          \"height\": 328,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 8684,\n          \"height\": 5406,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"type\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"ownerAccount\": {\n        \"id\": 2643,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"HNgImWi.mkgn\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 8173,\n            \"height\": 8390,\n            \"createdAt\": \"1990-06-28T17:48:33.993Z\",\n            \"updatedAt\": \"1972-05-26T11:25:21.936Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 2344,\n            \"height\": 3454,\n            \"createdAt\": \"1994-04-22T00:59:19.235Z\",\n            \"updatedAt\": \"2017-02-22T20:29:44.664Z\"\n          }\n        ]\n      },\n      \"videoChannel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"zkobCWdaDTmCEgcIHIxz.lv\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6612,\n            \"height\": 4061,\n            \"createdAt\": \"1964-12-01T14:37:34.209Z\",\n            \"updatedAt\": \"1992-03-01T11:32:06.709Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9270,\n            \"height\": 1485,\n            \"createdAt\": \"1989-09-16T02:00:39.646Z\",\n            \"updatedAt\": \"1954-09-04T19:37:40.408Z\"\n          }\n        ]\n      },\n      \"videoChannelPosition\": 5278\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc131a77-8caf-45b8-99f6-1da2eff0a746",
+              "name": "search index unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "search",
+                    "video-playlists"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "searchTarget",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "-createdAt"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e8aadcf3-b2e1-46fb-bdb9-cc3dc88b569b",
+    "name": "PeerTube Abuses Video Playlists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

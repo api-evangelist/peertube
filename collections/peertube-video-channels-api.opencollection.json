@@ -1,0 +1,954 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Channels API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Channels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List video channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              }
+            ]
+          },
+          "docs": "List video channels"
+        },
+        {
+          "info": {
+            "name": "Create a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a video channel"
+        },
+        {
+          "info": {
+            "name": "Get a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ]
+          },
+          "docs": "Get a video channel"
+        },
+        {
+          "info": {
+            "name": "Update a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a video channel"
+        },
+        {
+          "info": {
+            "name": "Delete a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a video channel"
+        },
+        {
+          "info": {
+            "name": "List videos of a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/videos",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ]
+          },
+          "docs": "List videos of a video channel"
+        },
+        {
+          "info": {
+            "name": "List activities of a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/activities",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              }
+            ]
+          },
+          "docs": "**PeerTube >= 8.0**"
+        },
+        {
+          "info": {
+            "name": "List playlists of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/video-playlists",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "playlistType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List playlists of a channel"
+        },
+        {
+          "info": {
+            "name": "Reorder channel playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/video-playlists/reorder",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reorder channel playlists"
+        },
+        {
+          "info": {
+            "name": "List followers of a video channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/followers",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort followers by criteria"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List followers of a video channel"
+        },
+        {
+          "info": {
+            "name": "Update channel avatar",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/avatar/pick",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "avatarfile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update channel avatar"
+        },
+        {
+          "info": {
+            "name": "Delete channel avatar",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/avatar",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete channel avatar"
+        },
+        {
+          "info": {
+            "name": "Update channel banner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/banner/pick",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "bannerfile",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update channel banner"
+        },
+        {
+          "info": {
+            "name": "Delete channel banner",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/banner",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete channel banner"
+        },
+        {
+          "info": {
+            "name": "Import videos in channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/import-videos",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Import a remote channel/playlist videos into a channel"
+        },
+        {
+          "info": {
+            "name": "List video channels of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-channels",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "withStats",
+                "value": "",
+                "type": "query",
+                "description": "include daily view statistics for the last 30 days and total views (only if authenticated as the account user)"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              }
+            ]
+          },
+          "docs": "List video channels of an account"
+        },
+        {
+          "info": {
+            "name": "List the synchronizations of video channels of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-channel-syncs",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              }
+            ]
+          },
+          "docs": "List the synchronizations of video channels of an account"
+        },
+        {
+          "info": {
+            "name": "Search channels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/search/video-channels",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete channel information and interact with it.\n"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "searchTarget",
+                "value": "",
+                "type": "query",
+                "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "handles",
+                "value": "",
+                "type": "query",
+                "description": "Find elements with these handles"
+              }
+            ]
+          },
+          "docs": "Search channels"
+        },
+        {
+          "info": {
+            "name": "List channel collaborators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/collaborators",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 8.0**"
+        },
+        {
+          "info": {
+            "name": "Invite a collaborator",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/collaborators/invite",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 8.0**  Invite a local user to collaborate on the specified video channel."
+        },
+        {
+          "info": {
+            "name": "Accept a collaboration invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/collaborators/:collaboratorId/accept",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "collaboratorId",
+                "value": "",
+                "type": "path",
+                "description": "The collaborator id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 8.0**"
+        },
+        {
+          "info": {
+            "name": "Reject a collaboration invitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/collaborators/:collaboratorId/reject",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "collaboratorId",
+                "value": "",
+                "type": "path",
+                "description": "The collaborator id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 8.0**"
+        },
+        {
+          "info": {
+            "name": "Remove a channel collaborator",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/collaborators/:collaboratorId",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "collaboratorId",
+                "value": "",
+                "type": "path",
+                "description": "The collaborator id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 8.0** Only the channel owner or the collaborator themselves can remove a collaborator from a channel"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

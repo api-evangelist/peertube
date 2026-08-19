@@ -1,0 +1,604 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Playlists API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Playlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List playlists of a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/video-playlists",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "playlistType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List playlists of a channel"
+        },
+        {
+          "info": {
+            "name": "Reorder channel playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-channels/:channelHandle/video-playlists/reorder",
+            "params": [
+              {
+                "name": "channelHandle",
+                "value": "",
+                "type": "path",
+                "description": "The video channel handle"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reorder channel playlists"
+        },
+        {
+          "info": {
+            "name": "List available playlist privacy policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/privacies"
+          },
+          "docs": "List available playlist privacy policies"
+        },
+        {
+          "info": {
+            "name": "List video playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "playlistType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List video playlists"
+        },
+        {
+          "info": {
+            "name": "Create a video playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "displayName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "thumbnailfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "privacy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoChannelId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "If the video playlist is set as public, `videoChannelId` is mandatory."
+        },
+        {
+          "info": {
+            "name": "Get a video playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              }
+            ]
+          },
+          "docs": "Get a video playlist"
+        },
+        {
+          "info": {
+            "name": "Update a video playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "displayName",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "thumbnailfile",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "privacy",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "videoChannelId",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "If the video playlist is set as public, the playlist must have a assigned channel."
+        },
+        {
+          "info": {
+            "name": "Delete a video playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a video playlist"
+        },
+        {
+          "info": {
+            "name": "List videos of a playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId/videos",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              }
+            ]
+          },
+          "docs": "List videos of a playlist"
+        },
+        {
+          "info": {
+            "name": "Add a video in a playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId/videos",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add a video in a playlist"
+        },
+        {
+          "info": {
+            "name": "Reorder playlist elements",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId/videos/reorder",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reorder playlist elements"
+        },
+        {
+          "info": {
+            "name": "Update a playlist element",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId/videos/:playlistElementId",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              },
+              {
+                "name": "playlistElementId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist element id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update a playlist element"
+        },
+        {
+          "info": {
+            "name": "Delete an element from a playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/video-playlists/:playlistId/videos/:playlistElementId",
+            "params": [
+              {
+                "name": "playlistId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist id"
+              },
+              {
+                "name": "playlistElementId",
+                "value": "",
+                "type": "path",
+                "description": "Playlist element id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an element from a playlist"
+        },
+        {
+          "info": {
+            "name": "Check video exists in my playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/video-playlists/videos-exist",
+            "params": [
+              {
+                "name": "videoIds",
+                "value": "",
+                "type": "query",
+                "description": "The video ids to check"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Check video exists in my playlists"
+        },
+        {
+          "info": {
+            "name": "List playlists of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/accounts/:name/video-playlists",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The username or handle of the account"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "playlistType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              },
+              {
+                "name": "channelNameOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Filter on playlists that are published on a channel with one of these names"
+              }
+            ]
+          },
+          "docs": "List playlists of an account"
+        },
+        {
+          "info": {
+            "name": "Search playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/search/video-playlists",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "String to search. If the user can make a remote URI search, and the string is an URI then the PeerTube instance will fetch the remote object and add it to its database. Then, you can use the REST API to fetch the complete playlist information and interact with it.\n"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "searchTarget",
+                "value": "",
+                "type": "query",
+                "description": "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort column"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "uuids",
+                "value": "",
+                "type": "query",
+                "description": "Find elements with specific UUIDs"
+              }
+            ]
+          },
+          "docs": "Search playlists"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

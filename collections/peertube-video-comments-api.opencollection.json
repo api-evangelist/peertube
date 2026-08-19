@@ -1,0 +1,382 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Video Comments API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Video Comments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List comments on user's videos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/videos/comments",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "searchAccount",
+                "value": "",
+                "type": "query",
+                "description": "Filter comments by searching on the account"
+              },
+              {
+                "name": "searchVideo",
+                "value": "",
+                "type": "query",
+                "description": "Filter comments by searching on the video"
+              },
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results on this specific video"
+              },
+              {
+                "name": "videoChannelId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results on this specific video channel"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** filter on comments that contain one of these automatic tags"
+              },
+              {
+                "name": "isHeldForReview",
+                "value": "",
+                "type": "query",
+                "description": "only display comments that are held for review"
+              },
+              {
+                "name": "includeCollaborations",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.0** Include objects from collaborated channels"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.2**"
+        },
+        {
+          "info": {
+            "name": "List threads of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/comment-threads",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort comments by criteria"
+              }
+            ]
+          },
+          "docs": "List threads of a video"
+        },
+        {
+          "info": {
+            "name": "Create a thread",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/comment-threads",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Create a thread"
+        },
+        {
+          "info": {
+            "name": "Get a thread",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/comment-threads/:threadId",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "threadId",
+                "value": "",
+                "type": "path",
+                "description": "The thread id (root comment id)"
+              }
+            ]
+          },
+          "docs": "Get a thread"
+        },
+        {
+          "info": {
+            "name": "List instance comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/videos/comments",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              },
+              {
+                "name": "searchAccount",
+                "value": "",
+                "type": "query",
+                "description": "Filter comments by searching on the account"
+              },
+              {
+                "name": "searchVideo",
+                "value": "",
+                "type": "query",
+                "description": "Filter comments by searching on the video"
+              },
+              {
+                "name": "videoId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results on this specific video"
+              },
+              {
+                "name": "videoChannelId",
+                "value": "",
+                "type": "query",
+                "description": "Limit results on this specific video channel"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** filter on comments that contain one of these automatic tags"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "onLocalVideo",
+                "value": "",
+                "type": "query",
+                "description": "Display only objects of local or remote videos"
+              },
+              {
+                "name": "includeMuted",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** Include comments from muted accounts"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List instance comments"
+        },
+        {
+          "info": {
+            "name": "Reply to a thread of a video",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/comments/:commentId",
+            "headers": [
+              {
+                "name": "x-peertube-video-password",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "The comment id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Reply to a thread of a video"
+        },
+        {
+          "info": {
+            "name": "Delete a comment or a reply",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/comments/:commentId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "The comment id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete a comment or a reply"
+        },
+        {
+          "info": {
+            "name": "Approve a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/videos/:id/comments/:commentId/approve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The object id, uuid or short uuid"
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "The comment id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "**PeerTube >= 6.2** Approve a comment that requires a review"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

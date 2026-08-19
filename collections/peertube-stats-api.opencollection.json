@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Stats API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get instance stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/server/stats"
+          },
+          "docs": "Get instance public statistics. This endpoint is cached."
+        },
+        {
+          "info": {
+            "name": "Create playback metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/metrics/playback",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "These metrics are exposed by OpenTelemetry metrics exporter if enabled."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

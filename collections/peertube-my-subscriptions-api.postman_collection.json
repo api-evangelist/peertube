@@ -1,0 +1,961 @@
+{
+  "item": [
+    {
+      "id": "134fc14e-ecfd-4ef2-9f39-43d47ad533d0",
+      "name": "My Subscriptions",
+      "description": {
+        "content": "Operations related to your subscriptions to video channels, their new videos, and how to keep up to date with their latest publications!\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "452d8033-a8bb-43c0-8c19-b86fe8494735",
+          "name": "List my user subscriptions",
+          "request": {
+            "name": "List my user subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fb2dccea-280f-427e-a6ca-4fbc2935efb6",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/.mx/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 7636,\n          \"height\": 1754,\n          \"createdAt\": \"1958-11-30T08:13:46.827Z\",\n          \"updatedAt\": \"1981-07-31T22:17:24.048Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 5095,\n          \"height\": 8179,\n          \"createdAt\": \"2006-04-01T00:00:20.764Z\",\n          \"updatedAt\": \"2014-04-15T17:34:01.385Z\"\n        }\n      ],\n      \"host\": \"UgCrJLsaZSfzAzsZJwmNiePqBCa.dh\",\n      \"hostRedundancyAllowed\": false,\n      \"followingCount\": 5033,\n      \"followersCount\": 2696,\n      \"createdAt\": \"2000-06-19T00:56:43.868Z\",\n      \"updatedAt\": \"1983-05-31T20:11:42.327Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": false,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 6165,\n          \"height\": 1555,\n          \"createdAt\": \"1982-07-29T01:02:15.069Z\",\n          \"updatedAt\": \"2002-07-07T22:08:05.373Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8971,\n          \"height\": 9967,\n          \"createdAt\": \"2002-05-27T16:12:13.306Z\",\n          \"updatedAt\": \"2011-03-13T17:47:42.271Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"string\",\n        \"description\": \"string\"\n      }\n    },\n    {\n      \"id\": 42,\n      \"url\": \"string\",\n      \"name\": \"/j6jpn/\",\n      \"avatars\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 2799,\n          \"height\": 846,\n          \"createdAt\": \"2019-07-14T06:58:04.674Z\",\n          \"updatedAt\": \"2015-02-10T17:26:29.893Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 8756,\n          \"height\": 1206,\n          \"createdAt\": \"1985-07-11T00:20:11.479Z\",\n          \"updatedAt\": \"2002-12-31T07:43:55.157Z\"\n        }\n      ],\n      \"host\": \"GLFGZUGSjUJWvhexBJUeXXoO.vao\",\n      \"hostRedundancyAllowed\": true,\n      \"followingCount\": 8482,\n      \"followersCount\": 3192,\n      \"createdAt\": \"1994-05-13T04:21:44.148Z\",\n      \"updatedAt\": \"1983-11-07T16:59:51.189Z\",\n      \"displayName\": \"Videos of Framasoft\",\n      \"description\": \"Videos made with <3 by Framasoft\",\n      \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n      \"isLocal\": true,\n      \"banners\": [\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 5808,\n          \"height\": 6611,\n          \"createdAt\": \"1964-02-14T09:05:04.300Z\",\n          \"updatedAt\": \"2013-07-19T14:16:16.442Z\"\n        },\n        {\n          \"path\": \"string\",\n          \"fileUrl\": \"string\",\n          \"width\": 5802,\n          \"height\": 216,\n          \"createdAt\": \"1984-04-12T02:50:24.251Z\",\n          \"updatedAt\": \"1985-02-26T23:32:22.198Z\"\n        }\n      ],\n      \"ownerAccount\": {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"avatars\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"host\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"hostRedundancyAllowed\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followingCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"followersCount\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"createdAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"updatedAt\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userId\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"displayName\": \"stri\",\n        \"description\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b40f61f-18fb-441f-800f-4ed8154344a2",
+          "name": "Add subscription to my user",
+          "request": {
+            "name": "Add subscription to my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"uri\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0ad301e-9c0e-43d5-ad09-9d055455fe4d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"uri\": \"008a0e54-375d-49d0-8379-143202e24152@video.lqdn.fr\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bff38609-f2da-42b5-b586-7f6b0eac40ed",
+          "name": "Get if subscriptions exist for my user",
+          "request": {
+            "name": "Get if subscriptions exist for my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "subscriptions",
+                "exist"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "uris",
+                  "value": "<uri>",
+                  "description": "(Required) list of uris to check if each is part of the user subscriptions"
+                },
+                {
+                  "disabled": false,
+                  "key": "uris",
+                  "value": "<uri>",
+                  "description": "(Required) list of uris to check if each is part of the user subscriptions"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "143e56c7-6740-4bf4-80b4-b87c2aac255d",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "subscriptions",
+                    "exist"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "uris",
+                      "value": "<uri>"
+                    },
+                    {
+                      "key": "uris",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be1b43bc-e373-42c2-9f4a-7e95a1c66363",
+          "name": "List videos of subscriptions of my user",
+          "request": {
+            "name": "List videos of subscriptions of my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "subscriptions",
+                "videos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Offset used to paginate results"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "15",
+                  "description": "Number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "skipCount",
+                  "value": "false",
+                  "description": "if you don't need the `total` in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfw",
+                  "value": "<string>",
+                  "description": "whether to include nsfw videos, if any"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsIncluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "nsfwFlagsExcluded",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLive",
+                  "value": "<boolean>",
+                  "description": "whether or not the video is a live"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeScheduledLive",
+                  "value": "<boolean>",
+                  "description": "whether or not include live that are scheduled for later"
+                },
+                {
+                  "disabled": false,
+                  "key": "categoryOneOf",
+                  "value": "<integer>",
+                  "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenceOneOf",
+                  "value": "<integer>",
+                  "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+                },
+                {
+                  "disabled": false,
+                  "key": "languageOneOf",
+                  "value": "<string>",
+                  "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsOneOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "tagsAllOf",
+                  "value": "<string>",
+                  "description": "tag(s) of the video, where all should be present in the video"
+                },
+                {
+                  "disabled": false,
+                  "key": "isLocal",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only local or remote objects"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasHLSFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+                },
+                {
+                  "disabled": false,
+                  "key": "hasWebVideoFiles",
+                  "value": "<boolean>",
+                  "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+                },
+                {
+                  "disabled": false,
+                  "key": "host",
+                  "value": "<string>",
+                  "description": "Find elements owned by this host"
+                },
+                {
+                  "disabled": false,
+                  "key": "autoTagOneOf",
+                  "value": "<string>",
+                  "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+                },
+                {
+                  "disabled": false,
+                  "key": "stateOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+                },
+                {
+                  "disabled": false,
+                  "key": "privacyOneOf",
+                  "value": "<integer>",
+                  "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeAlreadyWatched",
+                  "value": "<boolean>",
+                  "description": "Whether or not to exclude videos that are in the user's video history"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Plain text search, applied to various parts of the model depending on endpoint"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "66407df5-72be-42f2-b80e-bc64f5231f48",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "subscriptions",
+                    "videos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "15"
+                    },
+                    {
+                      "key": "skipCount",
+                      "value": "false"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfw",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nsfwFlagsIncluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "nsfwFlagsExcluded",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "isLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeScheduledLive",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "categoryOneOf",
+                      "value": "15"
+                    },
+                    {
+                      "key": "licenceOneOf",
+                      "value": "2"
+                    },
+                    {
+                      "key": "languageOneOf",
+                      "value": "en"
+                    },
+                    {
+                      "key": "tagsOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tagsAllOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "isLocal",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "hasHLSFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hasWebVideoFiles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "host",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "autoTagOneOf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "stateOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "privacyOneOf",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "excludeAlreadyWatched",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"data\": [\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": true,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"2023-02-24T14:45:00.121Z\"\n        },\n        {\n          \"startAt\": \"1983-07-19T01:20:32.126Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": true,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 1138,\n          \"height\": 7262,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 9860,\n          \"height\": 4392,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 6517,\n      \"nsfw\": false,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": true,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"1979-05-05T05:36:29.976Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": true,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 8558,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"sZGqHnhFsqNOtIlbw.pvjo\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 6965,\n            \"height\": 5631,\n            \"createdAt\": \"1995-05-12T18:51:14.876Z\",\n            \"updatedAt\": \"1982-01-25T21:14:58.861Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 9319,\n            \"height\": 1904,\n            \"createdAt\": \"1985-10-22T07:22:45.085Z\",\n            \"updatedAt\": \"1976-04-10T10:59:20.224Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"yJblPauQSuiJqdQiPn.ptus\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 4884,\n            \"height\": 3375,\n            \"createdAt\": \"1996-05-04T18:19:02.036Z\",\n            \"updatedAt\": \"1961-06-19T12:46:37.098Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5853,\n            \"height\": 4775,\n            \"createdAt\": \"1956-10-28T06:02:50.956Z\",\n            \"updatedAt\": \"1986-03-03T16:57:04.224Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 5423\n      }\n    },\n    {\n      \"id\": 42,\n      \"uuid\": \"9c9de5e8-0a1e-484a-b099-e80766180a6d\",\n      \"shortUUID\": \"2y84q2MQUMWPbiEcxNXMgC\",\n      \"isLive\": true,\n      \"liveSchedules\": [\n        {\n          \"startAt\": \"1976-05-03T05:38:06.158Z\"\n        },\n        {\n          \"startAt\": \"1995-04-20T20:21:36.519Z\"\n        }\n      ],\n      \"createdAt\": \"2017-10-01T10:52:46.396000+00:00\",\n      \"publishedAt\": \"2018-10-01T10:52:46.396000+00:00\",\n      \"updatedAt\": \"2021-05-04T08:01:01.502000+00:00\",\n      \"originallyPublishedAt\": \"2010-10-01T10:52:46.396000+00:00\",\n      \"category\": {\n        \"id\": 15,\n        \"label\": \"Science & Technology\"\n      },\n      \"licence\": {\n        \"id\": 2,\n        \"label\": \"Attribution - Share Alike\"\n      },\n      \"language\": {\n        \"id\": \"en\",\n        \"label\": \"English\"\n      },\n      \"privacy\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"truncatedDescription\": \"string\",\n      \"duration\": 1419,\n      \"aspectRatio\": 1.778,\n      \"isLocal\": false,\n      \"name\": \"What is PeerTube?\",\n      \"thumbnailPath\": \"string\",\n      \"previewPath\": \"string\",\n      \"thumbnails\": [\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 3408,\n          \"height\": 3567,\n          \"aspectRatio\": \"16:9\"\n        },\n        {\n          \"fileUrl\": \"string\",\n          \"width\": 9207,\n          \"height\": 3840,\n          \"aspectRatio\": \"16:9\"\n        }\n      ],\n      \"embedPath\": \"/videos/embed/a65bc12f-9383-462e-81ae-8207e8b434ee\",\n      \"views\": 1337,\n      \"likes\": 42,\n      \"dislikes\": 7,\n      \"comments\": 2180,\n      \"nsfw\": false,\n      \"nsfwFlags\": \"<integer>\",\n      \"nsfwSummary\": \"string\",\n      \"waitTranscoding\": true,\n      \"state\": {\n        \"id\": \"<integer>\",\n        \"label\": \"string\"\n      },\n      \"scheduledUpdate\": {\n        \"updateAt\": \"2014-07-07T14:03:52.341Z\",\n        \"privacy\": \"<integer>\"\n      },\n      \"blacklisted\": false,\n      \"blacklistedReason\": \"string\",\n      \"account\": {\n        \"id\": 3556,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"WSjEBEEMaiKbqVFpqxTzFaMGowYiV.ejf\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 7670,\n            \"height\": 4034,\n            \"createdAt\": \"2001-11-07T16:26:40.255Z\",\n            \"updatedAt\": \"2024-09-14T11:44:25.079Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 5540,\n            \"height\": 1113,\n            \"createdAt\": \"1989-01-18T15:30:10.820Z\",\n            \"updatedAt\": \"1993-07-06T12:38:20.331Z\"\n          }\n        ]\n      },\n      \"channel\": {\n        \"id\": 42,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"url\": \"string\",\n        \"host\": \"ygsyofOXXWeuvjjRxUbSYwhYPtVl.xco\",\n        \"avatars\": [\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3879,\n            \"height\": 1434,\n            \"createdAt\": \"2013-09-13T11:53:36.023Z\",\n            \"updatedAt\": \"1986-06-02T13:21:13.826Z\"\n          },\n          {\n            \"path\": \"string\",\n            \"fileUrl\": \"string\",\n            \"width\": 3999,\n            \"height\": 4239,\n            \"createdAt\": \"2021-07-15T18:37:35.235Z\",\n            \"updatedAt\": \"2009-05-01T22:07:30.585Z\"\n          }\n        ]\n      },\n      \"userHistory\": {\n        \"currentTime\": 3352\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c0a254b-3fc4-464a-a487-a2700d6bb2ae",
+          "name": "Get subscription of my user",
+          "request": {
+            "name": "Get subscription of my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "subscriptions",
+                ":subscriptionHandle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionHandle",
+                  "description": "(Required) The subscription handle"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e6d78c60-5434-44c3-9548-e3abc09a39cd",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "subscriptions",
+                    ":subscriptionHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionHandle",
+                      "description": "(Required) The subscription handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 42,\n  \"url\": \"string\",\n  \"name\": \"/e37jkyv9j/\",\n  \"avatars\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 6412,\n      \"height\": 7069,\n      \"createdAt\": \"1983-09-20T21:10:03.339Z\",\n      \"updatedAt\": \"1981-09-16T13:21:38.599Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 8772,\n      \"height\": 7098,\n      \"createdAt\": \"1966-01-17T19:01:21.186Z\",\n      \"updatedAt\": \"1964-08-30T05:20:36.997Z\"\n    }\n  ],\n  \"host\": \"ooafgDGskEYUrFyxERe.vfg\",\n  \"hostRedundancyAllowed\": false,\n  \"followingCount\": 9826,\n  \"followersCount\": 8597,\n  \"createdAt\": \"1954-07-22T05:56:01.047Z\",\n  \"updatedAt\": \"2021-11-23T11:54:01.758Z\",\n  \"displayName\": \"Videos of Framasoft\",\n  \"description\": \"Videos made with <3 by Framasoft\",\n  \"support\": \"Please support our work on https://soutenir.framasoft.org/en/ <3\",\n  \"isLocal\": false,\n  \"banners\": [\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 3366,\n      \"height\": 8414,\n      \"createdAt\": \"1983-09-11T20:09:21.361Z\",\n      \"updatedAt\": \"2014-07-05T11:24:30.366Z\"\n    },\n    {\n      \"path\": \"string\",\n      \"fileUrl\": \"string\",\n      \"width\": 3999,\n      \"height\": 1283,\n      \"createdAt\": \"1982-07-16T21:19:19.522Z\",\n      \"updatedAt\": \"1990-06-30T00:33:18.094Z\"\n    }\n  ],\n  \"ownerAccount\": {\n    \"id\": 42,\n    \"url\": \"string\",\n    \"name\": \"/pamo0l9n/\",\n    \"avatars\": [\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 4405,\n        \"height\": 19,\n        \"createdAt\": \"2018-11-06T10:02:22.237Z\",\n        \"updatedAt\": \"1981-03-23T15:48:13.993Z\"\n      },\n      {\n        \"path\": \"string\",\n        \"fileUrl\": \"string\",\n        \"width\": 7654,\n        \"height\": 3619,\n        \"createdAt\": \"1985-01-12T06:56:17.050Z\",\n        \"updatedAt\": \"2016-06-03T10:12:09.569Z\"\n      }\n    ],\n    \"host\": \"GJTLHZ.bah\",\n    \"hostRedundancyAllowed\": false,\n    \"followingCount\": 3396,\n    \"followersCount\": 5301,\n    \"createdAt\": \"1978-05-07T06:03:51.763Z\",\n    \"updatedAt\": \"2008-11-01T00:10:30.117Z\",\n    \"userId\": 42,\n    \"displayName\": \"string\",\n    \"description\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74b43512-d2a7-4feb-9ee4-492f7cd659ba",
+          "name": "Delete subscription of my user",
+          "request": {
+            "name": "Delete subscription of my user",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "me",
+                "subscriptions",
+                ":subscriptionHandle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscriptionHandle",
+                  "description": "(Required) The subscription handle"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "admin moderator user"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/api/v1/users/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "password_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7c86b532-d09c-4f19-b112-00d5bf934810",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v1",
+                    "users",
+                    "me",
+                    "subscriptions",
+                    ":subscriptionHandle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscriptionHandle",
+                      "description": "(Required) The subscription handle"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://peertube2.cpy.re",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4425aae-793d-4a9f-b7c9-140799f1eab6",
+    "name": "PeerTube Abuses My Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The PeerTube API is built on HTTP(S) and is RESTful. You can use your favorite\nHTTP/REST library for your programming language to use PeerTube.\n\nSee the [REST API quick start](https://docs.joinpeertube.org/api/rest-getting-started) for a few\nexamples of using the PeerTube API.\n\n# Authentication\n\nWhen you sign up for an account on a PeerTube instance, you are given the possibility\nto generate sessions on it, and authenticate there using an access token. Only __one\naccess token can currently be used at a time__.\n\n## Roles\n\nAccounts are given permissions based on their role. There are three roles on\nPeerTube: Administrator, Moderator, and User. See the [roles guide](https://docs.joinpeertube.org/admin/managing-users#roles) for a detail of their permissions.\n\n# Errors\n\nThe API uses standard HTTP status codes to indicate the success or failure\nof the API call, completed by a [RFC7807-compliant](https://tools.ietf.org/html/rfc7807) response body.\n\n```\nHTTP 1.1 404 Not Found\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Video not found\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 404,\n  \"title\": \"Not Found\",\n  \"type\": \"about:blank\"\n}\n```\n\nWe provide error `type` (following RFC7807) and `code` (internal PeerTube code) values for [a growing number of cases](https://github.com/Chocobozzz/PeerTube/blob/develop/packages/models/src/server/server-error-code.enum.ts),\nbut it is still optional. Types are used to disambiguate errors that bear the same status code\nand are non-obvious:\n\n```\nHTTP 1.1 403 Forbidden\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Cannot get this video regarding follow constraints\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"status\": 403,\n  \"title\": \"Forbidden\",\n  \"type\": \"https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/does_not_respect_follow_constraints\"\n}\n```\n\nHere a 403 error could otherwise mean that the video is private or blocklisted.\n\n### Validation errors\n\nEach parameter is evaluated on its own against a set of rules before the route validator\nproceeds with potential testing involving parameter combinations. Errors coming from validation\nerrors appear earlier and benefit from a more detailed error description:\n\n```\nHTTP 1.1 400 Bad Request\nContent-Type: application/problem+json; charset=utf-8\n\n{\n  \"detail\": \"Incorrect request parameters: id\",\n  \"docs\": \"https://docs.joinpeertube.org/api-rest-reference.html#operation/getVideo\",\n  \"instance\": \"/api/v1/videos/9c9de5e8-0a1e-484a-b099-e80766180\",\n  \"invalid-params\": {\n    \"id\": {\n      \"location\": \"params\",\n      \"msg\": \"Invalid value\",\n      \"param\": \"id\",\n      \"value\": \"9c9de5e8-0a1e-484a-b099-e80766180\"\n    }\n  },\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"about:blank\"\n}\n```\n\nWhere `id` is the name of the field concerned by the error, within the route definition.\n`invalid-params.<field>.location` can be either 'params', 'body', 'header', 'query' or 'cookies', and\n`invalid-params.<field>.value` reports the value that didn't pass validation whose `invalid-params.<field>.msg`\nis about.\n\n### Deprecated error fields\n\nSome fields could be included with previous versions. They are still included but their use is deprecated:\n- `error`: superseded by `detail`\n\n# Rate limits\n\nWe are rate-limiting all endpoints of PeerTube's API. Custom values can be set by administrators:\n\n| Endpoint (prefix: `/api/v1`) | Calls         | Time frame   |\n|------------------------------|---------------|--------------|\n| `/*`                         | 50            | 10 seconds   |\n| `POST /users/token`          | 15            | 5 minutes    |\n| `POST /users/register`       | 2<sup>*</sup> | 5 minutes    |\n| `POST /users/ask-send-verify-email` | 3      | 5 minutes    |\n\nDepending on the endpoint, <sup>*</sup>failed requests are not taken into account. A service\nlimit is announced by a `429 Too Many Requests` status code.\n\nYou can get details about the current state of your rate limit by reading the\nfollowing headers:\n\n| Header                  | Description                                                |\n|-------------------------|------------------------------------------------------------|\n| `X-RateLimit-Limit`     | Number of max requests allowed in the current time period  |\n| `X-RateLimit-Remaining` | Number of remaining requests in the current time period    |\n| `X-RateLimit-Reset`     | Timestamp of end of current time period as UNIX timestamp  |\n| `Retry-After`           | Seconds to delay after the first `429` is received         |\n\n# CORS\n\nThis API features [Cross-Origin Resource Sharing (CORS)](https://fetch.spec.whatwg.org/),\nallowing cross-domain communication from the browser for some routes:\n\n| Endpoint                    |\n|------------------------- ---|\n| `/api/*`                    |\n| `/download/*`               |\n| `/lazy-static/*`            |\n| `/.well-known/webfinger`    |\n\nIn addition, all routes serving ActivityPub are CORS-enabled for all origins.\n\n\nContact Support:\n Name: PeerTube Community",
+      "type": "text/plain"
+    }
+  }
+}

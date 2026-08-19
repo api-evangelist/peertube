@@ -1,0 +1,346 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Abuses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List my abuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/abuses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "only list the report with this id"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort abuses by criteria"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List my abuses"
+        },
+        {
+          "info": {
+            "name": "List abuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/abuses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "only list the report with this id"
+              },
+              {
+                "name": "predefinedReason",
+                "value": "",
+                "type": "query",
+                "description": "predefined reason the listed reports should contain"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "plain search that will match with video titles, reporter names and more"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchReporter",
+                "value": "",
+                "type": "query",
+                "description": "only list reports of a specific reporter"
+              },
+              {
+                "name": "searchReportee",
+                "value": "",
+                "type": "query",
+                "description": "only list reports of a specific reportee"
+              },
+              {
+                "name": "searchVideo",
+                "value": "",
+                "type": "query",
+                "description": "only list reports of a specific video"
+              },
+              {
+                "name": "searchVideoChannel",
+                "value": "",
+                "type": "query",
+                "description": "only list reports of a specific video channel"
+              },
+              {
+                "name": "videoIs",
+                "value": "",
+                "type": "query",
+                "description": "only list deleted or blocklisted videos"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "only list account, comment or video reports"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort abuses by criteria"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List abuses"
+        },
+        {
+          "info": {
+            "name": "Report an abuse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/abuses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Report an abuse"
+        },
+        {
+          "info": {
+            "name": "Update an abuse",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://peertube2.cpy.re/api/v1/abuses/:abuseId",
+            "params": [
+              {
+                "name": "abuseId",
+                "value": "",
+                "type": "path",
+                "description": "Abuse id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Update an abuse"
+        },
+        {
+          "info": {
+            "name": "Delete an abuse",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/abuses/:abuseId",
+            "params": [
+              {
+                "name": "abuseId",
+                "value": "",
+                "type": "path",
+                "description": "Abuse id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an abuse"
+        },
+        {
+          "info": {
+            "name": "List messages of an abuse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/abuses/:abuseId/messages",
+            "params": [
+              {
+                "name": "abuseId",
+                "value": "",
+                "type": "path",
+                "description": "Abuse id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List messages of an abuse"
+        },
+        {
+          "info": {
+            "name": "Add message to an abuse",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/abuses/:abuseId/messages",
+            "params": [
+              {
+                "name": "abuseId",
+                "value": "",
+                "type": "path",
+                "description": "Abuse id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add message to an abuse"
+        },
+        {
+          "info": {
+            "name": "Delete an abuse message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/abuses/:abuseId/messages/:abuseMessageId",
+            "params": [
+              {
+                "name": "abuseId",
+                "value": "",
+                "type": "path",
+                "description": "Abuse id"
+              },
+              {
+                "name": "abuseMessageId",
+                "value": "",
+                "type": "path",
+                "description": "Abuse message id"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete an abuse message"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

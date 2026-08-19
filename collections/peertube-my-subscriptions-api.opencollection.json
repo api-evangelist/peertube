@@ -1,0 +1,328 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses My Subscriptions API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "My Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List my user subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/subscriptions",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List my user subscriptions"
+        },
+        {
+          "info": {
+            "name": "Add subscription to my user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Add subscription to my user"
+        },
+        {
+          "info": {
+            "name": "Get if subscriptions exist for my user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/subscriptions/exist",
+            "params": [
+              {
+                "name": "uris",
+                "value": "",
+                "type": "query",
+                "description": "list of uris to check if each is part of the user subscriptions"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get if subscriptions exist for my user"
+        },
+        {
+          "info": {
+            "name": "List videos of subscriptions of my user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/subscriptions/videos",
+            "params": [
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Offset used to paginate results"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to return"
+              },
+              {
+                "name": "skipCount",
+                "value": "",
+                "type": "query",
+                "description": "if you don't need the `total` in the response"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfw",
+                "value": "",
+                "type": "query",
+                "description": "whether to include nsfw videos, if any"
+              },
+              {
+                "name": "nsfwFlagsIncluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "nsfwFlagsExcluded",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not the video is a live"
+              },
+              {
+                "name": "includeScheduledLive",
+                "value": "",
+                "type": "query",
+                "description": "whether or not include live that are scheduled for later"
+              },
+              {
+                "name": "categoryOneOf",
+                "value": "",
+                "type": "query",
+                "description": "category id of the video (see [/videos/categories](#operation/getCategories))"
+              },
+              {
+                "name": "licenceOneOf",
+                "value": "",
+                "type": "query",
+                "description": "licence id of the video (see [/videos/licences](#operation/getLicences))"
+              },
+              {
+                "name": "languageOneOf",
+                "value": "",
+                "type": "query",
+                "description": "language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language"
+              },
+              {
+                "name": "tagsOneOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video"
+              },
+              {
+                "name": "tagsAllOf",
+                "value": "",
+                "type": "query",
+                "description": "tag(s) of the video, where all should be present in the video"
+              },
+              {
+                "name": "isLocal",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only local or remote objects"
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "**Only administrators and moderators can use this parameter**\n\nInclude additional videos in results (can be combined using bitwise or operator)\n- `0` NONE\n- `1` NOT_PUBLISHED_STATE\n- `2` BLACKLISTED\n- `4` BLOCKED_OWNER\n- `8` FILES\n- `16` CAPTIONS\n- `32` VIDEO SOURCE\n"
+              },
+              {
+                "name": "hasHLSFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos that have HLS files"
+              },
+              {
+                "name": "hasWebVideoFiles",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.0** Display only videos that have Web Video files"
+              },
+              {
+                "name": "host",
+                "value": "",
+                "type": "query",
+                "description": "Find elements owned by this host"
+              },
+              {
+                "name": "autoTagOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags"
+              },
+              {
+                "name": "stateOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states"
+              },
+              {
+                "name": "privacyOneOf",
+                "value": "",
+                "type": "query",
+                "description": "**PeerTube >= 4.0** Display only videos in this specific privacy/privacies"
+              },
+              {
+                "name": "excludeAlreadyWatched",
+                "value": "",
+                "type": "query",
+                "description": "Whether or not to exclude videos that are in the user's video history"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Plain text search, applied to various parts of the model depending on endpoint"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "List videos of subscriptions of my user"
+        },
+        {
+          "info": {
+            "name": "Get subscription of my user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/subscriptions/:subscriptionHandle",
+            "params": [
+              {
+                "name": "subscriptionHandle",
+                "value": "",
+                "type": "path",
+                "description": "The subscription handle"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get subscription of my user"
+        },
+        {
+          "info": {
+            "name": "Delete subscription of my user",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://peertube2.cpy.re/api/v1/users/me/subscriptions/:subscriptionHandle",
+            "params": [
+              {
+                "name": "subscriptionHandle",
+                "value": "",
+                "type": "path",
+                "description": "The subscription handle"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "resource_owner_password_credentials",
+              "accessTokenUrl": "/api/v1/users/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete subscription of my user"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

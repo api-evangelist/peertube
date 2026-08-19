@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "PeerTube Abuses Client Config API",
+    "version": "8.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Client Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update client language",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/client-config/update-language",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a cookie so that the next time the client refreshes the HTML of the web interface, PeerTube uses the selected language."
+        },
+        {
+          "info": {
+            "name": "Update client language",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://peertube2.cpy.re/api/v1/client-config/update-interface-language",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a cookie so that the next time the client refreshes the HTML of the web interface, PeerTube uses the selected language."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
