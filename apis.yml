@@ -23,7 +23,7 @@ tags:
   - Self-Hosted
   - Streaming
 url: https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/apis.yml
-specificationVersion: "0.19"
+specificationVersion: '0.23'
 modified: "2026-06-13"
 apis:
 - aid: peertube:peertube-abuses-api
