@@ -18,6 +18,14 @@ tags:
   - Video
   - Decentralized
   - Federation
+  - Open-Source
+  - ActivityPub
+  - Self-Hosted
+  - Streaming
+tags_raw:
+  - Video
+  - Decentralized
+  - Federation
   - Open Source
   - ActivityPub
   - Self-Hosted
@@ -94,6 +102,8 @@ apis:
   humanURL: https://docs.joinpeertube.org/api/rest-getting-started
   baseURL: https://{instance}/api/v1
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -1030,6 +1040,8 @@ apis:
   humanURL: https://docs.joinpeertube.org/api/rest-getting-started
   baseURL: https://{instance}/api/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
