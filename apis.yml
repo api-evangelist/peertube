@@ -1712,6 +1712,9 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/peertube/refs/heads/main/finops/finops.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/peertube-capability-edges.yml
+    name: PeerTube Business Capability Map
   - type: AgenticAccess
     url: agentic-access/peertube-agentic-access.yml
   - type: DomainSecurity
