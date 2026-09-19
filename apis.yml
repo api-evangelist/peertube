@@ -904,6 +904,8 @@ apis:
   humanURL: https://docs.joinpeertube.org/api/rest-getting-started
   baseURL: https://{instance}/api/v1
   tags:
+  - Sessions
+  tags_raw:
   - Session
   properties:
   - type: OpenAPI
@@ -1659,6 +1661,8 @@ apis:
   humanURL: https://docs.joinpeertube.org/api/rest-getting-started
   baseURL: https://{instance}/api/v1
   tags:
+  - Video
+  tags_raw:
   - Videos
   properties:
   - type: OpenAPI
