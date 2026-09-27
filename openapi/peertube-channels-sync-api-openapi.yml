@@ -113,64 +113,14 @@ paths:
       operationId: getApiV1AccountsByNameVideoChannelSyncs
       x-operation-id-source: derived
 components:
-  parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The username or handle of the account
-      schema:
-        type: string
-        example: chocobozzz | chocobozzz@example.org
-    channelHandle:
-      name: channelHandle
-      in: path
-      required: true
-      description: The video channel handle
-      schema:
-        type: string
-        example: my_username | my_username@example.com
-    includeCollaborations:
-      name: includeCollaborations
-      in: query
-      required: false
-      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
-      schema:
-        type: boolean
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    channelSyncId:
-      name: channelSyncId
-      in: path
-      required: true
-      description: Channel Sync id
-      schema:
-        $ref: '#/components/schemas/Abuse/properties/id'
   schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
     VideoChannelSyncList:
       type: object
       properties:
@@ -182,41 +132,83 @@ components:
           items:
             allOf:
             - $ref: '#/components/schemas/VideoChannelSync'
-    VideoChannelSyncCreate:
-      type: object
-      properties:
-        externalChannelUrl:
-          type: string
-          example: https://youtube.com/c/UC_myfancychannel
-        videoChannelId:
-          $ref: '#/components/schemas/id'
-    VideoChannelSync:
-      type: object
+    Abuse:
       properties:
         id:
           $ref: '#/components/schemas/id'
+        reason:
+          type: string
+          example: The video is a spam
+          minLength: 2
+          maxLength: 3000
+        predefinedReasons:
+          $ref: '#/components/schemas/AbusePredefinedReasons'
+        reporterAccount:
+          $ref: '#/components/schemas/Account'
         state:
+          $ref: '#/components/schemas/AbuseStateConstant'
+        moderationComment:
+          type: string
+          example: Decided to ban the server since it spams us regularly
+          minLength: 2
+          maxLength: 3000
+        video:
           type: object
           properties:
             id:
               type: integer
-              example: 2
-            label:
+            uuid:
+              $ref: '#/components/schemas/UUIDv4'
+            shortUUID:
+              $ref: '#/components/schemas/shortUUID'
+            name:
               type: string
-              example: PROCESSING
-        externalChannelUrl:
-          type: string
-          example: https://youtube.com/c/UC_myfancychannel
+            nsfw:
+              type: boolean
+            startAt:
+              type: string
+              format: date-time
+            endAt:
+              type: string
+              format: date-time
+            deleted:
+              type: boolean
+            blacklisted:
+              type: boolean
+            thumbnailPath:
+              description: Deprecated in PeerTube v8.1, use thumbnails instead
+              deprecated: true
+              type: string
+            thumbnails:
+              description: '**PeerTube >= 8.1** Array of thumbnails for the video'
+              type: array
+              items:
+                $ref: '#/components/schemas/Thumbnail'
+            channel:
+              $ref: '#/components/schemas/VideoChannel'
         createdAt:
           type: string
           format: date-time
-        lastSyncAt:
-          type:
-          - string
-          - 'null'
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
           format: date-time
-        channel:
-          $ref: '#/components/schemas/VideoChannel'
+        updatedAt:
+          type: string
+          format: date-time
     ImportVideosInChannelCreate:
       type: object
       properties:
@@ -265,27 +257,77 @@ components:
               $ref: '#/components/schemas/ActorImage'
           ownerAccount:
             $ref: '#/components/schemas/Account'
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    ActorImage:
+    VideoChannelSyncCreate:
+      type: object
       properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
+        externalChannelUrl:
           type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
+          example: https://youtube.com/c/UC_myfancychannel
+        videoChannelId:
+          $ref: '#/components/schemas/id'
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    VideoChannelSync:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        state:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 2
+            label:
+              type: string
+              example: PROCESSING
+        externalChannelUrl:
           type: string
-        width:
+          example: https://youtube.com/c/UC_myfancychannel
+        createdAt:
+          type: string
+          format: date-time
+        lastSyncAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        channel:
+          $ref: '#/components/schemas/VideoChannel'
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type:
+          - boolean
+          - 'null'
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
           type: integer
-        height:
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
           type: integer
-          description: '**PeerTube >= 7.3**'
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
         createdAt:
           type: string
           format: date-time
@@ -397,101 +439,6 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    Actor:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        url:
-          type: string
-          format: url
-        name:
-          description: immutable name of the actor, used to find or mention it
-          allOf:
-          - $ref: '#/components/schemas/username'
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-        host:
-          type: string
-          format: hostname
-          description: server on which the actor is resident
-        hostRedundancyAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: whether this actor's host allows redundancy of its videos
-        followingCount:
-          type: integer
-          minimum: 0
-          description: number of actors subscribed to by this actor, as seen by this instance
-        followersCount:
-          type: integer
-          minimum: 0
-          description: number of followers of this actor, as seen by this instance
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    Abuse:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        reason:
-          type: string
-          example: The video is a spam
-          minLength: 2
-          maxLength: 3000
-        predefinedReasons:
-          $ref: '#/components/schemas/AbusePredefinedReasons'
-        reporterAccount:
-          $ref: '#/components/schemas/Account'
-        state:
-          $ref: '#/components/schemas/AbuseStateConstant'
-        moderationComment:
-          type: string
-          example: Decided to ban the server since it spams us regularly
-          minLength: 2
-          maxLength: 3000
-        video:
-          type: object
-          properties:
-            id:
-              type: integer
-            uuid:
-              $ref: '#/components/schemas/UUIDv4'
-            shortUUID:
-              $ref: '#/components/schemas/shortUUID'
-            name:
-              type: string
-            nsfw:
-              type: boolean
-            startAt:
-              type: string
-              format: date-time
-            endAt:
-              type: string
-              format: date-time
-            deleted:
-              type: boolean
-            blacklisted:
-              type: boolean
-            thumbnailPath:
-              description: Deprecated in PeerTube v8.1, use thumbnails instead
-              deprecated: true
-              type: string
-            thumbnails:
-              description: '**PeerTube >= 8.1** Array of thumbnails for the video'
-              type: array
-              items:
-                $ref: '#/components/schemas/Thumbnail'
-            channel:
-              $ref: '#/components/schemas/VideoChannel'
-        createdAt:
-          type: string
-          format: date-time
     Account:
       allOf:
       - $ref: '#/components/schemas/Actor'
@@ -510,10 +457,63 @@ components:
             - string
             - 'null'
             description: text or bio displayed on the account's profile
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+  parameters:
+    includeCollaborations:
+      name: includeCollaborations
+      in: query
+      required: false
+      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
+      schema:
+        type: boolean
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    channelHandle:
+      name: channelHandle
+      in: path
+      required: true
+      description: The video channel handle
+      schema:
+        type: string
+        example: my_username | my_username@example.com
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    name:
+      name: name
+      in: path
+      required: true
+      description: The username or handle of the account
+      schema:
+        type: string
+        example: chocobozzz | chocobozzz@example.org
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    channelSyncId:
+      name: channelSyncId
+      in: path
+      required: true
+      description: Channel Sync id
+      schema:
+        $ref: '#/components/schemas/Abuse/properties/id'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

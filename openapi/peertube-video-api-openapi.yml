@@ -1056,299 +1056,6 @@ paths:
           description: search index unavailable
 components:
   schemas:
-    AddVideoPasswords:
-      type: array
-      items:
-        $ref: '#/components/schemas/VideoPassword/properties/password'
-      uniqueItems: true
-    Thumbnail:
-      properties:
-        fileUrl:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-        aspectRatio:
-          type: string
-          example: '16:9'
-    VideoChannelSummary:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        name:
-          type: string
-        displayName:
-          type: string
-        url:
-          type: string
-          format: url
-        host:
-          type: string
-          format: hostname
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-    VideoLanguageSet:
-      type: string
-      description: language id of the video (see [/videos/languages](#operation/getLanguages))
-      example: en
-    VideoFile:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        magnetUri:
-          type: string
-          format: uri
-          description: magnet URI allowing to resolve the video via BitTorrent without a metainfo file
-          pattern: /magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i
-        resolution:
-          $ref: '#/components/schemas/VideoResolutionConstant'
-        size:
-          type: integer
-          description: Video file size in bytes
-        torrentUrl:
-          type: string
-          description: Direct URL of the torrent file
-          format: url
-        torrentDownloadUrl:
-          type: string
-          description: URL endpoint that transfers the torrent file as an attachment (so that the browser opens a download dialog)
-          format: url
-        fileUrl:
-          type: string
-          description: Direct URL of the video
-          format: url
-        playlistUrl:
-          type: string
-          description: Playlist URL of the file if it is owned by a playlist
-          format: url
-        fileDownloadUrl:
-          type: string
-          description: URL endpoint that transfers the video file as an attachment (so that the browser opens a download dialog)
-          format: url
-        fps:
-          type: number
-          description: Frames per second of the video file
-        width:
-          type: number
-          description: '**PeerTube >= 6.1** Video stream width'
-        height:
-          type: number
-          description: '**PeerTube >= 6.1** Video stream height'
-        metadataUrl:
-          type: string
-          format: url
-          description: URL dereferencing the output of ffprobe on the file
-        hasAudio:
-          type: boolean
-          description: '**PeerTube >= 6.2** The file container has an audio stream'
-        hasVideo:
-          type: boolean
-          description: '**PeerTube >= 6.2** The file container has a video stream'
-        storage:
-          $ref: '#/components/schemas/FileStorage'
-    VideoCommentsPolicySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
-    VideoListResponse:
-      properties:
-        total:
-          type: integer
-          example: 1
-        data:
-          type: array
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/Video'
-    LiveSchedule:
-      properties:
-        startAt:
-          type: string
-          format: date-time
-          description: Date when the stream is scheduled to air at
-    VideoUploadRequestCommon:
-      properties:
-        name:
-          description: Video name
-          type: string
-          example: What is PeerTube?
-          minLength: 3
-          maxLength: 120
-        channelId:
-          description: Channel id that will contain this video
-          type: integer
-          example: 3
-          minimum: 1
-        privacy:
-          $ref: '#/components/schemas/VideoPrivacySet'
-        category:
-          $ref: '#/components/schemas/VideoCategorySet'
-        licence:
-          $ref: '#/components/schemas/VideoLicenceSet'
-        language:
-          $ref: '#/components/schemas/VideoLanguageSet'
-        description:
-          description: Video description
-          type: string
-          example: '**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\r\n\r\n**Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**
-
-            '
-        waitTranscoding:
-          description: Whether or not we wait transcoding before publish the video
-          type: boolean
-        generateTranscription:
-          description: '**PeerTube >= 6.2** If enabled by the admin, automatically generate a subtitle of the video'
-          type: boolean
-        support:
-          description: A text tell the audience how to support the video creator
-          example: Please support our work on https://soutenir.framasoft.org/en/ <3
-          type: string
-        nsfw:
-          description: Whether or not this video contains sensitive content
-          type: boolean
-        nsfwSummary:
-          description: More information about the sensitive content of the video
-        nsfwFlags:
-          $ref: '#/components/schemas/NSFWFlag'
-        tags:
-          description: Video tags (maximum 5 tags each between 2 and 30 characters)
-          type: array
-          minItems: 1
-          maxItems: 5
-          uniqueItems: true
-          example:
-          - framasoft
-          - peertube
-          items:
-            type: string
-            minLength: 2
-            maxLength: 30
-        commentsPolicy:
-          $ref: '#/components/schemas/VideoCommentsPolicySet'
-        downloadEnabled:
-          description: Enable or disable downloading for this video
-          type: boolean
-        originallyPublishedAt:
-          description: Date when the content was originally published
-          type: string
-          format: date-time
-        scheduleUpdate:
-          $ref: '#/components/schemas/VideoScheduledUpdate'
-        thumbnailfile:
-          description: Video thumbnail file
-          type: string
-          format: binary
-        previewfile:
-          description: Deprecated in PeerTube v8.1, use thumbnailfile instead
-          deprecated: true
-          type: string
-          format: binary
-        videoPasswords:
-          $ref: '#/components/schemas/AddVideoPasswords'
-      required:
-      - channelId
-      - name
-    VideoCommentsPolicyConstant:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoCommentsPolicySet'
-        label:
-          type: string
-    VideoCategorySet:
-      type: integer
-      description: category id of the video (see [/videos/categories](#operation/getCategories))
-      example: 15
-    VideoResolutionSet:
-      type: integer
-      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
-
-
-        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
-
-        '
-      example: 240
-    VideoSource:
-      properties:
-        inputFilename:
-          type: string
-          description: Uploaded/imported filename
-        fileDownloadUrl:
-          type: string
-          description: '**PeerTube >= 6.1** If enabled by the admin, the video source file is kept on the server and can be downloaded by the owner'
-        resolution:
-          description: '**PeerTube >= 6.1**'
-          allOf:
-          - $ref: '#/components/schemas/VideoResolutionConstant'
-        size:
-          type: integer
-          description: '**PeerTube >= 6.1** Video file size in bytes'
-        fps:
-          type: number
-          description: '**PeerTube >= 6.1** Frames per second of the video file'
-        width:
-          type: integer
-          description: '**PeerTube >= 6.1** Video stream width'
-        height:
-          type: integer
-          description: '**PeerTube >= 6.1** Video stream height'
-        createdAt:
-          type: string
-          format: date-time
-    VideoConstantString-Language:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLanguageSet'
-        label:
-          type: string
-          example: English
-    VideoUploadResponse:
-      properties:
-        video:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/Video/properties/id'
-            uuid:
-              $ref: '#/components/schemas/Video/properties/uuid'
-            shortUUID:
-              $ref: '#/components/schemas/Video/properties/shortUUID'
-    VideoUploadRequestResumable:
-      allOf:
-      - $ref: '#/components/schemas/VideoUploadRequestCommon'
-      - type: object
-        required:
-        - filename
-        properties:
-          filename:
-            description: Video filename including extension
-            type: string
-            format: filename
-            example: what_is_peertube.mp4
-          thumbnailfile:
-            description: Video thumbnail file
-            type: string
-            format: binary
-          previewfile:
-            description: Deprecated in PeerTube v8.1, use thumbnailfile instead
-            deprecated: true
-            type: string
-            format: binary
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    VideoPrivacyConstant:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoPrivacySet'
-        label:
-          type: string
     Video:
       properties:
         id:
@@ -1506,6 +1213,204 @@ components:
           properties:
             currentTime:
               type: integer
+    Thumbnail:
+      properties:
+        fileUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        aspectRatio:
+          type: string
+          example: '16:9'
+    VideoStreamingPlaylists-HLS:
+      properties:
+        playlistUrl:
+          type: string
+          format: url
+        segmentsSha256Url:
+          type: string
+          format: url
+        files:
+          type: array
+          description: 'Video files associated to this playlist.
+
+
+            The difference with the root `files` property is that these files are fragmented, so they can be used in this streaming playlist (HLS, etc.)
+
+            '
+          items:
+            $ref: '#/components/schemas/VideoFile'
+        redundancies:
+          type: array
+          items:
+            type: object
+            properties:
+              baseUrl:
+                type: string
+                format: url
+    VideoUploadRequestResumable:
+      allOf:
+      - $ref: '#/components/schemas/VideoUploadRequestCommon'
+      - type: object
+        required:
+        - filename
+        properties:
+          filename:
+            description: Video filename including extension
+            type: string
+            format: filename
+            example: what_is_peertube.mp4
+          thumbnailfile:
+            description: Video thumbnail file
+            type: string
+            format: binary
+          previewfile:
+            description: Deprecated in PeerTube v8.1, use thumbnailfile instead
+            deprecated: true
+            type: string
+            format: binary
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    LiveSchedule:
+      properties:
+        startAt:
+          type: string
+          format: date-time
+          description: Date when the stream is scheduled to air at
+    VideoPrivacyConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        label:
+          type: string
+    VideoFile:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        magnetUri:
+          type: string
+          format: uri
+          description: magnet URI allowing to resolve the video via BitTorrent without a metainfo file
+          pattern: /magnet:\?xt=urn:[a-z0-9]+:[a-z0-9]{32}/i
+        resolution:
+          $ref: '#/components/schemas/VideoResolutionConstant'
+        size:
+          type: integer
+          description: Video file size in bytes
+        torrentUrl:
+          type: string
+          description: Direct URL of the torrent file
+          format: url
+        torrentDownloadUrl:
+          type: string
+          description: URL endpoint that transfers the torrent file as an attachment (so that the browser opens a download dialog)
+          format: url
+        fileUrl:
+          type: string
+          description: Direct URL of the video
+          format: url
+        playlistUrl:
+          type: string
+          description: Playlist URL of the file if it is owned by a playlist
+          format: url
+        fileDownloadUrl:
+          type: string
+          description: URL endpoint that transfers the video file as an attachment (so that the browser opens a download dialog)
+          format: url
+        fps:
+          type: number
+          description: Frames per second of the video file
+        width:
+          type: number
+          description: '**PeerTube >= 6.1** Video stream width'
+        height:
+          type: number
+          description: '**PeerTube >= 6.1** Video stream height'
+        metadataUrl:
+          type: string
+          format: url
+          description: URL dereferencing the output of ffprobe on the file
+        hasAudio:
+          type: boolean
+          description: '**PeerTube >= 6.2** The file container has an audio stream'
+        hasVideo:
+          type: boolean
+          description: '**PeerTube >= 6.2** The file container has a video stream'
+        storage:
+          $ref: '#/components/schemas/FileStorage'
+    AddVideoPasswords:
+      type: array
+      items:
+        $ref: '#/components/schemas/VideoPassword/properties/password'
+      uniqueItems: true
+    VideoChannelSummary:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    VideoConstantNumber-Category:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoCategorySet'
+        label:
+          type: string
+          example: Science & Technology
+    VideoCommentsPolicySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
+    VideoStatsUserAgentDevice:
+      enum:
+      - console
+      - embedded
+      - mobile
+      - smarttv
+      - tablet
+      - wearable
+      - xr
+      - desktop
+    ServerError:
+      properties:
+        type:
+          type: string
+          example: https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/video_requires_password
+        detail:
+          type: string
+          example: Please provide a password to access this password protected video
+        status:
+          type: integer
+          example: 403
+        code:
+          type: string
+          example: video_requires_password
+    LiveVideoReplaySettings:
+      type: object
+      properties:
+        privacy:
+          $ref: '#/components/schemas/VideoPrivacySet'
     ActorImage:
       properties:
         path:
@@ -1526,74 +1431,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    VideoStatsUserAgentDevice:
-      enum:
-      - console
-      - embedded
-      - mobile
-      - smarttv
-      - tablet
-      - wearable
-      - xr
-      - desktop
-    VideoLicenceSet:
+    VideoPrivacySet:
       type: integer
-      description: licence id of the video (see [/videos/licences](#operation/getLicences))
-      example: 2
-    Actor:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        url:
-          type: string
-          format: url
-        name:
-          description: immutable name of the actor, used to find or mention it
-          allOf:
-          - $ref: '#/components/schemas/username'
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-        host:
-          type: string
-          format: hostname
-          description: server on which the actor is resident
-        hostRedundancyAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: whether this actor's host allows redundancy of its videos
-        followingCount:
-          type: integer
-          minimum: 0
-          description: number of actors subscribed to by this actor, as seen by this instance
-        followersCount:
-          type: integer
-          minimum: 0
-          description: number of followers of this actor, as seen by this instance
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    VideoStreamingPlaylists:
-      allOf:
-      - type: object
-        properties:
-          id:
-            $ref: '#/components/schemas/id'
-          type:
-            type: integer
-            enum:
-            - 1
-            description: 'Playlist type:
-
-              - `1`: HLS
-
-              '
-      - $ref: '#/components/schemas/VideoStreamingPlaylists-HLS'
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
     VideoStateConstant:
       properties:
         id:
@@ -1631,206 +1477,76 @@ components:
             '
         label:
           type: string
-    FileStorage:
-      type: integer
-      enum:
-      - 0
-      - 1
-      description: "The file storage type:\n  - `0` File system\n  - `1` Object storage\n"
-    NSFWFlag:
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      description: '
-
-        NSFW flags (can be combined using bitwise or operator)
-
-        - `0` NONE
-
-        - `1` VIOLENT
-
-        - `2` EXPLICIT_SEX
-
-        '
-    VideoDetails:
+    VideoChannel:
       allOf:
-      - $ref: '#/components/schemas/Video'
+      - $ref: '#/components/schemas/Actor'
       - type: object
         properties:
-          viewers:
-            type: integer
-            description: If the video is a live, you have the amount of current viewers
+          displayName:
+            type: string
+            description: editable name of the channel, displayed in its representations
+            example: Videos of Framasoft
+            minLength: 1
+            maxLength: 120
           description:
             type:
             - string
             - 'null'
-            example: '"**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\r\n\r\n
-
-              **Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**\r\n*A decentralized video hosting network,
-
-              based on free/libre software!*\r\n\r\n**Animation Produced by:** [LILA](https://libreart.info) - [ZeMarmot Team](https://film.zemarmot.net)\r\n
-
-              *Directed by* Aryeom\r\n*Assistant* Jehan\r\n**Licence**: [CC-By-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)\r\n\r\n
-
-              **Sponsored by** [Framasoft](https://framasoft.org)\r\n\r\n**Music**: [Red Step Forward](http://play.dogmazic.net/song.php?song_id=52491) - CC-By Ken Bushima\r\n\r\n
-
-              **Movie Clip**: [Caminades 3: Llamigos](http://www.caminandes.com/) CC-By Blender Institute\r\n\r\n**Video sources**: https://gitlab.gnome.org/Jehan/what-is-peertube/"
-
-              '
+            example: Videos made with <3 by Framasoft
             minLength: 3
             maxLength: 1000
-            description: 'full description of the video, written in Markdown.
-
-              '
           support:
             type:
             - string
             - 'null'
-            description: A text tell the audience how to support the video creator
+            description: text shown by default on all videos of this channel, to tell the audience how to support it
             example: Please support our work on https://soutenir.framasoft.org/en/ <3
             minLength: 3
             maxLength: 1000
-          channel:
-            $ref: '#/components/schemas/VideoChannel'
-          account:
-            $ref: '#/components/schemas/Account'
-          tags:
-            example:
-            - flowers
-            - gardening
-            type: array
-            minItems: 1
-            maxItems: 5
-            items:
-              type: string
-              minLength: 2
-              maxLength: 30
-          commentsPolicy:
-            $ref: '#/components/schemas/VideoCommentsPolicyConstant'
-          downloadEnabled:
+          isLocal:
             type: boolean
-          inputFileUpdatedAt:
-            type:
-            - string
-            - 'null'
+          updatedAt:
+            type: string
             format: date-time
-            description: Latest input file update. Null if the file has never been replaced since the original upload
-          trackerUrls:
+          banners:
             type: array
             items:
-              type: string
-              format: url
-            example:
-            - https://peertube2.cpy.re/tracker/announce
-            - wss://peertube2.cpy.re/tracker/socket
-          files:
-            type: array
-            items:
-              $ref: '#/components/schemas/VideoFile'
-            description: 'Web compatible video files. If Web Video is disabled on the server:
-
-
-              - field will be empty
-
-              - video files will be found in `streamingPlaylists[].files` field
-
-              '
-          streamingPlaylists:
-            type: array
-            items:
-              $ref: '#/components/schemas/VideoStreamingPlaylists'
-            description: 'HLS playlists/manifest files. If HLS is disabled on the server:
-
-
-              - field will be empty
-
-              - video files will be found in `files` field
-
-              '
-    VideoConstantNumber-Category:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoCategorySet'
-        label:
-          type: string
-          example: Science & Technology
-    VideoStreamingPlaylists-HLS:
-      properties:
-        playlistUrl:
-          type: string
-          format: url
-        segmentsSha256Url:
-          type: string
-          format: url
-        files:
-          type: array
-          description: 'Video files associated to this playlist.
-
-
-            The difference with the root `files` property is that these files are fragmented, so they can be used in this streaming playlist (HLS, etc.)
-
-            '
-          items:
-            $ref: '#/components/schemas/VideoFile'
-        redundancies:
-          type: array
-          items:
-            type: object
-            properties:
-              baseUrl:
-                type: string
-                format: url
-    Storyboard:
-      properties:
-        storyboardPath:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
-          type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        totalHeight:
-          type: integer
-        totalWidth:
-          type: integer
-        spriteHeight:
-          type: integer
-        spriteWidth:
-          type: integer
-        spriteDuration:
-          type: integer
-    VideoResolutionConstant:
-      description: resolutions and their labels for the video
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoResolutionSet'
-        label:
-          type: string
-          example: 240p
-    ServerError:
-      properties:
-        type:
-          type: string
-          example: https://docs.joinpeertube.org/api-rest-reference.html#section/Errors/video_requires_password
-        detail:
-          type: string
-          example: Please provide a password to access this password protected video
-        status:
-          type: integer
-          example: 403
-        code:
-          type: string
-          example: video_requires_password
-    LiveVideoLatencyMode:
+              $ref: '#/components/schemas/ActorImage'
+          ownerAccount:
+            $ref: '#/components/schemas/Account'
+    VideoResolutionSet:
       type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: The live latency mode (Default = `1`, High latency = `2`, Small Latency = `3`)
+      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
+
+
+        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
+
+        '
+      example: 240
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    VideoStreamingPlaylists:
+      allOf:
+      - type: object
+        properties:
+          id:
+            $ref: '#/components/schemas/id'
+          type:
+            type: integer
+            enum:
+            - 1
+            description: 'Playlist type:
+
+              - `1`: HLS
+
+              '
+      - $ref: '#/components/schemas/VideoStreamingPlaylists-HLS'
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
     VideoScheduledUpdate:
       properties:
         privacy:
@@ -1841,13 +1557,13 @@ components:
           description: When to update the video
       required:
       - updateAt
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
+    LiveVideoLatencyMode:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The live latency mode (Default = `1`, High latency = `2`, Small Latency = `3`)
     User:
       properties:
         id:
@@ -1953,94 +1669,6 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoPassword:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        password:
-          type: string
-          minLength: 2
-        videoId:
-          $ref: '#/components/schemas/id'
-    Account:
-      allOf:
-      - $ref: '#/components/schemas/Actor'
-      - properties:
-          userId:
-            description: object id for the user tied to this account
-            allOf:
-            - $ref: '#/components/schemas/User/properties/id'
-          displayName:
-            type: string
-            description: editable name of the account, displayed in its representations
-            minLength: 3
-            maxLength: 120
-          description:
-            type:
-            - string
-            - 'null'
-            description: text or bio displayed on the account's profile
-    LiveVideoResponse:
-      properties:
-        rtmpUrl:
-          type: string
-          description: Included in the response if an appropriate token is provided
-        rtmpsUrl:
-          type: string
-          description: Included in the response if an appropriate token is provided
-        streamKey:
-          type: string
-          description: RTMP stream key to use to stream into this live video. Included in the response if an appropriate token is provided
-        saveReplay:
-          type: boolean
-        replaySettings:
-          $ref: '#/components/schemas/LiveVideoReplaySettings'
-        permanentLive:
-          description: User can stream multiple times in a permanent live
-          type: boolean
-        latencyMode:
-          description: User can select live latency mode if enabled by the instance
-          allOf:
-          - $ref: '#/components/schemas/LiveVideoLatencyMode'
-        schedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/LiveSchedule'
-    LiveVideoUpdate:
-      properties:
-        saveReplay:
-          type: boolean
-        replaySettings:
-          $ref: '#/components/schemas/LiveVideoReplaySettings'
-        permanentLive:
-          description: User can stream multiple times in a permanent live
-          type: boolean
-        latencyMode:
-          description: User can select live latency mode if enabled by the instance
-          allOf:
-          - $ref: '#/components/schemas/LiveVideoLatencyMode'
-        schedules:
-          type: array
-          items:
-            $ref: '#/components/schemas/LiveSchedule'
-    VideoUploadRequestLegacy:
-      allOf:
-      - $ref: '#/components/schemas/VideoUploadRequestCommon'
-      - type: object
-        required:
-        - videofile
-        properties:
-          videofile:
-            description: Video file
-            type: string
-            format: binary
     VideoReplaceSourceRequestResumable:
       properties:
         filename:
@@ -2048,127 +1676,13 @@ components:
           type: string
           format: filename
           example: what_is_peertube.mp4
-    VideoConstantNumber-Licence:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLicenceSet'
-        label:
-          type: string
-          example: Attribution - Share Alike
-    VideoChannel:
-      allOf:
-      - $ref: '#/components/schemas/Actor'
-      - type: object
-        properties:
-          displayName:
-            type: string
-            description: editable name of the channel, displayed in its representations
-            example: Videos of Framasoft
-            minLength: 1
-            maxLength: 120
-          description:
-            type:
-            - string
-            - 'null'
-            example: Videos made with <3 by Framasoft
-            minLength: 3
-            maxLength: 1000
-          support:
-            type:
-            - string
-            - 'null'
-            description: text shown by default on all videos of this channel, to tell the audience how to support it
-            example: Please support our work on https://soutenir.framasoft.org/en/ <3
-            minLength: 3
-            maxLength: 1000
-          isLocal:
-            type: boolean
-          updatedAt:
-            type: string
-            format: date-time
-          banners:
-            type: array
-            items:
-              $ref: '#/components/schemas/ActorImage'
-          ownerAccount:
-            $ref: '#/components/schemas/Account'
-    AccountSummary:
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        displayName:
-          type: string
-        url:
-          type: string
-          format: url
-        host:
-          type: string
-          format: hostname
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-    UserViewingVideo:
-      required:
-      - currentTime
-      properties:
-        currentTime:
-          type: integer
-          format: seconds
-          description: timestamp within the video, in seconds
-          example: 5
-        viewEvent:
-          type: string
-          enum:
-          - seek
-          description: "Event since last viewing call:\n * `seek` - If the user seeked the video\n"
-        sessionId:
-          type: string
-          description: 'Optional param to represent the current viewer session. Used by the backend to properly count one view per session per video. PeerTube admin can configure the server to not trust this `sessionId` parameter but use the request IP address instead to identify a viewer.
-
-            '
-        client:
-          type: string
-          description: 'Client software used to watch the video. For example "Firefox", "PeerTube Approval Android", etc.
-
-            '
-        device:
-          description: 'Device used to watch the video. For example "desktop", "mobile", "smarttv", etc.
-
-            '
-          allOf:
-          - $ref: '#/components/schemas/VideoStatsUserAgentDevice'
-        operatingSystem:
-          type: string
-          description: 'Operating system used to watch the video. For example "Windows", "Ubuntu", etc.
-
-            '
-    LiveVideoReplaySettings:
-      type: object
-      properties:
-        privacy:
-          $ref: '#/components/schemas/VideoPrivacySet'
-    VideoTokenResponse:
-      properties:
-        files:
-          type: object
-          properties:
-            token:
-              type: string
-            expires:
-              type: string
-              format: date-time
-    VideoPrivacySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
     VideoStudioCreateTask:
       type: array
       items:
@@ -2253,24 +1767,519 @@ components:
                       end:
                         type: integer
                         minimum: 1
-    id:
+    VideoLicenceSet:
       type: integer
-      minimum: 1
-      example: 42
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
+    VideoSource:
+      properties:
+        inputFilename:
+          type: string
+          description: Uploaded/imported filename
+        fileDownloadUrl:
+          type: string
+          description: '**PeerTube >= 6.1** If enabled by the admin, the video source file is kept on the server and can be downloaded by the owner'
+        resolution:
+          description: '**PeerTube >= 6.1**'
+          allOf:
+          - $ref: '#/components/schemas/VideoResolutionConstant'
+        size:
+          type: integer
+          description: '**PeerTube >= 6.1** Video file size in bytes'
+        fps:
+          type: number
+          description: '**PeerTube >= 6.1** Frames per second of the video file'
+        width:
+          type: integer
+          description: '**PeerTube >= 6.1** Video stream width'
+        height:
+          type: integer
+          description: '**PeerTube >= 6.1** Video stream height'
+        createdAt:
+          type: string
+          format: date-time
+    VideoUploadRequestCommon:
+      properties:
+        name:
+          description: Video name
+          type: string
+          example: What is PeerTube?
+          minLength: 3
+          maxLength: 120
+        channelId:
+          description: Channel id that will contain this video
+          type: integer
+          example: 3
+          minimum: 1
+        privacy:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        category:
+          $ref: '#/components/schemas/VideoCategorySet'
+        licence:
+          $ref: '#/components/schemas/VideoLicenceSet'
+        language:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        description:
+          description: Video description
+          type: string
+          example: '**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\r\n\r\n**Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**
+
+            '
+        waitTranscoding:
+          description: Whether or not we wait transcoding before publish the video
+          type: boolean
+        generateTranscription:
+          description: '**PeerTube >= 6.2** If enabled by the admin, automatically generate a subtitle of the video'
+          type: boolean
+        support:
+          description: A text tell the audience how to support the video creator
+          example: Please support our work on https://soutenir.framasoft.org/en/ <3
+          type: string
+        nsfw:
+          description: Whether or not this video contains sensitive content
+          type: boolean
+        nsfwSummary:
+          description: More information about the sensitive content of the video
+        nsfwFlags:
+          $ref: '#/components/schemas/NSFWFlag'
+        tags:
+          description: Video tags (maximum 5 tags each between 2 and 30 characters)
+          type: array
+          minItems: 1
+          maxItems: 5
+          uniqueItems: true
+          example:
+          - framasoft
+          - peertube
+          items:
+            type: string
+            minLength: 2
+            maxLength: 30
+        commentsPolicy:
+          $ref: '#/components/schemas/VideoCommentsPolicySet'
+        downloadEnabled:
+          description: Enable or disable downloading for this video
+          type: boolean
+        originallyPublishedAt:
+          description: Date when the content was originally published
+          type: string
+          format: date-time
+        scheduleUpdate:
+          $ref: '#/components/schemas/VideoScheduledUpdate'
+        thumbnailfile:
+          description: Video thumbnail file
+          type: string
+          format: binary
+        previewfile:
+          description: Deprecated in PeerTube v8.1, use thumbnailfile instead
+          deprecated: true
+          type: string
+          format: binary
+        videoPasswords:
+          $ref: '#/components/schemas/AddVideoPasswords'
+      required:
+      - channelId
+      - name
+    VideoCategorySet:
+      type: integer
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      example: 15
+    NSFWFlag:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` VIOLENT
+
+        - `2` EXPLICIT_SEX
+
+        '
+    LiveVideoUpdate:
+      properties:
+        saveReplay:
+          type: boolean
+        replaySettings:
+          $ref: '#/components/schemas/LiveVideoReplaySettings'
+        permanentLive:
+          description: User can stream multiple times in a permanent live
+          type: boolean
+        latencyMode:
+          description: User can select live latency mode if enabled by the instance
+          allOf:
+          - $ref: '#/components/schemas/LiveVideoLatencyMode'
+        schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/LiveSchedule'
+    VideoPassword:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        password:
+          type: string
+          minLength: 2
+        videoId:
+          $ref: '#/components/schemas/id'
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    VideoTokenResponse:
+      properties:
+        files:
+          type: object
+          properties:
+            token:
+              type: string
+            expires:
+              type: string
+              format: date-time
+    VideoResolutionConstant:
+      description: resolutions and their labels for the video
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoResolutionSet'
+        label:
+          type: string
+          example: 240p
+    VideoConstantString-Language:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        label:
+          type: string
+          example: English
+    LiveVideoResponse:
+      properties:
+        rtmpUrl:
+          type: string
+          description: Included in the response if an appropriate token is provided
+        rtmpsUrl:
+          type: string
+          description: Included in the response if an appropriate token is provided
+        streamKey:
+          type: string
+          description: RTMP stream key to use to stream into this live video. Included in the response if an appropriate token is provided
+        saveReplay:
+          type: boolean
+        replaySettings:
+          $ref: '#/components/schemas/LiveVideoReplaySettings'
+        permanentLive:
+          description: User can stream multiple times in a permanent live
+          type: boolean
+        latencyMode:
+          description: User can select live latency mode if enabled by the instance
+          allOf:
+          - $ref: '#/components/schemas/LiveVideoLatencyMode'
+        schedules:
+          type: array
+          items:
+            $ref: '#/components/schemas/LiveSchedule'
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type:
+          - boolean
+          - 'null'
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    FileStorage:
+      type: integer
+      enum:
+      - 0
+      - 1
+      description: "The file storage type:\n  - `0` File system\n  - `1` Object storage\n"
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type:
+            - string
+            - 'null'
+            description: text or bio displayed on the account's profile
+    VideoUploadRequestLegacy:
+      allOf:
+      - $ref: '#/components/schemas/VideoUploadRequestCommon'
+      - type: object
+        required:
+        - videofile
+        properties:
+          videofile:
+            description: Video file
+            type: string
+            format: binary
+    VideoCommentsPolicyConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoCommentsPolicySet'
+        label:
+          type: string
+    VideoUploadResponse:
+      properties:
+        video:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/Video/properties/id'
+            uuid:
+              $ref: '#/components/schemas/Video/properties/uuid'
+            shortUUID:
+              $ref: '#/components/schemas/Video/properties/shortUUID'
+    AccountSummary:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    VideoListResponse:
+      properties:
+        total:
+          type: integer
+          example: 1
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Video'
+    VideoDetails:
+      allOf:
+      - $ref: '#/components/schemas/Video'
+      - type: object
+        properties:
+          viewers:
+            type: integer
+            description: If the video is a live, you have the amount of current viewers
+          description:
+            type:
+            - string
+            - 'null'
+            example: '"**[Want to help to translate this video?](https://weblate.framasoft.org/projects/what-is-peertube-video/)**\r\n\r\n
+
+              **Take back the control of your videos! [#JoinPeertube](https://joinpeertube.org)**\r\n*A decentralized video hosting network,
+
+              based on free/libre software!*\r\n\r\n**Animation Produced by:** [LILA](https://libreart.info) - [ZeMarmot Team](https://film.zemarmot.net)\r\n
+
+              *Directed by* Aryeom\r\n*Assistant* Jehan\r\n**Licence**: [CC-By-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)\r\n\r\n
+
+              **Sponsored by** [Framasoft](https://framasoft.org)\r\n\r\n**Music**: [Red Step Forward](http://play.dogmazic.net/song.php?song_id=52491) - CC-By Ken Bushima\r\n\r\n
+
+              **Movie Clip**: [Caminades 3: Llamigos](http://www.caminandes.com/) CC-By Blender Institute\r\n\r\n**Video sources**: https://gitlab.gnome.org/Jehan/what-is-peertube/"
+
+              '
+            minLength: 3
+            maxLength: 1000
+            description: 'full description of the video, written in Markdown.
+
+              '
+          support:
+            type:
+            - string
+            - 'null'
+            description: A text tell the audience how to support the video creator
+            example: Please support our work on https://soutenir.framasoft.org/en/ <3
+            minLength: 3
+            maxLength: 1000
+          channel:
+            $ref: '#/components/schemas/VideoChannel'
+          account:
+            $ref: '#/components/schemas/Account'
+          tags:
+            example:
+            - flowers
+            - gardening
+            type: array
+            minItems: 1
+            maxItems: 5
+            items:
+              type: string
+              minLength: 2
+              maxLength: 30
+          commentsPolicy:
+            $ref: '#/components/schemas/VideoCommentsPolicyConstant'
+          downloadEnabled:
+            type: boolean
+          inputFileUpdatedAt:
+            type:
+            - string
+            - 'null'
+            format: date-time
+            description: Latest input file update. Null if the file has never been replaced since the original upload
+          trackerUrls:
+            type: array
+            items:
+              type: string
+              format: url
+            example:
+            - https://peertube2.cpy.re/tracker/announce
+            - wss://peertube2.cpy.re/tracker/socket
+          files:
+            type: array
+            items:
+              $ref: '#/components/schemas/VideoFile'
+            description: 'Web compatible video files. If Web Video is disabled on the server:
+
+
+              - field will be empty
+
+              - video files will be found in `streamingPlaylists[].files` field
+
+              '
+          streamingPlaylists:
+            type: array
+            items:
+              $ref: '#/components/schemas/VideoStreamingPlaylists'
+            description: 'HLS playlists/manifest files. If HLS is disabled on the server:
+
+
+              - field will be empty
+
+              - video files will be found in `files` field
+
+              '
+    VideoConstantNumber-Licence:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLicenceSet'
+        label:
+          type: string
+          example: Attribution - Share Alike
+    Storyboard:
+      properties:
+        storyboardPath:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        totalHeight:
+          type: integer
+        totalWidth:
+          type: integer
+        spriteHeight:
+          type: integer
+        spriteWidth:
+          type: integer
+        spriteDuration:
+          type: integer
+    UserViewingVideo:
+      required:
+      - currentTime
+      properties:
+        currentTime:
+          type: integer
+          format: seconds
+          description: timestamp within the video, in seconds
+          example: 5
+        viewEvent:
+          type: string
+          enum:
+          - seek
+          description: "Event since last viewing call:\n * `seek` - If the user seeked the video\n"
+        sessionId:
+          type: string
+          description: 'Optional param to represent the current viewer session. Used by the backend to properly count one view per session per video. PeerTube admin can configure the server to not trust this `sessionId` parameter but use the request IP address instead to identify a viewer.
+
+            '
+        client:
+          type: string
+          description: 'Client software used to watch the video. For example "Firefox", "PeerTube Approval Android", etc.
+
+            '
+        device:
+          description: 'Device used to watch the video. For example "desktop", "mobile", "smarttv", etc.
+
+            '
+          allOf:
+          - $ref: '#/components/schemas/VideoStatsUserAgentDevice'
+        operatingSystem:
+          type: string
+          description: 'Operating system used to watch the video. For example "Windows", "Ubuntu", etc.
+
+            '
   parameters:
-    stateOneOfVideo:
-      name: stateOneOf
+    nsfwFlagsExcluded:
+      name: nsfwFlagsExcluded
       in: query
       required: false
-      description: '**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states'
       schema:
-        oneOf:
-        - $ref: '#/components/schemas/VideoStateConstant/properties/id'
-        - type: array
-          items:
-            $ref: '#/components/schemas/VideoStateConstant/properties/id'
-      style: form
-      explode: true
+        $ref: '#/components/schemas/NSFWFlag'
+    resumableUploadInitContentLengthHeader:
+      name: X-Upload-Content-Length
+      in: header
+      schema:
+        type: number
+        example: 2469036
+      required: true
+      description: Number of bytes that will be uploaded in subsequent requests. Set this value to the size of the file you are uploading.
+    uuids:
+      name: uuids
+      in: query
+      required: false
+      schema:
+        items:
+          type: string
+      description: Find elements with specific UUIDs
     resumableUploadInitContentTypeHeader:
       name: X-Upload-Content-Type
       in: header
@@ -2280,52 +2289,13 @@ components:
         example: video/mp4
       required: true
       description: MIME type of the file that you are uploading. Depending on your instance settings, acceptable values might vary.
-    resumableUploadChunkContentLengthHeader:
-      name: Content-Length
-      in: header
-      schema:
-        type: number
-        example: 262144
-      required: true
-      description: 'Size of the chunk that the request is sending.
-
-
-        Remember that larger chunks are more efficient. PeerTube''s web client uses chunks varying from
-
-        1048576 bytes (~1MB) and increases or reduces size depending on connection health.
-
-        '
-    hasWebVideoFiles:
-      name: hasWebVideoFiles
+    includeScheduledLive:
+      name: includeScheduledLive
       in: query
       required: false
+      description: whether or not include live that are scheduled for later
       schema:
         type: boolean
-      description: '**PeerTube >= 6.0** Display only videos that have Web Video files'
-    isLive:
-      name: isLive
-      in: query
-      required: false
-      description: whether or not the video is a live
-      schema:
-        type: boolean
-    excludeAlreadyWatched:
-      name: excludeAlreadyWatched
-      in: query
-      description: Whether or not to exclude videos that are in the user's video history
-      schema:
-        type: boolean
-    resumableUploadId:
-      name: upload_id
-      in: query
-      required: true
-      description: 'Created session id to proceed with. If you didn''t send chunks in the last hour, it is
-
-        not valid anymore and you need to initialize a new upload.
-
-        '
-      schema:
-        type: string
     nsfw:
       name: nsfw
       in: query
@@ -2336,152 +2306,6 @@ components:
         enum:
         - 'true'
         - 'false'
-    languageOneOf:
-      name: languageOneOf
-      in: query
-      required: false
-      description: language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/VideoLanguageSet'
-        - type: array
-          items:
-            $ref: '#/components/schemas/VideoLanguageSet'
-      style: form
-      explode: true
-    autoTagOneOfVideo:
-      name: autoTagOneOf
-      in: query
-      required: false
-      description: '**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags'
-      schema:
-        oneOf:
-        - type: string
-        - type: array
-          items:
-            type: string
-      style: form
-      explode: true
-    host:
-      name: host
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Find elements owned by this host
-    name:
-      name: name
-      in: path
-      required: true
-      description: The username or handle of the account
-      schema:
-        type: string
-        example: chocobozzz | chocobozzz@example.org
-    privacyOneOf:
-      name: privacyOneOf
-      in: query
-      required: false
-      schema:
-        $ref: '#/components/schemas/VideoPrivacySet'
-      description: '**PeerTube >= 4.0** Display only videos in this specific privacy/privacies'
-    categoryOneOf:
-      name: categoryOneOf
-      in: query
-      required: false
-      description: category id of the video (see [/videos/categories](#operation/getCategories))
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/VideoCategorySet'
-        - type: array
-          items:
-            $ref: '#/components/schemas/VideoCategorySet'
-      style: form
-      explode: true
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    licenceOneOf:
-      name: licenceOneOf
-      in: query
-      required: false
-      description: licence id of the video (see [/videos/licences](#operation/getLicences))
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/VideoLicenceSet'
-        - type: array
-          items:
-            $ref: '#/components/schemas/VideoLicenceSet'
-      style: form
-      explode: true
-    channelHandle:
-      name: channelHandle
-      in: path
-      required: true
-      description: The video channel handle
-      schema:
-        type: string
-        example: my_username | my_username@example.com
-    skipCount:
-      name: skipCount
-      in: query
-      required: false
-      description: if you don't need the `total` in the response
-      schema:
-        type: string
-        enum:
-        - 'true'
-        - 'false'
-        default: 'false'
-    tagsAllOf:
-      name: tagsAllOf
-      in: query
-      required: false
-      description: tag(s) of the video, where all should be present in the video
-      schema:
-        oneOf:
-        - type: string
-        - type: array
-          items:
-            type: string
-      style: form
-      explode: true
-    nsfwFlagsExcluded:
-      name: nsfwFlagsExcluded
-      in: query
-      required: false
-      schema:
-        $ref: '#/components/schemas/NSFWFlag'
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
-    nsfwFlagsIncluded:
-      name: nsfwFlagsIncluded
-      in: query
-      required: false
-      schema:
-        $ref: '#/components/schemas/NSFWFlag'
-    searchTarget:
-      name: searchTarget
-      in: query
-      required: false
-      description: "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
-      schema:
-        type: string
-        enum:
-        - local
-        - search-index
     resumableUploadChunkContentRangeHeader:
       name: Content-Range
       in: header
@@ -2497,43 +2321,39 @@ components:
         262144 bytes (256 x 1024) in a 2,469,036 byte file.
 
         '
-    uuids:
-      name: uuids
-      in: query
-      required: false
-      schema:
-        items:
-          type: string
-      description: Find elements with specific UUIDs
-    videoPasswordHeader:
-      name: x-peertube-video-password
-      description: Required on password protected video
-      in: header
-      required: false
-      schema:
-        type: string
-    includeScheduledLive:
-      name: includeScheduledLive
-      in: query
-      required: false
-      description: whether or not include live that are scheduled for later
-      schema:
-        type: boolean
-    isLocal:
-      name: isLocal
+    hasWebVideoFiles:
+      name: hasWebVideoFiles
       in: query
       required: false
       schema:
         type: boolean
-      description: '**PeerTube >= 4.0** Display only local or remote objects'
-    resumableUploadInitContentLengthHeader:
-      name: X-Upload-Content-Length
-      in: header
+      description: '**PeerTube >= 6.0** Display only videos that have Web Video files'
+    nsfwFlagsIncluded:
+      name: nsfwFlagsIncluded
+      in: query
+      required: false
       schema:
-        type: number
-        example: 2469036
-      required: true
-      description: Number of bytes that will be uploaded in subsequent requests. Set this value to the size of the file you are uploading.
+        $ref: '#/components/schemas/NSFWFlag'
+    tagsAllOf:
+      name: tagsAllOf
+      in: query
+      required: false
+      description: tag(s) of the video, where all should be present in the video
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+      style: form
+      explode: true
+    hasHLSFiles:
+      name: hasHLSFiles
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only videos that have HLS files'
     include:
       name: include
       in: query
@@ -2568,23 +2388,27 @@ components:
         - `32` VIDEO SOURCE
 
         '
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    search:
-      name: search
-      in: query
-      required: false
-      description: Plain text search, applied to various parts of the model depending on endpoint
+    channelHandle:
+      name: channelHandle
+      in: path
+      required: true
+      description: The video channel handle
       schema:
         type: string
+        example: my_username | my_username@example.com
+    stateOneOfVideo:
+      name: stateOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 8.2** **Admins and moderators only** filter on videos that have one of these states'
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoStateConstant/properties/id'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoStateConstant/properties/id'
+      style: form
+      explode: true
     tagsOneOf:
       name: tagsOneOf
       in: query
@@ -2599,6 +2423,165 @@ components:
             type: string
       style: form
       explode: true
+    resumableUploadChunkContentLengthHeader:
+      name: Content-Length
+      in: header
+      schema:
+        type: number
+        example: 262144
+      required: true
+      description: 'Size of the chunk that the request is sending.
+
+
+        Remember that larger chunks are more efficient. PeerTube''s web client uses chunks varying from
+
+        1048576 bytes (~1MB) and increases or reduces size depending on connection health.
+
+        '
+    host:
+      name: host
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Find elements owned by this host
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    licenceOneOf:
+      name: licenceOneOf
+      in: query
+      required: false
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoLicenceSet'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoLicenceSet'
+      style: form
+      explode: true
+    isLive:
+      name: isLive
+      in: query
+      required: false
+      description: whether or not the video is a live
+      schema:
+        type: boolean
+    isLocal:
+      name: isLocal
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only local or remote objects'
+    privacyOneOf:
+      name: privacyOneOf
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/VideoPrivacySet'
+      description: '**PeerTube >= 4.0** Display only videos in this specific privacy/privacies'
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    autoTagOneOfVideo:
+      name: autoTagOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 6.2** **Admins and moderators only** filter on videos that contain one of these automatic tags'
+      schema:
+        oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+      style: form
+      explode: true
+    videoPasswordHeader:
+      name: x-peertube-video-password
+      description: Required on password protected video
+      in: header
+      required: false
+      schema:
+        type: string
+    excludeAlreadyWatched:
+      name: excludeAlreadyWatched
+      in: query
+      description: Whether or not to exclude videos that are in the user's video history
+      schema:
+        type: boolean
+    name:
+      name: name
+      in: path
+      required: true
+      description: The username or handle of the account
+      schema:
+        type: string
+        example: chocobozzz | chocobozzz@example.org
+    resumableUploadId:
+      name: upload_id
+      in: query
+      required: true
+      description: 'Created session id to proceed with. If you didn''t send chunks in the last hour, it is
+
+        not valid anymore and you need to initialize a new upload.
+
+        '
+      schema:
+        type: string
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
+    searchTarget:
+      name: searchTarget
+      in: query
+      required: false
+      description: "If the administrator enabled search index support, you can override the default search target.\n\n**Warning**: If you choose to make an index search, PeerTube will get results from a third party service. It means the instance may not yet know the objects you fetched. If you want to load video/channel information:\n  * If the current user has the ability to make a remote URI search (this information is available in the config endpoint),\n  then reuse the search API to make a search using the object URI so PeerTube instance fetches the remote object and fill its database.\n  After that, you can use the classic REST API endpoints to fetch the complete object or interact with it\n  * If the current user doesn't have the ability to make a remote URI search, then redirect the user on the origin instance or fetch\n  the data from the origin instance API\n"
+      schema:
+        type: string
+        enum:
+        - local
+        - search-index
+    categoryOneOf:
+      name: categoryOneOf
+      in: query
+      required: false
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/VideoCategorySet'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoCategorySet'
+      style: form
+      explode: true
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
     videosSort:
       name: sort
       in: query
@@ -2617,13 +2600,30 @@ components:
         - -hot
         - -best
         description: "Sort videos by criteria (prefixing with `-` means `DESC` order):\n  * `hot` - Adaptation of Reddit \"hot\" algorithm taking into account video views, likes, dislikes and comments and publication date\n  * `best` - Same than `hot`, but also takes into account user video history\n  * `trending` - Sort videos by recent views (\"recent\" is defined by the admin)\n  * `views` - Sort videos using their `views` counter\n  * `publishedAt` - Sort by video publication date (when it became publicly available)\n"
-    hasHLSFiles:
-      name: hasHLSFiles
+    languageOneOf:
+      name: languageOneOf
       in: query
       required: false
+      description: language id of the video (see [/videos/languages](#operation/getLanguages)). Use `_unknown` to filter on videos that don't have a video language
       schema:
-        type: boolean
-      description: '**PeerTube >= 4.0** Display only videos that have HLS files'
+        oneOf:
+        - $ref: '#/components/schemas/VideoLanguageSet'
+        - type: array
+          items:
+            $ref: '#/components/schemas/VideoLanguageSet'
+      style: form
+      explode: true
+    skipCount:
+      name: skipCount
+      in: query
+      required: false
+      description: if you don't need the `total` in the response
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+        default: 'false'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

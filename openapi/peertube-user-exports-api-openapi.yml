@@ -112,21 +112,6 @@ paths:
         '204':
           description: successful operation
 components:
-  parameters:
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: User id
-      schema:
-        $ref: '#/components/schemas/id'
-    id:
-      name: id
-      in: path
-      required: true
-      description: Entity id
-      schema:
-        $ref: '#/components/schemas/id'
   schemas:
     UserExportState:
       type: integer
@@ -140,6 +125,21 @@ components:
       type: integer
       minimum: 1
       example: 42
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: User id
+      schema:
+        $ref: '#/components/schemas/id'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

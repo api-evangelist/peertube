@@ -141,33 +141,7 @@ paths:
       operationId: getApiV1VideosByIdStatsTimeseriesByMetric
       x-operation-id-source: derived
 components:
-  parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
   schemas:
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    VideoStatsTimeserie:
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-              value:
-                type: number
     VideoStatsOverall:
       properties:
         averageWatchTime:
@@ -199,24 +173,10 @@ components:
                 type: string
               viewers:
                 type: number
-    VideoStatsRetention:
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              second:
-                type: number
-              retentionPercent:
-                type: number
-    UUIDv4:
+    shortUUID:
       type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
     VideoStatsUserAgent:
       properties:
         clients:
@@ -246,6 +206,10 @@ components:
                 type: string
               viewers:
                 type: number
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     VideoStatsUserAgentDevice:
       enum:
       - console
@@ -256,10 +220,46 @@ components:
       - wearable
       - xr
       - desktop
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+    VideoStatsRetention:
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              second:
+                type: number
+              retentionPercent:
+                type: number
+    VideoStatsTimeserie:
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              value:
+                type: number
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+  parameters:
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

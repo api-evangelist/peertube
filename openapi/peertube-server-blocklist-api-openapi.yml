@@ -212,34 +212,14 @@ paths:
       operationId: deleteApiV1ServerBlocklistServersByHost
       x-operation-id-source: derived
 components:
-  parameters:
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
   schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
     AccountBlock:
       properties:
         byAccount:
@@ -250,28 +230,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    BlockStatus:
-      properties:
-        accounts:
-          type: object
-          additionalProperties:
-            x-additionalPropertiesName: account
-            type: object
-            properties:
-              blockedByServer:
-                type: boolean
-              blockedByUser:
-                type: boolean
-        hosts:
-          type: object
-          additionalProperties:
-            x-additionalPropertiesName: host
-            type: object
-            properties:
-              blockedByServer:
-                type: boolean
-              blockedByUser:
-                type: boolean
     Actor:
       properties:
         id:
@@ -310,13 +268,10 @@ components:
         updatedAt:
           type: string
           format: date-time
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     ActorImage:
       properties:
         path:
@@ -337,6 +292,28 @@ components:
         updatedAt:
           type: string
           format: date-time
+    BlockStatus:
+      properties:
+        accounts:
+          type: object
+          additionalProperties:
+            x-additionalPropertiesName: account
+            type: object
+            properties:
+              blockedByServer:
+                type: boolean
+              blockedByUser:
+                type: boolean
+        hosts:
+          type: object
+          additionalProperties:
+            x-additionalPropertiesName: host
+            type: object
+            properties:
+              blockedByServer:
+                type: boolean
+              blockedByUser:
+                type: boolean
     User:
       properties:
         id:
@@ -473,10 +450,33 @@ components:
         createdAt:
           type: string
           format: date-time
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+  parameters:
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

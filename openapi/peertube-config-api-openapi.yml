@@ -243,24 +243,10 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VideoResolutionSet:
+    VideoLicenceSet:
       type: integer
-      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
-
-
-        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
-
-        '
-      example: 240
-    VideoPrivacySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
     ServerConfigCustom:
       properties:
         instance:
@@ -528,17 +514,15 @@ components:
               properties:
                 autoPlay:
                   type: boolean
-    VideoLicenceSet:
+    VideoResolutionSet:
       type: integer
-      description: licence id of the video (see [/videos/licences](#operation/getLicences))
-      example: 2
-    VideoCommentsPolicySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
+      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
+
+
+        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
+
+        '
+      example: 240
     ServerConfigAbout:
       properties:
         instance:
@@ -602,6 +586,22 @@ components:
         updatedAt:
           type: string
           format: date-time
+    VideoCommentsPolicySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
+    VideoPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
     ServerConfig:
       properties:
         instance:

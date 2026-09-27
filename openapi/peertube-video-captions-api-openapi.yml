@@ -121,16 +121,6 @@ paths:
           description: video or language or caption for that language not found
 components:
   parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
     videoPasswordHeader:
       name: x-peertube-video-password
       description: Required on password protected video
@@ -145,15 +135,25 @@ components:
       description: The caption language
       schema:
         $ref: '#/components/schemas/VideoLanguageSet'
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
   schemas:
     shortUUID:
       type: string
       description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
       example: 2y84q2MQUMWPbiEcxNXMgC
-    VideoLanguageSet:
-      type: string
-      description: language id of the video (see [/videos/languages](#operation/getLanguages))
-      example: en
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     VideoConstantString-Language:
       properties:
         id:
@@ -161,6 +161,10 @@ components:
         label:
           type: string
           example: English
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
     UUIDv4:
       type: string
       format: uuid
@@ -186,10 +190,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    id:
-      type: integer
-      minimum: 1
-      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

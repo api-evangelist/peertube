@@ -123,6 +123,12 @@ paths:
           description: video channel not found
 components:
   schemas:
+    PlayerChannelSettings:
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/PlayerThemeChannelSetting'
+      description: Player settings for a channel
     PlayerChannelSettingsUpdate:
       type: object
       properties:
@@ -135,27 +141,10 @@ components:
       type: string
       description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
       example: 2y84q2MQUMWPbiEcxNXMgC
-    PlayerChannelSettings:
-      type: object
-      properties:
-        theme:
-          $ref: '#/components/schemas/PlayerThemeChannelSetting'
-      description: Player settings for a channel
-    PlayerThemeVideoSetting:
-      type: string
-      enum:
-      - channel-default
-      - instance-default
-      - galaxy
-      - lucide
-      description: "Player theme setting for a video:\n  - `channel-default` Use the channel default theme\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
-    PlayerThemeChannelSetting:
-      type: string
-      enum:
-      - instance-default
-      - galaxy
-      - lucide
-      description: "Player theme setting for a channel:\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     UUIDv4:
       type: string
       format: uuid
@@ -177,10 +166,21 @@ components:
       required:
       - theme
       description: Player settings update for a video
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+    PlayerThemeVideoSetting:
+      type: string
+      enum:
+      - channel-default
+      - instance-default
+      - galaxy
+      - lucide
+      description: "Player theme setting for a video:\n  - `channel-default` Use the channel default theme\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
+    PlayerThemeChannelSetting:
+      type: string
+      enum:
+      - instance-default
+      - galaxy
+      - lucide
+      description: "Player theme setting for a channel:\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
   parameters:
     idOrUUID:
       name: id

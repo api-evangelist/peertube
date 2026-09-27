@@ -97,18 +97,18 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    videoFileToken:
-      name: videoFileToken
-      in: query
-      required: false
-      description: Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header.
-      schema:
-        type: string
     staticFilename:
       name: filename
       in: path
       required: true
       description: Filename
+      schema:
+        type: string
+    videoFileToken:
+      name: videoFileToken
+      in: query
+      required: false
+      description: Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header.
       schema:
         type: string
     reinjectVideoFileToken:

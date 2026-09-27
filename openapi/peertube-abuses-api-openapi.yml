@@ -333,6 +333,148 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    AbusePredefinedReasons:
+      type: array
+      items:
+        type: string
+        enum:
+        - violentOrAbusive
+        - hatefulOrAbusive
+        - spamOrMisleading
+        - privacy
+        - rights
+        - serverRules
+        - thumbnails
+        - captions
+      example:
+      - spamOrMisleading
+    AbuseStateSet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The abuse state (Pending = `1`, Rejected = `2`, Accepted = `3`)
+    Thumbnail:
+      properties:
+        fileUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        aspectRatio:
+          type: string
+          example: '16:9'
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    Abuse:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        reason:
+          type: string
+          example: The video is a spam
+          minLength: 2
+          maxLength: 3000
+        predefinedReasons:
+          $ref: '#/components/schemas/AbusePredefinedReasons'
+        reporterAccount:
+          $ref: '#/components/schemas/Account'
+        state:
+          $ref: '#/components/schemas/AbuseStateConstant'
+        moderationComment:
+          type: string
+          example: Decided to ban the server since it spams us regularly
+          minLength: 2
+          maxLength: 3000
+        video:
+          type: object
+          properties:
+            id:
+              type: integer
+            uuid:
+              $ref: '#/components/schemas/UUIDv4'
+            shortUUID:
+              $ref: '#/components/schemas/shortUUID'
+            name:
+              type: string
+            nsfw:
+              type: boolean
+            startAt:
+              type: string
+              format: date-time
+            endAt:
+              type: string
+              format: date-time
+            deleted:
+              type: boolean
+            blacklisted:
+              type: boolean
+            thumbnailPath:
+              description: Deprecated in PeerTube v8.1, use thumbnails instead
+              deprecated: true
+              type: string
+            thumbnails:
+              description: '**PeerTube >= 8.1** Array of thumbnails for the video'
+              type: array
+              items:
+                $ref: '#/components/schemas/Thumbnail'
+            channel:
+              $ref: '#/components/schemas/VideoChannel'
+        createdAt:
+          type: string
+          format: date-time
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    AccountSummary:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
     Video:
       properties:
         id:
@@ -490,121 +632,6 @@ components:
           properties:
             currentTime:
               type: integer
-    Thumbnail:
-      properties:
-        fileUrl:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-        aspectRatio:
-          type: string
-          example: '16:9'
-    AbuseStateConstant:
-      properties:
-        id:
-          $ref: '#/components/schemas/AbuseStateSet'
-        label:
-          type: string
-    AbusePredefinedReasons:
-      type: array
-      items:
-        type: string
-        enum:
-        - violentOrAbusive
-        - hatefulOrAbusive
-        - spamOrMisleading
-        - privacy
-        - rights
-        - serverRules
-        - thumbnails
-        - captions
-      example:
-      - spamOrMisleading
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    Abuse:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        reason:
-          type: string
-          example: The video is a spam
-          minLength: 2
-          maxLength: 3000
-        predefinedReasons:
-          $ref: '#/components/schemas/AbusePredefinedReasons'
-        reporterAccount:
-          $ref: '#/components/schemas/Account'
-        state:
-          $ref: '#/components/schemas/AbuseStateConstant'
-        moderationComment:
-          type: string
-          example: Decided to ban the server since it spams us regularly
-          minLength: 2
-          maxLength: 3000
-        video:
-          type: object
-          properties:
-            id:
-              type: integer
-            uuid:
-              $ref: '#/components/schemas/UUIDv4'
-            shortUUID:
-              $ref: '#/components/schemas/shortUUID'
-            name:
-              type: string
-            nsfw:
-              type: boolean
-            startAt:
-              type: string
-              format: date-time
-            endAt:
-              type: string
-              format: date-time
-            deleted:
-              type: boolean
-            blacklisted:
-              type: boolean
-            thumbnailPath:
-              description: Deprecated in PeerTube v8.1, use thumbnails instead
-              deprecated: true
-              type: string
-            thumbnails:
-              description: '**PeerTube >= 8.1** Array of thumbnails for the video'
-              type: array
-              items:
-                $ref: '#/components/schemas/Thumbnail'
-            channel:
-              $ref: '#/components/schemas/VideoChannel'
-        createdAt:
-          type: string
-          format: date-time
-    AbuseMessage:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        message:
-          type: string
-          minLength: 2
-          maxLength: 3000
-        byModerator:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        account:
-          $ref: '#/components/schemas/AccountSummary'
-    AbuseStateSet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: The abuse state (Pending = `1`, Rejected = `2`, Accepted = `3`)
     VideoChannel:
       allOf:
       - $ref: '#/components/schemas/Actor'
@@ -642,51 +669,133 @@ components:
               $ref: '#/components/schemas/ActorImage'
           ownerAccount:
             $ref: '#/components/schemas/Account'
-    AccountSummary:
+    AbuseMessage:
       properties:
         id:
-          type: integer
-        name:
+          $ref: '#/components/schemas/id'
+        message:
           type: string
-        displayName:
+          minLength: 2
+          maxLength: 3000
+        byModerator:
+          type: boolean
+        createdAt:
           type: string
+          format: date-time
+        account:
+          $ref: '#/components/schemas/AccountSummary'
+    PredefinedAbuseReasons:
+      description: Reason categories that help triage reports
+      type: array
+      maxItems: 8
+      items:
+        type: string
+        enum:
+        - violentOrAbusive
+        - hatefulOrAbusive
+        - spamOrMisleading
+        - privacy
+        - rights
+        - serverRules
+        - thumbnails
+        - captions
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    AbuseStateConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/AbuseStateSet'
+        label:
+          type: string
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
         url:
           type: string
           format: url
-        host:
-          type: string
-          format: hostname
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
         avatars:
           type: array
           items:
             $ref: '#/components/schemas/ActorImage'
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    ActorImage:
-      properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
+        host:
           type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        width:
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type:
+          - boolean
+          - 'null'
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
           type: integer
-        height:
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
           type: integer
-          description: '**PeerTube >= 7.3**'
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
         createdAt:
           type: string
           format: date-time
         updatedAt:
           type: string
           format: date-time
+    VideoComment:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        text:
+          type: string
+          format: html
+          description: Text of the comment
+          minLength: 1
+          example: This video is wonderful!
+        threadId:
+          $ref: '#/components/schemas/id'
+        inReplyToCommentId:
+          allOf:
+          - $ref: '#/components/schemas/id'
+        videoId:
+          $ref: '#/components/schemas/Video/properties/id'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          default: null
+        isDeleted:
+          type: boolean
+          default: false
+        heldForReview:
+          type: boolean
+        totalRepliesFromVideoAuthor:
+          type: integer
+          minimum: 0
+        totalReplies:
+          type: integer
+          minimum: 0
+        account:
+          $ref: '#/components/schemas/Account'
     User:
       properties:
         id:
@@ -792,111 +901,6 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    PredefinedAbuseReasons:
-      description: Reason categories that help triage reports
-      type: array
-      maxItems: 8
-      items:
-        type: string
-        enum:
-        - violentOrAbusive
-        - hatefulOrAbusive
-        - spamOrMisleading
-        - privacy
-        - rights
-        - serverRules
-        - thumbnails
-        - captions
-    Actor:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        url:
-          type: string
-          format: url
-        name:
-          description: immutable name of the actor, used to find or mention it
-          allOf:
-          - $ref: '#/components/schemas/username'
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-        host:
-          type: string
-          format: hostname
-          description: server on which the actor is resident
-        hostRedundancyAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: whether this actor's host allows redundancy of its videos
-        followingCount:
-          type: integer
-          minimum: 0
-          description: number of actors subscribed to by this actor, as seen by this instance
-        followersCount:
-          type: integer
-          minimum: 0
-          description: number of followers of this actor, as seen by this instance
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoComment:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        url:
-          type: string
-          format: url
-        text:
-          type: string
-          format: html
-          description: Text of the comment
-          minLength: 1
-          example: This video is wonderful!
-        threadId:
-          $ref: '#/components/schemas/id'
-        inReplyToCommentId:
-          allOf:
-          - $ref: '#/components/schemas/id'
-        videoId:
-          $ref: '#/components/schemas/Video/properties/id'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        deletedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          default: null
-        isDeleted:
-          type: boolean
-          default: false
-        heldForReview:
-          type: boolean
-        totalRepliesFromVideoAuthor:
-          type: integer
-          minimum: 0
-        totalReplies:
-          type: integer
-          minimum: 0
-        account:
-          $ref: '#/components/schemas/Account'
     Account:
       allOf:
       - $ref: '#/components/schemas/Actor'
@@ -915,21 +919,15 @@ components:
             - string
             - 'null'
             description: text or bio displayed on the account's profile
-    id:
-      type: integer
-      minimum: 1
-      example: 42
   parameters:
-    count:
-      name: count
+    start:
+      name: start
       in: query
       required: false
-      description: Number of items to return
+      description: Offset used to paginate results
       schema:
         type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
+        minimum: 0
     abusesSort:
       name: sort
       in: query
@@ -941,6 +939,16 @@ components:
         - -id
         - -createdAt
         - -state
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
     abuseMessageId:
       name: abuseMessageId
       in: path
@@ -948,14 +956,6 @@ components:
       description: Abuse message id
       schema:
         $ref: '#/components/schemas/AbuseMessage/properties/id'
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
     abuseId:
       name: abuseId
       in: path

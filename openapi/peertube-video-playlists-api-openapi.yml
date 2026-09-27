@@ -548,86 +548,6 @@ paths:
           description: search index unavailable
 components:
   schemas:
-    LiveSchedule:
-      properties:
-        startAt:
-          type: string
-          format: date-time
-          description: Date when the stream is scheduled to air at
-    VideoPlaylistPrivacySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: Video playlist privacy policy (see [/video-playlists/privacies](#operation/getPlaylistPrivacyPolicies))
-    VideoPlaylist:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        uuid:
-          $ref: '#/components/schemas/UUIDv4'
-        shortUUID:
-          allOf:
-          - $ref: '#/components/schemas/shortUUID'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        description:
-          type: string
-          minLength: 3
-          maxLength: 1000
-        displayName:
-          type: string
-          minLength: 1
-          maxLength: 120
-        isLocal:
-          type: boolean
-        videoLength:
-          type: integer
-          minimum: 0
-        thumbnailPath:
-          description: Deprecated in PeerTube v8.1, use thumbnails instead
-          deprecated: true
-          type: string
-        thumbnails:
-          description: '**PeerTube >= 8.1** Array of thumbnails for the playlist'
-          type: array
-          items:
-            $ref: '#/components/schemas/Thumbnail'
-        privacy:
-          $ref: '#/components/schemas/VideoPlaylistPrivacyConstant'
-        type:
-          $ref: '#/components/schemas/VideoPlaylistTypeConstant'
-        ownerAccount:
-          $ref: '#/components/schemas/AccountSummary'
-        videoChannel:
-          $ref: '#/components/schemas/VideoChannelSummary'
-        videoChannelPosition:
-          type: integer
-          minimum: 1
-          description: Position of the playlist in the channel
-    NSFWFlag:
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      description: '
-
-        NSFW flags (can be combined using bitwise or operator)
-
-        - `0` NONE
-
-        - `1` VIOLENT
-
-        - `2` EXPLICIT_SEX
-
-        '
     Video:
       properties:
         id:
@@ -785,62 +705,6 @@ components:
           properties:
             currentTime:
               type: integer
-    Thumbnail:
-      properties:
-        fileUrl:
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-        aspectRatio:
-          type: string
-          example: '16:9'
-    VideoConstantNumber-Category:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoCategorySet'
-        label:
-          type: string
-          example: Science & Technology
-    VideoCategorySet:
-      type: integer
-      description: category id of the video (see [/videos/categories](#operation/getCategories))
-      example: 15
-    VideoConstantString-Language:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLanguageSet'
-        label:
-          type: string
-          example: English
-    VideoScheduledUpdate:
-      properties:
-        privacy:
-          $ref: '#/components/schemas/VideoPrivacySet'
-        updateAt:
-          type: string
-          format: date-time
-          description: When to update the video
-      required:
-      - updateAt
-    VideoConstantNumber-Licence:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLicenceSet'
-        label:
-          type: string
-          example: Attribution - Share Alike
-    VideoPlaylistTypeSet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      description: The video playlist type (Regular = `1`, Watch Later = `2`)
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
     VideoChannelSummary:
       properties:
         id:
@@ -859,34 +723,96 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ActorImage'
-    VideoPrivacyConstant:
+    VideoLicenceSet:
+      type: integer
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
+    VideoConstantNumber-Category:
       properties:
         id:
-          $ref: '#/components/schemas/VideoPrivacySet'
+          $ref: '#/components/schemas/VideoCategorySet'
         label:
           type: string
-    AccountSummary:
+          example: Science & Technology
+    Thumbnail:
+      properties:
+        fileUrl:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+        aspectRatio:
+          type: string
+          example: '16:9'
+    VideoPlaylist:
       properties:
         id:
-          type: integer
-        name:
+          $ref: '#/components/schemas/id'
+        uuid:
+          $ref: '#/components/schemas/UUIDv4'
+        shortUUID:
+          allOf:
+          - $ref: '#/components/schemas/shortUUID'
+        createdAt:
           type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+          minLength: 3
+          maxLength: 1000
         displayName:
           type: string
-        url:
+          minLength: 1
+          maxLength: 120
+        isLocal:
+          type: boolean
+        videoLength:
+          type: integer
+          minimum: 0
+        thumbnailPath:
+          description: Deprecated in PeerTube v8.1, use thumbnails instead
+          deprecated: true
           type: string
-          format: url
-        host:
-          type: string
-          format: hostname
-        avatars:
+        thumbnails:
+          description: '**PeerTube >= 8.1** Array of thumbnails for the playlist'
           type: array
           items:
-            $ref: '#/components/schemas/ActorImage'
-    VideoLanguageSet:
+            $ref: '#/components/schemas/Thumbnail'
+        privacy:
+          $ref: '#/components/schemas/VideoPlaylistPrivacyConstant'
+        type:
+          $ref: '#/components/schemas/VideoPlaylistTypeConstant'
+        ownerAccount:
+          $ref: '#/components/schemas/AccountSummary'
+        videoChannel:
+          $ref: '#/components/schemas/VideoChannelSummary'
+        videoChannelPosition:
+          type: integer
+          minimum: 1
+          description: Position of the playlist in the channel
+    VideoPlaylistTypeConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoPlaylistTypeSet'
+        label:
+          type: string
+    UUIDv4:
       type: string
-      description: language id of the video (see [/videos/languages](#operation/getLanguages))
-      example: en
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoPlaylistPrivacyConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoPlaylistPrivacySet'
+        label:
+          type: string
     ActorImage:
       properties:
         path:
@@ -907,6 +833,58 @@ components:
         updatedAt:
           type: string
           format: date-time
+    VideoCategorySet:
+      type: integer
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      example: 15
+    LiveSchedule:
+      properties:
+        startAt:
+          type: string
+          format: date-time
+          description: Date when the stream is scheduled to air at
+    AccountSummary:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    VideoPlaylistTypeSet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      description: The video playlist type (Regular = `1`, Watch Later = `2`)
+    NSFWFlag:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` VIOLENT
+
+        - `2` EXPLICIT_SEX
+
+        '
     VideoPrivacySet:
       type: integer
       enum:
@@ -916,29 +894,6 @@ components:
       - 4
       - 5
       description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
-    VideoLicenceSet:
-      type: integer
-      description: licence id of the video (see [/videos/licences](#operation/getLicences))
-      example: 2
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoPlaylistTypeConstant:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoPlaylistTypeSet'
-        label:
-          type: string
-    VideoPlaylistPrivacyConstant:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoPlaylistPrivacySet'
-        label:
-          type: string
     VideoStateConstant:
       properties:
         id:
@@ -976,19 +931,63 @@ components:
             '
         label:
           type: string
+    VideoPrivacyConstant:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        label:
+          type: string
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
     id:
       type: integer
       minimum: 1
       example: 42
+    VideoConstantString-Language:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        label:
+          type: string
+          example: English
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
+    VideoScheduledUpdate:
+      properties:
+        privacy:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        updateAt:
+          type: string
+          format: date-time
+          description: When to update the video
+      required:
+      - updateAt
+    VideoConstantNumber-Licence:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLicenceSet'
+        label:
+          type: string
+          example: Attribution - Share Alike
+    VideoPlaylistPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: Video playlist privacy policy (see [/video-playlists/privacies](#operation/getPlaylistPrivacyPolicies))
   parameters:
-    name:
-      name: name
-      in: path
-      required: true
-      description: The username or handle of the account
+    includeCollaborations:
+      name: includeCollaborations
+      in: query
+      required: false
+      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
       schema:
-        type: string
-        example: chocobozzz | chocobozzz@example.org
+        type: boolean
     uuids:
       name: uuids
       in: query
@@ -997,66 +996,6 @@ components:
         items:
           type: string
       description: Find elements with specific UUIDs
-    channelHandle:
-      name: channelHandle
-      in: path
-      required: true
-      description: The video channel handle
-      schema:
-        type: string
-        example: my_username | my_username@example.com
-    host:
-      name: host
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Find elements owned by this host
-    playlistId:
-      name: playlistId
-      in: path
-      required: true
-      description: Playlist id
-      schema:
-        $ref: '#/components/schemas/VideoPlaylist/properties/id'
-    includeCollaborations:
-      name: includeCollaborations
-      in: query
-      required: false
-      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
-      schema:
-        type: boolean
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    videoPlaylistType:
-      name: playlistType
-      in: query
-      required: false
-      schema:
-        $ref: '#/components/schemas/VideoPlaylistTypeSet'
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    search:
-      name: search
-      in: query
-      required: false
-      description: Plain text search, applied to various parts of the model depending on endpoint
-      schema:
-        type: string
     start:
       name: start
       in: query
@@ -1065,6 +1004,20 @@ components:
       schema:
         type: integer
         minimum: 0
+    playlistElementId:
+      name: playlistElementId
+      in: path
+      required: true
+      description: Playlist element id
+      schema:
+        $ref: '#/components/schemas/id'
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
     searchTarget:
       name: searchTarget
       in: query
@@ -1075,13 +1028,60 @@ components:
         enum:
         - local
         - search-index
-    playlistElementId:
-      name: playlistElementId
+    channelHandle:
+      name: channelHandle
       in: path
       required: true
-      description: Playlist element id
+      description: The video channel handle
       schema:
-        $ref: '#/components/schemas/id'
+        type: string
+        example: my_username | my_username@example.com
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    name:
+      name: name
+      in: path
+      required: true
+      description: The username or handle of the account
+      schema:
+        type: string
+        example: chocobozzz | chocobozzz@example.org
+    playlistId:
+      name: playlistId
+      in: path
+      required: true
+      description: Playlist id
+      schema:
+        $ref: '#/components/schemas/VideoPlaylist/properties/id'
+    videoPlaylistType:
+      name: playlistType
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/VideoPlaylistTypeSet'
+    host:
+      name: host
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Find elements owned by this host
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

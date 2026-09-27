@@ -73,6 +73,13 @@ paths:
           description: video not found
 components:
   parameters:
+    videoPasswordHeader:
+      name: x-peertube-video-password
+      description: Required on password protected video
+      in: header
+      required: false
+      schema:
+        type: string
     idOrUUID:
       name: id
       in: path
@@ -83,14 +90,15 @@ components:
         - $ref: '#/components/schemas/id'
         - $ref: '#/components/schemas/UUIDv4'
         - $ref: '#/components/schemas/shortUUID'
-    videoPasswordHeader:
-      name: x-peertube-video-password
-      description: Required on password protected video
-      in: header
-      required: false
-      schema:
-        type: string
   schemas:
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     VideoChapters:
       properties:
         chapters:
@@ -100,10 +108,6 @@ components:
               type: string
             timecode:
               type: integer
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
     UUIDv4:
       type: string
       format: uuid
@@ -111,10 +115,6 @@ components:
       pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
       minLength: 36
       maxLength: 36
-    id:
-      type: integer
-      minimum: 1
-      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

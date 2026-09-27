@@ -184,22 +184,14 @@ paths:
       operationId: getApiV1UsersByIdTokenSessionsByTokenSessionIdRevoke
       x-operation-id-source: derived
 components:
-  parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      description: Entity id
-      schema:
-        $ref: '#/components/schemas/id'
-    tokenSessionId:
-      name: tokenSessionId
-      in: path
-      required: true
-      description: Token session Id
-      schema:
-        $ref: '#/components/schemas/id'
   schemas:
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
     TokenSession:
       properties:
         id:
@@ -229,56 +221,24 @@ components:
         createdAt:
           type: string
           format: date-time
-    OAuthToken-password:
-      allOf:
-      - $ref: '#/components/schemas/OAuthClient'
-      - type: object
-        properties:
-          grant_type:
-            type: string
-            enum:
-            - password
-          username:
-            $ref: '#/components/schemas/User/properties/username'
-          password:
-            $ref: '#/components/schemas/password'
-          externalAuthToken:
-            type: string
-            description: If you want to authenticate using an external authentication token you got from an auth plugin (like `peertube-plugin-auth-openid-connect` for example) instead of a password or a refresh token, provide it here.
-      required:
-      - client_id
-      - client_secret
-      - grant_type
-      - username
-    password:
-      type: string
-      format: password
-      minLength: 6
-      maxLength: 50
-    OAuthToken-refresh_token:
-      allOf:
-      - $ref: '#/components/schemas/OAuthClient'
-      - type: object
-        properties:
-          grant_type:
-            type: string
-            enum:
-            - refresh_token
-          refresh_token:
-            type: string
-            example: 2e0d675df9fc96d2e4ec8a3ebbbf45eca9137bb7
-      required:
-      - client_id
-      - client_secret
-      - grant_type
-      - refresh_token
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    OAuthClient:
+      properties:
+        client_id:
+          type: string
+          pattern: /^[a-z0-9]$/
+          maxLength: 32
+          minLength: 32
+          example: v1ikx5hnfop4mdpnci8nsqh93c45rldf
+        client_secret:
+          type: string
+          pattern: /^[a-zA-Z0-9]$/
+          maxLength: 32
+          minLength: 32
+          example: AjWiOapPltI6EnsWQwlFarRtLh4u8tDt
     User:
       properties:
         id:
@@ -384,24 +344,64 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    OAuthClient:
-      properties:
-        client_id:
-          type: string
-          pattern: /^[a-z0-9]$/
-          maxLength: 32
-          minLength: 32
-          example: v1ikx5hnfop4mdpnci8nsqh93c45rldf
-        client_secret:
-          type: string
-          pattern: /^[a-zA-Z0-9]$/
-          maxLength: 32
-          minLength: 32
-          example: AjWiOapPltI6EnsWQwlFarRtLh4u8tDt
+    OAuthToken-refresh_token:
+      allOf:
+      - $ref: '#/components/schemas/OAuthClient'
+      - type: object
+        properties:
+          grant_type:
+            type: string
+            enum:
+            - refresh_token
+          refresh_token:
+            type: string
+            example: 2e0d675df9fc96d2e4ec8a3ebbbf45eca9137bb7
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - refresh_token
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    OAuthToken-password:
+      allOf:
+      - $ref: '#/components/schemas/OAuthClient'
+      - type: object
+        properties:
+          grant_type:
+            type: string
+            enum:
+            - password
+          username:
+            $ref: '#/components/schemas/User/properties/username'
+          password:
+            $ref: '#/components/schemas/password'
+          externalAuthToken:
+            type: string
+            description: If you want to authenticate using an external authentication token you got from an auth plugin (like `peertube-plugin-auth-openid-connect` for example) instead of a password or a refresh token, provide it here.
+      required:
+      - client_id
+      - client_secret
+      - grant_type
+      - username
+  parameters:
     id:
-      type: integer
-      minimum: 1
-      example: 42
+      name: id
+      in: path
+      required: true
+      description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+    tokenSessionId:
+      name: tokenSessionId
+      in: path
+      required: true
+      description: Token session Id
+      schema:
+        $ref: '#/components/schemas/id'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

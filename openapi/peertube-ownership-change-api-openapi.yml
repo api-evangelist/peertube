@@ -397,58 +397,37 @@ paths:
       operationId: postApiV1VideoChannelsByChannelHandleGiveOwnership
       x-operation-id-source: derived
 components:
-  parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    channelHandle:
-      name: channelHandle
-      in: path
-      required: true
-      description: The video channel handle
-      schema:
-        type: string
-        example: my_username | my_username@example.com
-    videoIdOrUUID:
-      name: videoIdOrUUID
-      in: path
-      required: true
-      description: Video id or UUID
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
   schemas:
-    shortUUID:
+    username:
       type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    ChangeOwnership:
+      type: object
+      description: Representation of a ownership change
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        state:
+          properties:
+            id:
+              $ref: '#/components/schemas/ChangeOwnershipState'
+            label:
+              type: string
+        initiatorAccount:
+          $ref: '#/components/schemas/Account'
+        nextOwnerAccount:
+          $ref: '#/components/schemas/Account'
+        video:
+          $ref: '#/components/schemas/VideoSummary'
+        videoChannel:
+          $ref: '#/components/schemas/VideoChannelSummary'
+        createdAt:
+          type: string
+          format: date-time
     VideoChannelSummary:
       properties:
         id:
@@ -467,51 +446,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ActorImage'
-    Account:
-      allOf:
-      - $ref: '#/components/schemas/Actor'
-      - properties:
-          userId:
-            description: object id for the user tied to this account
-            allOf:
-            - $ref: '#/components/schemas/User/properties/id'
-          displayName:
-            type: string
-            description: editable name of the account, displayed in its representations
-            minLength: 3
-            maxLength: 120
-          description:
-            type:
-            - string
-            - 'null'
-            description: text or bio displayed on the account's profile
-    VideoSummary:
-      properties:
-        id:
-          description: object id for the video
-          allOf:
-          - $ref: '#/components/schemas/id'
-        uuid:
-          description: universal identifier for the video, that can be used across instances
-          allOf:
-          - $ref: '#/components/schemas/UUIDv4'
-        shortUUID:
-          allOf:
-          - $ref: '#/components/schemas/shortUUID'
-        name:
-          type: string
-        isLive:
-          type: boolean
-        nsfw:
-          type: boolean
-        publishedAt:
-          type: string
-          format: date-time
-        thumbnails:
-          description: '**PeerTube >= 8.1** Array of thumbnails for the video'
-          type: array
-        channel:
-          $ref: '#/components/schemas/VideoChannelSummary'
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    ChangeOwnershipState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The ownership change state (Pending = `1`, Rejected = `2`, Accepted = `3`)
     Actor:
       properties:
         id:
@@ -550,36 +495,10 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ChangeOwnership:
-      type: object
-      description: Representation of a ownership change
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        state:
-          properties:
-            id:
-              $ref: '#/components/schemas/ChangeOwnershipState'
-            label:
-              type: string
-        initiatorAccount:
-          $ref: '#/components/schemas/Account'
-        nextOwnerAccount:
-          $ref: '#/components/schemas/Account'
-        video:
-          $ref: '#/components/schemas/VideoSummary'
-        videoChannel:
-          $ref: '#/components/schemas/VideoChannelSummary'
-        createdAt:
-          type: string
-          format: date-time
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     ActorImage:
       properties:
         path:
@@ -705,24 +624,105 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    username:
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type:
+            - string
+            - 'null'
+            description: text or bio displayed on the account's profile
+    VideoSummary:
+      properties:
+        id:
+          description: object id for the video
+          allOf:
+          - $ref: '#/components/schemas/id'
+        uuid:
+          description: universal identifier for the video, that can be used across instances
+          allOf:
+          - $ref: '#/components/schemas/UUIDv4'
+        shortUUID:
+          allOf:
+          - $ref: '#/components/schemas/shortUUID'
+        name:
+          type: string
+        isLive:
+          type: boolean
+        nsfw:
+          type: boolean
+        publishedAt:
+          type: string
+          format: date-time
+        thumbnails:
+          description: '**PeerTube >= 8.1** Array of thumbnails for the video'
+          type: array
+        channel:
+          $ref: '#/components/schemas/VideoChannelSummary'
+    UUIDv4:
       type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    ChangeOwnershipState:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: The ownership change state (Pending = `1`, Rejected = `2`, Accepted = `3`)
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+  parameters:
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    videoIdOrUUID:
+      name: videoIdOrUUID
+      in: path
+      required: true
+      description: Video id or UUID
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    channelHandle:
+      name: channelHandle
+      in: path
+      required: true
+      description: The video channel handle
+      schema:
+        type: string
+        example: my_username | my_username@example.com
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

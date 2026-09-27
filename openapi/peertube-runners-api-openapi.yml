@@ -136,6 +136,22 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    runnerId:
+      name: runnerId
+      in: path
+      required: true
+      schema:
+        type: integer
     runnerSort:
       name: sort
       in: query
@@ -153,22 +169,6 @@ components:
       schema:
         type: integer
         minimum: 0
-    runnerId:
-      name: runnerId
-      in: path
-      required: true
-      schema:
-        type: integer
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
   schemas:
     Runner:
       properties:

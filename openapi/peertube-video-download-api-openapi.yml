@@ -51,6 +51,10 @@ components:
       type: string
       description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
       example: 2y84q2MQUMWPbiEcxNXMgC
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     UUIDv4:
       type: string
       format: uuid
@@ -58,10 +62,6 @@ components:
       pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
       minLength: 36
       maxLength: 36
-    id:
-      type: integer
-      minimum: 1
-      example: 42
   parameters:
     videoFileToken:
       name: videoFileToken

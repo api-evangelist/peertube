@@ -401,69 +401,20 @@ paths:
           description: user not found
 components:
   schemas:
-    UpdateUser:
-      properties:
-        email:
-          description: The updated email of the user
-          allOf:
-          - $ref: '#/components/schemas/User/properties/email'
-        emailVerified:
-          type: boolean
-          description: Set the email as verified
-        videoQuota:
-          type: integer
-          description: The updated video quota of the user in bytes
-        videoQuotaDaily:
-          type: integer
-          description: The updated daily video quota of the user in bytes
-        pluginAuth:
-          type:
-          - string
-          - 'null'
-          description: The auth plugin to use to authenticate the user
-          example: peertube-plugin-auth-saml2
-        role:
-          $ref: '#/components/schemas/UserRole'
-        adminFlags:
-          $ref: '#/components/schemas/UserAdminFlags'
-        password:
-          $ref: '#/components/schemas/password'
-    NSFWPolicy:
+    username:
       type: string
-      enum:
-      - display
-      - warn
-      - do_not_list
-    NSFWFlag:
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    UserAdminFlags:
       type: integer
       enum:
       - 0
       - 1
-      - 2
-      - 4
-      description: '
-
-        NSFW flags (can be combined using bitwise or operator)
-
-        - `0` NONE
-
-        - `1` VIOLENT
-
-        - `2` EXPLICIT_SEX
-
-        '
-    AddUserResponse:
-      properties:
-        user:
-          type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/id'
-            account:
-              type: object
-              properties:
-                id:
-                  $ref: '#/components/schemas/id'
+      description: Admin flags for the user (None = `0`, Bypass video blocklist = `1`)
+      example: 1
     UserWithStats:
       allOf:
       - $ref: '#/components/schemas/User'
@@ -483,36 +434,101 @@ components:
           videoCommentsCount:
             type: integer
             description: Count of comments published
-    NotificationSettingValue:
+    usernameChannel:
+      type: string
+      description: immutable name of the channel, used to interact with its actor
+      example: framasoft_videos
+      pattern: /^[a-zA-Z0-9\\-_.:]+$/
+      minLength: 1
+      maxLength: 50
+    UserNotificationSettings:
+      properties:
+        abuseAsModerator:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        videoAutoBlacklistAsModerator:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newUserRegistration:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newVideoFromSubscription:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        blacklistOnMyVideo:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoPublished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoImportFinished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        commentMention:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newCommentOnMyVideo:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newFollow:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newInstanceFollower:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        autoInstanceFollowing:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        abuseStateChange:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        abuseNewMessage:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newPeerTubeVersion:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        newPluginVersion:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoStudioEditionFinished:
+          $ref: '#/components/schemas/NotificationSettingValue'
+        myVideoTranscriptionGenerated:
+          $ref: '#/components/schemas/NotificationSettingValue'
+    AddUserResponse:
+      properties:
+        user:
+          type: object
+          properties:
+            id:
+              $ref: '#/components/schemas/id'
+            account:
+              type: object
+              properties:
+                id:
+                  $ref: '#/components/schemas/id'
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    NSFWFlag:
       type: integer
-      description: 'Notification type. One of the following values, or a sum of multiple values:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
 
         - `0` NONE
 
-        - `1` WEB
+        - `1` VIOLENT
 
-        - `2` EMAIL
+        - `2` EXPLICIT_SEX
 
         '
-    RequestTwoFactorResponse:
-      properties:
-        otpRequest:
-          type: object
-          properties:
-            requestToken:
-              type: string
-              description: The token to send to confirm this request
-            secret:
-              type: string
-              description: The OTP secret
-            uri:
-              type: string
-              description: The OTP URI
-    password:
-      type: string
-      format: password
-      minLength: 6
-      maxLength: 50
     VideoChannel:
       allOf:
       - $ref: '#/components/schemas/Actor'
@@ -550,33 +566,81 @@ components:
               $ref: '#/components/schemas/ActorImage'
           ownerAccount:
             $ref: '#/components/schemas/Account'
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    ActorImage:
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    UserRole:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      description: The user role (Admin = `0`, Moderator = `1`, User = `2`)
+      example: 2
+    NotificationSettingValue:
+      type: integer
+      description: 'Notification type. One of the following values, or a sum of multiple values:
+
+        - `0` NONE
+
+        - `1` WEB
+
+        - `2` EMAIL
+
+        '
+    RequestTwoFactorResponse:
       properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
-          type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        width:
+        otpRequest:
+          type: object
+          properties:
+            requestToken:
+              type: string
+              description: The token to send to confirm this request
+            secret:
+              type: string
+              description: The OTP secret
+            uri:
+              type: string
+              description: The OTP URI
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    NSFWPolicy:
+      type: string
+      enum:
+      - display
+      - warn
+      - do_not_list
+    UpdateUser:
+      properties:
+        email:
+          description: The updated email of the user
+          allOf:
+          - $ref: '#/components/schemas/User/properties/email'
+        emailVerified:
+          type: boolean
+          description: Set the email as verified
+        videoQuota:
           type: integer
-        height:
+          description: The updated video quota of the user in bytes
+        videoQuotaDaily:
           type: integer
-          description: '**PeerTube >= 7.3**'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+          description: The updated daily video quota of the user in bytes
+        pluginAuth:
+          type:
+          - string
+          - 'null'
+          description: The auth plugin to use to authenticate the user
+          example: peertube-plugin-auth-saml2
+        role:
+          $ref: '#/components/schemas/UserRole'
+        adminFlags:
+          $ref: '#/components/schemas/UserAdminFlags'
+        password:
+          $ref: '#/components/schemas/password'
     User:
       properties:
         id:
@@ -682,21 +746,6 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    UserRole:
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      description: The user role (Admin = `0`, Moderator = `1`, User = `2`)
-      example: 2
-    usernameChannel:
-      type: string
-      description: immutable name of the channel, used to interact with its actor
-      example: framasoft_videos
-      pattern: /^[a-zA-Z0-9\\-_.:]+$/
-      minLength: 1
-      maxLength: 50
     Actor:
       properties:
         id:
@@ -735,69 +784,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    UserAdminFlags:
-      type: integer
-      enum:
-      - 0
-      - 1
-      description: Admin flags for the user (None = `0`, Bypass video blocklist = `1`)
-      example: 1
-    Account:
-      allOf:
-      - $ref: '#/components/schemas/Actor'
-      - properties:
-          userId:
-            description: object id for the user tied to this account
-            allOf:
-            - $ref: '#/components/schemas/User/properties/id'
-          displayName:
-            type: string
-            description: editable name of the account, displayed in its representations
-            minLength: 3
-            maxLength: 120
-          description:
-            type:
-            - string
-            - 'null'
-            description: text or bio displayed on the account's profile
-    UserNotificationSettings:
-      properties:
-        abuseAsModerator:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        videoAutoBlacklistAsModerator:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newUserRegistration:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newVideoFromSubscription:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        blacklistOnMyVideo:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        myVideoPublished:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        myVideoImportFinished:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        commentMention:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newCommentOnMyVideo:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newFollow:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newInstanceFollower:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        autoInstanceFollowing:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        abuseStateChange:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        abuseNewMessage:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newPeerTubeVersion:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        newPluginVersion:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        myVideoStudioEditionFinished:
-          $ref: '#/components/schemas/NotificationSettingValue'
-        myVideoTranscriptionGenerated:
-          $ref: '#/components/schemas/NotificationSettingValue'
     AddUser:
       properties:
         username:
@@ -827,18 +813,33 @@ components:
       - password
       - email
       - role
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type:
+            - string
+            - 'null'
+            description: text or bio displayed on the account's profile
   parameters:
-    id:
-      name: id
-      in: path
-      required: true
-      description: Entity id
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
       schema:
-        $ref: '#/components/schemas/id'
+        type: integer
+        minimum: 0
     usersSort:
       name: sort
       in: query
@@ -850,6 +851,34 @@ components:
         - -id
         - -username
         - -createdAt
+    id:
+      name: id
+      in: path
+      required: true
+      description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+    usersBlocked:
+      name: blocked
+      in: query
+      required: false
+      description: Filter results down to (un)banned users
+      schema:
+        type: boolean
+    usersRole:
+      name: role
+      in: query
+      required: false
+      description: Filter results down to users with a specific role
+      schema:
+        $ref: '#/components/schemas/UserRole'
+    usersSearch:
+      name: search
+      in: query
+      required: false
+      description: Plain text search that will match with user usernames or emails
+      schema:
+        type: string
     count:
       name: count
       in: query
@@ -860,35 +889,6 @@ components:
         default: 15
         maximum: 100
         minimum: 1
-    usersSearch:
-      name: search
-      in: query
-      required: false
-      description: Plain text search that will match with user usernames or emails
-      schema:
-        type: string
-    usersRole:
-      name: role
-      in: query
-      required: false
-      description: Filter results down to users with a specific role
-      schema:
-        $ref: '#/components/schemas/UserRole'
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    usersBlocked:
-      name: blocked
-      in: query
-      required: false
-      description: Filter results down to (un)banned users
-      schema:
-        type: boolean
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

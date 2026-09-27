@@ -524,67 +524,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RunnerJobPayload:
-      anyOf:
-      - type: object
-        title: VOD web video transcoding
-        properties:
-          input:
-            type: object
-            properties:
-              videoFileUrl:
-                type: string
-          output:
-            type: object
-            properties:
-              resolution:
-                type: number
-              fps:
-                type: number
-      - type: object
-        title: VOD HLS transcoding
-        properties:
-          input:
-            type: object
-            properties:
-              videoFileUrl:
-                type: string
-          output:
-            type: object
-            properties:
-              resolution:
-                type: number
-              fps:
-                type: number
-      - type: object
-        title: VOD audio merge transcoding
-        properties:
-          input:
-            type: object
-            properties:
-              audioFileUrl:
-                type: string
-              previewFileUrl:
-                type: string
-          output:
-            type: object
-            properties:
-              resolution:
-                type: number
-              fps:
-                type: number
-    RunnerJobStateConstant:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/RunnerJobState'
-        label:
-          type: string
-          example: Processing
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
     RunnerJob:
       properties:
         uuid:
@@ -642,20 +581,10 @@ components:
               type: string
             description:
               type: string
-    RunnerJobAdmin:
-      allOf:
-      - $ref: '#/components/schemas/RunnerJob'
-      - type: object
-        properties:
-          privatePayload:
-            type: object
-    UUIDv4:
+    shortUUID:
       type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
     RunnerJobState:
       type: integer
       enum:
@@ -668,6 +597,18 @@ components:
       - 7
       - 8
       description: "The runner job state:\n  - `1` Pending\n  - `2` Processing\n  - `3` Completed\n  - `4` Errored\n  - `5` Waiting for a parent job\n  - `6` Cancelled\n  - `7` Parent had an error\n  - `8` Parent has been cancelled\n"
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    RunnerJobStateConstant:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/RunnerJobState'
+        label:
+          type: string
+          example: Processing
     RunnerJobType:
       type: string
       enum:
@@ -675,11 +616,110 @@ components:
       - vod-hls-transcoding
       - vod-audio-merge-transcoding
       - live-rtmp-hls-transcoding
-    id:
-      type: integer
-      minimum: 1
-      example: 42
+    RunnerJobAdmin:
+      allOf:
+      - $ref: '#/components/schemas/RunnerJob'
+      - type: object
+        properties:
+          privatePayload:
+            type: object
+    RunnerJobPayload:
+      anyOf:
+      - type: object
+        title: VOD web video transcoding
+        properties:
+          input:
+            type: object
+            properties:
+              videoFileUrl:
+                type: string
+          output:
+            type: object
+            properties:
+              resolution:
+                type: number
+              fps:
+                type: number
+      - type: object
+        title: VOD HLS transcoding
+        properties:
+          input:
+            type: object
+            properties:
+              videoFileUrl:
+                type: string
+          output:
+            type: object
+            properties:
+              resolution:
+                type: number
+              fps:
+                type: number
+      - type: object
+        title: VOD audio merge transcoding
+        properties:
+          input:
+            type: object
+            properties:
+              audioFileUrl:
+                type: string
+              previewFileUrl:
+                type: string
+          output:
+            type: object
+            properties:
+              resolution:
+                type: number
+              fps:
+                type: number
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
   parameters:
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    runnerJobSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort runner jobs by criteria
+      schema:
+        type: string
+        enum:
+        - updatedAt
+        - createdAt
+        - priority
+        - state
+        - progress
+    videoIdOrUUID:
+      name: videoIdOrUUID
+      in: path
+      required: true
+      description: Video id or UUID
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
     jobUUID:
       name: jobUUID
       in: path
@@ -694,46 +734,6 @@ components:
       schema:
         type: integer
         minimum: 0
-    runnerJobSort:
-      name: sort
-      in: query
-      required: false
-      description: Sort runner jobs by criteria
-      schema:
-        type: string
-        enum:
-        - updatedAt
-        - createdAt
-        - priority
-        - state
-        - progress
-    search:
-      name: search
-      in: query
-      required: false
-      description: Plain text search, applied to various parts of the model depending on endpoint
-      schema:
-        type: string
-    videoIdOrUUID:
-      name: videoIdOrUUID
-      in: path
-      required: true
-      description: Video id or UUID
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

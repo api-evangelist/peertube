@@ -122,6 +122,29 @@ paths:
         '400':
           description: invalid request
 components:
+  schemas:
+    VideoEmbedPrivacy:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: "The video embed privacy level:\n  - `1` All allowed: anyone can embed the video\n  - `2` Allowlist: only the domains in the allowlist can embed the video\n  - `3` Remote restrictions: the remote instance has restrictions on where the video can be embedded\n"
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
   parameters:
     idOrUUID:
       name: id
@@ -133,29 +156,6 @@ components:
         - $ref: '#/components/schemas/id'
         - $ref: '#/components/schemas/UUIDv4'
         - $ref: '#/components/schemas/shortUUID'
-  schemas:
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoEmbedPrivacy:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: "The video embed privacy level:\n  - `1` All allowed: anyone can embed the video\n  - `2` Allowlist: only the domains in the allowlist can embed the video\n  - `3` Remote restrictions: the remote instance has restrictions on where the video can be embedded\n"
-    id:
-      type: integer
-      minimum: 1
-      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:
