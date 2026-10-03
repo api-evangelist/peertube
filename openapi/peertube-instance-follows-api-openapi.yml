@@ -204,6 +204,52 @@ paths:
       operationId: deleteApiV1ServerFollowingByHostOrHandle
       x-operation-id-source: derived
 components:
+  parameters:
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    actorType:
+      name: actorType
+      in: query
+      schema:
+        type: string
+        enum:
+        - Person
+        - Application
+        - Group
+        - Service
+        - Organization
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    followState:
+      name: state
+      in: query
+      schema:
+        type: string
+        enum:
+        - pending
+        - accepted
   schemas:
     username:
       type: string
@@ -212,6 +258,30 @@ components:
       pattern: /^[a-z0-9._]+$/
       minLength: 1
       maxLength: 50
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     Actor:
       properties:
         id:
@@ -250,30 +320,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ActorImage:
-      properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
-          type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-          description: '**PeerTube >= 7.3**'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    id:
-      type: integer
-      minimum: 1
-      example: 42
     Follow:
       properties:
         id:
@@ -296,52 +342,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-  parameters:
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    followState:
-      name: state
-      in: query
-      schema:
-        type: string
-        enum:
-        - pending
-        - accepted
-    actorType:
-      name: actorType
-      in: query
-      schema:
-        type: string
-        enum:
-        - Person
-        - Application
-        - Group
-        - Service
-        - Organization
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

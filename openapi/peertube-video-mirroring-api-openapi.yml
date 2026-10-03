@@ -107,6 +107,15 @@ paths:
           description: video redundancy not found
 components:
   parameters:
+    videoRedundanciesSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort abuses by criteria
+      schema:
+        type: string
+        enum:
+        - name
     count:
       name: count
       in: query
@@ -125,63 +134,7 @@ components:
       schema:
         type: integer
         minimum: 0
-    videoRedundanciesSort:
-      name: sort
-      in: query
-      required: false
-      description: Sort abuses by criteria
-      schema:
-        type: string
-        enum:
-        - name
   schemas:
-    VideoRedundancy:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        name:
-          type: string
-        url:
-          type: string
-          format: url
-        uuid:
-          $ref: '#/components/schemas/UUIDv4'
-        redundancies:
-          type: object
-          properties:
-            streamingPlaylists:
-              type: array
-              items:
-                $ref: '#/components/schemas/FileRedundancyInformation'
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    FileRedundancyInformation:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        fileUrl:
-          type: string
-          format: url
-        strategy:
-          type: string
-          enum:
-          - manual
-          - most-views
-          - trending
-          - recently-added
-        size:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        expiresOn:
-          type: string
-          format: date-time
     Video:
       properties:
         id:
@@ -339,6 +292,53 @@ components:
           properties:
             currentTime:
               type: integer
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    FileRedundancyInformation:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        fileUrl:
+          type: string
+          format: url
+        strategy:
+          type: string
+          enum:
+          - manual
+          - most-views
+          - trending
+          - recently-added
+        size:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        expiresOn:
+          type: string
+          format: date-time
+    VideoRedundancy:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          type: string
+        url:
+          type: string
+          format: url
+        uuid:
+          $ref: '#/components/schemas/UUIDv4'
+        redundancies:
+          type: object
+          properties:
+            streamingPlaylists:
+              type: array
+              items:
+                $ref: '#/components/schemas/FileRedundancyInformation'
     UUIDv4:
       type: string
       format: uuid

@@ -120,31 +120,6 @@ paths:
         '404':
           description: video or language or caption for that language not found
 components:
-  parameters:
-    videoPasswordHeader:
-      name: x-peertube-video-password
-      description: Required on password protected video
-      in: header
-      required: false
-      schema:
-        type: string
-    captionLanguage:
-      name: captionLanguage
-      in: path
-      required: true
-      description: The caption language
-      schema:
-        $ref: '#/components/schemas/VideoLanguageSet'
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
   schemas:
     shortUUID:
       type: string
@@ -154,13 +129,6 @@ components:
       type: integer
       minimum: 1
       example: 42
-    VideoConstantString-Language:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLanguageSet'
-        label:
-          type: string
-          example: English
     VideoLanguageSet:
       type: string
       description: language id of the video (see [/videos/languages](#operation/getLanguages))
@@ -190,6 +158,38 @@ components:
         updatedAt:
           type: string
           format: date-time
+    VideoConstantString-Language:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        label:
+          type: string
+          example: English
+  parameters:
+    videoPasswordHeader:
+      name: x-peertube-video-password
+      description: Required on password protected video
+      in: header
+      required: false
+      schema:
+        type: string
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    captionLanguage:
+      name: captionLanguage
+      in: path
+      required: true
+      description: The caption language
+      schema:
+        $ref: '#/components/schemas/VideoLanguageSet'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

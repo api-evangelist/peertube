@@ -142,6 +142,82 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    VideoStatsTimeserie:
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+              value:
+                type: number
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    VideoStatsUserAgent:
+      properties:
+        clients:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              viewers:
+                type: number
+        devices:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/VideoStatsUserAgentDevice'
+              viewers:
+                type: number
+        operatingSystem:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              viewers:
+                type: number
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoStatsUserAgentDevice:
+      enum:
+      - console
+      - embedded
+      - mobile
+      - smarttv
+      - tablet
+      - wearable
+      - xr
+      - desktop
+    VideoStatsRetention:
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              second:
+                type: number
+              retentionPercent:
+                type: number
     VideoStatsOverall:
       properties:
         averageWatchTime:
@@ -173,82 +249,6 @@ components:
                 type: string
               viewers:
                 type: number
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    VideoStatsUserAgent:
-      properties:
-        clients:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              viewers:
-                type: number
-        devices:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                $ref: '#/components/schemas/VideoStatsUserAgentDevice'
-              viewers:
-                type: number
-        operatingSystem:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              viewers:
-                type: number
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    VideoStatsUserAgentDevice:
-      enum:
-      - console
-      - embedded
-      - mobile
-      - smarttv
-      - tablet
-      - wearable
-      - xr
-      - desktop
-    VideoStatsRetention:
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              second:
-                type: number
-              retentionPercent:
-                type: number
-    VideoStatsTimeserie:
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-              value:
-                type: number
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
   parameters:
     idOrUUID:
       name: id

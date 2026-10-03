@@ -97,13 +97,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    staticFilename:
-      name: filename
-      in: path
-      required: true
-      description: Filename
-      schema:
-        type: string
     videoFileToken:
       name: videoFileToken
       in: query
@@ -118,6 +111,13 @@ components:
       description: Ask the server to reinject videoFileToken in URLs in m3u8 playlist
       schema:
         type: boolean
+    staticFilename:
+      name: filename
+      in: path
+      required: true
+      description: Filename
+      schema:
+        type: string
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

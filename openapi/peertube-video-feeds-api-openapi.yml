@@ -296,29 +296,88 @@ paths:
         '404':
           description: video channel not found
 components:
+  parameters:
+    hasWebVideoFiles:
+      name: hasWebVideoFiles
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 6.0** Display only videos that have Web Video files'
+    isLocal:
+      name: isLocal
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only local or remote objects'
+    nsfw:
+      name: nsfw
+      in: query
+      required: false
+      description: whether to include nsfw videos, if any
+      schema:
+        type: string
+        enum:
+        - 'true'
+        - 'false'
+    hasHLSFiles:
+      name: hasHLSFiles
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only videos that have HLS files'
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    include:
+      name: include
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum:
+        - 0
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+      description: '**Only administrators and moderators can use this parameter**
+
+
+        Include additional videos in results (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` NOT_PUBLISHED_STATE
+
+        - `2` BLACKLISTED
+
+        - `4` BLOCKED_OWNER
+
+        - `8` FILES
+
+        - `16` CAPTIONS
+
+        - `32` VIDEO SOURCE
+
+        '
+    privacyOneOf:
+      name: privacyOneOf
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/VideoPrivacySet'
+      description: '**PeerTube >= 4.0** Display only videos in this specific privacy/privacies'
   schemas:
-    VideoCommentsForXML:
-      type: array
-      xml:
-        wrapped: true
-        name: channel
-      items:
-        type: object
-        xml:
-          name: item
-        properties:
-          link:
-            type: string
-            format: url
-          guid:
-            type: string
-          pubDate:
-            type: string
-            format: date-time
-          content:encoded:
-            type: string
-          dc:creator:
-            type: string
     MRSSGroupContent:
       type: object
       xml:
@@ -353,6 +412,28 @@ components:
           type: string
           xml:
             attribute: true
+    VideoCommentsForXML:
+      type: array
+      xml:
+        wrapped: true
+        name: channel
+      items:
+        type: object
+        xml:
+          name: item
+        properties:
+          link:
+            type: string
+            format: url
+          guid:
+            type: string
+          pubDate:
+            type: string
+            format: date-time
+          content:encoded:
+            type: string
+          dc:creator:
+            type: string
     MRSSPeerLink:
       type: object
       xml:
@@ -492,87 +573,6 @@ components:
       - 4
       - 5
       description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
-  parameters:
-    nsfw:
-      name: nsfw
-      in: query
-      required: false
-      description: whether to include nsfw videos, if any
-      schema:
-        type: string
-        enum:
-        - 'true'
-        - 'false'
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    privacyOneOf:
-      name: privacyOneOf
-      in: query
-      required: false
-      schema:
-        $ref: '#/components/schemas/VideoPrivacySet'
-      description: '**PeerTube >= 4.0** Display only videos in this specific privacy/privacies'
-    hasHLSFiles:
-      name: hasHLSFiles
-      in: query
-      required: false
-      schema:
-        type: boolean
-      description: '**PeerTube >= 4.0** Display only videos that have HLS files'
-    include:
-      name: include
-      in: query
-      required: false
-      schema:
-        type: integer
-        enum:
-        - 0
-        - 1
-        - 2
-        - 4
-        - 8
-        - 16
-        - 32
-      description: '**Only administrators and moderators can use this parameter**
-
-
-        Include additional videos in results (can be combined using bitwise or operator)
-
-        - `0` NONE
-
-        - `1` NOT_PUBLISHED_STATE
-
-        - `2` BLACKLISTED
-
-        - `4` BLOCKED_OWNER
-
-        - `8` FILES
-
-        - `16` CAPTIONS
-
-        - `32` VIDEO SOURCE
-
-        '
-    hasWebVideoFiles:
-      name: hasWebVideoFiles
-      in: query
-      required: false
-      schema:
-        type: boolean
-      description: '**PeerTube >= 6.0** Display only videos that have Web Video files'
-    isLocal:
-      name: isLocal
-      in: query
-      required: false
-      schema:
-        type: boolean
-      description: '**PeerTube >= 4.0** Display only local or remote objects'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

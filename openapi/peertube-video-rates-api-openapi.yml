@@ -73,23 +73,6 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
-    videoPasswordHeader:
-      name: x-peertube-video-password
-      description: Required on password protected video
-      in: header
-      required: false
-      schema:
-        type: string
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
     videoIdOrUUID:
       name: videoIdOrUUID
       in: path
@@ -100,6 +83,23 @@ components:
         - $ref: '#/components/schemas/id'
         - $ref: '#/components/schemas/UUIDv4'
         - $ref: '#/components/schemas/shortUUID'
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    videoPasswordHeader:
+      name: x-peertube-video-password
+      description: Required on password protected video
+      in: header
+      required: false
+      schema:
+        type: string
   schemas:
     shortUUID:
       type: string
@@ -109,6 +109,13 @@ components:
       type: integer
       minimum: 1
       example: 42
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
     GetMeVideoRating:
       properties:
         id:
@@ -123,13 +130,6 @@ components:
       required:
       - id
       - rating
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

@@ -136,6 +136,12 @@ paths:
       x-operation-id-source: derived
 components:
   parameters:
+    runnerId:
+      name: runnerId
+      in: path
+      required: true
+      schema:
+        type: integer
     count:
       name: count
       in: query
@@ -146,12 +152,14 @@ components:
         default: 15
         maximum: 100
         minimum: 1
-    runnerId:
-      name: runnerId
-      in: path
-      required: true
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
       schema:
         type: integer
+        minimum: 0
     runnerSort:
       name: sort
       in: query
@@ -161,14 +169,6 @@ components:
         type: string
         enum:
         - createdAt
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
   schemas:
     Runner:
       properties:

@@ -271,42 +271,17 @@ paths:
       operationId: getApiV1PluginsByNpmNameRegisteredSettings
       x-operation-id-source: derived
 components:
-  parameters:
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    npmName:
-      name: npmName
-      in: path
-      required: true
-      description: name of the plugin/theme on npmjs.com or in its package.json
-      schema:
-        type: string
-        example: peertube-plugin-auth-ldap
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
   schemas:
+    PluginResponse:
+      properties:
+        total:
+          type: integer
+          example: 1
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Plugin'
     Plugin:
       properties:
         name:
@@ -350,16 +325,41 @@ components:
         updatedAt:
           type: string
           format: date-time
-    PluginResponse:
-      properties:
-        total:
-          type: integer
-          example: 1
-        data:
-          type: array
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/Plugin'
+  parameters:
+    npmName:
+      name: npmName
+      in: path
+      required: true
+      description: name of the plugin/theme on npmjs.com or in its package.json
+      schema:
+        type: string
+        example: peertube-plugin-auth-ldap
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

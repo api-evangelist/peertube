@@ -114,13 +114,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
     VideoChannelSyncList:
       type: object
       properties:
@@ -132,6 +125,62 @@ components:
           items:
             allOf:
             - $ref: '#/components/schemas/VideoChannelSync'
+    Actor:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type:
+          - boolean
+          - 'null'
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type:
+            - string
+            - 'null'
+            description: text or bio displayed on the account's profile
     Abuse:
       properties:
         id:
@@ -187,151 +236,6 @@ components:
             channel:
               $ref: '#/components/schemas/VideoChannel'
         createdAt:
-          type: string
-          format: date-time
-    ActorImage:
-      properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
-          type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-          description: '**PeerTube >= 7.3**'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    ImportVideosInChannelCreate:
-      type: object
-      properties:
-        externalChannelUrl:
-          type: string
-          example: https://youtube.com/c/UC_myfancychannel
-        videoChannelSyncId:
-          type: integer
-          description: If part of a channel sync process, specify its id to assign video imports to this channel synchronization
-      required:
-      - externalChannelUrl
-    VideoChannel:
-      allOf:
-      - $ref: '#/components/schemas/Actor'
-      - type: object
-        properties:
-          displayName:
-            type: string
-            description: editable name of the channel, displayed in its representations
-            example: Videos of Framasoft
-            minLength: 1
-            maxLength: 120
-          description:
-            type:
-            - string
-            - 'null'
-            example: Videos made with <3 by Framasoft
-            minLength: 3
-            maxLength: 1000
-          support:
-            type:
-            - string
-            - 'null'
-            description: text shown by default on all videos of this channel, to tell the audience how to support it
-            example: Please support our work on https://soutenir.framasoft.org/en/ <3
-            minLength: 3
-            maxLength: 1000
-          isLocal:
-            type: boolean
-          updatedAt:
-            type: string
-            format: date-time
-          banners:
-            type: array
-            items:
-              $ref: '#/components/schemas/ActorImage'
-          ownerAccount:
-            $ref: '#/components/schemas/Account'
-    VideoChannelSyncCreate:
-      type: object
-      properties:
-        externalChannelUrl:
-          type: string
-          example: https://youtube.com/c/UC_myfancychannel
-        videoChannelId:
-          $ref: '#/components/schemas/id'
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    VideoChannelSync:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        state:
-          type: object
-          properties:
-            id:
-              type: integer
-              example: 2
-            label:
-              type: string
-              example: PROCESSING
-        externalChannelUrl:
-          type: string
-          example: https://youtube.com/c/UC_myfancychannel
-        createdAt:
-          type: string
-          format: date-time
-        lastSyncAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        channel:
-          $ref: '#/components/schemas/VideoChannel'
-    Actor:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        url:
-          type: string
-          format: url
-        name:
-          description: immutable name of the actor, used to find or mention it
-          allOf:
-          - $ref: '#/components/schemas/username'
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-        host:
-          type: string
-          format: hostname
-          description: server on which the actor is resident
-        hostRedundancyAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: whether this actor's host allows redundancy of its videos
-        followingCount:
-          type: integer
-          minimum: 0
-          description: number of actors subscribed to by this actor, as seen by this instance
-        followersCount:
-          type: integer
-          minimum: 0
-          description: number of followers of this actor, as seen by this instance
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
           type: string
           format: date-time
     User:
@@ -439,24 +343,120 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    Account:
+    ImportVideosInChannelCreate:
+      type: object
+      properties:
+        externalChannelUrl:
+          type: string
+          example: https://youtube.com/c/UC_myfancychannel
+        videoChannelSyncId:
+          type: integer
+          description: If part of a channel sync process, specify its id to assign video imports to this channel synchronization
+      required:
+      - externalChannelUrl
+    VideoChannelSync:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        state:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 2
+            label:
+              type: string
+              example: PROCESSING
+        externalChannelUrl:
+          type: string
+          example: https://youtube.com/c/UC_myfancychannel
+        createdAt:
+          type: string
+          format: date-time
+        lastSyncAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        channel:
+          $ref: '#/components/schemas/VideoChannel'
+    VideoChannelSyncCreate:
+      type: object
+      properties:
+        externalChannelUrl:
+          type: string
+          example: https://youtube.com/c/UC_myfancychannel
+        videoChannelId:
+          $ref: '#/components/schemas/id'
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    VideoChannel:
       allOf:
       - $ref: '#/components/schemas/Actor'
-      - properties:
-          userId:
-            description: object id for the user tied to this account
-            allOf:
-            - $ref: '#/components/schemas/User/properties/id'
+      - type: object
+        properties:
           displayName:
             type: string
-            description: editable name of the account, displayed in its representations
-            minLength: 3
+            description: editable name of the channel, displayed in its representations
+            example: Videos of Framasoft
+            minLength: 1
             maxLength: 120
           description:
             type:
             - string
             - 'null'
-            description: text or bio displayed on the account's profile
+            example: Videos made with <3 by Framasoft
+            minLength: 3
+            maxLength: 1000
+          support:
+            type:
+            - string
+            - 'null'
+            description: text shown by default on all videos of this channel, to tell the audience how to support it
+            example: Please support our work on https://soutenir.framasoft.org/en/ <3
+            minLength: 3
+            maxLength: 1000
+          isLocal:
+            type: boolean
+          updatedAt:
+            type: string
+            format: date-time
+          banners:
+            type: array
+            items:
+              $ref: '#/components/schemas/ActorImage'
+          ownerAccount:
+            $ref: '#/components/schemas/Account'
   parameters:
     includeCollaborations:
       name: includeCollaborations
@@ -465,38 +465,6 @@ components:
       description: '**PeerTube >= 8.0** Include objects from collaborated channels'
       schema:
         type: boolean
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    channelHandle:
-      name: channelHandle
-      in: path
-      required: true
-      description: The video channel handle
-      schema:
-        type: string
-        example: my_username | my_username@example.com
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    name:
-      name: name
-      in: path
-      required: true
-      description: The username or handle of the account
-      schema:
-        type: string
-        example: chocobozzz | chocobozzz@example.org
     count:
       name: count
       in: query
@@ -507,6 +475,30 @@ components:
         default: 15
         maximum: 100
         minimum: 1
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    channelHandle:
+      name: channelHandle
+      in: path
+      required: true
+      description: The video channel handle
+      schema:
+        type: string
+        example: my_username | my_username@example.com
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
     channelSyncId:
       name: channelSyncId
       in: path
@@ -514,6 +506,14 @@ components:
       description: Channel Sync id
       schema:
         $ref: '#/components/schemas/Abuse/properties/id'
+    name:
+      name: name
+      in: path
+      required: true
+      description: The username or handle of the account
+      schema:
+        type: string
+        example: chocobozzz | chocobozzz@example.org
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

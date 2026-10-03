@@ -103,92 +103,7 @@ paths:
                     items:
                       $ref: '#/components/schemas/VideoBlacklist'
 components:
-  parameters:
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
-    blacklistsSort:
-      name: sort
-      in: query
-      required: false
-      description: Sort blocklists by criteria
-      schema:
-        type: string
-        enum:
-        - -id
-        - name
-        - -duration
-        - -views
-        - -likes
-        - -dislikes
-        - -uuid
-        - -createdAt
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
   schemas:
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    VideoBlacklist:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        videoId:
-          $ref: '#/components/schemas/Video/properties/id'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        name:
-          type: string
-          minLength: 3
-          maxLength: 120
-        uuid:
-          $ref: '#/components/schemas/UUIDv4'
-        description:
-          type: string
-          minLength: 3
-          maxLength: 10000
-        duration:
-          type: integer
-        views:
-          type: integer
-        likes:
-          type: integer
-        dislikes:
-          type: integer
-        nsfw:
-          type: boolean
     Video:
       properties:
         id:
@@ -346,6 +261,14 @@ components:
           properties:
             currentTime:
               type: integer
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
     UUIDv4:
       type: string
       format: uuid
@@ -353,6 +276,83 @@ components:
       pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
       minLength: 36
       maxLength: 36
+    VideoBlacklist:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        videoId:
+          $ref: '#/components/schemas/Video/properties/id'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        name:
+          type: string
+          minLength: 3
+          maxLength: 120
+        uuid:
+          $ref: '#/components/schemas/UUIDv4'
+        description:
+          type: string
+          minLength: 3
+          maxLength: 10000
+        duration:
+          type: integer
+        views:
+          type: integer
+        likes:
+          type: integer
+        dislikes:
+          type: integer
+        nsfw:
+          type: boolean
+  parameters:
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    blacklistsSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort blocklists by criteria
+      schema:
+        type: string
+        enum:
+        - -id
+        - name
+        - -duration
+        - -views
+        - -likes
+        - -dislikes
+        - -uuid
+        - -createdAt
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

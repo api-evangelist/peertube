@@ -83,6 +83,10 @@ paths:
           description: video does not exist
 components:
   schemas:
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
     VideoStudioCreateTask:
       type: array
       items:
@@ -167,10 +171,6 @@ components:
                       end:
                         type: integer
                         minimum: 1
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
     id:
       type: integer
       minimum: 1

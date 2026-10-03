@@ -304,24 +304,6 @@ paths:
                       $ref: '#/components/schemas/UserRegistration'
 components:
   schemas:
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    UserRegistrationState:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: The registration state (Pending = `1`, Rejected = `2`, Accepted = `3`)
-    id:
-      type: integer
-      minimum: 1
-      example: 42
     UserRegistrationAcceptOrReject:
       type: object
       properties:
@@ -362,18 +344,24 @@ components:
       - username
       - password
       - email
-    usernameChannel:
+    username:
       type: string
-      description: immutable name of the channel, used to interact with its actor
-      example: framasoft_videos
-      pattern: /^[a-zA-Z0-9\\-_.:]+$/
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
       minLength: 1
       maxLength: 50
-    password:
-      type: string
-      format: password
-      minLength: 6
-      maxLength: 50
+    UserRegistrationState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The registration state (Pending = `1`, Rejected = `2`, Accepted = `3`)
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     UserRegistrationRequest:
       allOf:
       - $ref: '#/components/schemas/RegisterUser'
@@ -384,6 +372,18 @@ components:
             description: reason for the user to register on the instance
         required:
         - registrationReason
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    usernameChannel:
+      type: string
+      description: immutable name of the channel, used to interact with its actor
+      example: framasoft_videos
+      pattern: /^[a-zA-Z0-9\\-_.:]+$/
+      minLength: 1
+      maxLength: 50
     UserRegistration:
       properties:
         id:
@@ -446,13 +446,6 @@ components:
       description: Entity id
       schema:
         $ref: '#/components/schemas/id'
-    registrationId:
-      name: registrationId
-      in: path
-      required: true
-      description: Registration ID
-      schema:
-        $ref: '#/components/schemas/id'
     start:
       name: start
       in: query
@@ -461,6 +454,13 @@ components:
       schema:
         type: integer
         minimum: 0
+    registrationId:
+      name: registrationId
+      in: path
+      required: true
+      description: Registration ID
+      schema:
+        $ref: '#/components/schemas/id'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

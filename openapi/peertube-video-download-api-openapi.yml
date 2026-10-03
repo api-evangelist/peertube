@@ -46,6 +46,24 @@ paths:
       operationId: getDownloadVideosGenerateByVideoIdOrUUID
       x-operation-id-source: derived
 components:
+  parameters:
+    videoIdOrUUID:
+      name: videoIdOrUUID
+      in: path
+      required: true
+      description: Video id or UUID
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    videoFileToken:
+      name: videoFileToken
+      in: query
+      required: false
+      description: Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header.
+      schema:
+        type: string
   schemas:
     shortUUID:
       type: string
@@ -62,24 +80,6 @@ components:
       pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
       minLength: 36
       maxLength: 36
-  parameters:
-    videoFileToken:
-      name: videoFileToken
-      in: query
-      required: false
-      description: Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header.
-      schema:
-        type: string
-    videoIdOrUUID:
-      name: videoIdOrUUID
-      in: path
-      required: true
-      description: Video id or UUID
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

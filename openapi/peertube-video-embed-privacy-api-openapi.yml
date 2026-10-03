@@ -123,13 +123,6 @@ paths:
           description: invalid request
 components:
   schemas:
-    VideoEmbedPrivacy:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: "The video embed privacy level:\n  - `1` All allowed: anyone can embed the video\n  - `2` Allowlist: only the domains in the allowlist can embed the video\n  - `3` Remote restrictions: the remote instance has restrictions on where the video can be embedded\n"
     shortUUID:
       type: string
       description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
@@ -138,6 +131,13 @@ components:
       type: integer
       minimum: 1
       example: 42
+    VideoEmbedPrivacy:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: "The video embed privacy level:\n  - `1` All allowed: anyone can embed the video\n  - `2` Allowlist: only the domains in the allowlist can embed the video\n  - `3` Remote restrictions: the remote instance has restrictions on where the video can be embedded\n"
     UUIDv4:
       type: string
       format: uuid

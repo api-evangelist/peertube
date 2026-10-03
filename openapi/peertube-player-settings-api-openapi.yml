@@ -123,20 +123,12 @@ paths:
           description: video channel not found
 components:
   schemas:
-    PlayerChannelSettings:
+    PlayerVideoSettings:
       type: object
       properties:
         theme:
-          $ref: '#/components/schemas/PlayerThemeChannelSetting'
-      description: Player settings for a channel
-    PlayerChannelSettingsUpdate:
-      type: object
-      properties:
-        theme:
-          $ref: '#/components/schemas/PlayerThemeChannelSetting'
-      required:
-      - theme
-      description: Player settings update for a channel
+          $ref: '#/components/schemas/PlayerThemeVideoSetting'
+      description: Player settings for a video
     shortUUID:
       type: string
       description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
@@ -145,19 +137,12 @@ components:
       type: integer
       minimum: 1
       example: 42
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    PlayerVideoSettings:
+    PlayerChannelSettings:
       type: object
       properties:
         theme:
-          $ref: '#/components/schemas/PlayerThemeVideoSetting'
-      description: Player settings for a video
+          $ref: '#/components/schemas/PlayerThemeChannelSetting'
+      description: Player settings for a channel
     PlayerVideoSettingsUpdate:
       type: object
       properties:
@@ -174,6 +159,21 @@ components:
       - galaxy
       - lucide
       description: "Player theme setting for a video:\n  - `channel-default` Use the channel default theme\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    PlayerChannelSettingsUpdate:
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/PlayerThemeChannelSetting'
+      required:
+      - theme
+      description: Player settings update for a channel
     PlayerThemeChannelSetting:
       type: string
       enum:

@@ -55,14 +55,71 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
+    PlaybackMetricCreate:
+      properties:
+        playerMode:
+          type: string
+          enum:
+          - p2p-media-loader
+          - web-video
+        resolution:
+          type: number
+          description: Current player video resolution
+        fps:
+          type: number
+          description: Current player video fps
+        p2pEnabled:
+          type: boolean
+        p2pPeers:
+          type: number
+          description: P2P peers connected (doesn't include WebSeed peers)
+        resolutionChanges:
+          type: number
+          description: How many resolution changes occurred since the last metric creation
+        bufferStalled:
+          type: number
+          description: How many times buffer has been stalled since the last metric creation
+        errors:
+          type: number
+          description: How many errors occurred since the last metric creation
+        downloadedBytesP2P:
+          type: number
+          description: How many bytes were downloaded with P2P since the last metric creation
+        downloadedBytesHTTP:
+          type: number
+          description: How many bytes were downloaded with HTTP since the last metric creation
+        uploadedBytesP2P:
+          type: number
+          description: How many bytes were uploaded with P2P since the last metric creation
+        videoId:
+          oneOf:
+          - $ref: '#/components/schemas/id'
+          - $ref: '#/components/schemas/UUIDv4'
+          - $ref: '#/components/schemas/shortUUID'
+      required:
+      - playerMode
+      - resolutionChanges
+      - errors
+      - downloadedBytesP2P
+      - downloadedBytesHTTP
+      - uploadedBytesP2P
+      - p2pEnabled
+      - videoId
     id:
       type: integer
       minimum: 1
       example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
     ServerStats:
       properties:
         totalUsers:
@@ -153,63 +210,6 @@ components:
         totalAbuses:
           type: number
           description: '**PeerTube >= 6.1** Value is null if the admin disabled abuses stats'
-    PlaybackMetricCreate:
-      properties:
-        playerMode:
-          type: string
-          enum:
-          - p2p-media-loader
-          - web-video
-        resolution:
-          type: number
-          description: Current player video resolution
-        fps:
-          type: number
-          description: Current player video fps
-        p2pEnabled:
-          type: boolean
-        p2pPeers:
-          type: number
-          description: P2P peers connected (doesn't include WebSeed peers)
-        resolutionChanges:
-          type: number
-          description: How many resolution changes occurred since the last metric creation
-        bufferStalled:
-          type: number
-          description: How many times buffer has been stalled since the last metric creation
-        errors:
-          type: number
-          description: How many errors occurred since the last metric creation
-        downloadedBytesP2P:
-          type: number
-          description: How many bytes were downloaded with P2P since the last metric creation
-        downloadedBytesHTTP:
-          type: number
-          description: How many bytes were downloaded with HTTP since the last metric creation
-        uploadedBytesP2P:
-          type: number
-          description: How many bytes were uploaded with P2P since the last metric creation
-        videoId:
-          oneOf:
-          - $ref: '#/components/schemas/id'
-          - $ref: '#/components/schemas/UUIDv4'
-          - $ref: '#/components/schemas/shortUUID'
-      required:
-      - playerMode
-      - resolutionChanges
-      - errors
-      - downloadedBytesP2P
-      - downloadedBytesHTTP
-      - uploadedBytesP2P
-      - p2pEnabled
-      - videoId
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

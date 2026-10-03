@@ -143,7 +143,45 @@ paths:
                     type: string
                     format: date-time
 components:
+  schemas:
+    UserImportResumable:
+      properties:
+        filename:
+          description: Archive filename including extension
+          type: string
+          format: filename
+          example: user-export-6-2024-02-09T10_12_11.682Z
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    UserImportState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      description: "The user import state:\n  - `1`: Pending\n  - `2`: Processing\n  - `3`: Completed\n  - `4`: Errored\n"
   parameters:
+    resumableUploadId:
+      name: upload_id
+      in: query
+      required: true
+      description: 'Created session id to proceed with. If you didn''t send chunks in the last hour, it is
+
+        not valid anymore and you need to initialize a new upload.
+
+        '
+      schema:
+        type: string
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: User id
+      schema:
+        $ref: '#/components/schemas/id'
     resumableUploadInitContentTypeHeader:
       name: X-Upload-Content-Type
       in: header
@@ -191,44 +229,6 @@ components:
         1048576 bytes (~1MB) and increases or reduces size depending on connection health.
 
         '
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: User id
-      schema:
-        $ref: '#/components/schemas/id'
-    resumableUploadId:
-      name: upload_id
-      in: query
-      required: true
-      description: 'Created session id to proceed with. If you didn''t send chunks in the last hour, it is
-
-        not valid anymore and you need to initialize a new upload.
-
-        '
-      schema:
-        type: string
-  schemas:
-    UserImportResumable:
-      properties:
-        filename:
-          description: Archive filename including extension
-          type: string
-          format: filename
-          example: user-export-6-2024-02-09T10_12_11.682Z
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    UserImportState:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      description: "The user import state:\n  - `1`: Pending\n  - `2`: Processing\n  - `3`: Completed\n  - `4`: Errored\n"
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:
