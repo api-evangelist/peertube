@@ -235,20 +235,150 @@ paths:
       operationId: postApiV1VideosByIdCommentsByCommentIdApprove
       x-operation-id-source: derived
 components:
-  schemas:
-    CommentThreadResponse:
-      properties:
-        total:
-          type: integer
-          description: Total threads (included deleted ones) on this video
-        totalNotDeletedComments:
-          type: integer
-          description: Total not-deleted threads (included deleted ones) on this video
-        data:
-          type: array
-          maxItems: 100
+  parameters:
+    includeMuted:
+      name: includeMuted
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 8.2** Include comments from muted accounts'
+    isLocal:
+      name: isLocal
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: '**PeerTube >= 4.0** Display only local or remote objects'
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    commentsSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort comments by criteria
+      schema:
+        type: string
+        enum:
+        - -createdAt
+        - -totalReplies
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
+    videoChannelId:
+      name: videoChannelId
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Limit results on this specific video channel
+    commentId:
+      name: commentId
+      in: path
+      required: true
+      description: The comment id
+      schema:
+        $ref: '#/components/schemas/VideoComment/properties/id'
+    videoId:
+      name: videoId
+      in: query
+      required: false
+      schema:
+        type: integer
+      description: Limit results on this specific video
+    threadId:
+      name: threadId
+      in: path
+      required: true
+      description: The thread id (root comment id)
+      schema:
+        type: integer
+    includeCollaborations:
+      name: includeCollaborations
+      in: query
+      required: false
+      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
+      schema:
+        type: boolean
+    onLocalVideo:
+      name: onLocalVideo
+      in: query
+      required: false
+      schema:
+        type: boolean
+      description: Display only objects of local or remote videos
+    searchVideoForComments:
+      name: searchVideo
+      in: query
+      required: false
+      description: Filter comments by searching on the video
+      schema:
+        type: string
+    videoPasswordHeader:
+      name: x-peertube-video-password
+      description: Required on password protected video
+      in: header
+      required: false
+      schema:
+        type: string
+    searchAccountForComments:
+      name: searchAccount
+      in: query
+      required: false
+      description: Filter comments by searching on the account
+      schema:
+        type: string
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    isHeldForReview:
+      name: isHeldForReview
+      in: query
+      required: false
+      description: only display comments that are held for review
+      schema:
+        type: boolean
+    autoTagOneOfComment:
+      name: autoTagOneOf
+      in: query
+      required: false
+      description: '**PeerTube >= 6.2** filter on comments that contain one of these automatic tags'
+      schema:
+        oneOf:
+        - type: string
+        - type: array
           items:
-            $ref: '#/components/schemas/VideoComment'
+            type: string
+      style: form
+      explode: true
+    search:
+      name: search
+      in: query
+      required: false
+      description: Plain text search, applied to various parts of the model depending on endpoint
+      schema:
+        type: string
+  schemas:
     VideoComment:
       properties:
         id:
@@ -294,10 +424,26 @@ components:
           minimum: 0
         account:
           $ref: '#/components/schemas/Account'
-    CommentThreadPostResponse:
+    ActorImage:
       properties:
-        comment:
-          $ref: '#/components/schemas/VideoComment'
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     Video:
       properties:
         id:
@@ -455,70 +601,6 @@ components:
           properties:
             currentTime:
               type: integer
-    Actor:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        url:
-          type: string
-          format: url
-        name:
-          description: immutable name of the actor, used to find or mention it
-          allOf:
-          - $ref: '#/components/schemas/username'
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-        host:
-          type: string
-          format: hostname
-          description: server on which the actor is resident
-        hostRedundancyAllowed:
-          type:
-          - boolean
-          - 'null'
-          description: whether this actor's host allows redundancy of its videos
-        followingCount:
-          type: integer
-          minimum: 0
-          description: number of actors subscribed to by this actor, as seen by this instance
-        followersCount:
-          type: integer
-          minimum: 0
-          description: number of followers of this actor, as seen by this instance
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    VideoCommentThreadTree:
-      properties:
-        comment:
-          $ref: '#/components/schemas/VideoComment'
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/VideoCommentThreadTree'
-    Account:
-      allOf:
-      - $ref: '#/components/schemas/Actor'
-      - properties:
-          userId:
-            description: object id for the user tied to this account
-            allOf:
-            - $ref: '#/components/schemas/User/properties/id'
-          displayName:
-            type: string
-            description: editable name of the account, displayed in its representations
-            minLength: 3
-            maxLength: 120
-          description:
-            type:
-            - string
-            - 'null'
-            description: text or bio displayed on the account's profile
     User:
       properties:
         id:
@@ -624,84 +706,48 @@ components:
         newFeaturesInfoRead:
           type: number
           description: New features information the user has read
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoCommentForOwnerOrAdmin:
+    Actor:
       properties:
         id:
           $ref: '#/components/schemas/id'
         url:
-          $ref: '#/components/schemas/VideoComment/properties/url'
-        text:
-          $ref: '#/components/schemas/VideoComment/properties/text'
-        heldForReview:
-          $ref: '#/components/schemas/VideoComment/properties/heldForReview'
-        threadId:
-          $ref: '#/components/schemas/VideoComment/properties/threadId'
-        inReplyToCommentId:
-          $ref: '#/components/schemas/VideoComment/properties/inReplyToCommentId'
-        createdAt:
-          $ref: '#/components/schemas/VideoComment/properties/createdAt'
-        updatedAt:
-          $ref: '#/components/schemas/VideoComment/properties/updatedAt'
-        account:
-          $ref: '#/components/schemas/VideoComment/properties/account'
-        video:
-          $ref: '#/components/schemas/VideoInfo'
-        automaticTags:
+          type: string
+          format: url
+        name:
+          description: immutable name of the actor, used to find or mention it
+          allOf:
+          - $ref: '#/components/schemas/username'
+        avatars:
           type: array
           items:
-            type: string
-    VideoInfo:
-      properties:
-        id:
-          $ref: '#/components/schemas/Video/properties/id'
-        uuid:
-          $ref: '#/components/schemas/Video/properties/uuid'
-        name:
-          $ref: '#/components/schemas/Video/properties/name'
-        state:
-          $ref: '#/components/schemas/Video/properties/state'
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
+            $ref: '#/components/schemas/ActorImage'
+        host:
+          type: string
+          format: hostname
+          description: server on which the actor is resident
+        hostRedundancyAllowed:
+          type:
+          - boolean
+          - 'null'
+          description: whether this actor's host allows redundancy of its videos
+        followingCount:
+          type: integer
+          minimum: 0
+          description: number of actors subscribed to by this actor, as seen by this instance
+        followersCount:
+          type: integer
+          minimum: 0
+          description: number of followers of this actor, as seen by this instance
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     id:
       type: integer
       minimum: 1
       example: 42
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    ActorImage:
-      properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
-          type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-          description: '**PeerTube >= 7.3**'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     VideoStateConstant:
       properties:
         id:
@@ -739,149 +785,103 @@ components:
             '
         label:
           type: string
-  parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
-    includeCollaborations:
-      name: includeCollaborations
-      in: query
-      required: false
-      description: '**PeerTube >= 8.0** Include objects from collaborated channels'
-      schema:
-        type: boolean
-    commentsSort:
-      name: sort
-      in: query
-      required: false
-      description: Sort comments by criteria
-      schema:
-        type: string
-        enum:
-        - -createdAt
-        - -totalReplies
-    searchAccountForComments:
-      name: searchAccount
-      in: query
-      required: false
-      description: Filter comments by searching on the account
-      schema:
-        type: string
-    videoChannelId:
-      name: videoChannelId
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Limit results on this specific video channel
-    threadId:
-      name: threadId
-      in: path
-      required: true
-      description: The thread id (root comment id)
-      schema:
-        type: integer
-    searchVideoForComments:
-      name: searchVideo
-      in: query
-      required: false
-      description: Filter comments by searching on the video
-      schema:
-        type: string
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    videoId:
-      name: videoId
-      in: query
-      required: false
-      schema:
-        type: integer
-      description: Limit results on this specific video
-    autoTagOneOfComment:
-      name: autoTagOneOf
-      in: query
-      required: false
-      description: '**PeerTube >= 6.2** filter on comments that contain one of these automatic tags'
-      schema:
-        oneOf:
-        - type: string
-        - type: array
+    CommentThreadResponse:
+      properties:
+        total:
+          type: integer
+          description: Total threads (included deleted ones) on this video
+        totalNotDeletedComments:
+          type: integer
+          description: Total not-deleted threads (included deleted ones) on this video
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/VideoComment'
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoCommentForOwnerOrAdmin:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        url:
+          $ref: '#/components/schemas/VideoComment/properties/url'
+        text:
+          $ref: '#/components/schemas/VideoComment/properties/text'
+        heldForReview:
+          $ref: '#/components/schemas/VideoComment/properties/heldForReview'
+        threadId:
+          $ref: '#/components/schemas/VideoComment/properties/threadId'
+        inReplyToCommentId:
+          $ref: '#/components/schemas/VideoComment/properties/inReplyToCommentId'
+        createdAt:
+          $ref: '#/components/schemas/VideoComment/properties/createdAt'
+        updatedAt:
+          $ref: '#/components/schemas/VideoComment/properties/updatedAt'
+        account:
+          $ref: '#/components/schemas/VideoComment/properties/account'
+        video:
+          $ref: '#/components/schemas/VideoInfo'
+        automaticTags:
+          type: array
           items:
             type: string
-      style: form
-      explode: true
-    onLocalVideo:
-      name: onLocalVideo
-      in: query
-      required: false
-      schema:
-        type: boolean
-      description: Display only objects of local or remote videos
-    isLocal:
-      name: isLocal
-      in: query
-      required: false
-      schema:
-        type: boolean
-      description: '**PeerTube >= 4.0** Display only local or remote objects'
-    commentId:
-      name: commentId
-      in: path
-      required: true
-      description: The comment id
-      schema:
-        $ref: '#/components/schemas/VideoComment/properties/id'
-    search:
-      name: search
-      in: query
-      required: false
-      description: Plain text search, applied to various parts of the model depending on endpoint
-      schema:
-        type: string
-    includeMuted:
-      name: includeMuted
-      in: query
-      required: false
-      schema:
-        type: boolean
-      description: '**PeerTube >= 8.2** Include comments from muted accounts'
-    videoPasswordHeader:
-      name: x-peertube-video-password
-      description: Required on password protected video
-      in: header
-      required: false
-      schema:
-        type: string
-    isHeldForReview:
-      name: isHeldForReview
-      in: query
-      required: false
-      description: only display comments that are held for review
-      schema:
-        type: boolean
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    VideoInfo:
+      properties:
+        id:
+          $ref: '#/components/schemas/Video/properties/id'
+        uuid:
+          $ref: '#/components/schemas/Video/properties/uuid'
+        name:
+          $ref: '#/components/schemas/Video/properties/name'
+        state:
+          $ref: '#/components/schemas/Video/properties/state'
+    Account:
+      allOf:
+      - $ref: '#/components/schemas/Actor'
+      - properties:
+          userId:
+            description: object id for the user tied to this account
+            allOf:
+            - $ref: '#/components/schemas/User/properties/id'
+          displayName:
+            type: string
+            description: editable name of the account, displayed in its representations
+            minLength: 3
+            maxLength: 120
+          description:
+            type:
+            - string
+            - 'null'
+            description: text or bio displayed on the account's profile
+    VideoCommentThreadTree:
+      properties:
+        comment:
+          $ref: '#/components/schemas/VideoComment'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/VideoCommentThreadTree'
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    CommentThreadPostResponse:
+      properties:
+        comment:
+          $ref: '#/components/schemas/VideoComment'
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

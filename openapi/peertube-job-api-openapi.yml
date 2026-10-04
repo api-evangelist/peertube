@@ -94,6 +94,14 @@ paths:
                       $ref: '#/components/schemas/Job'
 components:
   parameters:
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
     start:
       name: start
       in: query
@@ -133,19 +141,7 @@ components:
         - video-redundancy
         - video-live-ending
         - video-channel-import
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
   schemas:
-    id:
-      type: integer
-      minimum: 1
-      example: 42
     Job:
       properties:
         id:
@@ -188,6 +184,10 @@ components:
         processedOn:
           type: string
           format: date-time
+    id:
+      type: integer
+      minimum: 1
+      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

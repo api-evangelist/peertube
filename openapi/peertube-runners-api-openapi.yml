@@ -142,6 +142,14 @@ components:
       required: true
       schema:
         type: integer
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
     count:
       name: count
       in: query
@@ -152,14 +160,6 @@ components:
         default: 15
         maximum: 100
         minimum: 1
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
     runnerSort:
       name: sort
       in: query

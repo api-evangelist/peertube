@@ -105,14 +105,6 @@ components:
       - uploadedBytesP2P
       - p2pEnabled
       - videoId
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
     UUIDv4:
       type: string
       format: uuid
@@ -210,6 +202,14 @@ components:
         totalAbuses:
           type: number
           description: '**PeerTube >= 6.1** Value is null if the admin disabled abuses stats'
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

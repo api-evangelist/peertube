@@ -81,6 +81,10 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
     Thumbnail:
       properties:
         fileUrl:
@@ -92,149 +96,6 @@ components:
         aspectRatio:
           type: string
           example: '16:9'
-    VideoCategorySet:
-      type: integer
-      description: category id of the video (see [/videos/categories](#operation/getCategories))
-      example: 15
-    AccountSummary:
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        displayName:
-          type: string
-        url:
-          type: string
-          format: url
-        host:
-          type: string
-          format: hostname
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-    VideoListResponse:
-      properties:
-        total:
-          type: integer
-          example: 1
-        data:
-          type: array
-          maxItems: 100
-          items:
-            $ref: '#/components/schemas/Video'
-    VideoConstantNumber-Category:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoCategorySet'
-        label:
-          type: string
-          example: Science & Technology
-    VideoScheduledUpdate:
-      properties:
-        privacy:
-          $ref: '#/components/schemas/VideoPrivacySet'
-        updateAt:
-          type: string
-          format: date-time
-          description: When to update the video
-      required:
-      - updateAt
-    VideoConstantNumber-Licence:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLicenceSet'
-        label:
-          type: string
-          example: Attribution - Share Alike
-    VideoLicenceSet:
-      type: integer
-      description: licence id of the video (see [/videos/licences](#operation/getLicences))
-      example: 2
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoChannelSummary:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        name:
-          type: string
-        displayName:
-          type: string
-        url:
-          type: string
-          format: url
-        host:
-          type: string
-          format: hostname
-        avatars:
-          type: array
-          items:
-            $ref: '#/components/schemas/ActorImage'
-    NSFWFlag:
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      description: '
-
-        NSFW flags (can be combined using bitwise or operator)
-
-        - `0` NONE
-
-        - `1` VIOLENT
-
-        - `2` EXPLICIT_SEX
-
-        '
-    VideoLanguageSet:
-      type: string
-      description: language id of the video (see [/videos/languages](#operation/getLanguages))
-      example: en
-    LiveSchedule:
-      properties:
-        startAt:
-          type: string
-          format: date-time
-          description: Date when the stream is scheduled to air at
-    VideoConstantString-Language:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLanguageSet'
-        label:
-          type: string
-          example: English
-    VideoPrivacySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
-    VideoPrivacyConstant:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoPrivacySet'
-        label:
-          type: string
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
     ActorImage:
       properties:
         path:
@@ -255,6 +116,117 @@ components:
         updatedAt:
           type: string
           format: date-time
+    VideoLicenceSet:
+      type: integer
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
+    VideoConstantNumber-Licence:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLicenceSet'
+        label:
+          type: string
+          example: Attribution - Share Alike
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    VideoStateConstant:
+      properties:
+        id:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          description: 'The video state:
+
+            - `1`: Published
+
+            - `2`: To transcode
+
+            - `3`: To import
+
+            - `4`: Waiting for live stream
+
+            - `5`: Live ended
+
+            - `6`: To move to an external storage (object storage...)
+
+            - `7`: Transcoding failed
+
+            - `8`: Moving to an external storage failed
+
+            - `9`: To edit using studio edition feature
+
+            '
+        label:
+          type: string
+    VideoChannelSummary:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
+    VideoConstantString-Language:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        label:
+          type: string
+          example: English
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
+    AccountSummary:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        displayName:
+          type: string
+        url:
+          type: string
+          format: url
+        host:
+          type: string
+          format: hostname
+        avatars:
+          type: array
+          items:
+            $ref: '#/components/schemas/ActorImage'
     Video:
       properties:
         id:
@@ -412,43 +384,71 @@ components:
           properties:
             currentTime:
               type: integer
-    VideoStateConstant:
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    VideoListResponse:
+      properties:
+        total:
+          type: integer
+          example: 1
+        data:
+          type: array
+          maxItems: 100
+          items:
+            $ref: '#/components/schemas/Video'
+    VideoPrivacyConstant:
       properties:
         id:
-          type: integer
-          enum:
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          description: 'The video state:
-
-            - `1`: Published
-
-            - `2`: To transcode
-
-            - `3`: To import
-
-            - `4`: Waiting for live stream
-
-            - `5`: Live ended
-
-            - `6`: To move to an external storage (object storage...)
-
-            - `7`: Transcoding failed
-
-            - `8`: Moving to an external storage failed
-
-            - `9`: To edit using studio edition feature
-
-            '
+          $ref: '#/components/schemas/VideoPrivacySet'
         label:
           type: string
+    VideoCategorySet:
+      type: integer
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      example: 15
+    VideoConstantNumber-Category:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoCategorySet'
+        label:
+          type: string
+          example: Science & Technology
+    VideoScheduledUpdate:
+      properties:
+        privacy:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        updateAt:
+          type: string
+          format: date-time
+          description: When to update the video
+      required:
+      - updateAt
+    NSFWFlag:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` VIOLENT
+
+        - `2` EXPLICIT_SEX
+
+        '
+    LiveSchedule:
+      properties:
+        startAt:
+          type: string
+          format: date-time
+          description: Date when the stream is scheduled to air at
   parameters:
     count:
       name: count
@@ -460,14 +460,6 @@ components:
         default: 15
         maximum: 100
         minimum: 1
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
     videoIdOrUUID:
       name: videoIdOrUUID
       in: path
@@ -478,6 +470,14 @@ components:
         - $ref: '#/components/schemas/id'
         - $ref: '#/components/schemas/UUIDv4'
         - $ref: '#/components/schemas/shortUUID'
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
     search:
       name: search
       in: query

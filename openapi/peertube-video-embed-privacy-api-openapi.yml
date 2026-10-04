@@ -122,15 +122,18 @@ paths:
         '400':
           description: invalid request
 components:
+  parameters:
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
   schemas:
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    id:
-      type: integer
-      minimum: 1
-      example: 42
     VideoEmbedPrivacy:
       type: integer
       enum:
@@ -145,17 +148,14 @@ components:
       pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
       minLength: 36
       maxLength: 36
-  parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

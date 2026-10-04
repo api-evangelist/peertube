@@ -123,49 +123,6 @@ paths:
           description: video channel not found
 components:
   schemas:
-    PlayerVideoSettings:
-      type: object
-      properties:
-        theme:
-          $ref: '#/components/schemas/PlayerThemeVideoSetting'
-      description: Player settings for a video
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    PlayerChannelSettings:
-      type: object
-      properties:
-        theme:
-          $ref: '#/components/schemas/PlayerThemeChannelSetting'
-      description: Player settings for a channel
-    PlayerVideoSettingsUpdate:
-      type: object
-      properties:
-        theme:
-          $ref: '#/components/schemas/PlayerThemeVideoSetting'
-      required:
-      - theme
-      description: Player settings update for a video
-    PlayerThemeVideoSetting:
-      type: string
-      enum:
-      - channel-default
-      - instance-default
-      - galaxy
-      - lucide
-      description: "Player theme setting for a video:\n  - `channel-default` Use the channel default theme\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
     PlayerChannelSettingsUpdate:
       type: object
       properties:
@@ -174,6 +131,41 @@ components:
       required:
       - theme
       description: Player settings update for a channel
+    PlayerThemeVideoSetting:
+      type: string
+      enum:
+      - channel-default
+      - instance-default
+      - galaxy
+      - lucide
+      description: "Player theme setting for a video:\n  - `channel-default` Use the channel default theme\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
+    PlayerVideoSettings:
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/PlayerThemeVideoSetting'
+      description: Player settings for a video
+    PlayerChannelSettings:
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/PlayerThemeChannelSetting'
+      description: Player settings for a channel
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    PlayerVideoSettingsUpdate:
+      type: object
+      properties:
+        theme:
+          $ref: '#/components/schemas/PlayerThemeVideoSetting'
+      required:
+      - theme
+      description: Player settings update for a video
     PlayerThemeChannelSetting:
       type: string
       enum:
@@ -181,6 +173,14 @@ components:
       - galaxy
       - lucide
       description: "Player theme setting for a channel:\n  - `instance-default` Use the instance default theme\n  - `galaxy` Use the galaxy theme\n  - `lucide` Use the lucide theme\n"
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   parameters:
     idOrUUID:
       name: id

@@ -107,15 +107,14 @@ paths:
           description: video redundancy not found
 components:
   parameters:
-    videoRedundanciesSort:
-      name: sort
+    start:
+      name: start
       in: query
       required: false
-      description: Sort abuses by criteria
+      description: Offset used to paginate results
       schema:
-        type: string
-        enum:
-        - name
+        type: integer
+        minimum: 0
     count:
       name: count
       in: query
@@ -126,15 +125,48 @@ components:
         default: 15
         maximum: 100
         minimum: 1
-    start:
-      name: start
+    videoRedundanciesSort:
+      name: sort
       in: query
       required: false
-      description: Offset used to paginate results
+      description: Sort abuses by criteria
       schema:
-        type: integer
-        minimum: 0
+        type: string
+        enum:
+        - name
   schemas:
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    FileRedundancyInformation:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        fileUrl:
+          type: string
+          format: url
+        strategy:
+          type: string
+          enum:
+          - manual
+          - most-views
+          - trending
+          - recently-added
+        size:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        expiresOn:
+          type: string
+          format: date-time
     Video:
       properties:
         id:
@@ -292,35 +324,6 @@ components:
           properties:
             currentTime:
               type: integer
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    FileRedundancyInformation:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        fileUrl:
-          type: string
-          format: url
-        strategy:
-          type: string
-          enum:
-          - manual
-          - most-views
-          - trending
-          - recently-added
-        size:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        expiresOn:
-          type: string
-          format: date-time
     VideoRedundancy:
       properties:
         id:
@@ -339,13 +342,10 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/FileRedundancyInformation'
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
+    id:
+      type: integer
+      minimum: 1
+      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

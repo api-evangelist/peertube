@@ -304,86 +304,6 @@ paths:
                       $ref: '#/components/schemas/UserRegistration'
 components:
   schemas:
-    UserRegistrationAcceptOrReject:
-      type: object
-      properties:
-        moderationResponse:
-          type: string
-          description: Moderation response to send to the user
-        preventEmailDelivery:
-          type: boolean
-          description: Set it to true if you don't want PeerTube to send an email to the user
-      required:
-      - moderationResponse
-    RegisterUser:
-      properties:
-        username:
-          description: immutable name of the user, used to find or mention its actor
-          allOf:
-          - $ref: '#/components/schemas/username'
-        password:
-          $ref: '#/components/schemas/password'
-        email:
-          type: string
-          format: email
-          description: email of the user, used for login or service communications
-        displayName:
-          type: string
-          description: editable name of the user, displayed in its representations
-          minLength: 1
-          maxLength: 120
-        channel:
-          type: object
-          description: channel base information used to create the first channel of the user
-          properties:
-            name:
-              $ref: '#/components/schemas/usernameChannel'
-            displayName:
-              type: string
-      required:
-      - username
-      - password
-      - email
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    UserRegistrationState:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: The registration state (Pending = `1`, Rejected = `2`, Accepted = `3`)
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    UserRegistrationRequest:
-      allOf:
-      - $ref: '#/components/schemas/RegisterUser'
-      - type: object
-        properties:
-          registrationReason:
-            type: string
-            description: reason for the user to register on the instance
-        required:
-        - registrationReason
-    password:
-      type: string
-      format: password
-      minLength: 6
-      maxLength: 50
-    usernameChannel:
-      type: string
-      description: immutable name of the channel, used to interact with its actor
-      example: framasoft_videos
-      pattern: /^[a-zA-Z0-9\\-_.:]+$/
-      minLength: 1
-      maxLength: 50
     UserRegistration:
       properties:
         id:
@@ -428,22 +348,99 @@ components:
           properties:
             id:
               $ref: '#/components/schemas/id'
+    UserRegistrationRequest:
+      allOf:
+      - $ref: '#/components/schemas/RegisterUser'
+      - type: object
+        properties:
+          registrationReason:
+            type: string
+            description: reason for the user to register on the instance
+        required:
+        - registrationReason
+    usernameChannel:
+      type: string
+      description: immutable name of the channel, used to interact with its actor
+      example: framasoft_videos
+      pattern: /^[a-zA-Z0-9\\-_.:]+$/
+      minLength: 1
+      maxLength: 50
+    RegisterUser:
+      properties:
+        username:
+          description: immutable name of the user, used to find or mention its actor
+          allOf:
+          - $ref: '#/components/schemas/username'
+        password:
+          $ref: '#/components/schemas/password'
+        email:
+          type: string
+          format: email
+          description: email of the user, used for login or service communications
+        displayName:
+          type: string
+          description: editable name of the user, displayed in its representations
+          minLength: 1
+          maxLength: 120
+        channel:
+          type: object
+          description: channel base information used to create the first channel of the user
+          properties:
+            name:
+              $ref: '#/components/schemas/usernameChannel'
+            displayName:
+              type: string
+      required:
+      - username
+      - password
+      - email
+    UserRegistrationAcceptOrReject:
+      type: object
+      properties:
+        moderationResponse:
+          type: string
+          description: Moderation response to send to the user
+        preventEmailDelivery:
+          type: boolean
+          description: Set it to true if you don't want PeerTube to send an email to the user
+      required:
+      - moderationResponse
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    UserRegistrationState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: The registration state (Pending = `1`, Rejected = `2`, Accepted = `3`)
+    password:
+      type: string
+      format: password
+      minLength: 6
+      maxLength: 50
+    id:
+      type: integer
+      minimum: 1
+      example: 42
   parameters:
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
     id:
       name: id
       in: path
       required: true
       description: Entity id
+      schema:
+        $ref: '#/components/schemas/id'
+    registrationId:
+      name: registrationId
+      in: path
+      required: true
+      description: Registration ID
       schema:
         $ref: '#/components/schemas/id'
     start:
@@ -454,13 +451,16 @@ components:
       schema:
         type: integer
         minimum: 0
-    registrationId:
-      name: registrationId
-      in: path
-      required: true
-      description: Registration ID
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
       schema:
-        $ref: '#/components/schemas/id'
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

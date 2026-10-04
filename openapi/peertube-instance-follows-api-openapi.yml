@@ -204,64 +204,7 @@ paths:
       operationId: deleteApiV1ServerFollowingByHostOrHandle
       x-operation-id-source: derived
 components:
-  parameters:
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
-    actorType:
-      name: actorType
-      in: query
-      schema:
-        type: string
-        enum:
-        - Person
-        - Application
-        - Group
-        - Service
-        - Organization
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    sort:
-      name: sort
-      in: query
-      required: false
-      description: Sort column
-      schema:
-        type: string
-        example: -createdAt
-    followState:
-      name: state
-      in: query
-      schema:
-        type: string
-        enum:
-        - pending
-        - accepted
   schemas:
-    username:
-      type: string
-      description: immutable name of the user, used to find or mention its actor
-      example: chocobozzz
-      pattern: /^[a-z0-9._]+$/
-      minLength: 1
-      maxLength: 50
-    id:
-      type: integer
-      minimum: 1
-      example: 42
     ActorImage:
       properties:
         path:
@@ -276,6 +219,28 @@ components:
         height:
           type: integer
           description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Follow:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        follower:
+          $ref: '#/components/schemas/Actor'
+        following:
+          $ref: '#/components/schemas/Actor'
+        score:
+          type: number
+          description: score reflecting the reachability of the actor, with steps of `10` and a base score of `1000`.
+        state:
+          type: string
+          enum:
+          - pending
+          - accepted
         createdAt:
           type: string
           format: date-time
@@ -320,28 +285,63 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Follow:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        follower:
-          $ref: '#/components/schemas/Actor'
-        following:
-          $ref: '#/components/schemas/Actor'
-        score:
-          type: number
-          description: score reflecting the reachability of the actor, with steps of `10` and a base score of `1000`.
-        state:
-          type: string
-          enum:
-          - pending
-          - accepted
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+    username:
+      type: string
+      description: immutable name of the user, used to find or mention its actor
+      example: chocobozzz
+      pattern: /^[a-z0-9._]+$/
+      minLength: 1
+      maxLength: 50
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+  parameters:
+    sort:
+      name: sort
+      in: query
+      required: false
+      description: Sort column
+      schema:
+        type: string
+        example: -createdAt
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
+    actorType:
+      name: actorType
+      in: query
+      schema:
+        type: string
+        enum:
+        - Person
+        - Application
+        - Group
+        - Service
+        - Organization
+    followState:
+      name: state
+      in: query
+      schema:
+        type: string
+        enum:
+        - pending
+        - accepted
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

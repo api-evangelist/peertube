@@ -72,31 +72,6 @@ paths:
         '404':
           description: video not found
 components:
-  schemas:
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    VideoChapters:
-      properties:
-        chapters:
-          type: object
-          properties:
-            title:
-              type: string
-            timecode:
-              type: integer
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
   parameters:
     videoPasswordHeader:
       name: x-peertube-video-password
@@ -115,6 +90,31 @@ components:
         - $ref: '#/components/schemas/id'
         - $ref: '#/components/schemas/UUIDv4'
         - $ref: '#/components/schemas/shortUUID'
+  schemas:
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoChapters:
+      properties:
+        chapters:
+          type: object
+          properties:
+            title:
+              type: string
+            timecode:
+              type: integer
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

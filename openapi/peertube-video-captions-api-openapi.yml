@@ -120,51 +120,6 @@ paths:
         '404':
           description: video or language or caption for that language not found
 components:
-  schemas:
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    VideoLanguageSet:
-      type: string
-      description: language id of the video (see [/videos/languages](#operation/getLanguages))
-      example: en
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoCaption:
-      properties:
-        language:
-          $ref: '#/components/schemas/VideoConstantString-Language'
-        automaticallyGenerated:
-          type: boolean
-        captionPath:
-          type: string
-          deprecated: true
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        m3u8Url:
-          type: string
-        updatedAt:
-          type: string
-          format: date-time
-    VideoConstantString-Language:
-      properties:
-        id:
-          $ref: '#/components/schemas/VideoLanguageSet'
-        label:
-          type: string
-          example: English
   parameters:
     videoPasswordHeader:
       name: x-peertube-video-password
@@ -190,6 +145,51 @@ components:
       description: The caption language
       schema:
         $ref: '#/components/schemas/VideoLanguageSet'
+  schemas:
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
+    VideoConstantString-Language:
+      properties:
+        id:
+          $ref: '#/components/schemas/VideoLanguageSet'
+        label:
+          type: string
+          example: English
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoCaption:
+      properties:
+        language:
+          $ref: '#/components/schemas/VideoConstantString-Language'
+        automaticallyGenerated:
+          type: boolean
+        captionPath:
+          type: string
+          deprecated: true
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        m3u8Url:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

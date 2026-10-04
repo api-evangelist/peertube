@@ -112,19 +112,6 @@ paths:
         '204':
           description: successful operation
 components:
-  schemas:
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    UserExportState:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      description: "The user export state:\n  - `1`: Pending\n  - `2`: Processing\n  - `3`: Completed\n  - `4`: Errored\n"
   parameters:
     id:
       name: id
@@ -140,6 +127,19 @@ components:
       description: User id
       schema:
         $ref: '#/components/schemas/id'
+  schemas:
+    UserExportState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      description: "The user export state:\n  - `1`: Pending\n  - `2`: Processing\n  - `3`: Completed\n  - `4`: Errored\n"
+    id:
+      type: integer
+      minimum: 1
+      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

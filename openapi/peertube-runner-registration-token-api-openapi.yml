@@ -83,6 +83,40 @@ paths:
       operationId: getApiV1RunnersRegistrationTokens
       x-operation-id-source: derived
 components:
+  parameters:
+    registrationTokenSort:
+      name: sort
+      in: query
+      required: false
+      description: Sort registration tokens by criteria
+      schema:
+        type: string
+        enum:
+        - createdAt
+    registrationTokenId:
+      name: registrationTokenId
+      in: path
+      required: true
+      schema:
+        type: integer
+    start:
+      name: start
+      in: query
+      required: false
+      description: Offset used to paginate results
+      schema:
+        type: integer
+        minimum: 0
+    count:
+      name: count
+      in: query
+      required: false
+      description: Number of items to return
+      schema:
+        type: integer
+        default: 15
+        maximum: 100
+        minimum: 1
   schemas:
     RunnerRegistrationToken:
       properties:
@@ -98,40 +132,6 @@ components:
           format: date-time
         registeredRunnersCount:
           type: integer
-  parameters:
-    registrationTokenId:
-      name: registrationTokenId
-      in: path
-      required: true
-      schema:
-        type: integer
-    count:
-      name: count
-      in: query
-      required: false
-      description: Number of items to return
-      schema:
-        type: integer
-        default: 15
-        maximum: 100
-        minimum: 1
-    registrationTokenSort:
-      name: sort
-      in: query
-      required: false
-      description: Sort registration tokens by criteria
-      schema:
-        type: string
-        enum:
-        - createdAt
-    start:
-      name: start
-      in: query
-      required: false
-      description: Offset used to paginate results
-      schema:
-        type: integer
-        minimum: 0
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

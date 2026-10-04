@@ -143,45 +143,7 @@ paths:
                     type: string
                     format: date-time
 components:
-  schemas:
-    UserImportResumable:
-      properties:
-        filename:
-          description: Archive filename including extension
-          type: string
-          format: filename
-          example: user-export-6-2024-02-09T10_12_11.682Z
-    id:
-      type: integer
-      minimum: 1
-      example: 42
-    UserImportState:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      description: "The user import state:\n  - `1`: Pending\n  - `2`: Processing\n  - `3`: Completed\n  - `4`: Errored\n"
   parameters:
-    resumableUploadId:
-      name: upload_id
-      in: query
-      required: true
-      description: 'Created session id to proceed with. If you didn''t send chunks in the last hour, it is
-
-        not valid anymore and you need to initialize a new upload.
-
-        '
-      schema:
-        type: string
-    userId:
-      name: userId
-      in: path
-      required: true
-      description: User id
-      schema:
-        $ref: '#/components/schemas/id'
     resumableUploadInitContentTypeHeader:
       name: X-Upload-Content-Type
       in: header
@@ -191,29 +153,6 @@ components:
         example: video/mp4
       required: true
       description: MIME type of the file that you are uploading. Depending on your instance settings, acceptable values might vary.
-    resumableUploadChunkContentRangeHeader:
-      name: Content-Range
-      in: header
-      schema:
-        type: string
-        example: bytes 0-262143/2469036
-      required: true
-      description: 'Specifies the bytes in the file that the request is uploading.
-
-
-        For example, a value of `bytes 0-262143/1000000` shows that the request is sending the first
-
-        262144 bytes (256 x 1024) in a 2,469,036 byte file.
-
-        '
-    resumableUploadInitContentLengthHeader:
-      name: X-Upload-Content-Length
-      in: header
-      schema:
-        type: number
-        example: 2469036
-      required: true
-      description: Number of bytes that will be uploaded in subsequent requests. Set this value to the size of the file you are uploading.
     resumableUploadChunkContentLengthHeader:
       name: Content-Length
       in: header
@@ -229,6 +168,67 @@ components:
         1048576 bytes (~1MB) and increases or reduces size depending on connection health.
 
         '
+    resumableUploadInitContentLengthHeader:
+      name: X-Upload-Content-Length
+      in: header
+      schema:
+        type: number
+        example: 2469036
+      required: true
+      description: Number of bytes that will be uploaded in subsequent requests. Set this value to the size of the file you are uploading.
+    userId:
+      name: userId
+      in: path
+      required: true
+      description: User id
+      schema:
+        $ref: '#/components/schemas/id'
+    resumableUploadId:
+      name: upload_id
+      in: query
+      required: true
+      description: 'Created session id to proceed with. If you didn''t send chunks in the last hour, it is
+
+        not valid anymore and you need to initialize a new upload.
+
+        '
+      schema:
+        type: string
+    resumableUploadChunkContentRangeHeader:
+      name: Content-Range
+      in: header
+      schema:
+        type: string
+        example: bytes 0-262143/2469036
+      required: true
+      description: 'Specifies the bytes in the file that the request is uploading.
+
+
+        For example, a value of `bytes 0-262143/1000000` shows that the request is sending the first
+
+        262144 bytes (256 x 1024) in a 2,469,036 byte file.
+
+        '
+  schemas:
+    UserImportState:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      description: "The user import state:\n  - `1`: Pending\n  - `2`: Processing\n  - `3`: Completed\n  - `4`: Errored\n"
+    UserImportResumable:
+      properties:
+        filename:
+          description: Archive filename including extension
+          type: string
+          format: filename
+          example: user-export-6-2024-02-09T10_12_11.682Z
+    id:
+      type: integer
+      minimum: 1
+      example: 42
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

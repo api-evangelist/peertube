@@ -82,11 +82,25 @@ paths:
         '404':
           description: video does not exist
 components:
+  parameters:
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
   schemas:
-    shortUUID:
+    UUIDv4:
       type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
     VideoStudioCreateTask:
       type: array
       items:
@@ -175,24 +189,10 @@ components:
       type: integer
       minimum: 1
       example: 42
-    UUIDv4:
+    shortUUID:
       type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-  parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

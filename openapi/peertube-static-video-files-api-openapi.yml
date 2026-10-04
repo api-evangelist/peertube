@@ -104,13 +104,6 @@ components:
       description: Video file token [generated](#operation/requestVideoToken) by PeerTube so you don't need to provide an OAuth token in the request header.
       schema:
         type: string
-    reinjectVideoFileToken:
-      name: reinjectVideoFileToken
-      in: query
-      required: false
-      description: Ask the server to reinject videoFileToken in URLs in m3u8 playlist
-      schema:
-        type: boolean
     staticFilename:
       name: filename
       in: path
@@ -118,6 +111,13 @@ components:
       description: Filename
       schema:
         type: string
+    reinjectVideoFileToken:
+      name: reinjectVideoFileToken
+      in: query
+      required: false
+      description: Ask the server to reinject videoFileToken in URLs in m3u8 playlist
+      schema:
+        type: boolean
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

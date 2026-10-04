@@ -122,13 +122,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CommentAutoTagPolicies:
-      properties:
-        review:
-          type: array
-          description: Auto tags that automatically set the comment in review state
-          items:
-            type: string
     AutomaticTagAvailable:
       properties:
         available:
@@ -145,6 +138,13 @@ components:
                 enum:
                 - core
                 - watched-words-list
+    CommentAutoTagPolicies:
+      properties:
+        review:
+          type: array
+          description: Auto tags that automatically set the comment in review state
+          items:
+            type: string
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:

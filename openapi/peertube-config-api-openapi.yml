@@ -243,82 +243,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VideoLicenceSet:
-      type: integer
-      description: licence id of the video (see [/videos/licences](#operation/getLicences))
-      example: 2
-    VideoPrivacySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
-    ServerConfigAbout:
-      properties:
-        instance:
-          type: object
-          properties:
-            name:
-              type: string
-            shortDescription:
-              type: string
-            description:
-              type: string
-            terms:
-              type: string
-            codeOfConduct:
-              type: string
-            hardwareInformation:
-              type: string
-            creationReason:
-              type: string
-            moderationInformation:
-              type: string
-            administrator:
-              type: string
-            maintenanceLifetime:
-              type: string
-            businessModel:
-              type: string
-            languages:
-              type: array
-              items:
-                type: string
-            categories:
-              type: array
-              items:
-                type: integer
-            avatars:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActorImage'
-            banners:
-              type: array
-              items:
-                $ref: '#/components/schemas/ActorImage'
-    ActorImage:
-      properties:
-        path:
-          description: Deprecated in PeerTube v8.0, use fileUrl instead
-          deprecated: true
-          type: string
-        fileUrl:
-          description: '**PeerTube >= 7.1**'
-          type: string
-        width:
-          type: integer
-        height:
-          type: integer
-          description: '**PeerTube >= 7.3**'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     ServerConfigCustom:
       properties:
         instance:
@@ -586,22 +510,26 @@ components:
               properties:
                 autoPlay:
                   type: boolean
-    VideoCommentsPolicySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
-    VideoResolutionSet:
-      type: integer
-      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
-
-
-        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
-
-        '
-      example: 240
+    ActorImage:
+      properties:
+        path:
+          description: Deprecated in PeerTube v8.0, use fileUrl instead
+          deprecated: true
+          type: string
+        fileUrl:
+          description: '**PeerTube >= 7.1**'
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+          description: '**PeerTube >= 7.3**'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
     ServerConfig:
       properties:
         instance:
@@ -893,6 +821,78 @@ components:
                     users:
                       type: number
                       description: Milliseconds
+    VideoCommentsPolicySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
+    VideoPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
+    VideoResolutionSet:
+      type: integer
+      description: 'Video resolution (`0`, `240`, `360`, `720`, `1080`, `1440` or `2160`)
+
+
+        `0` is used as a special value for stillimage videos dedicated to audio, a.k.a. audio-only videos.
+
+        '
+      example: 240
+    ServerConfigAbout:
+      properties:
+        instance:
+          type: object
+          properties:
+            name:
+              type: string
+            shortDescription:
+              type: string
+            description:
+              type: string
+            terms:
+              type: string
+            codeOfConduct:
+              type: string
+            hardwareInformation:
+              type: string
+            creationReason:
+              type: string
+            moderationInformation:
+              type: string
+            administrator:
+              type: string
+            maintenanceLifetime:
+              type: string
+            businessModel:
+              type: string
+            languages:
+              type: array
+              items:
+                type: string
+            categories:
+              type: array
+              items:
+                type: integer
+            avatars:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActorImage'
+            banners:
+              type: array
+              items:
+                $ref: '#/components/schemas/ActorImage'
+    VideoLicenceSet:
+      type: integer
+      description: licence id of the video (see [/videos/licences](#operation/getLicences))
+      example: 2
   parameters:
     logoTypeParam:
       name: logoType

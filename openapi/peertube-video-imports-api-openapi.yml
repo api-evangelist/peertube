@@ -104,15 +104,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VideoPassword:
-      properties:
-        id:
-          $ref: '#/components/schemas/id'
-        password:
-          type: string
-          minLength: 2
-        videoId:
-          $ref: '#/components/schemas/id'
+    VideoLanguageSet:
+      type: string
+      description: language id of the video (see [/videos/languages](#operation/getLanguages))
+      example: en
+    AddVideoPasswords:
+      type: array
+      items:
+        $ref: '#/components/schemas/VideoPassword/properties/password'
+      uniqueItems: true
     Video:
       properties:
         id:
@@ -270,24 +270,37 @@ components:
           properties:
             currentTime:
               type: integer
-    VideoCategorySet:
-      type: integer
-      description: category id of the video (see [/videos/categories](#operation/getCategories))
-      example: 15
-    VideoScheduledUpdate:
-      properties:
-        privacy:
-          $ref: '#/components/schemas/VideoPrivacySet'
-        updateAt:
-          type: string
-          format: date-time
-          description: When to update the video
-      required:
-      - updateAt
     VideoLicenceSet:
       type: integer
       description: licence id of the video (see [/videos/licences](#operation/getLicences))
       example: 2
+    id:
+      type: integer
+      minimum: 1
+      example: 42
+    VideoCommentsPolicySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
+    VideoPrivacySet:
+      type: integer
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
     VideoImport:
       properties:
         id:
@@ -322,13 +335,19 @@ components:
         video:
           allOf:
           - $ref: '#/components/schemas/Video'
-    UUIDv4:
+    shortUUID:
       type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
+    VideoPassword:
+      properties:
+        id:
+          $ref: '#/components/schemas/id'
+        password:
+          type: string
+          minLength: 2
+        videoId:
+          $ref: '#/components/schemas/id'
     VideoCreateImport:
       allOf:
       - type: object
@@ -353,35 +372,6 @@ components:
       required:
       - channelId
       - name
-    NSFWFlag:
-      type: integer
-      enum:
-      - 0
-      - 1
-      - 2
-      - 4
-      description: '
-
-        NSFW flags (can be combined using bitwise or operator)
-
-        - `0` NONE
-
-        - `1` VIOLENT
-
-        - `2` EXPLICIT_SEX
-
-        '
-    VideoLanguageSet:
-      type: string
-      description: language id of the video (see [/videos/languages](#operation/getLanguages))
-      example: en
-    VideoCommentsPolicySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      description: Comments policy of the video (Enabled = `1`, Disabled = `2`, Requires Approval = `3`)
     VideoUploadResponse:
       properties:
         video:
@@ -393,15 +383,6 @@ components:
               $ref: '#/components/schemas/Video/properties/uuid'
             shortUUID:
               $ref: '#/components/schemas/Video/properties/shortUUID'
-    VideoPrivacySet:
-      type: integer
-      enum:
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5
-      description: privacy id of the video (see [/videos/privacies](#operation/getVideoPrivacyPolicies))
     VideoUploadRequestCommon:
       properties:
         name:
@@ -484,19 +465,38 @@ components:
       required:
       - channelId
       - name
-    id:
+    VideoCategorySet:
       type: integer
-      minimum: 1
-      example: 42
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    AddVideoPasswords:
-      type: array
-      items:
-        $ref: '#/components/schemas/VideoPassword/properties/password'
-      uniqueItems: true
+      description: category id of the video (see [/videos/categories](#operation/getCategories))
+      example: 15
+    VideoScheduledUpdate:
+      properties:
+        privacy:
+          $ref: '#/components/schemas/VideoPrivacySet'
+        updateAt:
+          type: string
+          format: date-time
+          description: When to update the video
+      required:
+      - updateAt
+    NSFWFlag:
+      type: integer
+      enum:
+      - 0
+      - 1
+      - 2
+      - 4
+      description: '
+
+        NSFW flags (can be combined using bitwise or operator)
+
+        - `0` NONE
+
+        - `1` VIOLENT
+
+        - `2` EXPLICIT_SEX
+
+        '
   parameters:
     id:
       name: id

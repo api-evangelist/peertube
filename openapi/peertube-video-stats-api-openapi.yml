@@ -141,7 +141,46 @@ paths:
       operationId: getApiV1VideosByIdStatsTimeseriesByMetric
       x-operation-id-source: derived
 components:
+  parameters:
+    idOrUUID:
+      name: id
+      in: path
+      required: true
+      description: The object id, uuid or short uuid
+      schema:
+        oneOf:
+        - $ref: '#/components/schemas/id'
+        - $ref: '#/components/schemas/UUIDv4'
+        - $ref: '#/components/schemas/shortUUID'
   schemas:
+    VideoStatsUserAgentDevice:
+      enum:
+      - console
+      - embedded
+      - mobile
+      - smarttv
+      - tablet
+      - wearable
+      - xr
+      - desktop
+    VideoStatsRetention:
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              second:
+                type: number
+              retentionPercent:
+                type: number
+    UUIDv4:
+      type: string
+      format: uuid
+      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      minLength: 36
+      maxLength: 36
     VideoStatsTimeserie:
       properties:
         data:
@@ -153,14 +192,6 @@ components:
                 type: string
               value:
                 type: number
-    shortUUID:
-      type: string
-      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
-      example: 2y84q2MQUMWPbiEcxNXMgC
-    id:
-      type: integer
-      minimum: 1
-      example: 42
     VideoStatsUserAgent:
       properties:
         clients:
@@ -190,34 +221,10 @@ components:
                 type: string
               viewers:
                 type: number
-    UUIDv4:
-      type: string
-      format: uuid
-      example: 9c9de5e8-0a1e-484a-b099-e80766180a6d
-      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      minLength: 36
-      maxLength: 36
-    VideoStatsUserAgentDevice:
-      enum:
-      - console
-      - embedded
-      - mobile
-      - smarttv
-      - tablet
-      - wearable
-      - xr
-      - desktop
-    VideoStatsRetention:
-      properties:
-        data:
-          type: array
-          items:
-            type: object
-            properties:
-              second:
-                type: number
-              retentionPercent:
-                type: number
+    id:
+      type: integer
+      minimum: 1
+      example: 42
     VideoStatsOverall:
       properties:
         averageWatchTime:
@@ -249,17 +256,10 @@ components:
                 type: string
               viewers:
                 type: number
-  parameters:
-    idOrUUID:
-      name: id
-      in: path
-      required: true
-      description: The object id, uuid or short uuid
-      schema:
-        oneOf:
-        - $ref: '#/components/schemas/id'
-        - $ref: '#/components/schemas/UUIDv4'
-        - $ref: '#/components/schemas/shortUUID'
+    shortUUID:
+      type: string
+      description: translation of a uuid v4 with a bigger alphabet to have a shorter uuid
+      example: 2y84q2MQUMWPbiEcxNXMgC
   securitySchemes:
     OAuth2:
       description: 'Authenticating via OAuth requires the following steps:
