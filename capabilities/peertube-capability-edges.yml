@@ -1,0 +1,26 @@
+slug: peertube
+provider: PeerTube
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Users
+  spec_file: peertube-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: POST /api/v1/users/{id}/block Block a user; POST /api/v1/users/{id}/verify-email Verify a
+    user; POST /api/v1/users/{id}/reset-password Reset password; POST /api/v1/users/{id}/two-factor/request
+    Request two factor auth
+  reason: Operations create, block, verify, reset credentials and enrol two-factor for platform user accounts
+    — account and access administration rather than any business-domain customer process.
