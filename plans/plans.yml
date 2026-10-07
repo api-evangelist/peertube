@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 plans:
   - name: Self-Hosted (Free)
     description: PeerTube is free and open-source software licensed under AGPLv3. Anyone can download, install, and run their own PeerTube instance at no cost. There are no usage fees, API call limits imposed by the project, or subscription tiers for self-hosted deployments. Rate limits are configurable by individual instance administrators.
